@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heads Gallery - GraalGuide Graal Era Custom Heads</title>
+    <meta name="description" content="Filter by gender and color to find the perfect head for your character.">
+    <style>
+        :root {
+            --primary-color: #8a2be2; /* Purple accent */
+            --secondary-color: #00bcd4; /* Teal accent */
+            --accent-color: #ff5722; /* Orange accent */
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #9e9e9e;
+            --border-color: #333;
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            background-color: var(--dark-bg); 
+            color: var(--text-color); 
+            line-height: 1.6; 
+        }
+        
+        a { 
+            text-decoration: none; 
+            color: var(--primary-color); 
+            transition: all 0.3s ease; 
+        }
+        
+        a:hover { 
+            color: var(--secondary-color); 
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 15px; 
+        }
+
+        /* Header */
+        header { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 15px 0; 
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            font-size: 28px; 
+            font-weight: 800; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span { 
+            color: var(--primary-color); 
+        }
+        
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+            position: relative; 
+        }
+        
+        nav ul li { 
+            margin-left: 25px; 
+            position: relative; 
+        }
+        
+        nav ul li a { 
+            color: var(--text-color); 
+            font-weight: 500; 
+            display: block; 
+            padding: 5px 0; 
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-btn img {
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        .language-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 150px;
+            z-index: 1000;
+            margin-top: 5px;
+        }
+        
+        .language-options a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-options a img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .language-selector:hover .language-options {
+            display: block;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        /* Heads Gallery Content */
+        .gallery-content {
+            display: flex;
+            margin-bottom: 40px;
+            gap: 30px;
+        }
+        
+        .gallery-filters {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            height: fit-content;
+            border: 1px solid var(--border-color);
+        }
+        
+        .gallery-filters h3 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--text-color);
+            font-weight: 700;
+        }
+        
+        .filter-group {
+            margin-bottom: 25px;
+        }
+        
+        .filter-group h4 {
+            margin-bottom: 12px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .color-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .color-filter {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .color-filter.active {
+            border: 2px solid #fff;
+            transform: scale(1.15);
+            box-shadow: 0 0 0 3px var(--primary-color);
+        }
+        
+        .color-filter:hover {
+            transform: scale(1.1);
+        }
+        
+        .filter-options {
+            list-style: none;
+        }
+        
+        .filter-options li {
+            margin-bottom: 10px;
+        }
+        
+        .filter-options label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        .filter-options label:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .filter-options input {
+            margin-right: 10px;
+            accent-color: var(--primary-color);
+        }
+        
+        .gallery-container {
+            flex: 3;
+        }
+        
+        .heads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        
+        .head-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+        
+        .head-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Multi-angle display */
+        .head-gallery {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            padding: 20px;
+            background: var(--dark-bg);
+        }
+        
+        .head {
+            width: 32px;
+            height: 32px;
+            background-repeat: no-repeat;
+            image-rendering: pixelated;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+        }
+        
+        .frame1 { background-position: 0 0; }
+        .frame2 { background-position: 0 -32px; }
+        .frame3 { background-position: 0 -64px; }
+        .frame4 { background-position: 0 -96px; }
+        
+        /* Improved Reset Button */
+        .reset-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #d84315 100%);
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+        }
+        
+        .reset-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            list-style: none;
+            gap: 8px;
+        }
+        
+        .pagination li {
+            margin: 0;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+        }
+        
+        .page-nav {
+            background: var(--dark-bg);
+        }
+
+        /* Modal for enlarged view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 50px 0 20px; 
+            margin-top: 40px; 
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-content { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between; 
+            margin-bottom: 30px; 
+            gap: 30px;
+        }
+        
+        .footer-section { 
+            flex: 1; 
+            min-width: 250px; 
+        }
+        
+        .footer-section h3 { 
+            color: var(--primary-color); 
+            margin-bottom: 20px; 
+            font-weight: 700;
+        }
+        
+        .footer-section p, .footer-section li {
+            color: var(--text-muted);
+        }
+        
+        .footer-section ul { 
+            list-style: none; 
+        }
+        
+        .footer-section ul li { 
+            margin-bottom: 12px; 
+        }
+        
+        .footer-section ul li a { 
+            color: var(--text-muted); 
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover { 
+            color: var(--primary-color); 
+            padding-left: 5px;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 20px; 
+            border-top: 1px solid var(--border-color); 
+            font-size: 0.9rem; 
+            color: var(--text-muted); 
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .gallery-content { 
+                flex-direction: column; 
+            }
+            
+            .gallery-filters { 
+                margin-right: 0; 
+                margin-bottom: 20px; 
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            
+            nav ul { 
+                margin-top: 15px; 
+                justify-content: center; 
+                flex-wrap: wrap; 
+            }
+            
+            nav ul li { 
+                margin: 5px 10px; 
+            }
+            
+            .dropdown-menu { 
+                position: static; 
+                width: 100%; 
+                margin-top: 5px; 
+            }
+            
+            .footer-content { 
+                flex-direction: column; 
+            }
+            
+            .language-selector {
+                margin: 15px auto 0;
+            }
+            
+            .heads-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .head-gallery {
+                padding: 15px;
+            }
+            
+            .head {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .frame1 { background-position: 0 0; }
+            .frame2 { background-position: 0 -28px; }
+            .frame3 { background-position: 0 -56px; }
+            .frame4 { background-position: 0 -84px; }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        /* No results styling */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        
+        .no-results::before {
+            content: "😢";
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" id="nav-home">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-uploads">Uploads</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="heads.html" id="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" id="nav-bodies">Bodies</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-guides">Guide - How to?</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide" id="nav-gralats">Get Gralats</a></li>
+                                <li><a href="eventsguide" id="nav-events">Get Event Coins</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-trade">Trade Table</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sellablescalculator.html" id="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" id="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" id="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" id="nav-price">Price House</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="secret-achievements.html" id="nav-achievements">Secret Achievements</a></li>
+                    </ul>
+                </nav>
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                        English
+                    </button>
+                    <div class="language-options">
+                        <a href="#" data-lang="en">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            English
+                        </a>
+                        <a href="#" data-lang="pt">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                            Português
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 id="page-title">Graal Era Heads Gallery</h1>
+            <p id="page-description">Filter by gender and color to find the perfect head for your character.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="gallery-content">
+            <div class="gallery-filters">
+                <h3 id="filter-title">Filters</h3>
+                
+                <div class="filter-group">
+                    <h4 id="gender-title">Gender</h4>
+                    <ul class="filter-options">
+                        <li><label><input type="checkbox" name="gender" value="all" checked> <span id="gender-all">All Genders</span></label></li>
+                        <li><label><input type="checkbox" name="gender" value="male"> <span id="gender-male">Male</span></label></li>
+                        <li><label><input type="checkbox" name="gender" value="female"> <span id="gender-female">Female</span></label></li>
+                        <li><label><input type="checkbox" name="gender" value="nonhuman"> <span id="gender-nonhuman">Non-Human</span></label></li>
+                        <li><label><input type="checkbox" name="gender" value="noobie"> <span id="gender-noobie">Noobies</span></label></li>
+                    </ul>
+                </div>
+                
+                <div class="filter-group">
+                    <h4 id="color-title">Color</h4>
+                    <div class="color-filters">
+                        <div class="color-filter active" data-color="all" style="background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);" title="All Colors"></div>
+                        <div class="color-filter" data-color="black" style="background-color: #000000;" title="Black"></div>
+                        <div class="color-filter" data-color="brown" style="background-color: #8B4513;" title="Brown"></div>
+                        <div class="color-filter" data-color="yellow" style="background-color: #FFE000;" title="Yellow"></div>
+                        <div class="color-filter" data-color="red" style="background-color: #FF0000;" title="Red"></div>
+                        <div class="color-filter" data-color="blue" style="background-color: #0000FF;" title="Blue"></div>
+                        <div class="color-filter" data-color="green" style="background-color: #008000;" title="Green"></div>
+                        <div class="color-filter" data-color="purple" style="background-color: #800080;" title="Purple"></div>
+                        <div class="color-filter" data-color="pink" style="background-color: #FFC0CB;" title="Pink"></div>
+                        <div class="color-filter" data-color="white" style="background-color: #FFFFFF; border: 1px solid #ddd;" title="White"></div>
+                    </div>
+                </div>
+                
+                <button id="reset-filters" class="reset-btn">Reset All Filters</button>
+            </div>
+            
+            <div class="gallery-container">
+                <div class="heads-grid" id="heads-container">
+                    <!-- Heads will be populated by JavaScript -->
+                </div>
+                
+                <ul class="pagination">
+                    <li><a href="#" class="page-nav" data-page="prev">&laquo;</a></li>
+                    <li><a href="#" class="active" data-page="1">1</a></li>
+                    <li><a href="#" data-page="2">2</a></li>
+                    <li><a href="#" data-page="3">3</a></li>
+                    <li><a href="#" class="page-nav" data-page="next">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for enlarged view -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="enlarged-img">
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="about-title">About GraalGuide</h3>
+                    <p id="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p><em id="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="links-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html" id="link-home">Home</a></li>
+                        <li><a href="#" id="link-uploads">Uploads</a></li>
+                        <li><a href="#" id="link-trade">Trade Table</a></li>
+                        <li><a href="#" id="link-achievements">Secret Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="legal-title">Legal & Policies</h3>
+                    <ul>
+                        <li><a href="#" id="policy-privacy">Privacy Policy</a></li>
+                        <li><a href="#" id="policy-terms">Terms of Service</a></li>
+                        <li><a href="#" id="policy-cookie">Cookie Policy</a></li>
+                        <li><a href="#" id="policy-disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="connect-title">Connect</h3>
+                    <ul>
+                        <li><a href="#" id="connect-discord">Our Discord Server</a></li>
+                        <li><a href="#" id="connect-youtube">YouTube</a></li>
+                        <li><a href="#" id="connect-contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Head data with gender and color tags
+        const headsData = [
+            { 
+                image: "image/heads/1.gif",
+                gender: ["male"],
+                colors: ["black"],
+            },
+            { 
+                image: "image/heads/2.gif",
+                gender: ["male"],
+                colors: ["black"],
+            },
+            { 
+                image: "image/heads/3.png",
+                gender: ["male"],
+                colors: ["black"],
+            },
+            { 
+                image: "image/heads/4.gif",
+                gender: ["male"],
+                colors: ["black"],
+            },
+            { 
+                image: "image/heads/5.gif",
+                gender: ["male"],
+                colors: ["green"],
+            },
+            { 
+                image: "image/heads/6.gif",
+                gender: ["male"],
+                colors: ["black"],
+            },
+            { 
+                image: "image/heads/7.gif",
+                gender: ["male"],
+                colors: ["black"],
+            },
+            { 
+                image: "image/heads/8.gif",
+                gender: ["male"],
+                colors: ["black"],
+            },
+            { 
+                image: "image/heads/9.gif",
+                gender: ["male"],
+                colors: ["black"],
+            },
+            { 
+                image: "image/heads/10.gif",
+                gender: ["male"],
+                colors: ["black"],
+            },
+            { 
+                image: "image/heads/11.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/12.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/13.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/14.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/15.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/16.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/17.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/18.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads//19.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/20.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/21.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/22.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/23.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/24.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/25.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/26.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/27.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/28.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/29.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/30.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/31.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/32.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/33.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/34.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/35.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/36.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/37.gif",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/38.gif",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/39.gif",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/40.gif",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/41.gif",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/42.gif",
+                gender: ["male"],
+                colors: ["blue"],           
+            },
+            { 
+                image: "image/heads/43.gif",
+                gender: ["male"],
+                colors: ["blue"],           
+            },
+            { 
+                image: "image/heads/44.png",
+                gender: ["male"],
+                colors: ["blue"],           
+            },
+            { 
+                image: "image/heads/45.gif",
+                gender: ["male"],
+                colors: ["blue"],           
+            },
+            { 
+                image: "image/heads/46.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/47.gif",
+                gender: ["male"],
+                colors: ["pink"],           
+            },
+            { 
+                image: "image/heads/48.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/49.gif",
+                gender: ["male", "nonhuman"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/50.gif",
+                gender: ["male"],
+                colors: ["yellow"],           
+            },
+            { 
+                image: "image/heads/51.gif",
+                gender: ["male"],
+                colors: ["purple"],           
+            },
+            { 
+                image: "image/heads/52.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/53.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/54.gif",
+                gender: ["male"],
+                colors: ["red"],           
+            },
+            { 
+                image: "image/heads/55.gif",
+                gender: ["male"],
+                colors: ["pink"],           
+            },
+            { 
+                image: "image/heads/56.gif",
+                gender: ["male"],
+                colors: ["purple"],           
+            },
+            { 
+                image: "image/heads/57.gif",
+                gender: ["male"],
+                colors: ["red"],           
+            },
+            { 
+                image: "image/heads/58.gif",
+                gender: ["male"],
+                colors: ["red"],           
+            },
+            { 
+                image: "image/heads/59.gif",
+                gender: ["male"],
+                colors: ["red"],           
+            },
+            { 
+                image: "image/heads/60.gif",
+                gender: ["male"],
+                colors: ["red"],           
+            },
+            { 
+                image: "image/heads/61.gif",
+                gender: ["male"],
+                colors: ["red"],           
+            },
+            { 
+                image: "image/heads/62.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/63.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/64.png",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/65.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/66.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/67.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/68.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/69.png",
+                gender: ["male"],
+                colors: ["yellow"],           
+            },
+            { 
+                image: "image/heads/70.gif",
+                gender: ["male"],
+                colors: ["yellow"],           
+            },
+            { 
+                image: "image/heads/71.gif",
+                gender: ["male"],
+                colors: ["yellow"],           
+            },
+            { 
+                image: "image/heads/72.gif",
+                gender: ["male"],
+                colors: ["red"],           
+            },
+            { 
+                image: "image/heads/73.gif",
+                gender: ["male"],
+                colors: ["pink"],           
+            },
+            { 
+                image: "image/heads/74.png",
+                gender: ["male"],
+                colors: ["blue"],           
+            },
+            { 
+                image: "image/heads/75.png",
+                gender: ["male"],
+                colors: ["red"],           
+            },
+            { 
+                image: "image/heads/76.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+
+            { 
+                image: "image/heads/77.gif",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/78.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/79.gif",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/80.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/81.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/82.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/83.gif",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/84.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/85.gif",
+                gender: ["male"],
+                colors: ["pink"],           
+            },
+            { 
+                image: "image/heads/86.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/87.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/88.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/89.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/90.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/91.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/92.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/93.png",
+                gender: ["male"],
+                colors: ["pink"],           
+            },
+            { 
+                image: "image/heads/94.gif",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/95.gif",
+                gender: ["male"],
+                colors: ["purple", "pink"],           
+            },
+            { 
+                image: "image/heads/96.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/97.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/98.gif",
+                gender: ["male"],
+                colors: ["black", "red"],           
+            },
+            { 
+                image: "image/heads/99.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/100.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/101.gif",
+                gender: ["male"],
+                colors: ["black", "pink"],           
+            },
+            { 
+                image: "image/heads/102.gif",
+                gender: ["male"],
+                colors: ["yellow"],           
+            },
+            { 
+                image: "image/heads/103.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/104.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/105.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/106.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/107.gif",
+                gender: ["male"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/108.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/109.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/120.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/121.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/122.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/123.gif",
+                gender: ["male"],
+                colors: ["blue"],           
+            },
+            { 
+                image: "image/heads/124.png",
+                gender: ["male", "nonhuman"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/125.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/126.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/127.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/128.png",
+                gender: ["male"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/129.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/130.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/131.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/132.png",
+                gender: ["noobie"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/133.gif",
+                gender: ["male", "nonhuman"],
+                colors: ["red"],           
+            },
+            { 
+                image: "image/heads/134.gif",
+                gender: ["male", "nonhuman"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/135.png",
+                gender: ["noobie", "nonhuman"],
+                colors: ["brown"],           
+            },
+            { 
+                image: "image/heads/136.png",
+                gender: ["nonhuman"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/137.png",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/138.gif",
+                gender: ["nonhuman"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/139.png",
+                gender: ["male", "nonhuman"],
+                colors: ["pink", "blue"],           
+            },
+            { 
+                image: "image/heads/140.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/141.gif",
+                gender: ["male", "nonhuman"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/142.gif",
+                gender: ["male", "nonhuman"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/143.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/144.gif",
+                gender: ["male", "nonhuman"],
+                colors: ["green"],           
+            },
+            { 
+                image: "image/heads/145.gif",
+                gender: ["nonhuman"],
+                colors: ["black", "red"],           
+            },
+            { 
+                image: "image/heads/146.gif",
+                gender: ["nonhuman"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/147.gif",
+                gender: ["nonhuman"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/148.gif",
+                gender: ["nonhuman"],
+                colors: ["green", "black"],           
+            },
+            { 
+                image: "image/heads/149.gif",
+                gender: ["male"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/150.gif",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/151.png",
+                gender: ["noobie"],
+                colors: ["green"],           
+            },
+            { 
+                image: "image/heads/152.gif",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/153.png",
+                gender: ["noobie"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/154.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/155.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/156.gif",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/157.gif",
+                gender: ["noobie"],
+                colors: [""],           
+            },
+            { 
+                image: "image/heads/158.gif",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/159.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/160.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/161.png",
+                gender: ["noobie"],
+                colors: ["white"],           
+            },
+            { 
+                image: "image/heads/162.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/163.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/164.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/165.gif",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/166.png",
+                gender: ["noobie"],
+                colors: ["pink"],           
+            },
+            { 
+                image: "image/heads/167.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/168.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/169.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/170.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/171.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/172.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/173.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/174.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/175.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/176.png",
+                gender: ["noobie"],
+                colors: ["green"],           
+            },
+            { 
+                image: "image/heads/177.png",
+                gender: ["noobie"],
+                colors: ["blue"],           
+            },
+            { 
+                image: "image/heads/178.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/179.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/180.gif",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/181.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+            { 
+                image: "image/heads/182.png",
+                gender: ["noobie"],
+                colors: ["black"],           
+            },
+
+        ];
+
+        // Configuration
+        const itemsPerPage = 40;
+        let currentPage = 1;
+        let currentColorFilter = "all";
+        let currentGenderFilters = ["all"];
+        let filteredHeads = [...headsData];
+
+        // Language translation data
+        const translations = {
+            'en': {
+                'page-title': 'Graal Era Heads Gallery',
+                'page-description': 'Filter by gender and color to find the perfect head for your character.',
+                'filter-title': 'Filters',
+                'gender-title': 'Gender',
+                'gender-all': 'All Genders',
+                'gender-male': 'Male',
+                'gender-female': 'Female',
+                'gender-nonhuman': 'Non-Human',
+                'gender-noobie': 'Noobies',
+                'color-title': 'Color',
+                'reset-filters': 'Reset All Filters',
+                
+                // Navigation
+                'nav-home': 'Home',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guide - How to?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Trade',
+                'nav-gralats': 'Get Gralats',
+                'nav-events': 'Get Event Coins',
+                'nav-trade': 'Trade Table',
+                'nav-calculator': 'Sellables Calculator',
+                'nav-ratio': 'Ratio History',
+                'nav-profit': 'Profit & Loss Tracker',
+                'nav-price': 'Price House',
+                'nav-achievements': 'Secret Achievements',
+                
+                // Footer
+                'about-title': 'About GraalGuide',
+                'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
+                'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
+                'links-title': 'Quick Links',
+                'link-home': 'Home',
+                'link-uploads': 'Uploads',
+                'link-trade': 'Trade Table',
+                'link-achievements': 'Secret Achievements',
+                'legal-title': 'Legal & Policies',
+                'policy-privacy': 'Privacy Policy',
+                'policy-terms': 'Terms of Service',
+                'policy-cookie': 'Cookie Policy',
+                'policy-disclaimer': 'Disclaimer',
+                'connect-title': 'Connect',
+                'connect-discord': 'Our Discord Server',
+                'connect-youtube': 'YouTube',
+                'connect-contact': 'Contact Us',
+                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.'
+            },
+            'pt': {
+                'page-title': 'Galeria de Heads do Graal Era',
+                'page-description': 'Navegue pela nossa coleção de heads personalizados. Filtre por gênero e cor para encontrar a head perfeita para o seu personagem.',
+                'filter-title': 'Filtros',
+                'gender-title': 'Gênero',
+                'gender-all': 'Todos os Gêneros',
+                'gender-male': 'Masculino',
+                'gender-female': 'Feminino',
+                'gender-nonhuman': 'Não-Humano',
+                'gender-noobie': 'Noobies',
+                'color-title': 'Cor',
+                'reset-filters': 'Redefinir Filtros',
+                
+                // Navigation
+                'nav-home': 'Início',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guia - Como?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Troca',
+                'nav-gralats': 'Obter Gralats',
+                'nav-events': 'Obter Moedas de Evento',
+                'nav-trade': 'Tabela de Troca',
+                'nav-calculator': 'Calculadora de Vendáveis',
+                'nav-ratio': 'Histórico de Ratios',
+                'nav-profit': 'Rastrear Lucro & Perda',
+                'nav-price': 'Casa de Preços',
+                'nav-achievements': 'Conquistas Secretas',
+                
+                // Footer
+                'about-title': 'Sobre o GraalGuide',
+                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
+                'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
+                'links-title': 'Links Rápidos',
+                'link-home': 'Início',
+                'link-uploads': 'Uploads',
+                'link-trade': 'Tabela de Troca',
+                'link-achievements': 'Conquistas Secretas',
+                'legal-title': 'Legal e Políticas',
+                'policy-privacy': 'Política de Privacidade',
+                'policy-terms': 'Termos de Serviço',
+                'policy-cookie': 'Política de Cookies',
+                'policy-disclaimer': 'Aviso Legal',
+                'connect-title': 'Conectar',
+                'connect-discord': 'Nosso Servidor no Discord',
+                'connect-youtube': 'YouTube',
+                'connect-contact': 'Contate-Nos',
+                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.'
+            }
+        };
+
+        // Function to change language
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(element => {
+                const key = element.id;
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update language button text and flag
+            const langBtn = document.querySelector('.language-btn');
+            if (lang === 'en') {
+                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English"> English';
+            } else if (lang === 'pt') {
+                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese"> Português';
+            }
+            
+            // Store language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Function to render heads based on current page and filters
+        function renderHeads() {
+            const headsContainer = document.getElementById('heads-container');
+            headsContainer.innerHTML = '';
+            
+            // Filter heads based on current filters
+            const filtered = headsData.filter(head => {
+                // Check color filter
+                const colorMatch = currentColorFilter === "all" || head.colors.includes(currentColorFilter);
+                
+                // Check gender filters
+                const genderMatch = currentGenderFilters.includes("all") || 
+                                  head.gender.some(gender => currentGenderFilters.includes(gender));
+                
+                return colorMatch && genderMatch;
+            });
+            
+            filteredHeads = filtered;
+            
+            // Calculate which items to show
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const headsToShow = filteredHeads.slice(startIndex, endIndex);
+            
+            if (headsToShow.length === 0) {
+                headsContainer.innerHTML = '<div class="no-results">No heads found matching your filters.</div>';
+                return;
+            }
+            
+            // Create HTML for each head
+            headsToShow.forEach(head => {
+                const headElement = document.createElement('div');
+                headElement.className = 'head-item';
+                
+                headElement.innerHTML = `
+                    <div class="head-gallery">
+                        <div class="head frame1" style="background-image:url('${head.image}')"></div>
+                        <div class="head frame2" style="background-image:url('${head.image}')"></div>
+                        <div class="head frame3" style="background-image:url('${head.image}')"></div>
+                        <div class="head frame4" style="background-image:url('${head.image}')"></div>
+                    </div>
+                `;
+                
+                // Add click event to show enlarged image
+                headElement.addEventListener('click', function() {
+                    document.getElementById('enlarged-img').src = head.image;
+                    document.getElementById('image-modal').style.display = 'flex';
+                });
+                
+                headsContainer.appendChild(headElement);
+            });
+            
+            // Update pagination
+            updatePagination();
+        }
+
+        // Function to update pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredHeads.length / itemsPerPage);
+            const paginationContainer = document.querySelector('.pagination');
+            
+            // Clear existing pagination except for prev/next buttons
+            const prevButton = paginationContainer.querySelector('[data-page="prev"]').parentNode;
+            const nextButton = paginationContainer.querySelector('[data-page="next"]').parentNode;
+            
+            paginationContainer.innerHTML = '';
+            paginationContainer.appendChild(prevButton);
+            
+            // Add page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = i;
+                a.dataset.page = i;
+                
+                if (i === currentPage) {
+                    a.classList.add('active');
+                }
+                
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPage = parseInt(this.dataset.page);
+                    renderHeads();
+                });
+                
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+            }
+            
+            paginationContainer.appendChild(nextButton);
+            
+            // Update button states
+            const prevBtn = document.querySelector('[data-page="prev"]');
+            const nextBtn = document.querySelector('[data-page="next"]');
+            
+            if (prevBtn) prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
+            if (nextBtn) nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved language preference or default to English
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // Initial render
+            renderHeads();
+            
+            // Color filter event listeners
+            document.querySelectorAll('.color-filter').forEach(filter => {
+                filter.addEventListener('click', function() {
+                    document.querySelectorAll('.color-filter').forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    currentColorFilter = this.dataset.color;
+                    currentPage = 1;
+                    renderHeads();
+                });
+            });
+            
+            // Gender filter event listeners
+            document.querySelectorAll('input[name="gender"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.value === 'all' && this.checked) {
+                        // If "All" is checked, uncheck others
+                        document.querySelectorAll('input[name="gender"]').forEach(cb => {
+                            if (cb.value !== 'all') cb.checked = false;
+                        });
+                        currentGenderFilters = ["all"];
+                    } else {
+                        // If a specific gender is checked, uncheck "All"
+                        document.querySelector('input[name="gender"][value="all"]').checked = false;
+                        
+                        // Get all checked genders
+                        currentGenderFilters = Array.from(document.querySelectorAll('input[name="gender"]:checked')).map(input => input.value);
+                        
+                        // If nothing is checked, default to "All"
+                        if (currentGenderFilters.length === 0) {
+                            document.querySelector('input[name="gender"][value="all"]').checked = true;
+                            currentGenderFilters = ["all"];
+                        }
+                    }
+                    
+                    currentPage = 1;
+                    renderHeads();
+                });
+            });
+            
+            // Reset filters button
+            document.getElementById('reset-filters').addEventListener('click', function() {
+                document.querySelectorAll('.color-filter').forEach(f => f.classList.remove('active'));
+                document.querySelector('[data-color="all"]').classList.add('active');
+                currentColorFilter = "all";
+                
+                document.querySelectorAll('input[name="gender"]').forEach(cb => cb.checked = false);
+                document.querySelector('input[name="gender"][value="all"]').checked = true;
+                currentGenderFilters = ["all"];
+                
+                currentPage = 1;
+                renderHeads();
+            });
+            
+            // Pagination event listeners
+            document.querySelector('[data-page="prev"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderHeads();
+                }
+            });
+            
+            document.querySelector('[data-page="next"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                const totalPages = Math.ceil(filteredHeads.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderHeads();
+                }
+            });
+            
+            // Modal functionality
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('image-modal').style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('image-modal')) {
+                    document.getElementById('image-modal').style.display = 'none';
+                }
+            });
+            
+            // Language selection event listeners
+            document.querySelectorAll('.language-options a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodies Gallery - GraalGuide Graal Era Custom Bodies</title>
+    <meta name="description" content="Filter by category to find the perfect body for your character.">
+    <style>
+        :root {
+            --primary-color: #8a2be2; /* Purple accent */
+            --secondary-color: #00bcd4; /* Teal accent */
+            --accent-color: #ff5722; /* Orange accent */
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #9e9e9e;
+            --border-color: #333;
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            background-color: var(--dark-bg); 
+            color: var(--text-color); 
+            line-height: 1.6; 
+        }
+        
+        a { 
+            text-decoration: none; 
+            color: var(--primary-color); 
+            transition: all 0.3s ease; 
+        }
+        
+        a:hover { 
+            color: var(--secondary-color); 
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 15px; 
+        }
+
+        /* Header */
+        header { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 15px 0; 
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            font-size: 28px; 
+            font-weight: 800; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span { 
+            color: var(--primary-color); 
+        }
+        
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+            position: relative; 
+        }
+        
+        nav ul li { 
+            margin-left: 25px; 
+            position: relative; 
+        }
+        
+        nav ul li a { 
+            color: var(--text-color); 
+            font-weight: 500; 
+            display: block; 
+            padding: 5px 0; 
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-btn img {
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        .language-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 150px;
+            z-index: 1000;
+            margin-top: 5px;
+        }
+        
+        .language-options a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-options a img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .language-selector:hover .language-options {
+            display: block;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        /* Body Gallery Content */
+        .gallery-content {
+            display: flex;
+            margin-bottom: 40px;
+            gap: 30px;
+        }
+        
+        .gallery-filters {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            height: fit-content;
+            border: 1px solid var(--border-color);
+        }
+        
+        .gallery-filters h3 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--text-color);
+            font-weight: 700;
+        }
+        
+        .filter-group {
+            margin-bottom: 25px;
+        }
+        
+        .filter-group h4 {
+            margin-bottom: 12px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .filter-options {
+            list-style: none;
+        }
+        
+        .filter-options li {
+            margin-bottom: 10px;
+        }
+        
+        .filter-options label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        .filter-options label:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .filter-options input {
+            margin-right: 10px;
+            accent-color: var(--primary-color);
+        }
+        
+        .gallery-container {
+            flex: 3;
+        }
+        
+        .bodies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .body-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+        
+        .body-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Body display - showing only the top part */
+        .body-display {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .body-img {
+            width: 128px;
+            height: 128px;
+            object-fit: cover;
+            object-position: top;
+            image-rendering: pixelated;
+            border-radius: 3px;
+        }
+        
+        /* Improved Reset Button */
+        .reset-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #d84315 100%);
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+        }
+        
+        .reset-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            list-style: none;
+            gap: 8px;
+        }
+        
+        .pagination li {
+            margin: 0;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+        }
+        
+        .page-nav {
+            background: var(--dark-bg);
+        }
+
+        /* Modal for enlarged view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 50px 0 20px; 
+            margin-top: 40px; 
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-content { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between; 
+            margin-bottom: 30px; 
+            gap: 30px;
+        }
+        
+        .footer-section { 
+            flex: 1; 
+            min-width: 250px; 
+        }
+        
+        .footer-section h3 { 
+            color: var(--primary-color); 
+            margin-bottom: 20px; 
+            font-weight: 700;
+        }
+        
+        .footer-section p, .footer-section li {
+            color: var(--text-muted);
+        }
+        
+        .footer-section ul { 
+            list-style: none; 
+        }
+        
+        .footer-section ul li { 
+            margin-bottom: 12px; 
+        }
+        
+        .footer-section ul li a { 
+            color: var(--text-muted); 
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover { 
+            color: var(--primary-color); 
+            padding-left: 5px;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 20px; 
+            border-top: 1px solid var(--border-color); 
+            font-size: 0.9rem; 
+            color: var(--text-muted); 
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .gallery-content { 
+                flex-direction: column; 
+            }
+            
+            .gallery-filters { 
+                margin-right: 0; 
+                margin-bottom: 20px; 
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            
+            nav ul { 
+                margin-top: 15px; 
+                justify-content: center; 
+                flex-wrap: wrap; 
+            }
+            
+            nav ul li { 
+                margin: 5px 10px; 
+            }
+            
+            .dropdown-menu { 
+                position: static; 
+                width: 100%; 
+                margin-top: 5px; 
+            }
+            
+            .footer-content { 
+                flex-direction: column; 
+            }
+            
+            .language-selector {
+                margin: 15px auto 0;
+            }
+            
+            .bodies-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 15px;
+            }
+            
+            .body-display {
+                height: 160px;
+            }
+            
+            .body-img {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        /* No results styling */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        
+        .no-results::before {
+            content: "😢";
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" id="nav-home">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-uploads">Uploads</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="heads.html" id="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" id="nav-bodies">Bodies</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-guides">Guide - How to?</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide" id="nav-gralats">Get Gralats</a></li>
+                                <li><a href="eventsguide" id="nav-events">Get Event Coins</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-trade">Trade Table</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sellablescalculator.html" id="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" id="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" id="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" id="nav-price">Price House</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="secret-achievements.html" id="nav-achievements">Secret Achievements</a></li>
+                    </ul>
+                </nav>
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                        English
+                    </button>
+                    <div class="language-options">
+                        <a href="#" data-lang="en">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            English
+                        </a>
+                        <a href="#" data-lang="pt">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                            Português
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 id="page-title">Graal Era Bodies Gallery</h1>
+            <p id="page-description">Filter by category to find the perfect body for your character.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="gallery-content">
+            <div class="gallery-filters">
+                <h3 id="filter-title">Filters</h3>
+                
+                <div class="filter-group">
+                    <h4 id="category-title">Category</h4>
+                    <ul class="filter-options">
+                        <li><label><input type="checkbox" name="category" value="all" checked> <span id="category-all">All Categories</span></label></li>
+                        <li><label><input type="checkbox" name="category" value="male"> <span id="category-male">Male</span></label></li>
+                        <li><label><input type="checkbox" name="category" value="female"> <span id="category-female">Female</span></label></li>
+                        <li><label><input type="checkbox" name="category" value="unisex"> <span id="category-unisex">Unisex</span></label></li>
+                        <li><label><input type="checkbox" name="category" value="hoodie"> <span id="category-hoodie">Hoodie</span></label></li>
+                        <li><label><input type="checkbox" name="category" value="color-changeable"> <span id="category-color">Color-Changeable</span></label></li>
+                    </ul>
+                </div>
+                
+                <button id="reset-filters" class="reset-btn">Reset All Filters</button>
+            </div>
+            
+            <div class="gallery-container">
+                <div class="bodies-grid" id="bodies-container">
+                    <!-- Bodies will be populated by JavaScript -->
+                </div>
+                
+                <ul class="pagination">
+                    <li><a href="#" class="page-nav" data-page="prev">&laquo;</a></li>
+                    <li><a href="#" class="active" data-page="1">1</a></li>
+                    <li><a href="#" data-page="2">2</a></li>
+                    <li><a href="#" data-page="3">3</a></li>
+                    <li><a href="#" class="page-nav" data-page="next">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for enlarged view -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="enlarged-img">
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="about-title">About GraalGuide</h3>
+                    <p id="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p><em id="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="links-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html" id="link-home">Home</a></li>
+                        <li><a href="#" id="link-uploads">Uploads</a></li>
+                        <li><a href="#" id="link-trade">Trade Table</a></li>
+                        <li><a href="#" id="link-achievements">Secret Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="legal-title">Legal & Policies</h3>
+                    <ul>
+                        <li><a href="#" id="policy-privacy">Privacy Policy</a></li>
+                        <li><a href="#" id="policy-terms">Terms of Service</a></li>
+                        <li><a href="#" id="policy-cookie">Cookie Policy</a></li>
+                        <li><a href="#" id="policy-disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="connect-title">Connect</h3>
+                    <ul>
+                        <li><a href="#" id="connect-discord">Our Discord Server</a></li>
+                        <li><a href="#" id="connect-youtube">YouTube</a></li>
+                        <li><a href="#" id="connect-contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Body data with category tags
+        const bodiesData = [
+            { 
+                image: "image/bodies/1.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/2.png",
+                categories: ["unisex","color-changeable"],
+            },
+            { 
+                image: "image/bodies/3.png",
+                categories: ["male", "color-changeable"],
+            },
+            { 
+                image: "image/bodies/4.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/5.png",
+                categories: ["unisex", "color-changeable"],
+            },
+            { 
+                image: "image/bodies/6.png",
+                categories: ["unisex"],
+            },
+            { 
+                image: "image/bodies/7.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/8.png",
+                categories: ["male", "color-changeable"],
+            },
+            { 
+                image: "image/bodies/9.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/10.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/11.png",
+                categories: ["unisex"],
+            },
+            { 
+                image: "image/bodies/12.png",
+                categories: ["unisex"],
+            },
+            { 
+                image: "image/bodies/13.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/14.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/15.png",
+                categories: ["unisex"],
+            },
+            { 
+                image: "image/bodies/16.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/17.png",
+                categories: ["unisex"],
+            },
+            { 
+                image: "image/bodies/18.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/19.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/20.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/21.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/22.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/23.png",
+                categories: ["unisex"],
+            },
+            { 
+                image: "image/bodies/24.png",
+                categories: ["unisex","color-changeable"],
+            },
+            { 
+                image: "image/bodies/25.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/26.png",
+                categories: ["unisex"],
+            },
+            { 
+                image: "image/bodies/27.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/28.png",
+                categories: ["male", "color-changeable"],
+            },
+            { 
+                image: "image/bodies/29.png",
+                categories: ["hoodie"],
+            },
+            { 
+                image: "image/bodies/30.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/31.png",
+                categories: ["male", "color-changeable"],
+            },
+            { 
+                image: "image/bodies/32.png",
+                categories: ["male", "color-changeable"],
+            },
+            { 
+                image: "image/bodies/33.png",
+                categories: ["male"],
+            },
+            { 
+                image: "image/bodies/34.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/35.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/36.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/37.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/38.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/39.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/40.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/41.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/42.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/43.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/44.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/45.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/46.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/47.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/48.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/49.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/50.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/51.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/52.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/53.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/54.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/55.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/56.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/57.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/58.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/59.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/60.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/61.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/62.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/63.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/64.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/65.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/66.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/67.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/68.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/69.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/70.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/71.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/72.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/73.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/74.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/75.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/76.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/77.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/78.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/79.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/80.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/81.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/82.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/83.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/84.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/85.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/86.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/87.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/88.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/89.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/90.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/91.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/92.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/93.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/94.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/95.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/96.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/97.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/98.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/99.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/100.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/101.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/102.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/103.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/104.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/105.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/106.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/107.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/108.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/109.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/110.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/111.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/112.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/113.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/114.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/115.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/116.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/117.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/118.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/119.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/120.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/121.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/122.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/123.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/124.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/125.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/126.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/127.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/128.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/129.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/130.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/131.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/132.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/133.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/134.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/135.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/136.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/137.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/138.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/139.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/140.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/141.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/142.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/143.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/144.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/145.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/146.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/147.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/148.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/149.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/150.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/151.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/152.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/153.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/154.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/155.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/156.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/157.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/158.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/159.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/160.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/161.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/162.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/163.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/164.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/165.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/166.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/167.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/168.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/169.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/170.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/171.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/172.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/173.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/174.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/175.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/176.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/177.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/178.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/179.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/180.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/181.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/182.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/183.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/184.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/185.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/186.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/187.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/188.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/189.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/190.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/191.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/192.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/193.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/194.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/195.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/196.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/197.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/198.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/199.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/200.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/201.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/202.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/203.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/204.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/205.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/206.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/207.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/208.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/209.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/210.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/211.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/212.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/213.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/214.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/215.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/216.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/217.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/218.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/219.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/220.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/221.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/222.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/223.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/224.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/225.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/226.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/227.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/228.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/229.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/230.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/231.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/232.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/233.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/234.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/235.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/236.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/237.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/238.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/239.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/240.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/241.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/242.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/243.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/244.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/245.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/246.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/247.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/248.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/249.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/250.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/251.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/252.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/253.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/254.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/255.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/256.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/257.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/258.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/259.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/260.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/261.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/262.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/263.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/264.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/265.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/266.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/267.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/268.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/269.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/270.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/271.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/272.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/273.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/274.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/275.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/276.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/277.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/278.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/279.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/280.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/281.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/282.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/283.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/284.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/285.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/286.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/287.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/288.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/289.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/290.png",
+                categories: [""],
+            },
+            {
+                image: "image/bodies/291.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/292.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/293.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/294.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/295.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/296.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/297.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/298.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/299.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/300.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/301.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/302.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/303.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/304.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/305.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/306.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/307.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/308.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/309.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/310.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/311.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/312.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/313.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/314.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/315.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/316.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/317.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/318.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/319.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/320.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/321.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/322.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/323.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/324.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/325.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/326.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/327.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/328.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/329.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/330.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/331.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/332.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/333.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/334.png",
+                categories: [""],
+            },
+            {
+                image: "image/bodies/335.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/336.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/337.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/338.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/339.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/340.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/341.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/342.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/343.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/344.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/345.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/346.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/347.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/348.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/349.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/350.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/351.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/352.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/353.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/354.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/355.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/356.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/357.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/358.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/359.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/360.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/361.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/362.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/363.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/364.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/365.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/366.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/367.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/368.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/369.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/370.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/371.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/372.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/373.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/374.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/375.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/376.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/377.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/378.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/379.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/380.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/381.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/382.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/383.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/384.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/385.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/386.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/387.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/388.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/389.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/390.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/391.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/392.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/393.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/394.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/395.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/396.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/397.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/398.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/399.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/400.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/401.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/402.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/403.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/404.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/405.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/406.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/407.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/408.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/409.png",
+                categories: [""],
+            },
+            { 
+                image: "image/bodies/410.png",
+                categories: [""],
+            },
+            
+        ];
+
+        // Configuration
+        const itemsPerPage = 80;
+        let currentPage = 1;
+        let currentCategoryFilters = ["all"];
+        let filteredBodies = [...bodiesData];
+
+        // Language translation data
+        const translations = {
+            'en': {
+                'page-title': 'Graal Era Bodies Gallery',
+                'page-description': 'Filter by category to find the perfect body for your character.',
+                'filter-title': 'Filters',
+                'category-title': 'Category',
+                'category-all': 'All Categories',
+                'category-male': 'Male',
+                'category-female': 'Female',
+                'category-unisex': 'Unisex',
+                'category-hoodie': 'Hoodie',
+                'category-color': 'Color-Changeable',
+                'reset-filters': 'Reset All Filters',
+                
+                // Navigation
+                'nav-home': 'Home',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guide - How to?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Trade',
+                'nav-gralats': 'Get Gralats',
+                'nav-events': 'Get Event Coins',
+                'nav-trade': 'Trade Table',
+                'nav-calculator': 'Sellables Calculator',
+                'nav-ratio': 'Ratio History',
+                'nav-profit': 'Profit & Loss Tracker',
+                'nav-price': 'Price House',
+                'nav-achievements': 'Secret Achievements',
+                
+                // Footer
+                'about-title': 'About GraalGuide',
+                'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
+                'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
+                'links-title': 'Quick Links',
+                'link-home': 'Home',
+                'link-uploads': 'Uploads',
+                'link-trade': 'Trade Table',
+                'link-achievements': 'Secret Achievements',
+                'legal-title': 'Legal & Policies',
+                'policy-privacy': 'Privacy Policy',
+                'policy-terms': 'Terms of Service',
+                'policy-cookie': 'Cookie Policy',
+                'policy-disclaimer': 'Disclaimer',
+                'connect-title': 'Connect',
+                'connect-discord': 'Our Discord Server',
+                'connect-youtube': 'YouTube',
+                'connect-contact': 'Contact Us',
+                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.'
+            },
+            'pt': {
+                'page-title': 'Galeria de Bodies do Graal Era',
+                'page-description': 'Navegue pela nossa coleção de bodies personalizados. Filtre por categoria para encontrar o body perfeito para o seu personagem.',
+                'filter-title': 'Filtros',
+                'category-title': 'Categoria',
+                'category-all': 'Todas as Categorias',
+                'category-male': 'Masculino',
+                'category-female': 'Feminino',
+                'category-unisex': 'Unissex',
+                'category-hoodie': 'Hoodie',
+                'category-color': 'Com Mudança de Cor',
+                'reset-filters': 'Redefinir Filtros',
+                
+                // Navigation
+                'nav-home': 'Início',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guia - Como?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Troca',
+                'nav-gralats': 'Obter Gralats',
+                'nav-events': 'Obter Moedas de Evento',
+                'nav-trade': 'Tabela de Troca',
+                'nav-calculator': 'Calculadora de Vendáveis',
+                'nav-ratio': 'Histórico de Ratios',
+                'nav-profit': 'Rastrear Lucro & Perda',
+                'nav-price': 'Casa de Preços',
+                'nav-achievements': 'Conquistas Secretas',
+                
+                // Footer
+                'about-title': 'Sobre o GraalGuide',
+                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
+                'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
+                'links-title': 'Links Rápidos',
+                'link-home': 'Início',
+                'link-uploads': 'Uploads',
+                'link-trade': 'Tabela de Troca',
+                'link-achievements': 'Conquistas Secretas',
+                'legal-title': 'Legal e Políticas',
+                'policy-privacy': 'Política de Privacidade',
+                'policy-terms': 'Termos de Serviço',
+                'policy-cookie': 'Política de Cookies',
+                'policy-disclaimer': 'Aviso Legal',
+                'connect-title': 'Conectar',
+                'connect-discord': 'Nosso Servidor no Discord',
+                'connect-youtube': 'YouTube',
+                'connect-contact': 'Contate-Nos',
+                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.'
+            }
+        };
+
+        // Function to change language
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(element => {
+                const key = element.id;
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update language button text and flag
+            const langBtn = document.querySelector('.language-btn');
+            if (lang === 'en') {
+                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English"> English';
+            } else if (lang === 'pt') {
+                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese"> Português';
+            }
+            
+            // Store language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Function to render bodies based on current page and filters
+        function renderBodies() {
+            const bodiesContainer = document.getElementById('bodies-container');
+            bodiesContainer.innerHTML = '';
+            
+            // Filter bodies based on current filters
+            const filtered = bodiesData.filter(body => {
+                // Check if "All" is selected or if body matches any selected category
+                return currentCategoryFilters.includes("all") || 
+                       body.categories.some(category => currentCategoryFilters.includes(category));
+            });
+            
+            filteredBodies = filtered;
+            
+            // Calculate which items to show
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const bodiesToShow = filteredBodies.slice(startIndex, endIndex);
+            
+            if (bodiesToShow.length === 0) {
+                bodiesContainer.innerHTML = '<div class="no-results">No bodies found matching your filters.</div>';
+                return;
+            }
+            
+            // Create HTML for each body
+            bodiesToShow.forEach(body => {
+                const bodyElement = document.createElement('div');
+                bodyElement.className = 'body-item';
+                
+                bodyElement.innerHTML = `
+                    <div class="body-display">
+                        <img src="${body.image}" class="body-img">
+                    </div>
+                `;
+                
+                // Add click event to show enlarged image
+                bodyElement.addEventListener('click', function() {
+                    document.getElementById('enlarged-img').src = body.image;
+                    document.getElementById('image-modal').style.display = 'flex';
+                });
+                
+                bodiesContainer.appendChild(bodyElement);
+            });
+            
+            // Update pagination
+            updatePagination();
+        }
+
+        // Function to update pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredBodies.length / itemsPerPage);
+            const paginationContainer = document.querySelector('.pagination');
+            
+            // Clear existing pagination except for prev/next buttons
+            const prevButton = paginationContainer.querySelector('[data-page="prev"]').parentNode;
+            const nextButton = paginationContainer.querySelector('[data-page="next"]').parentNode;
+            
+            paginationContainer.innerHTML = '';
+            paginationContainer.appendChild(prevButton);
+            
+            // Add page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = i;
+                a.dataset.page = i;
+                
+                if (i === currentPage) {
+                    a.classList.add('active');
+                }
+                
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPage = parseInt(this.dataset.page);
+                    renderBodies();
+                });
+                
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+            }
+            
+            paginationContainer.appendChild(nextButton);
+            
+            // Update button states
+            const prevBtn = document.querySelector('[data-page="prev"]');
+            const nextBtn = document.querySelector('[data-page="next"]');
+            
+            if (prevBtn) prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
+            if (nextBtn) nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved language preference or default to English
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // Initial render
+            renderBodies();
+            
+            // Category filter event listeners
+            document.querySelectorAll('input[name="category"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.value === 'all' && this.checked) {
+                        // If "All" is checked, uncheck others
+                        document.querySelectorAll('input[name="category"]').forEach(cb => {
+                            if (cb.value !== 'all') cb.checked = false;
+                        });
+                        currentCategoryFilters = ["all"];
+                    } else {
+                        // If a specific category is checked, uncheck "All"
+                        document.querySelector('input[name="category"][value="all"]').checked = false;
+                        
+                        // Get all checked categories
+                        currentCategoryFilters = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(input => input.value);
+                        
+                        // If nothing is checked, default to "All"
+                        if (currentCategoryFilters.length === 0) {
+                            document.querySelector('input[name="category"][value="all"]').checked = true;
+                            currentCategoryFilters = ["all"];
+                        }
+                    }
+                    
+                    currentPage = 1;
+                    renderBodies();
+                });
+            });
+            
+            // Reset filters button
+            document.getElementById('reset-filters').addEventListener('click', function() {
+                document.querySelectorAll('input[name="category"]').forEach(cb => cb.checked = false);
+                document.querySelector('input[name="category"][value="all"]').checked = true;
+                currentCategoryFilters = ["all"];
+                
+                currentPage = 1;
+                renderBodies();
+            });
+            
+            // Pagination event listeners
+            document.querySelector('[data-page="prev"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderBodies();
+                }
+            });
+            
+            document.querySelector('[data-page="next"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                const totalPages = Math.ceil(filteredBodies.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderBodies();
+                }
+            });
+            
+            // Modal functionality
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('image-modal').style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('image-modal')) {
+                    document.getElementById('image-modal').style.display = 'none';
+                }
+            });
+            
+            // Language selection event listeners
+            document.querySelectorAll('.language-options a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

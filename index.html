@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraalGuide - GraalEra Resources: Guides, Trade & Uploads!</title>
+    <meta name="description" content="Player to Player">
+    <style>
+        :root {
+            --primary-color: #8a2be2; /* Purple accent */
+            --secondary-color: #00bcd4; /* Teal accent */
+            --accent-color: #ff5722; /* Orange accent */
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #9e9e9e;
+            --border-color: #333;
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            background-color: var(--dark-bg); 
+            color: var(--text-color); 
+            line-height: 1.6; 
+        }
+        
+        a { 
+            text-decoration: none; 
+            color: var(--primary-color); 
+            transition: all 0.3s ease; 
+        }
+        
+        a:hover { 
+            color: var(--secondary-color); 
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 15px; 
+        }
+
+        /* Header */
+        header { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 15px 0; 
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            font-size: 28px; 
+            font-weight: 800; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+            filter: invert(1);
+        }
+        
+        .logo span { 
+            color: var(--primary-color); 
+        }
+        
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+            position: relative; 
+        }
+        
+        nav ul li { 
+            margin-left: 25px; 
+            position: relative; 
+        }
+        
+        nav ul li a { 
+            color: var(--text-color); 
+            font-weight: 500; 
+            display: block; 
+            padding: 5px 0; 
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-btn img {
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        .language-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 150px;
+            z-index: 1000;
+            margin-top: 5px;
+        }
+        
+        .language-options a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-options a img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .language-selector:hover .language-options {
+            display: block;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                    url('image/a/gg1.png') center/cover no-repeat;
+            padding: 120px 0; 
+            text-align: center; 
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+        }
+        
+        .hero h1 { 
+            font-size: 3rem; 
+            margin-bottom: 20px; 
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p { 
+            font-size: 1.2rem; 
+            max-width: 700px; 
+            margin: 0 auto 30px; 
+            color: var(--text-muted);
+        }
+        
+        .btn { 
+            display: inline-block; 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 12px 30px; 
+            border-radius: 30px; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .btn:hover { 
+            background: #7329c7; 
+            color: white; 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4); 
+        }
+        
+        .btn-secondary { 
+            background: var(--secondary-color); 
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+        }
+        
+        .btn-secondary:hover { 
+            background: #0097a7; 
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+        }
+        
+        .btn-accent { 
+            background: var(--accent-color); 
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+        }
+        
+        .btn-accent:hover { 
+            background: #e64a19; 
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+        }
+
+        /* Main Content */
+        .main-content { 
+            display: flex; 
+            margin: 40px 0; 
+            gap: 30px;
+        }
+        
+        .articles { 
+            flex: 2; 
+        }
+        
+        .article { 
+            background: var(--card-bg); 
+            border-radius: 10px; 
+            overflow: hidden; 
+            margin-bottom: 30px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .article:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .article-img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            filter: grayscale(20%) contrast(110%);
+        }
+        
+        .article-content { 
+            padding: 25px; 
+        }
+        
+        .article h2 { 
+            margin-bottom: 15px; 
+            color: var(--text-color); 
+            font-weight: 700;
+        }
+        
+        .article-meta { 
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
+            margin-bottom: 15px; 
+            display: flex; 
+            align-items: center; 
+        }
+        
+        .article-meta svg { 
+            margin-right: 5px; 
+        }
+        
+        .tag { 
+            display: inline-block; 
+            background: var(--dark-bg); 
+            color: var(--text-color); 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            font-size: 0.8rem; 
+            margin-right: 10px; 
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .tag-news { 
+            background: rgba(41, 121, 255, 0.2); 
+            color: #2979ff; 
+        }
+        
+        .tag-guide { 
+            background: rgba(76, 175, 80, 0.2); 
+            color: #4caf50; 
+        }
+        
+        .tag-achievement { 
+            background: rgba(233, 30, 99, 0.2); 
+            color: #e91e63; 
+        }
+        
+        .tag-upload { 
+            background: rgba(255, 152, 0, 0.2); 
+            color: #ff9800; 
+        }
+        
+        .tag-trading { 
+            background: rgba(156, 39, 176, 0.2); 
+            color: #9c27b0; 
+        }
+        
+        .article p, .article ul {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+        
+        .article ul li {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Sidebar */
+        .sidebar { 
+            flex: 1; 
+        }
+        
+        .sidebar-widget { 
+            background: var(--card-bg); 
+            border-radius: 10px; 
+            padding: 25px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+        }
+        
+        .sidebar-widget h3 { 
+            margin-bottom: 20px; 
+            padding-bottom: 10px; 
+            border-bottom: 2px solid var(--primary-color); 
+            color: var(--text-color); 
+            font-weight: 700;
+        }
+        
+        .ad-container { 
+            background: var(--dark-bg); 
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center; 
+            margin: 20px 0; 
+            border: 1px dashed var(--border-color); 
+            min-height: 150px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-direction: column;
+        }
+        
+        .ad-label { 
+            display: block; 
+            text-align: center; 
+            font-size: 0.7rem; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin-bottom: 10px; 
+        }
+        
+        .featured-list { 
+            list-style: none; 
+        }
+        
+        .featured-list li { 
+            padding: 12px 0; 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; 
+            align-items: center; 
+            transition: all 0.3s ease;
+        }
+        
+        .featured-list li:hover {
+            background: rgba(255, 255, 255, 0.02);
+            padding-left: 5px;
+        }
+        
+        .featured-list li:last-child { 
+            border-bottom: none; 
+        }
+        
+        .featured-list img { 
+            width: 40px; 
+            height: 40px; 
+            object-fit: cover; 
+            border-radius: 5px; 
+            margin-right: 10px; 
+            border: 1px solid var(--border-color); 
+        }
+        
+        .featured-list a {
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .featured-list a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 50px 0 20px; 
+            margin-top: 40px; 
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-content { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between; 
+            margin-bottom: 30px; 
+            gap: 30px;
+        }
+        
+        .footer-section { 
+            flex: 1; 
+            min-width: 250px; 
+        }
+        
+        .footer-section h3 { 
+            color: var(--primary-color); 
+            margin-bottom: 20px; 
+            font-weight: 700;
+        }
+        
+        .footer-section p, .footer-section li {
+            color: var(--text-muted);
+        }
+        
+        .footer-section ul { 
+            list-style: none; 
+        }
+        
+        .footer-section ul li { 
+            margin-bottom: 12px; 
+        }
+        
+        .footer-section ul li a { 
+            color: var(--text-muted); 
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover { 
+            color: var(--primary-color); 
+            padding-left: 5px;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 20px; 
+            border-top: 1px solid var(--border-color); 
+            font-size: 0.9rem; 
+            color: var(--text-muted); 
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-content { 
+                flex-direction: column; 
+            }
+            
+            .articles { 
+                margin-right: 0; 
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            
+            nav ul { 
+                margin-top: 15px; 
+                justify-content: center; 
+                flex-wrap: wrap; 
+            }
+            
+            nav ul li { 
+                margin: 5px 10px; 
+            }
+            
+            .hero h1 { 
+                font-size: 2.2rem; 
+            }
+            
+            .dropdown-menu { 
+                position: static; 
+                width: 100%; 
+                margin-top: 5px; 
+            }
+            
+            .footer-content { 
+                flex-direction: column; 
+            }
+            
+            .language-selector {
+                margin: 15px auto 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <!-- Using text instead of image for logo -->
+                    <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Uploads</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="heads.html">Heads</a></li>
+                                <li><a href="bodies.html">Bodies</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Guide - How to?</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upload.html">Upload</a></li>
+                                <li><a href="tradeguide.html">Trade</a></li>
+                                <li><a href="workguide">Get Gralats</a></li>
+                                <li><a href="eventsguide">Get Event Coins</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Trade Table</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sellablescalculator.html">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html">Ratio History</a></li>
+                                <li><a href="profit&loss.html">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html">Price House</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
+                    </ul>
+                </nav>
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                        English
+                    </button>
+                    <div class="language-options">
+                        <a href="#" data-lang="en">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            English
+                        </a>
+                        <a href="#" data-lang="pt">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                            Português
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Graal Guide</h1>
+                <p id="hero-text">The ultimate resource for Graal players</p>
+                <a href="#" class="btn" id="browse-btn">Browse Uploads</a>
+                <a href="#" class="btn btn-secondary" id="trading-btn">Trading Guides</a>
+                <a href="#" class="btn btn-accent" id="discord-btn">Join Discord</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="articles">
+                <article class="article">
+                    <img src="https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80" alt="Graal Era Uploads" class="article-img">
+                    <div class="article-content">
+                        <span class="tag tag-upload">Uploads</span>
+                        <span class="tag tag-guide">Guide</span>
+                        <h2 id="article1-title">How to Create and Upload Custom Heads & Bodies</h2>
+                        <div class="article-meta" id="article1-date">Updated on January 15, 2025</div>
+                        <p id="article1-desc">Learn the step-by-step process to create and upload your custom designs in Graal Era. This guide covers everything from pixel art basics to getting your uploads approved.</p>
+                        <p>Discover the best practices for creating heads, bodies, and shields that stand out in the community.</p>
+                        <a href="#" class="btn" id="article1-btn">Read Upload Guide</a>
+                    </div>
+                </article>
+
+                <article class="article">
+                    <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80" alt="Graal Era Trading" class="article-img">
+                    <div class="article-content">
+                        <span class="tag tag-trading">Trading</span>
+                        <h2 id="article2-title">Trading Guide: Maximize Your Profits in Graal Era</h2>
+                        <div class="article-meta" id="article2-date">Posted on January 12, 2025</div>
+                        <p id="article2-desc">Master the art of trading in Graal Era with our comprehensive guide. Learn how to identify valuable items, negotiate better deals, and build your inventory worth.</p>
+                        <p>Understand the current market trends, item values, and trading strategies used by successful traders.</p>
+                        <a href="#" class="btn" id="article2-btn">Read Trading Guide</a>
+                    </div>
+                </article>
+
+                <article class="article">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80" alt="Graal Era Achievements" class="article-img">
+                    <div class="article-content">
+                        <span class="tag tag-achievement">Secret</span>
+                        <span class="tag tag-guide">Guide</span>
+                        <h2 id="article3-title">22+ Secret Achievements: How to Unlock Free Event Coins</h2>
+                        <div class="article-meta" id="article3-date">Updated on January 1, 2025</div>
+                        <p id="article3-desc">Discover all hidden achievements in Graal Era and learn how to unlock them for free Event Coins and other rewards. Our guide covers everything from easy finds to well-hidden secrets.</p>
+                        <ul>
+                            <li><strong>Treasure Hunter</strong> - Find all hidden treasure chests</li>
+                            <li><strong>Master Angler</strong> - Catch every type of fish</li>
+                            <li><strong>Era Explorer</strong> - Visit every named location</li>
+                        </ul>
+                        <a href="#" class="btn" id="article3-btn">View All Achievements</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <h3 id="popular-title">Popular Uploads</h3>
+                    <ul class="featured-list">
+                        <li>
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Animated Head">
+                            <a href="#" id="popular1">Animated Heads Collection</a>
+                        </li>
+                        <li>
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Custom Body">
+                            <a href="#" id="popular2">Custom Body Designs</a>
+                        </li>
+                        <li>
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Shield Design">
+                            <a href="#" id="popular3">Player-Made Shield Collection</a>
+                        </li>
+                        <li>
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="GIF Upload">
+                            <a href="#" id="popular4">Animated GIF Uploads</a>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="view-uploads">View All Uploads</a>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="ad-title">Advertisement</h3>
+                    <div class="ad-container">
+                        <span class="ad-label" id="ad-label">Advertisements</span>
+                        <!-- AdSense Ad Unit -->
+                        <div style="color: var(--text-muted);">Responsive Ad Unit</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="guides-title">Latest Guides</h3>
+                    <ul class="featured-list">
+                        <li><a href="#" id="guide1">Pizza Delivery Job Mastery</a></li>
+                        <li><a href="#" id="guide2">How to Earn Gralats Fast</a></li>
+                        <li><a href="#" id="guide3">Sparring: From Beginner to Pro</a></li>
+                        <li><a href="#" id="guide4">Event Coin Farming Guide</a></li>
+                    </ul>
+                    <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="view-guides">View All Guides</a>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="trade-title">Current Trade Values</h3>
+                    <ul class="featured-list">
+                        <li><a href="#" id="trade1">Dragon Shield: 15,000-18,000 Gralats</a></li>
+                        <li><a href="#" id="trade2">Angel Wings: 8,000-10,000 Gralats</a></li>
+                        <li><a href="#" id="trade3">Fire Sword: 12,000-15,000 Gralats</a></li>
+                        <li><a href="#" id="trade4">EC Items: Current Rates</a></li>
+                    </ul>
+                    <a href="#" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="trade-calc">Trade Calculator</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="about-title">About GraalGuide</h3>
+                    <p id="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p><em id="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="links-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="#" id="link1">Home</a></li>
+                        <li><a href="#" id="link2">Uploads</a></li>
+                        <li><a href="#" id="link3">Trade Table</a></li>
+                        <li><a href="#" id="link4">Secret Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="legal-title">Legal & Policies</h3>
+                    <ul>
+                        <li><a href="#" id="policy1">Privacy Policy</a></li>
+                        <li><a href="#" id="policy2">Terms of Service</a></li>
+                        <li><a href="#" id="policy3">Cookie Policy</a></li>
+                        <li><a href="#" id="policy4">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="connect-title">Connect</h3>
+                    <ul>
+                        <li><a href="#" id="connect1">Our Discord Server</a></li>
+                        <li><a href="#" id="connect2">YouTube</a></li>
+                        <li><a href="#" id="connect3">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translation data
+        const translations = {
+            'en': {
+                'hero-text': 'The ultimate resource for Graal players',
+                'browse-btn': 'Browse Uploads',
+                'trading-btn': 'Trading Guides',
+                'discord-btn': 'Join Discord',
+                
+                'article1-title': 'How to Create and Upload Custom Heads & Bodies',
+                'article1-date': 'Updated on January 15, 2025',
+                'article1-desc': 'Learn the step-by-step process to create and upload your custom designs in Graal Era. This guide covers everything from pixel art basics to getting your uploads approved.',
+                'article1-btn': 'Read Upload Guide',
+                
+                'article2-title': 'Trading Guide: Maximize Your Profits in Graal Era',
+                'article2-date': 'Posted on January 12, 2025',
+                'article2-desc': 'Master the art of trading in Graal Era with our comprehensive guide. Learn how to identify valuable items, negotiate better deals, and build your inventory worth.',
+                'article2-btn': 'Read Trading Guide',
+                
+                'article3-title': '22+ Secret Achievements: How to Unlock Free Event Coins',
+                'article3-date': 'Updated on January 1, 2025',
+                'article3-desc': 'Discover all hidden achievements in Graal Era and learn how to unlock them for free Event Coins and other rewards. Our guide covers everything from easy finds to well-hidden secrets.',
+                'article3-btn': 'View All Achievements',
+                
+                'popular-title': 'Popular Uploads',
+                'popular1': 'Animated Heads Collection',
+                'popular2': 'Custom Body Designs',
+                'popular3': 'Player-Made Shield Collection',
+                'popular4': 'Animated GIF Uploads',
+                'view-uploads': 'View All Uploads',
+                
+                'ad-title': 'Advertisement',
+                'ad-label': 'Advertisements',
+                
+                'guides-title': 'Latest Guides',
+                'guide1': 'Pizza Delivery Job Mastery',
+                'guide2': 'How to Earn Gralats Fast',
+                'guide3': 'Sparring: From Beginner to Pro',
+                'guide4': 'Event Coin Farming Guide',
+                'view-guides': 'View All Guides',
+                
+                'trade-title': 'Current Trade Values',
+                'trade1': 'Dragon Shield: 15,000-18,000 Gralats',
+                'trade2': 'Angel Wings: 8,000-10,000 Gralats',
+                'trade3': 'Fire Sword: 12,000-15,000 Gralats',
+                'trade4': 'EC Items: Current Rates',
+                'trade-calc': 'Trade Calculator',
+                
+                'about-title': 'About GraalGuide',
+                'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
+                'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
+                
+                'links-title': 'Quick Links',
+                'link1': 'Home',
+                'link2': 'Uploads',
+                'link3': 'Trade Table',
+                'link4': 'Secret Achievements',
+                
+                'legal-title': 'Legal & Policies',
+                'policy1': 'Privacy Policy',
+                'policy2': 'Terms of Service',
+                'policy3': 'Cookie Policy',
+                'policy4': 'Disclaimer',
+                
+                'connect-title': 'Connect',
+                'connect1': 'Our Discord Server',
+                'connect2': 'YouTube',
+                'connect3': 'Contact Us',
+                
+                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.'
+            },
+            'pt': {
+                'hero-text': 'O recurso definitivo para jogadores de Graal',
+                'browse-btn': 'Navegar Uploads',
+                'trading-btn': 'Guias de Troca',
+                'discord-btn': 'Entrar no Discord',
+                
+                'article1-title': 'Como Criar e Fazer Upload de Heads e Bodies Personalizados',
+                'article1-date': 'Atualizado em 15 de Janeiro de 2025',
+                'article1-desc': 'Aprenda o processo passo a passo para criar e enviar seus designs personalizados no Graal Era. Este guia cobre tudo, desde o básico de pixel art até a aprovação de seus uploads.',
+                'article1-btn': 'Ler Guia de Upload',
+                
+                'article2-title': 'Guia de Troca: Maximize Seus Lucros no Graal Era',
+                'article2-date': 'Postado em 12 de Janeiro de 2025',
+                'article2-desc': 'Domine a arte da troca no Graal Era com nosso guia abrangente. Aprenda a identificar itens valiosos, negociar melhores negócios e aumentar o valor do seu inventário.',
+                'article2-btn': 'Ler Guia de Troca',
+                
+                'article3-title': '22+ Conquistas Secretas: Como Desbloquear Event Coins Grátis',
+                'article3-date': 'Atualizado em 1 de Janeiro de 2025',
+                'article3-desc': 'Descubra todas as conquistas ocultas no Graal Era e aprenda como desbloqueá-las para ganhar Event Coins gratuitos e outras recompensas. Nosso guia cobre desde descobertas fáceis até segredos bem escondidos.',
+                'article3-btn': 'Ver Todas as Conquistas',
+                
+                'popular-title': 'Uploads Populares',
+                'popular1': 'Coleção de Heads Animados',
+                'popular2': 'Designs de Body Personalizados',
+                'popular3': 'Coleção de Escudos Feitos por Jogadores',
+                'popular4': 'Uploads de GIFs Animados',
+                'view-uploads': 'Ver Todos os Uploads',
+                
+                'ad-title': 'Publicidade',
+                'ad-label': 'Anúncios',
+                
+                'guides-title': 'Guias Recentes',
+                'guide1': 'Domínio do Trabalho de Entrega de Pizza',
+                'guide2': 'Como Ganhar Gralats Rápido',
+                'guide3': 'Sparring: Do Iniciante ao Profissional',
+                'guide4': 'Guia de Farm de Event Coins',
+                'view-guides': 'Ver Todos os Guias',
+                
+                'trade-title': 'Valores Atuais de Troca',
+                'trade1': 'Escudo do Dragão: 15.000-18.000 Gralats',
+                'trade2': 'Asas de Anjo: 8.000-10.000 Gralats',
+                'trade3': 'Espada de Fogo: 12.000-15.000 Gralats',
+                'trade4': 'Itens de EC: Taxas Atuais',
+                'trade-calc': 'Calculadora de Troca',
+                
+                'about-title': 'Sobre o GraalGuide',
+                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
+                'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
+                
+                'links-title': 'Links Rápidos',
+                'link1': 'Início',
+                'link2': 'Uploads',
+                'link3': 'Tabela de Troca',
+                'link4': 'Conquistas Secretas',
+                
+                'legal-title': 'Legal e Políticas',
+                'policy1': 'Política de Privacidade',
+                'policy2': 'Termos de Serviço',
+                'policy3': 'Política de Cookies',
+                'policy4': 'Aviso Legal',
+                
+                'connect-title': 'Conectar',
+                'connect1': 'Nosso Servidor no Discord',
+                'connect2': 'YouTube',
+                'connect3': 'Contate-Nos',
+                
+                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.'
+            }
+        };
+
+        // Function to change language
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(element => {
+                const key = element.id;
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update language button text and flag
+            const langBtn = document.querySelector('.language-btn');
+            if (lang === 'en') {
+                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="English"> English';
+            } else if (lang === 'pt') {
+                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese"> Português';
+            }
+            
+            // Store language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Event listeners for language selection
+        document.querySelectorAll('.language-options a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
+        });
+
+        // Check for saved language preference or default to English
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+        });
+    </script>
+</body>
+</html>

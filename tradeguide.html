@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Guide - GraalGuide: Master Graal Era Trading</title>
+    <meta name="description" content="Master trading in Graal Era with our comprehensive guide. Learn strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert.">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-4927938315377514">
+    <style>
+        :root {
+            --primary-color: #8a2be2; /* Purple accent */
+            --secondary-color: #00bcd4; /* Teal accent */
+            --accent-color: #ff5722; /* Orange accent */
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #9e9e9e;
+            --border-color: #333;
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            background-color: var(--dark-bg); 
+            color: var(--text-color); 
+            line-height: 1.6; 
+        }
+        
+        a { 
+            text-decoration: none; 
+            color: var(--primary-color); 
+            transition: all 0.3s ease; 
+        }
+        
+        a:hover { 
+            color: var(--secondary-color); 
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 15px; 
+        }
+
+        /* Header */
+        header { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 15px 0; 
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            font-size: 28px; 
+            font-weight: 800; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span { 
+            color: var(--primary-color); 
+        }
+        
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+            position: relative; 
+        }
+        
+        nav ul li { 
+            margin-left: 25px; 
+            position: relative; 
+        }
+        
+        nav ul li a { 
+            color: var(--text-color); 
+            font-weight: 500; 
+            display: block; 
+            padding: 5px 0; 
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-btn img {
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        .language-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 150px;
+            z-index: 1000;
+            margin-top: 5px;
+        }
+        
+        .language-options a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-options a img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .language-selector:hover .language-options {
+            display: block;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                       url('https://images.unsplash.com/photo-1605792657660-596af9009e82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            padding: 100px 0; 
+            text-align: center; 
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+        }
+        
+        .hero h1 { 
+            font-size: 3rem; 
+            margin-bottom: 20px; 
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p { 
+            font-size: 1.2rem; 
+            max-width: 700px; 
+            margin: 0 auto 30px; 
+            color: var(--text-muted);
+        }
+
+        /* Main Content */
+        .main-content { 
+            display: flex; 
+            margin: 40px 0; 
+            gap: 30px;
+        }
+        
+        .articles { 
+            flex: 2; 
+        }
+        
+        .article { 
+            background: var(--card-bg); 
+            border-radius: 10px; 
+            overflow: hidden; 
+            margin-bottom: 30px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .article:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .article-img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            filter: grayscale(20%) contrast(110%);
+        }
+        
+        .article-content { 
+            padding: 25px; 
+        }
+        
+        .article h2 { 
+            margin-bottom: 15px; 
+            color: var(--text-color); 
+            font-weight: 700;
+        }
+        
+        .article-meta { 
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
+            margin-bottom: 15px; 
+            display: flex; 
+            align-items: center; 
+        }
+        
+        .article-meta svg { 
+            margin-right: 5px; 
+        }
+        
+        .tag { 
+            display: inline-block; 
+            background: var(--dark-bg); 
+            color: var(--text-color); 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            font-size: 0.8rem; 
+            margin-right: 10px; 
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .tag-news { 
+            background: rgba(41, 121, 255, 0.2); 
+            color: #2979ff; 
+        }
+        
+        .tag-guide { 
+            background: rgba(76, 175, 80, 0.2); 
+            color: #4caf50; 
+        }
+        
+        .tag-achievement { 
+            background: rgba(233, 30, 99, 0.2); 
+            color: #e91e63; 
+        }
+        
+        .tag-upload { 
+            background: rgba(255, 152, 0, 0.2); 
+            color: #ff9800; 
+        }
+        
+        .tag-trading { 
+            background: rgba(156, 39, 176, 0.2); 
+            color: #9c27b0; 
+        }
+        
+        .article p, .article ul {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+        
+        .article ul li {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Tip Boxes */
+        .tip { 
+            background: var(--card-bg); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .tip h3 { 
+            margin-top: 0; 
+            color: var(--text-color); 
+            font-weight: 600;
+        }
+        
+        .tip p { 
+            margin: 10px 0; 
+            color: var(--text-muted);
+        }
+        
+        .tip ul {
+            margin-left: 20px;
+        }
+        
+        .tip ul li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        /* Interactive Tutorial */
+        .interactive-tutorial {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .interactive-tutorial h3 {
+            margin-top: 0;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+        
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--dark-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .quiz-question p {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .quiz-options {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn { 
+            display: inline-block; 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 12px 25px; 
+            border: none;
+            border-radius: 30px; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .btn:hover { 
+            background: #7329c7; 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4); 
+        }
+        
+        .btn-secondary { 
+            background: var(--secondary-color); 
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+        }
+        
+        .btn-secondary:hover { 
+            background: #0097a7; 
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+        }
+        
+        .quiz-result {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Sidebar */
+        .sidebar { 
+            flex: 1; 
+        }
+        
+        .sidebar-widget { 
+            background: var(--card-bg); 
+            border-radius: 10px; 
+            padding: 25px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+        }
+        
+        .sidebar-widget h3 { 
+            margin-bottom: 20px; 
+            padding-bottom: 10px; 
+            border-bottom: 2px solid var(--primary-color); 
+            color: var(--text-color); 
+            font-weight: 700;
+        }
+        
+        .ad-container { 
+            background: var(--dark-bg); 
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center; 
+            margin: 20px 0; 
+            border: 1px dashed var(--border-color); 
+            min-height: 150px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-direction: column;
+        }
+        
+        .ad-label { 
+            display: block; 
+            text-align: center; 
+            font-size: 0.7rem; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin-bottom: 10px; 
+        }
+        
+        .featured-list { 
+            list-style: none; 
+        }
+        
+        .featured-list li { 
+            padding: 12px 0; 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; 
+            align-items: center; 
+            transition: all 0.3s ease;
+        }
+        
+        .featured-list li:hover {
+            background: rgba(255, 255, 255, 0.02);
+            padding-left: 5px;
+        }
+        
+        .featured-list li:last-child { 
+            border-bottom: none; 
+        }
+        
+        .featured-list img { 
+            width: 40px; 
+            height: 40px; 
+            object-fit: cover; 
+            border-radius: 5px; 
+            margin-right: 10px; 
+            border: 1px solid var(--border-color); 
+        }
+        
+        .featured-list a {
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .featured-list a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 50px 0 20px; 
+            margin-top: 40px; 
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-content { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between; 
+            margin-bottom: 30px; 
+            gap: 30px;
+        }
+        
+        .footer-section { 
+            flex: 1; 
+            min-width: 250px; 
+        }
+        
+        .footer-section h3 { 
+            color: var(--primary-color); 
+            margin-bottom: 20px; 
+            font-weight: 700;
+        }
+        
+        .footer-section p, .footer-section li {
+            color: var(--text-muted);
+        }
+        
+        .footer-section ul { 
+            list-style: none; 
+        }
+        
+        .footer-section ul li { 
+            margin-bottom: 12px; 
+        }
+        
+        .footer-section ul li a { 
+            color: var(--text-muted); 
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover { 
+            color: var(--primary-color); 
+            padding-left: 5px;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 20px; 
+            border-top: 1px solid var(--border-color); 
+            font-size: 0.9rem; 
+            color: var(--text-muted); 
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-content { 
+                flex-direction: column; 
+            }
+            
+            .articles { 
+                margin-right: 0; 
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            
+            nav ul { 
+                margin-top: 15px; 
+                justify-content: center; 
+                flex-wrap: wrap; 
+            }
+            
+            nav ul li { 
+                margin: 5px 10px; 
+            }
+            
+            .dropdown-menu { 
+                position: static; 
+                width: 100%; 
+                margin-top: 5px; 
+            }
+            
+            .footer-content { 
+                flex-direction: column; 
+            }
+            
+            .language-selector {
+                margin: 15px auto 0;
+            }
+            
+            .quiz-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quiz-options button {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" id="nav-home">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-uploads">Uploads</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="heads.html" id="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" id="nav-bodies">Bodies</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-guides">Guide - How to?</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide" id="nav-gralats">Get Gralats</a></li>
+                                <li><a href="eventsguide" id="nav-events">Get Event Coins</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-trade">Trade Table</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sellablescalculator.html" id="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" id="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" id="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" id="nav-price">Price House</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="secret-achievements.html" id="nav-achievements">Secret Achievements</a></li>
+                    </ul>
+                </nav>
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                        English
+                    </button>
+                    <div class="language-options">
+                        <a href="#" data-lang="en">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                                                        English
+                        </a>
+                        <a href="#" data-lang="pt">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                            Português
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="hero-title">Master Graal Era Trading</h1>
+                <p id="hero-description">Learn expert strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert in Graal Era.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="articles">
+                <!-- Introduction -->
+                <article class="article">
+                    <div class="article-content">
+                        <span class="tag tag-trading" id="tag-trading">Trading</span>
+                        <span class="tag tag-guide" id="tag-guide">Guide</span>
+                        <h2 id="intro-title">Introduction to Graal Era Trading</h2>
+                        <div class="article-meta" id="intro-date">Updated on January 15, 2025</div>
+                        <p id="intro-text">Trading is a key part of Era's economy. By buying and selling items, you can earn Gralats, Trochus, and other valuable resources. This tutorial will teach you the basics, advanced strategies, and tools to succeed.</p>
+                    </div>
+                </article>
+
+                <!-- Basics of Trading -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="basics-title">Basics of Trading</h2>
+                        <div class="tip">
+                            <h3 id="what-is-trading">What is Trading?</h3>
+                            <p id="what-is-trading-text">Trading involves exchanging items, Gralats, or Trochus with other players. It's a great way to get the items you need while earning profits.</p>
+                        </div>
+                        <div class="tip">
+                            <h3 id="key-terms-title">Key Terms</h3>
+                            <ul>
+                                <li><strong id="term-gralats">Gralats</strong>: <span id="term-gralats-desc">The main currency in Era.</span></li>
+                                <li><strong id="term-trochus">Trochus</strong>: <span id="term-trochus-desc">A secondary currency used for trading.</span></li>
+                                <li><strong id="term-sellables">Sellables</strong>: <span id="term-sellables-desc">Items that can be sold for Gralats or Trochus.</span></li>
+                                <li><strong id="term-ratio">Ratio</strong>: <span id="term-ratio-desc">The exchange rate between Trochus and Gralats (e.g., 1 Trochus : $4 Gralats).</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Interactive Tutorial -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="tutorial-title">Interactive Trading Tutorial</h2>
+                        <div class="interactive-tutorial" id="interactiveTutorial">
+                            <h3 id="quiz-title">Test Your Trading Knowledge!</h3>
+                            <p id="quiz-desc">Answer the following questions to test your understanding of Trading.</p>
+                            <div id="quizContainer"></div>
+                            <div id="quizResult" class="quiz-result"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guide for Successful Trading -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="success-title">Guide for Successful Trading</h2>
+                        <div class="tip">
+                            <h3 id="strategy-buy-low">Buy Low, Sell High</h3>
+                            <p id="strategy-buy-low-text">Purchase items when they're cheap (e.g., during events) and sell them when prices rise.</p>
+                        </div>
+                        <div class="tip">
+                            <h3 id="strategy-diversify">Diversify Your Portfolio</h3>
+                            <p id="strategy-diversify-text">Trade a variety of items to reduce risk. Don't put all your Trochus into one type of item.</p>
+                        </div>
+                        <div class="tip">
+                            <h3 id="strategy-patience">Patience is Key</h3>
+                            <p id="strategy-patience-text">Wait for the right opportunity. Don't rush into bad deals.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Advanced Strategies -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="advanced-title">Advanced Trading Strategies</h2>
+                        <div class="tip">
+                            <h3 id="strategy-flipping">Flipping Items</h3>
+                            <p id="strategy-flipping-text">Buy undervalued items and sell them for a profit. Research prices to find good deals.</p>
+                        </div>
+                        <div class="tip">
+                            <h3 id="strategy-event">Event Trading</h3>
+                            <p id="strategy-event-text">During events, buy rare items and sell them later when they become more valuable.</p>
+                        </div>
+                        <div class="tip">
+                            <h3 id="strategy-bulk">Bulk Trading</h3>
+                            <p id="strategy-bulk-text">Trade in large quantities to negotiate better deals with other players.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Common Mistakes to Avoid -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="mistakes-title">Common Trading Mistakes to Avoid</h2>
+                        <div class="tip">
+                            <h3 id="mistake-overpaying">Overpaying</h3>
+                            <p id="mistake-overpaying-text">Always check the value of items before trading. Use tools like the <a href="SellablesCalculator.html" id="calculator-link">Sellables Calculator</a>.</p>
+                        </div>
+                        <div class="tip">
+                            <h3 id="mistake-ratios">Ignoring Ratios</h3>
+                            <p id="mistake-ratios-text">Understanding ratios is crucial for fair trades. Don't accept deals that don't make sense.</p>
+                        </div>
+                        <div class="tip">
+                            <h3 id="mistake-scams">Scams</h3>
+                            <p id="mistake-scams-text">Be cautious of fake offers or misleading trades. Always double-check before confirming.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tools and Resources -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="tools-title">Trading Tools and Resources</h2>
+                        <div class="tip">
+                            <h3 id="tool-calculator">Sellables Calculator</h3>
+                            <p id="tool-calculator-text">Use the <a href="SellablesCalculator.html" id="calculator-link2">Sellables Calculator</a> to determine the value of your items and make informed trades.</p>
+                        </div>
+                        <div class="tip">
+                            <h3 id="tool-community">Community Forums</h3>
+                            <p id="tool-community-text">Join forums or Discord servers to discuss trading Guide and stay updated on market trends.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Conclusion -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="conclusion-title">Conclusion</h2>
+                        <p id="conclusion-text">Trading in Era can be highly rewarding if you follow these Guide and strategies. Practice, experiment, and always stay informed. Happy trading!</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <h3 id="tools-title-sidebar">Trading Tools</h3>
+                    <ul class="featured-list">
+                        <li>
+                            <a href="SellablesCalculator.html" id="tool-calculator-link">Sellables Calculator</a>
+                        </li>
+                        <li>
+                            <a href="RatioHistory.html" id="tool-ratio-link">Ratio History</a>
+                        </li>
+                        <li>
+                            <a href="ProfitLoss.html" id="tool-profit-link">Profit & Loss Tracker</a>
+                        </li>
+                        <li>
+                            <a href="PriceHouse.html" id="tool-price-link">Price House</a>
+                        </li>
+                    </ul>
+                    <a href="SellablesCalculator.html" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="calculator-btn">Use Calculator</a>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="ad-title">Advertisement</h3>
+                    <div class="ad-container">
+                        <span class="ad-label" id="ad-label">Advertisements</span>
+                        <!-- AdSense Ad Unit -->
+                        <div style="color: var(--text-muted);">Responsive Ad Unit</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="values-title">Current Trade Values</h3>
+                    <ul class="featured-list">
+                        <li><a href="#" id="value-dragon">Dragon Shield: 15,000-18,000 Gralats</a></li>
+                        <li><a href="#" id="value-angel">Angel Wings: 8,000-10,000 Gralats</a></li>
+                        <li><a href="#" id="value-fire">Fire Sword: 12,000-15,000 Gralats</a></li>
+                        <li><a href="#" id="value-ec">EC Items: Current Rates</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="guides-title">Popular Guides</h3>
+                    <ul class="featured-list">
+                        <li><a href="#" id="guide-deals">How to Spot Good Deals</a></li>
+                        <li><a href="#" id="guide-negotiation">Negotiation Techniques</a></li>
+                        <li><a href="#" id="guide-event">Event Item Investment Guide</a></li>
+                        <li><a href="#" id="guide-scams">Avoiding Scams</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="about-title-footer">About GraalGuide</h3>
+                    <p id="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p><em id="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="links-title-footer">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html" id="link-home-footer">Home</a></li>
+                        <li><a href="SellablesCalculator.html" id="link-calculator-footer">Sellables Calculator</a></li>
+                        <li><a href="TradingGuide.html" id="link-trading-footer">Trading Guide</a></li>
+                        <li><a href="SecretAchievements.html" id="link-achievements-footer">Secret Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="legal-title-footer">Legal & Policies</h3>
+                    <ul>
+                        <li><a href="PrivacyPolicy.html" id="link-privacy-footer">Privacy Policy</a></li>
+                        <li><a href="TermsConditions.html" id="link-terms-footer">Terms of Service</a></li>
+                        <li><a href="#" id="link-cookie-footer">Cookie Policy</a></li>
+                        <li><a href="Disclaimer.html" id="link-disclaimer-footer">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="connect-title-footer">Connect</h3>
+                    <ul>
+                        <li><a href="#" id="link-discord-footer">Our Discord Server</a></li>
+                        <li><a href="#" id="link-youtube-footer">YouTube</a></li>
+                        <li><a href="ContactUs.html" id="link-contact-footer">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="copyright-footer">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz Questions and Answers
+        const quizQuestions = [
+            {
+                question: "Is it a good idea to buy items during events when they're cheap?",
+                answer: true
+            },
+            {
+                question: "Should you always accept the first trade offer you receive?",
+                answer: false
+            },
+            {
+                question: "Is it important to check the ratio before trading?",
+                answer: true
+            },
+            {
+                question: "Should you trade all your Trochus for one rare item?",
+                answer: false
+            },
+            {
+                question: "Is patience important when trading?",
+                answer: true
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        // Display Quiz Questions
+        function displayQuiz() {
+            const quizContainer = document.getElementById("quizContainer");
+            const quizResult = document.getElementById("quizResult");
+
+            if (currentQuestion < quizQuestions.length) {
+                const question = quizQuestions[currentQuestion];
+                quizContainer.innerHTML = `
+                    <div class="quiz-question">
+                        <p>${question.question}</p>
+                        <div class="quiz-options">
+                            <button class="btn" onclick="checkAnswer(true)">Yes</button>
+                            <button class="btn btn-secondary" onclick="checkAnswer(false)">No</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                quizContainer.innerHTML = "";
+                quizResult.innerHTML = `
+                    <p>Quiz Complete! Your score is ${score} out of ${quizQuestions.length}.</p>
+                `;
+            }
+        }
+
+        // Check Answer
+        function checkAnswer(userAnswer) {
+            const question = quizQuestions[currentQuestion];
+            if (userAnswer === question.answer) {
+                score++;
+            }
+            currentQuestion++;
+            displayQuiz();
+        }
+
+        // Language translation data
+        const translations = {
+            'en': {
+                'hero-title': 'Master Graal Era Trading',
+                'hero-description': 'Learn expert strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert in Graal Era.',
+                'tag-trading': 'Trading',
+                'tag-guide': 'Guide',
+                'intro-title': 'Introduction to Graal Era Trading',
+                'intro-date': 'Updated on January 15, 2025',
+                'intro-text': 'Trading is a key part of Era\'s economy. By buying and selling items, you can earn Gralats, Trochus, and other valuable resources. This tutorial will teach you the basics, advanced strategies, and tools to succeed.',
+                'basics-title': 'Basics of Trading',
+                'what-is-trading': 'What is Trading?',
+                'what-is-trading-text': 'Trading involves exchanging items, Gralats, or Trochus with other players. It\'s a great way to get the items you need while earning profits.',
+                'key-terms-title': 'Key Terms',
+                'term-gralats': 'Gralats',
+                'term-gralats-desc': 'The main currency in Era.',
+                'term-trochus': 'Trochus',
+                'term-trochus-desc': 'A secondary currency used for trading.',
+                'term-sellables': 'Sellables',
+                'term-sellables-desc': 'Items that can be sold for Gralats or Trochus.',
+                'term-ratio': 'Ratio',
+                'term-ratio-desc': 'The exchange rate between Trochus and Gralats (e.g., 1 Trochus : $4 Gralats).',
+                'tutorial-title': 'Interactive Trading Tutorial',
+                'quiz-title': 'Test Your Trading Knowledge!',
+                'quiz-desc': 'Answer the following questions to test your understanding of Trading.',
+                'success-title': 'Guide for Successful Trading',
+                'strategy-buy-low': 'Buy Low, Sell High',
+                'strategy-buy-low-text': 'Purchase items when they\'re cheap (e.g., during events) and sell them when prices rise.',
+                'strategy-diversify': 'Diversify Your Portfolio',
+                'strategy-diversify-text': 'Trade a variety of items to reduce risk. Don\'t put all your Trochus into one type of item.',
+                'strategy-patience': 'Patience is Key',
+                'strategy-patience-text': 'Wait for the right opportunity. Don\'t rush into bad deals.',
+                'advanced-title': 'Advanced Trading Strategies',
+                'strategy-flipping': 'Flipping Items',
+                'strategy-flipping-text': 'Buy undervalued items and sell them for a profit. Research prices to find good deals.',
+                'strategy-event': 'Event Trading',
+                'strategy-event-text': 'During events, buy rare items and sell them later when they become more valuable.',
+                'strategy-bulk': 'Bulk Trading',
+                'strategy-bulk-text': 'Trade in large quantities to negotiate better deals with other players.',
+                'mistakes-title': 'Common Trading Mistakes to Avoid',
+                'mistake-overpaying': 'Overpaying',
+                'mistake-overpaying-text': 'Always check the value of items before trading. Use tools like the Sellables Calculator.',
+                'mistake-ratios': 'Ignoring Ratios',
+                'mistake-ratios-text': 'Understanding ratios is crucial for fair trades. Don\'t accept deals that don\'t make sense.',
+                'mistake-scams': 'Scams',
+                'mistake-scams-text': 'Be cautious of fake offers or misleading trades. Always double-check before confirming.',
+                'tools-title': 'Trading Tools and Resources',
+                'tool-calculator': 'Sellables Calculator',
+                'tool-calculator-text': 'Use the Sellables Calculator to determine the value of your items and make informed trades.',
+                'tool-community': 'Community Forums',
+                'tool-community-text': 'Join forums or Discord servers to discuss trading Guide and stay updated on market trends.',
+                'conclusion-title': 'Conclusion',
+                'conclusion-text': 'Trading in Era can be highly rewarding if you follow these Guide and strategies. Practice, experiment, and always stay informed. Happy trading!',
+                'tools-title-sidebar': 'Trading Tools',
+                'tool-calculator-link': 'Sellables Calculator',
+                'tool-ratio-link': 'Ratio History',
+                'tool-profit-link': 'Profit & Loss Tracker',
+                'tool-price-link': 'Price House',
+                'calculator-btn': 'Use Calculator',
+                'ad-title': 'Advertisement',
+                'ad-label': 'Advertisements',
+                'values-title': 'Current Trade Values',
+                'value-dragon': 'Dragon Shield: 15,000-18,000 Gralats',
+                'value-angel': 'Angel Wings: 8,000-10,000 Gralats',
+                'value-fire': 'Fire Sword: 12,000-15,000 Gralats',
+                'value-ec': 'EC Items: Current Rates',
+                'guides-title': 'Popular Guides',
+                'guide-deals': 'How to Spot Good Deals',
+                'guide-negotiation': 'Negotiation Techniques',
+                'guide-event': 'Event Item Investment Guide',
+                'guide-scams': 'Avoiding Scams',
+                'about-title-footer': 'About GraalGuide',
+                'about-desc-footer': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
+                'disclaimer-footer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
+                'links-title-footer': 'Quick Links',
+                'link-home-footer': 'Home',
+                'link-calculator-footer': 'Sellables Calculator',
+                'link-trading-footer': 'Trading Guide',
+                'link-achievements-footer': 'Secret Achievements',
+                'legal-title-footer': 'Legal & Policies',
+                'link-privacy-footer': 'Privacy Policy',
+                'link-terms-footer': 'Terms of Service',
+                'link-cookie-footer': 'Cookie Policy',
+                'link-disclaimer-footer': 'Disclaimer',
+                'connect-title-footer': 'Connect',
+                'link-discord-footer': 'Our Discord Server',
+                'link-youtube-footer': 'YouTube',
+                'link-contact-footer': 'Contact Us',
+                'copyright-footer': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
+                // Navigation
+                'nav-home': 'Home',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guide - How to?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Trade',
+                'nav-gralats': 'Get Gralats',
+                'nav-events': 'Get Event Coins',
+                'nav-trade': 'Trade Table',
+                'nav-calculator': 'Sellables Calculator',
+                'nav-ratio': 'Ratio History',
+                'nav-profit': 'Profit & Loss Tracker',
+                'nav-price': 'Price House',
+                'nav-achievements': 'Secret Achievements'
+            },
+            'pt': {
+                'hero-title': 'Domine o Comércio do Graal Era',
+                'hero-description': 'Aprenda estratégias especializadas, evite erros comuns e use nosso tutorial interativo para se tornar um especialista em trading no Graal Era.',
+                'tag-trading': 'Trading',
+                'tag-guide': 'Guia',
+                'intro-title': 'Introdução ao Trading no Graal Era',
+                'intro-date': 'Atualizado em 15 de Janeiro de 2025',
+                'intro-text': 'O trading é uma parte fundamental da economia do Era. Comprando e vendendo itens, você pode ganhar Gralats, Trochus e outros recursos valiosos. Este tutorial ensinará o básico, estratégias avançadas e ferramentas para ter sucesso.',
+                'basics-title': 'Básico do Trading',
+                'what-is-trading': 'O que é Trading?',
+                'what-is-trading-text': 'Trading envolve trocar itens, Gralats ou Trochus com outros jogadores. É uma ótima maneira de obter os itens que você precisa enquanto obtém lucros.',
+                'key-terms-title': 'Termos Chave',
+                'term-gralats': 'Gralats',
+                'term-gralats-desc': 'A principal moeda no Era.',
+                'term-trochus': 'Trochus',
+                'term-trochus-desc': 'Uma moeda secundária usada para trading.',
+                'term-sellables': 'Vendáveis',
+                'term-sellables-desc': 'Itens que podem ser vendidos por Gralats ou Trochus.',
+                'term-ratio': 'Ratio',
+                'term-ratio-desc': 'A taxa de câmbio entre Trochus e Gralats (ex.: 1 Trochus : $4 Gralats).',
+                'tutorial-title': 'Tutorial Interativo de Trading',
+                'quiz-title': 'Teste Seu Conhecimento de Trading!',
+                'quiz-desc': 'Responda as seguintes perguntas para testar seu entendimento sobre Trading.',
+                'success-title': 'Guia para Trading Bem-Sucedido',
+                'strategy-buy-low': 'Compre Baixo, Venda Alto',
+                'strategy-buy-low-text': 'Compre itens quando estiverem baratos (ex.: durante eventos) e venda quando os preços subirem.',
+                'strategy-diversify': 'Diversifique Seu Portfólio',
+                'strategy-diversify-text': 'Negocie uma variedade de itens para reduzir riscos. Não coloque todo seu Trochus em um tipo de item.',
+                'strategy-patience': 'Paciência é Fundamental',
+                'strategy-patience-text': 'Espere pela oportunidade certa. Não se apresse em fazer negócios ruins.',
+                'advanced-title': 'Estratégias Avançadas de Trading',
+                'strategy-flipping': 'Revenda de Itens',
+                'strategy-flipping-text': 'Compre itens subvalorizados e venda-os com lucro. Pesquise preços para encontrar bons negócios.',
+                'strategy-event': 'Trading em Eventos',
+                'strategy-event-text': 'Durante eventos, compre itens raros e venda-os depois quando se tornarem mais valiosos.',
+                'strategy-bulk': 'Trading em Quantidade',
+                'strategy-bulk-text': 'Negocie em grandes quantidades para conseguir melhores negócios com outros jogadores.',
+                'mistakes-title': 'Erros Comuns de Trading a Evitar',
+                'mistake-overpaying': 'Pagar a Mais',
+                'mistake-overpaying-text': 'Sempre verifique o valor dos itens antes de negociar. Use ferramentas como a Calculadora de Vendáveis.',
+                'mistake-ratios': 'Ignorar Ratios',
+                'mistake-ratios-text': 'Entender ratios é crucial para negociações justas. Não aceite negócios que não façam sentido.',
+                'mistake-scams': 'Golpes',
+                'mistake-scams-text': 'Tenha cuidado com ofertas falsas ou negociações enganosas. Sempre verifique duas vezes antes de confirmar.',
+                'tools-title': 'Ferramentas e Recursos de Trading',
+                'tool-calculator': 'Calculadora de Vendáveis',
+                'tool-calculator-text': 'Use a Calculadora de Vendáveis para determinar o valor dos seus itens e fazer negociações informadas.',
+                'tool-community': 'Fóruns da Comunidade',
+                'tool-community-text': 'Participe de fóruns ou servidores do Discord para discutir guias de trading e manter-se atualizado sobre tendências do mercado.',
+                'conclusion-title': 'Conclusão',
+                'conclusion-text': 'Trading no Era pode ser muito recompensador se você seguir estes guias e estratégias. Pratique, experimente e sempre mantenha-se informado. Boas negociações!',
+                'tools-title-sidebar': 'Ferramentas de Trading',
+                'tool-calculator-link': 'Calculadora de Vendáveis',
+                'tool-ratio-link': 'Histórico de Ratios',
+                'tool-profit-link': 'Rastreador de Lucro & Perda',
+                'tool-price-link': 'Casa de Preços',
+                'calculator-btn': 'Usar Calculadora',
+                'ad-title': 'Publicidade',
+                'ad-label': 'Anúncios',
+                'values-title': 'Valores Atuais de Troca',
+                'value-dragon': 'Escudo do Dragão: 15.000-18.000 Gralats',
+                'value-angel': 'Asas de Anjo: 8.000-10.000 Gralats',
+                'value-fire': 'Espada de Fogo: 12.000-15.000 Gralats',
+                'value-ec': 'Itens de EC: Taxas Atuais',
+                'guides-title': 'Guias Populares',
+                'guide-deals': 'Como Identificar Boas Ofertas',
+                'guide-negotiation': 'Técnicas de Negociação',
+                'guide-event': 'Guia de Investimento em Itens de Evento',
+                'guide-scams': 'Evitando Golpes',
+                'about-title-footer': 'Sobre o GraalGuide',
+                'about-desc-footer': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
+                'disclaimer-footer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
+                'links-title-footer': 'Links Rápidos',
+                'link-home-footer': 'Início',
+                'link-calculator-footer': 'Calculadora de Vendáveis',
+                'link-trading-footer': 'Guia de Trading',
+                'link-achievements-footer': 'Conquistas Secretas',
+                'legal-title-footer': 'Legal e Políticas',
+                'link-privacy-footer': 'Política de Privacidade',
+                'link-terms-footer': 'Termos de Serviço',
+                'link-cookie-footer': 'Política de Cookies',
+                'link-disclaimer-footer': 'Aviso Legal',
+                'connect-title-footer': 'Conectar',
+                'link-discord-footer': 'Nosso Servidor no Discord',
+                'link-youtube-footer': 'YouTube',
+                'link-contact-footer': 'Contate-Nos',
+                'copyright-footer': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
+                // Navigation
+                'nav-home': 'Início',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guia - Como?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Troca',
+                'nav-gralats': 'Obter Gralats',
+                'nav-events': 'Obter Moedas de Evento',
+                'nav-trade': 'Tabela de Troca',
+                'nav-calculator': 'Calculadora de Vendáveis',
+                'nav-ratio': 'Histórico de Ratios',
+                'nav-profit': 'Rastrear Lucro & Perda',
+                'nav-price': 'Casa de Preços',
+                'nav-achievements': 'Conquistas Secretas'
+            }
+        };
+
+        // Function to change language
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(element => {
+                const key = element.id;
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update language button text and flag
+            const langBtn = document.querySelector('.language-btn');
+            if (lang === 'en') {
+                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English"> English';
+            } else if (lang === 'pt') {
+                langBtn.innerHTML = '<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy533My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCAzMCI+PHBhdGggZmlsbD0iIzAwOTIzNCIgZD0iTTAgMGg2MHYzMEgweiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDBoNjB2MjBIMHoiLz48cGF0aCBmaWxsPSIjZjEyYjI4IiBkPSJNMCAwaDYwdjEwSDB6Ii8+PHBhdGggZmlsbD0iIzAwOTIzNCIgZD0iTTMwIDE1YTMgMyAwIDEgMCAwLTYgMyAzIDAgMCAwIDAgNnoiLz48L3N2Zz4=" alt="Portuguese"> Português';
+            }
+            
+            // Store language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Event listeners for language selection
+        document.querySelectorAll('.language-options a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
+        });
+
+        // Check for saved language preference or default to English
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // Start Quiz
+            displayQuiz();
+        });
+    </script>
+</body>
+</html>
