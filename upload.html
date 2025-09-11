@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Guide - GraalGuide: Master Graal Era Uploads</title>
+    <meta name="description" content="Master uploading in Graal Era with our comprehensive guide. Learn rules, templates, and best practices for heads, bodies, shields, and gang pictures.">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-4927938315377514">
+    <style>
+        :root {
+            --primary-color: #8a2be2; /* Purple accent */
+            --secondary-color: #00bcd4; /* Teal accent */
+            --accent-color: #ff5722; /* Orange accent */
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #9e9e9e;
+            --border-color: #333;
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            background-color: var(--dark-bg); 
+            color: var(--text-color); 
+            line-height: 1.6; 
+        }
+        
+        a { 
+            text-decoration: none; 
+            color: var(--primary-color); 
+            transition: all 0.3s ease; 
+        }
+        
+        a:hover { 
+            color: var(--secondary-color); 
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 15px; 
+        }
+
+        /* Header */
+        header { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 15px 0; 
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            font-size: 28px; 
+            font-weight: 800; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span { 
+            color: var(--primary-color); 
+        }
+        
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+            position: relative; 
+        }
+        
+        nav ul li { 
+            margin-left: 25px; 
+            position: relative; 
+        }
+        
+        nav ul li a { 
+            color: var(--text-color); 
+            font-weight: 500; 
+            display: block; 
+            padding: 5px 0; 
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-btn img {
+            width: 20px;
+            margin-right: 8px;
+        }
+        
+        .language-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 150px;
+            z-index: 1000;
+            margin-top: 5px;
+        }
+        
+        .language-options a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-options a img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .language-selector:hover .language-options {
+            display: block;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                       url('image/a/upl.jpg') center/cover no-repeat;
+            padding: 100px 0; 
+            text-align: center; 
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+        }
+        
+        .hero h1 { 
+            font-size: 3rem; 
+            margin-bottom: 20px; 
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p { 
+            font-size: 1.2rem; 
+            max-width: 700px; 
+            margin: 0 auto 30px; 
+            color: var(--text-muted);
+        }
+
+        /* Main Content */
+        .main-content { 
+            display: flex; 
+            margin: 40px 0; 
+            gap: 30px;
+        }
+        
+        .articles { 
+            flex: 2; 
+        }
+        
+        .article { 
+            background: var(--card-bg); 
+            border-radius: 10px; 
+            overflow: hidden; 
+            margin-bottom: 30px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .article:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .article-img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            filter: grayscale(20%) contrast(110%);
+        }
+        
+        .article-content { 
+            padding: 25px; 
+        }
+        
+        .article h2 { 
+            margin-bottom: 15px; 
+            color: var(--text-color); 
+            font-weight: 700;
+        }
+        
+        .article-meta { 
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
+            margin-bottom: 15px; 
+            display: flex; 
+            align-items: center; 
+        }
+        
+        .article-meta svg { 
+            margin-right: 5px; 
+        }
+        
+        .tag { 
+            display: inline-block; 
+            background: var(--dark-bg); 
+            color: var(--text-color); 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            font-size: 0.8rem; 
+            margin-right: 10px; 
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .tag-news { 
+            background: rgba(41, 121, 255, 0.2); 
+            color: #2979ff; 
+        }
+        
+        .tag-guide { 
+            background: rgba(76, 175, 80, 0.2); 
+            color: #4caf50; 
+        }
+        
+        .tag-achievement { 
+            background: rgba(233, 30, 99, 0.2); 
+            color: #e91e63; 
+        }
+        
+        .tag-upload { 
+            background: rgba(255, 152, 0, 0.2); 
+            color: #ff9800; 
+        }
+        
+        .tag-trading { 
+            background: rgba(156, 39, 176, 0.2); 
+            color: #9c27b0; 
+        }
+        
+        .article p, .article ul {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+        
+        .article ul li {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Tip Boxes */
+        .tip { 
+            background: var(--card-bg); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .tip h3 { 
+            margin-top: 0; 
+            color: var(--text-color); 
+            font-weight: 600;
+        }
+        
+        .tip p { 
+            margin: 10px 0; 
+            color: var(--text-muted);
+        }
+        
+        .tip ul {
+            margin-left: 20px;
+        }
+        
+        .tip ul li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        /* Warning Box */
+        .warning { 
+            background: rgba(244, 67, 54, 0.1); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border-left: 4px solid #f44336;
+        }
+        
+        .warning h3 { 
+            margin-top: 0; 
+            color: #f44336; 
+            font-weight: 600;
+        }
+        
+        .warning p { 
+            margin: 10px 0; 
+            color: var(--text-muted);
+        }
+
+        /* Success Box */
+        .success { 
+            background: rgba(76, 175, 80, 0.1); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .success h3 { 
+            margin-top: 0; 
+            color: #4caf50; 
+            font-weight: 600;
+        }
+        
+        .success p { 
+            margin: 10px 0; 
+            color: var(--text-muted);
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .gallery-item {
+            background: var(--dark-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .gallery-caption {
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Interactive Tutorial */
+        .interactive-tutorial {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .interactive-tutorial h3 {
+            margin-top: 0;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+        
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--dark-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .quiz-question p {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .quiz-options {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn { 
+            display: inline-block; 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 12px 25px; 
+            border: none;
+            border-radius: 30px; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .btn:hover { 
+            background: #7329c7; 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4); 
+        }
+        
+        .btn-secondary { 
+            background: var(--secondary-color); 
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+        }
+        
+        .btn-secondary:hover { 
+            background: #0097a7; 
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+        }
+        
+        .quiz-result {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Sidebar */
+        .sidebar { 
+            flex: 1; 
+        }
+        
+        .sidebar-widget { 
+            background: var(--card-bg); 
+            border-radius: 10px; 
+            padding: 25px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+        }
+        
+        .sidebar-widget h3 { 
+            margin-bottom: 20px; 
+            padding-bottom: 10px; 
+            border-bottom: 2px solid var(--primary-color); 
+            color: var(--text-color); 
+            font-weight: 700;
+        }
+        
+        .ad-container { 
+            background: var(--dark-bg); 
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center; 
+            margin: 20px 0; 
+            border: 1px dashed var(--border-color); 
+            min-height: 150px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-direction: column;
+        }
+        
+        .ad-label { 
+            display: block; 
+            text-align: center; 
+            font-size: 0.7rem; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin-bottom: 10px; 
+        }
+        
+        .featured-list { 
+            list-style: none; 
+        }
+        
+        .featured-list li { 
+            padding: 12px 0; 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; 
+            align-items: center; 
+            transition: all 0.3s ease;
+        }
+        
+        .featured-list li:hover {
+            background: rgba(255, 255, 255, 0.02);
+            padding-left: 5px;
+        }
+        
+        .featured-list li:last-child { 
+            border-bottom: none; 
+        }
+        
+        .featured-list img { 
+            width: 40px; 
+            height: 40px; 
+            object-fit: cover; 
+            border-radius: 5px; 
+            margin-right: 10px; 
+            border: 1px solid var(--border-color); 
+        }
+        
+        .featured-list a {
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .featured-list a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer { 
+            background: var(--darker-bg); 
+            color: white; 
+            padding: 50px 0 20px; 
+            margin-top: 40px; 
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-content { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between; 
+            margin-bottom: 30px; 
+            gap: 30px;
+        }
+        
+        .footer-section { 
+            flex: 1; 
+            min-width: 250px; 
+        }
+        
+        .footer-section h3 { 
+            color: var(--primary-color); 
+            margin-bottom: 20px; 
+            font-weight: 700;
+        }
+        
+        .footer-section p, .footer-section li {
+            color: var(--text-muted);
+        }
+        
+        .footer-section ul { 
+            list-style: none; 
+        }
+        
+        .footer-section ul li { 
+            margin-bottom: 12px; 
+        }
+        
+        .footer-section ul li a { 
+            color: var(--text-muted); 
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover { 
+            color: var(--primary-color); 
+            padding-left: 5px;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            padding-top: 20px; 
+            border-top: 1px solid var(--border-color); 
+            font-size: 0.9rem; 
+            color: var(--text-muted); 
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-content { 
+                flex-direction: column; 
+            }
+            
+            .articles { 
+                margin-right: 0; 
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            
+            nav ul { 
+                margin-top: 15px; 
+                justify-content: center; 
+                flex-wrap: wrap; 
+            }
+            
+            nav ul li { 
+                margin: 5px 10px; 
+            }
+            
+            .dropdown-menu { 
+                position: static; 
+                width: 100%; 
+                margin-top: 5px; 
+            }
+            
+            .footer-content { 
+                flex-direction: column; 
+            }
+            
+            .language-selector {
+                margin: 15px auto 0;
+            }
+            
+            .quiz-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quiz-options button {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" id="nav-home">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-uploads">Uploads</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="heads.html" id="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" id="nav-bodies">Bodies</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-guides">Guide - How to?</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide" id="nav-gralats">Get Gralats</a></li>
+                                <li><a href="eventsguide" id="nav-events">Get Event Coins</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-trade">Trade Table</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sellablescalculator.html" id="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" id="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" id="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" id="nav-price">Price House</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="secret-achievements.html" id="nav-achievements">Secret Achievements</a></li>
+                    </ul>
+                </nav>
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                        English
+                    </button>
+                    <div class="language-options">
+                        <a href="#" data-lang="en">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                                                        English
+                        </a>
+                        <a href="#" data-lang="pt">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                            Português
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="hero-title">Master Graal Era Uploads</h1>
+                <p id="hero-description">Learn the rules, templates, and best practices for uploading custom heads, bodies, shields, and gang pictures to Graal Era.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="articles">
+                <!-- Introduction -->
+                <article class="article">
+                    <div class="article-content">
+                        <span class="tag tag-upload" id="tag-upload">Upload</span>
+                        <span class="tag tag-guide" id="tag-guide">Guide</span>
+                        <h2 id="intro-title">Introduction to the Upload Guide!</h2>
+                        <div class="article-meta" id="intro-date">Updated on January 1, 2026</div>
+                        <p id="intro-text">This page explains everything you need to know before uploading custom heads, bodies, shields, or gang pictures to GraalOnline Era. Uploads are one of the most fun ways to express yourself, but there are strict rules that must be followed.</p>
+                        
+                        <div class="warning">
+                            <h3 id="warning-title">Important Warning</h3>
+                            <p id="warning-text">Submitting files that break the rules will cause your upload to be rejected or worse, your account could be punished if you spam the uploads.</p>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="official-site-title">Official Upload Site</h3>
+                            <p id="official-site-text"><strong>eraupload.graalonline.com</strong></p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Upload Costs -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="costs-title">Upload Costs (Gralats)</h2>
+                        <ul>
+                            <li id="cost-head"><strong>Head:</strong> 20,000 Gralats</li>
+                            <li id="cost-body"><strong>Body:</strong> 10,000 Gralats</li>
+                            <li id="cost-shield"><strong>Shield Code:</strong> 2,500 Gralats</li>
+                            <li id="cost-gang"><strong>Gang Picture:</strong> Free (with gang ownership)</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- General Rules -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="general-rules-title">General Rules (Heads & Bodies)</h2>
+                        
+                        <div class="tip">
+                            <h3 id="shape-title">Shape & Form</h3>
+                            <p id="shape-text">All customs must follow the default template size and structure:</p>
+                            <ul>
+                                <li id="shape-1">Normal human head/body shape</li>
+                                <li id="shape-2">Two arms, two legs</li>
+                                <li id="shape-3">Human proportions (not monsters, oversized parts, or animal bodies)</li>
+                                <li id="shape-4">Facial features can be simplified as long as the overall shape looks human</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="copyright-title">Copyright</h3>
+                            <p id="copyright-text">Only upload what you created or have permission to use:</p>
+                            <ul>
+                                <li id="copyright-1">No copyrighted anime/game/TV/movie characters</li>
+                                <li id="copyright-2">No memes, logos, or brands (Nike, Adidas, Batman, etc.)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="shading-title">Shading Required</h3>
+                            <p id="shading-text">Flat-colored heads/bodies without shading will be rejected.</p>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="offensive-title">Offensive Content</h3>
+                            <p id="offensive-text">Absolutely no racism, gore, politics, nudity, or drug-related content.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Heads Section -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="heads-title">Heads Specific Rules</h2>
+                        
+                        <div class="tip">
+                            <h3 id="accessories-title">Accessories</h3>
+                            <p id="accessories-text">Small bandanas, earrings, piercings, pacifiers, or simple ties are allowed.</p>
+                            <p id="accessories-not-allowed"><strong>Not allowed:</strong> Hats & glasses are not allowed.</p>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="staff-heads-title">Staff Heads</h3>
+                            <p id="staff-heads-text">Editing/reuploading staff-exclusive heads is forbidden.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="frames-title">Frames</h3>
+                            <p id="frames-text">Must be clean. No cut frames, stray pixels, or broken animation.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="allowed-animations-title">Allowed Head Animations</h3>
+                            <ul>
+                                <li id="animation-1">Subtle mouth movement (smile, yawn)</li>
+                                <li id="animation-2">Small tears, subtle blinking, slight ear twitch</li>
+                                <li id="animation-3">Simple hair flow effect</li>
+                                <li id="animation-4">Tiny glowing earrings</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="disallowed-animations-title">Disallowed Head Animations</h3>
+                            <ul>
+                                <li id="disallowed-1">Flashy/glitch effects</li>
+                                <li id="disallowed-2">Smoking, fire, or particle effects</li>
+                                <li id="disallowed-3">Hair that changes colors across frames</li>
+                                <li id="disallowed-4">Animations outside the face area (beyond hairline or forehead)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Bodies Section -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="bodies-title">Bodies Specific Rules</h2>
+                        
+                        <div class="tip">
+                            <h3 id="static-title">Static Only</h3>
+                            <p id="static-text">Bodies must be non-animated.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="weapons-title">No Weapons Attached</h3>
+                            <p id="weapons-text">Small props (cups, necklaces, backpacks, wings, capes) are allowed, but not full weapons.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="proportions-title">Proportions</h3>
+                            <p id="proportions-text">No over-sexualized bodies or extreme shapes.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="death-frame-title">Death Frame</h3>
+                            <p id="death-frame-text">Must be a simple fallen body. Blood puddle is allowed, but no blankets, props, or body bags.</p>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="not-allowed-title">Not Allowed</h3>
+                            <p id="not-allowed-text">Laptops, oversized items, hats/scarves drawn directly onto bodies.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Shields Section -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="shields-title">Shields Rules</h2>
+                        
+                        <div class="tip">
+                            <h3 id="size-title">Size</h3>
+                            <p id="size-text">Must not cover more than 50% of your character.</p>
+                            <ul>
+                                <li id="size-1">Max width: < 512 px</li>
+                                <li id="size-2">Max height: < 128 px</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="allowed-shields-title">Allowed</h3>
+                            <ul>
+                                <li id="allowed-1">Logos, symbols, clan designs</li>
+                                <li id="allowed-2">Small subtle animations (no flashing)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="not-allowed-shields-title">Not Allowed</h3>
+                            <ul>
+                                <li id="not-allowed-1">Shields disguised as hats/heads/bodies</li>
+                                <li id="not-allowed-2">Realistic images of people</li>
+                                <li id="not-allowed-3">Overly large shields/status code images</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Gang Pictures Section -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="gang-title">Gang Pictures Rules</h2>
+                        
+                        <div class="tip">
+                            <h3 id="allowed-gang-title">Allowed</h3>
+                            <ul>
+                                <li id="allowed-gang-1">Scenery, nature, simple designs, clan art</li>
+                                <li id="allowed-gang-2">Real-life scenery/animals (but not real people)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="not-allowed-gang-title">Not Allowed</h3>
+                            <ul>
+                                <li id="not-allowed-gang-1">Vulgar, racist, political, or drug-related images</li>
+                                <li id="not-allowed-gang-2">GIFs</li>
+                                <li id="not-allowed-gang-3">Social media tags or advertising</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="enforcement-title">Enforcement</h3>
+                            <p id="enforcement-text">Inappropriate uploads can result in warnings, gang removal, or permanent ban.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Extra Rules -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="extra-rules-title">Extra Rules (All Uploads)</h2>
+                        
+                        <div class="tip">
+                            <h3 id="transparency-title">Transparency</h3>
+                            <p id="transparency-text">Avoid using pure black #000000 or pure white #FFFFFF — they will appear as transparent.</p>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="single-color-title">Single Color Uploads</h3>
+                            <p id="single-color-text">Pitch-black or plain single-color heads/bodies will not be accepted.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="frames-required-title">Missing Frames</h3>
+                            <p id="frames-required-text">All frames must be present.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="consistency-title">Consistency</h3>
+                            <p id="consistency-text">Colors cannot change between frames (e.g., blue → pink).</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="outline-title">Outline</h3>
+                            <p id="outline-text">Must be one solid color.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Upload Tips -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="tips-title">Upload Tips & Best Practices</h2>
+                        
+                        <div class="success">
+                            <h3 id="templates-title">✅ Always use templates</h3>
+                            <p id="templates-text">You can download free GraalOnline templates for heads, bodies, and shields. Templates help ensure proper sizing and prevent rejection.</p>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="test-title">✅ Test before uploading</h3>
+                            <p id="test-text">Many editors (GIMP, Photoshop, Pixlr, IbisPaint) let you preview GIF/PNG transparency and animation. Check for stray pixels or missing frames.</p>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="format-title">✅ Save in the correct format</h3>
+                            <ul>
+                                <li id="format-1">Heads & bodies: GIF (animated) or PNG (static)</li>
+                                <li id="format-2">Shields & gang pictures: PNG</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="backups-title">✅ Upload During Events</h3>
+                            <p id="backups-text">Events like Black Friday, Holloween, and Christmas usually will give you big promotion with 20-50% discount! Avoid selling uploads during discount.</p>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="creative-title">✅ Be creative but safe</h3>
+                            <p id="creative-text">Customs are meant for fun. Unique styles, shading, and original art always have a higher chance of acceptance.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Step-by-Step Guide -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="steps-title">Step-by-Step Upload Guide</h2>
+                        
+                        <ol>
+                            <li id="step-1">Visit the official site: <strong>https://eraupload.graalonline.com/</strong></li>
+                            <li id="step-2">Log in with your GraalOnline Era account</li>
+                            <li id="step-3">Choose upload type (Head, Body, Shield, Gang Picture)</li>
+                            <li id="step-4">Select your file and preview</li>
+                            <li id="step-5">Pay the upload fee (20k for head, 10k for body, 2.5k for shield)</li>
+                            <li id="step-6">Wait for approval. This may take some time (less than 24 hours)</li>
+                            <li id="step-7">If approved, your get to decide to upload by appearing "Yes" or "No" button to continue the upload.</li>
+                        </ol>
+                    </div>
+                </article>
+
+                <!-- FAQ Section -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="faq-title">FAQ (Player to Player)</h2>
+                        
+
+                        <div class="tip">
+                            <h3 id="faq-2-title">Q: Can I refund my Gralats if my upload gets rejected?</h3>
+                            <p id="faq-2-text">A: Yes. Your money wont reduce if your upload get rejected.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="faq-3-title">Q: How long does it take to approve?</h3>
+                            <p id="faq-3-text">A: Less than 20 minutes, depending on staff activity. If it took longer than 2 hours that means no admin approving anyone upload. Just offline and come back in a few hours, the upload will be approve then you open your game and there will be a notice saying you want to continue the upload or no. If you clicked yes, your money will be taken and you have around 2 hours to get full refund. If you refund you will earn upload token instead of gralats.</p>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="final-tip-title">🔥 Tip</h3>
+                            <p id="final-tip-text">To increase your chances of acceptance, keep your design clean, well-shaded, on-template, and original.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Templates Gallery -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="templates-gallery-title">Upload Templates</h2>
+                        <p id="templates-gallery-text">Download these templates to ensure your uploads meet the required specifications:</p>
+                        
+                        <div class="image-gallery">
+                            <div class="gallery-item">
+                                <img src="image/t/head.png" alt="Head Template" class="gallery-img">
+                                <div class="gallery-caption" id="caption-head">Head Template</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="image/t/body.png" alt="Body Template" class="gallery-img">
+                                <div class="gallery-caption" id="caption-body">Body Template</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="image/t/shield.png" alt="Shield Template" class="gallery-img">
+                                <div class="gallery-caption" id="caption-shield">Shield Template</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <h3 id="guides-title">Upload Gallery</h3>
+                    <ul class="featured-list">
+                        <li><a href="heads.html" id="guide1">Heads Upload Collection</a></li>
+                        <li><a href="bodies.html" id="guide1">Body Upload Collection</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="resources-title">Download Templates</h3>
+                    <ul class="featured-list">
+                        <li>
+                            <img src="image/t/head.png" alt="Head Template" class="gallery-img">
+                            <a href="image/t/head.png" id="resource-templates">Head Template</a>
+                        </li>
+                        <li>
+                            <img src="image/t/body.png" alt="Body Template" class="gallery-img">
+                            <a href="image/t/body.png" id="resource-templates">Body Template</a>
+                        </li>
+                        <li>
+                            <img src="image/t/shield.png" alt="Shield Template" class="gallery-img">
+                            <a href="image/t/shield.png" id="resource-templates">Shield Template</a>
+                        </li>
+                    </ul>
+                    <a href="https://eraupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="upload-site-btn">Go to Upload Site</a>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="ad-title">Advertisement</h3>
+                    <div class="ad-container">
+                        <span class="ad-label" id="ad-label">Advertisements</span>
+                        <!-- AdSense Ad Unit -->
+                        <div style="color: var(--text-muted);">Responsive Ad Unit</div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3 id="popular-title">Other Official Upload Site</h3>
+                    <ul class="featured-list">
+                        <a href="https://eraupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="upload-site-btn">Era</a>
+                        <a href="https://classicupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="upload-site-btn">Classic</a>
+                        <a href="https://olwestupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="upload-site-btn">Ol'West</a>
+                        <a href="https://zoneupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="upload-site-btn">Zone</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="about-title-footer">About GraalGuide</h3>
+                    <p id="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p><em id="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="links-title-footer">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html" id="link-home-footer">Home</a></li>
+                        <li><a href="heads.html" id="link-heads-footer">Heads Gallery</a></li>
+                        <li><a href="bodies.html" id="link-bodies-footer">Bodies Gallery</a></li>
+                        <li><a href="upload.html" id="link-upload-footer">Upload Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="legal-title-footer">Legal & Policies</h3>
+                    <ul>
+                        <li><a href="PrivacyPolicy.html" id="link-privacy-footer">Privacy Policy</a></li>
+                        <li><a href="TermsConditions.html" id="link-terms-footer">Terms of Service</a></li>
+                        <li><a href="#" id="link-cookie-footer">Cookie Policy</a></li>
+                        <li><a href="Disclaimer.html" id="link-disclaimer-footer">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="connect-title-footer">Connect</h3>
+                    <ul>
+                        <li><a href="#" id="link-discord-footer">About Me</a></li>
+                        <li><a href="#" id="link-youtube-footer">YouTube</a></li>
+                        <li><a href="ContactUs.html" id="link-contact-footer">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="copyright-footer">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+       
+    </script>
+</body>
+</html>

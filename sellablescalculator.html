@@ -12,6 +12,7 @@
             --primary-color: #8a2be2; /* Purple accent */
             --secondary-color: #00bcd4; /* Teal accent */
             --accent-color: #ff5722; /* Orange accent */
+            --success-color: #2ecc71; /* Green for positive values */
             --dark-bg: #121212;
             --darker-bg: #0a0a0a;
             --card-bg: #1e1e1e;
@@ -131,6 +132,7 @@
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
         
         .language-btn:hover {
@@ -213,54 +215,72 @@
             display: block;
         }
 
-        /* Hero Section */
-        .hero { 
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                       url('https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            padding: 80px 0; 
-            text-align: center; 
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            padding: 60px 0;
             color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
             position: relative;
         }
         
-        .hero-content { 
-            position: relative; 
-            z-index: 2; 
-        }
-        
-        .hero h1 { 
-            font-size: 2.8rem; 
-            margin-bottom: 20px; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
-            font-weight: 800;
-        }
-        
-        .hero p { 
-            font-size: 1.2rem; 
-            max-width: 700px; 
-            margin: 0 auto 30px; 
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5); 
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.9);
+            position: relative;
         }
-        
+
         /* Main Content */
-        .calculator-container { 
+        .section { 
             background: var(--card-bg); 
             border-radius: 10px; 
-            padding: 30px; 
-            margin: 40px 0; 
+            padding: 25px; 
+            margin: 30px 0; 
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
             border: 1px solid var(--border-color);
         }
         
-        .calculator-container h2 {
+        .section h2 {
             color: var(--text-color);
-            margin-bottom: 25px;
-            padding-bottom: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
             border-bottom: 2px solid var(--primary-color);
             font-weight: 700;
         }
-        
+
+        /* Math Hint */
+        .math-hint {
+            background: rgba(138, 43, 226, 0.1);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 1rem;
+            border-left: 4px solid var(--primary-color);
+            color: var(--text-color);
+        }
+
         /* Table Styles */
         .table-container {
             overflow-x: auto;
@@ -358,40 +378,38 @@
         /* Buttons */
         .btn { 
             display: inline-block; 
-            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            background: var(--primary-color); 
             color: white; 
-            padding: 14px 28px; 
+            padding: 12px 24px; 
             border: none;
-            border-radius: 30px; 
+            border-radius: 6px; 
             font-weight: 600; 
             cursor: pointer;
-            margin: 10px 8px;
+            margin: 8px 5px;
             transition: all 0.3s ease;
             font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
         }
         
         .btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4); 
+            background: #6a3093; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
         }
         
         .btn-secondary { 
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #008ba3 100%);
-            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+            background: var(--secondary-color); 
         }
         
         .btn-secondary:hover { 
-            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4); 
+            background: #0097a7; 
         }
         
         .btn-accent { 
-            background: linear-gradient(135deg, var(--accent-color) 0%, #d84315 100%);
-            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+            background: var(--accent-color); 
         }
         
         .btn-accent:hover { 
-            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4); 
+            background: #c0392b; 
         }
 
         /* Guidance Box */
@@ -419,17 +437,6 @@
         
         .guidance-box th {
             background: var(--primary-color);
-        }
-
-        /* Math Hint */
-        .math-hint {
-            background: rgba(138, 43, 226, 0.1);
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-size: 1rem;
-            border-left: 4px solid var(--primary-color);
-            color: var(--text-color);
         }
 
         /* Saved Data Section */
@@ -612,12 +619,8 @@
                 margin: 8px 5px; 
             }
             
-            .hero h1 {
+            .page-header h1 {
                 font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
             }
         }
 
@@ -663,8 +666,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
                                 <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
-                                <li><a href="workguide" id="nav-gralats">Get Gralats</a></li>
-                                <li><a href="eventsguide" id="nav-events">Get Event Coins</a></li>
+                                <li><a href="workguide.html" id="nav-gralats">Get Gralats</a></li>
+                                <li><a href="eventsguide.html" id="nav-events">Get Event Coins</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -699,17 +702,15 @@
         </div>
     </header>
 
-    <section class="hero">
+    <div class="page-header">
         <div class="container">
-            <div class="hero-content">
-                <h1 id="page-title">Sellables Calculator</h1>
-                <p id="page-description">Calculate the value of your Graal Era items and convert between Gralats and Trochus with custom ratios.</p>
-            </div>
+            <h1 id="page-title">Sellables Calculator</h1>
+            <p id="page-description">Calculate the value of your Graal Era items and convert between Gralats and Trochus with custom ratios.</p>
         </div>
-    </section>
+    </div>
 
     <div class="container">
-        <div class="calculator-container">
+        <div class="section">
             <h2 id="calculator-title">Sellables to Trochus Calculator</h2>
             
             <div class="math-hint" id="math-hint">
@@ -928,7 +929,7 @@
                 <div class="footer-section">
                     <h3 id="connect-title">Connect</h3>
                     <ul>
-                        <li><a href="#" id="link-discord">Our Discord Server</a></li>
+                        <li><a href="#" id="link-discord">About Me</a></li>
                         <li><a href="#" id="link-youtube">YouTube</a></li>
                         <li><a href="ContactUs.html" id="link-contact">Contact Us</a></li>
                     </ul>
@@ -1003,7 +1004,7 @@
                 'link-cookie': 'Cookie Policy',
                 'link-disclaimer': 'Disclaimer',
                 'connect-title': 'Connect',
-                'link-discord': 'Our Discord Server',
+                'link-discord': 'About Me',
                 'link-youtube': 'YouTube',
                 'link-contact': 'Contact Us',
                 'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.'
@@ -1012,7 +1013,7 @@
                 'page-title': 'Calculadora de Vendáveis',
                 'page-description': 'Calcule o valor dos seus itens do Graal Era e converta entre Gralats e Trochus com proporções personalizadas.',
                 'calculator-title': 'Calculadora de Vendáveis para Trochus',
-                'math-hint': 'Dica Profissional: Você pode usar operações matemáticas nos campos de entrada! Tente digitar "10+5" e ele calculará automaticamente para 15.',
+                'math-hint': 'Dica Profissional: Você pode usar operações matemáticas nos campos de entrada! Tente digitar "10+5" and ele calculará automaticamente para 15.',
                 'shells-label': 'Conchas',
                 'minerals-label': 'Minerais',
                 'mushrooms-label': 'Cogumelos',
@@ -1053,9 +1054,9 @@
                 'saved-data-title': 'Dados Salvos',
                 'about-calculator-title': 'Sobre Esta Calculadora',
                 'about-calculator-desc': 'Esta ferramenta ajuda você a calcular o valor dos seus itens vendáveis em Gralats e convertê-los em Trochus com base em uma proporção personalizável. Se você é um comerciante experiente ou está apenas começando, esta calculadora simplifica o gerenciamento da sua economia no jogo.',
-                'mission-statement': 'Nossa missão é fornecer uma experiência perfeita para os jogadores acompanharem seu progresso e gerenciarem recursos com eficiência.',
+                'mission-statement': 'Nossa missão é fornecer uma experiência perfeita para os jogadores acompanharem seu progresso and gerenciarem recursos com eficiência.',
                 'about-title': 'Sobre o GraalGuide',
-                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos ferramentas, guias e recursos para melhorar sua experiência de jogo.',
+                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos ferramentas, guias and recursos para melhorar sua experiência de jogo.',
                 'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
                 'links-title': 'Links Rápidos',
                 'link-home': 'Início',
@@ -1092,7 +1093,7 @@
             // Update language button text and flag
             const langBtn = document.querySelector('.language-btn');
             if (lang === 'en') {
-                langBtn.innerHTML = '<https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English"> English';
+                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English"> English';
             } else if (lang === 'pt') {
                 langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese"> Português';
             }
@@ -1293,6 +1294,17 @@
                     e.preventDefault();
                     const lang = this.getAttribute('data-lang');
                     changeLanguage(lang);
+                });
+            });
+            
+            // Add input event listeners to all input fields
+            document.querySelectorAll('input[type="text"]').forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.id !== 'ratio') {
+                        evaluateExpression(this.id);
+                    } else {
+                        calculate();
+                    }
                 });
             });
         });

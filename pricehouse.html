@@ -608,8 +608,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
                                 <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
-                                <li><a href="workguide" id="nav-gralats">Get Gralats</a></li>
-                                <li><a href="eventsguide" id="nav-events">Get Event Coins</a></li>
+                                <li><a href="workguide.html" id="nav-gralats">Get Gralats</a></li>
+                                <li><a href="eventsguide.html" id="nav-events">Get Event Coins</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -741,7 +741,7 @@
                 <div class="footer-section">
                     <h3 id="connect-title">Connect</h3>
                     <ul>
-                        <li><a href="#" id="connect-discord">Our Discord Server</a></li>
+                        <li><a href="#" id="connect-discord">About Me</a></li>
                         <li><a href="#" id="connect-youtube">YouTube</a></li>
                         <li><a href="#" id="connect-contact">Contact Us</a></li>
                     </ul>
@@ -754,116 +754,35 @@
     </footer>
 
     <script>
-        // Item data with tags
+        // Item data with tags - using fixed dates instead of relative time
         const itemsData = [
             { 
-                name: "Dragon Shield", 
-                price: "15,000 - 18,000", 
+                name: "Harvester", 
+                price: "50,000 - 80,000", 
                 trend: "up", 
-                updated: "2 days ago",
-                type: ["hat"],
-                priceRange: "10k-50k",
-                image: "image/azrxc.png"
+                updated: "9/11/2025",
+                type: ["melee"],
+                priceRange: "50-100k",
+                image: "image/harvester.png"
             },
             { 
-                name: "Angel Wings", 
-                price: "8,000 - 10,000", 
-                trend: "stable", 
-                updated: "5 days ago",
-                type: ["hat"],
-                priceRange: "under-10k",
-                image: "https://via.placeholder.com/40"
-            },
-            { 
-                name: "Fire Sword", 
-                price: "12,000 - 15,000", 
+                name: "Shovel", 
+                price: "2.3 - 2.7", 
                 trend: "down", 
-                updated: "1 day ago",
-                type: ["melee"],
-                priceRange: "10k-50k",
-                image: "https://via.placeholder.com/40"
-            },
-            { 
-                name: "Ghost Horse", 
-                price: "25,000 - 30,000", 
-                trend: "up", 
-                updated: "3 days ago",
-                type: ["toy"],
-                priceRange: "10k-50k",
-                image: "https://via.placeholder.com/40"
-            },
-            { 
-                name: "Pirate Hat", 
-                price: "5,000 - 7,000", 
-                trend: "stable", 
-                updated: "1 week ago",
-                type: ["hat"],
-                priceRange: "under-10k",
-                image: "https://via.placeholder.com/40"
-            },
-            { 
-                name: "Rainbow Blade", 
-                price: "20,000 - 25,000", 
-                trend: "up", 
-                updated: "4 days ago",
-                type: ["melee"],
-                priceRange: "10k-50k",
-                image: "https://via.placeholder.com/40"
-            },
-            { 
-                name: "Demon Horns", 
-                price: "3,000 - 4,500", 
-                trend: "down", 
-                updated: "2 days ago",
-                type: ["hat"],
-                priceRange: "under-10k",
-                image: "https://via.placeholder.com/40"
-            },
-            { 
-                name: "Golden Armor", 
-                price: "40,000 - 50,000", 
-                trend: "stable", 
-                updated: "1 week ago",
-                type: ["hat"],
-                priceRange: "10k-50k",
-                image: "https://via.placeholder.com/40"
-            },
-            { 
-                name: "Black Umbrella", 
-                price: "95,000 - 110,000", 
-                trend: "up", 
-                updated: "1 day ago",
-                type: ["melee"],
-                priceRange: "50k-100k",
-                image: "https://via.placeholder.com/40"
-            },
-            { 
-                name: "Laser Gun", 
-                price: "120,000 - 150,000", 
-                trend: "stable", 
-                updated: "3 days ago",
-                type: ["gun"],
-                priceRange: "100k-250k",
-                image: "https://via.placeholder.com/40"
-            },
-            { 
-                name: "Fishing Rod", 
-                price: "5,000 - 8,000", 
-                trend: "stable", 
-                updated: "1 week ago",
+                updated: "9/11/2025",
                 type: ["job"],
                 priceRange: "under-10k",
-                image: "https://via.placeholder.com/40"
+                image: "image/shovel.png"
             },
             { 
-                name: "Diamond Sword", 
-                price: "300,000 - 350,000", 
-                trend: "up", 
-                updated: "2 days ago",
-                type: ["melee"],
-                priceRange: "250k-500k",
-                image: "https://via.placeholder.com/40"
-            }
+                name: "Rocks", 
+                price: "1 - 1.14", 
+                trend: "stable", 
+                updated: "9/11/2025",
+                type: ["job"],
+                priceRange: "under-10k",
+                image: "image/rock.png"
+            }, 
         ];
 
         // Language translation data
@@ -920,7 +839,7 @@
                 'policy-cookie': 'Cookie Policy',
                 'policy-disclaimer': 'Disclaimer',
                 'connect-title': 'Connect',
-                'connect-discord': 'Our Discord Server',
+                'connect-discord': 'About Me',
                 'connect-youtube': 'YouTube',
                 'connect-contact': 'Contact Us',
                 'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.'
@@ -1058,7 +977,6 @@
                         <div class="item-name">
                             <img src="${item.image}" alt="${item.name}" class="item-img">
                             ${item.name}
-                            <span class="item-tags">${item.type.join(' ')} ${item.priceRange}</span>
                         </div>
                     </td>
                     <td class="price-value">${item.price}</td>
@@ -1169,9 +1087,10 @@
                             bValue = trendValues[b.trend];
                             return aValue - bValue;
                         } else { // Last updated
-                            aValue = a.updated;
-                            bValue = b.updated;
-                            return aValue.localeCompare(bValue);
+                            // Convert date strings to Date objects for proper comparison
+                            aValue = new Date(a.updated);
+                            bValue = new Date(b.updated);
+                            return aValue - bValue;
                         }
                     });
                     

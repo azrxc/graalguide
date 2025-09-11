@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Guide - GraalGuide: Master Graal Era Trading</title>
-    <meta name="description" content="Master trading in Graal Era with our comprehensive guide. Learn strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert.">
+    <title>Event Coins Guide - GraalGuide: Master Graal Era Events</title>
+    <meta name="description" content="Master earning Event Coins in Graal Era with our comprehensive guide. Learn all methods to get EC through events, achievements, and daily quests.">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
     <style>
@@ -213,7 +213,7 @@
         /* Hero Section */
         .hero { 
             background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                       url('image/a/tr.jpg') center/cover no-repeat;
+                       url('image/a/event.jpg') center/cover no-repeat;
             padding: 100px 0; 
             text-align: center; 
             color: white;
@@ -310,7 +310,7 @@
         
         .tag-news { 
             background: rgba(41, 121, 255, 0.2); 
-            color: #2979ff; 
+            color: #b907f9; 
         }
         
         .tag-guide { 
@@ -331,6 +331,11 @@
         .tag-trading { 
             background: rgba(156, 39, 176, 0.2); 
             color: #9c27b0; 
+        }
+        
+        .tag-events { 
+            background: rgba(255, 193, 7, 0.2); 
+            color: #ffc107; 
         }
         
         .article p, .article ul {
@@ -370,6 +375,48 @@
         
         .tip ul li {
             margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        /* Warning Box */
+        .warning { 
+            background: rgba(244, 67, 54, 0.1); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border-left: 4px solid #f44336;
+        }
+        
+        .warning h3 { 
+            margin-top: 0; 
+            color: #f44336; 
+            font-weight: 600;
+        }
+        
+        .warning p { 
+            margin: 10px 0; 
+            color: var(--text-muted);
+        }
+
+        /* Success Box */
+        .success { 
+            background: rgba(76, 175, 80, 0.1); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .success h3 { 
+            margin-top: 0; 
+            color: #4caf50; 
+            font-weight: 600;
+        }
+        
+        .success p { 
+            margin: 10px 0; 
             color: var(--text-muted);
         }
 
@@ -698,8 +745,8 @@
                     </button>
                     <div class="language-options">
                         <a href="#" data-lang="en">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                                                        English
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_theUnited_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            English
                         </a>
                         <a href="#" data-lang="pt">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
@@ -714,8 +761,8 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 id="hero-title">Master Graal Era Trading</h1>
-                <p id="hero-description">Learn expert strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert in Graal Era.</p>
+                <h1 id="hero-title">Master Graal Era Event Coins</h1>
+                <p id="hero-description">Learn all methods to earn Event Coins through events, achievements, and daily quests. Get exclusive rewards with our comprehensive guide.</p>
             </div>
         </div>
     </section>
@@ -726,115 +773,149 @@
                 <!-- Introduction -->
                 <article class="article">
                     <div class="article-content">
-                        <span class="tag tag-trading" id="tag-trading">Trading</span>
+                        <span class="tag tag-events" id="tag-events">Event Coins</span>
                         <span class="tag tag-guide" id="tag-guide">Guide</span>
-                        <h2 id="intro-title">Introduction to Graal Era Trading</h2>
-                        <div class="article-meta" id="intro-date">UJanuary 1, 2026</div>
-                        <p id="intro-text">Trading is a key part of Era's economy. By buying and selling items, you can earn Gralats, Trochus, and other valuable resources. This tutorial will teach you the basics, advanced strategies, and tools to succeed.</p>
+                        <h2 id="intro-title">Introduction to Event Coins (EC)</h2>
+                        <div class="article-meta" id="intro-date">Updated on January 1, 2026</div>
+                        <p id="intro-text">Event Coins (EC) are a special currency in Graal Era used to buy exclusive rewards from event shops. This guide will show you all the methods to earn EC through events, achievements, and daily activities.</p>
                     </div>
                 </article>
 
-                <!-- Basics of Trading -->
+                <!-- Event House & Event Bots -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="basics-title">Basics of Trading</h2>
+                        <h2 id="event-house-title">Event House & Event Bots</h2>
+                        
                         <div class="tip">
-                            <h3 id="what-is-trading">What is Trading?</h3>
-                            <p id="what-is-trading-text">Trading involves exchanging items, Gralats, or Trochus with other players. It's a great way to get the items you need while earning profits.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="key-terms-title">Key Terms</h3>
+                            <h3 id="event-house-subtitle">Event House</h3>
+                            <p id="event-house-text">Join when admins host official events:</p>
                             <ul>
-                                <li><strong id="term-gralats">Gralats</strong>: <span id="term-gralats-desc">The main currency in Era.</span></li>
-                                <li><strong id="term-trochus">Trochus</strong>: <span id="term-trochus-desc">A secondary currency used for trading.</span></li>
-                                <li><strong id="term-sellables">Sellables</strong>: <span id="term-sellables-desc">Items that can be sold for Gralats or Trochus.</span></li>
-                                <li><strong id="term-ratio">Ratio</strong>: <span id="term-ratio-desc">The exchange rate between Trochus and Gralats (e.g., 1 Trochus : $4 Gralats).</span></li>
+                                <li id="event-house-1">Team events usually reward only 0.1 EC for the winning team</li>
+                                <li id="event-house-2">Tag Team Spar (TTS): Only the final winning player gets 1 EC</li>
+                                <li id="event-house-3">Races, chance events, and skill-based events reward 1 EC if you win</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="event-bot-title">Event Bot</h3>
+                            <p id="event-bot-text">Enable Event Bot in your settings to receive event invitations:</p>
+                            <ul>
+                                <li id="event-bot-1">Go into settings and enable Event Bot notifications</li>
+                                <li id="event-bot-2">When the bot invites you, join the event quickly</li>
+                                <li id="event-bot-3">Winning the event rewards you with 1 full EC</li>
                             </ul>
                         </div>
                     </div>
                 </article>
 
-                <!-- Interactive Tutorial -->
+                <!-- Plasma & Laser Tag -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="tutorial-title">Interactive Trading Tutorial</h2>
+                        <h2 id="plasma-laser-title">Plasma & Laser Tag MVP</h2>
+                        
+                        <div class="tip">
+                            <h3 id="plasma-title">Plasma (PvP)</h3>
+                            <p id="plasma-text">Become the MVP in plasma fights to earn EC:</p>
+                            <ul>
+                                <li id="plasma-1">Focus on getting the highest score in matches</li>
+                                <li id="plasma-2">MVP typically receives 0.1-0.3 EC depending on performance</li>
+                                <li id="plasma-3">Play during peak hours for more competitive matches</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="laser-title">Laser Tag</h3>
+                            <p id="laser-text">Be the MVP in laser tag matches to earn EC:</p>
+                            <ul>
+                                <li id="laser-1">Similar to plasma, aim for the highest score</li>
+                                <li id="laser-2">MVP rewards range from 0.1-0.3 EC</li>
+                                <li id="laser-3">Practice aiming and movement to improve your skills</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Secret Achievements -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="achievements-title">Secret Achievements</h2>
+                        
+                        <div class="tip">
+                            <h3 id="secret-achievements-subtitle">Hidden EC Rewards</h3>
+                            <p id="secret-achievements-text">Many secret or hidden achievements reward EC pieces:</p>
+                            <ul>
+                                <li id="achievements-1">Most achievements give 0.1 EC pieces rather than full EC</li>
+                                <li id="achievements-2">When you collect 0.3 EC pieces, it becomes 1 full EC</li>
+                                <li id="achievements-3">Example: 3 secret achievements (0.1 + 0.1 + 0.1) = 1 EC</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="youtube-tip-title">Finding Secret Achievements</h3>
+                            <p id="youtube-tip-text">The easiest way is to check YouTube videos or ask experienced players about which achievements are still available and how to complete them.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Daily & Weekly Quests -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="quests-title">Daily & Weekly Quests</h2>
+                        
+                        <div class="tip">
+                            <h3 id="quests-subtitle">Regular EC Opportunities</h3>
+                            <p id="quests-text">Quests reset daily and weekly with EC rewards:</p>
+                            <ul>
+                                <li id="quests-1">Some quests reward Event Coin pieces (e.g., 0.1 EC)</li>
+                                <li id="quests-2">Check your quest log regularly for EC opportunities</li>
+                                <li id="quests-3">Focus on completing quests with EC rewards first</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="hi5-quest-title">Hi5 Quest Strategy</h3>
+                            <p id="hi5-quest-text">For the "Hi5 Quest," go to Start area right after daily reset — you'll find many players doing it at the same time, making it easier to complete quickly.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- EC Collection Tips -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="tips-title">EC Collection Tips & Strategies</h2>
+                        
+                        <div class="tip">
+                            <h3 id="consistency-title">Be Consistent</h3>
+                            <p id="consistency-text">Regular participation is key to accumulating EC over time. Even small amounts add up!</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="priority-title">Prioritize High-Value Activities</h3>
+                            <p id="priority-text">Focus on activities that give full EC first, then work on EC pieces:</p>
+                            <ul>
+                                <li id="priority-1">Event wins (1 EC)</li>
+                                <li id="priority-2">MVP in Plasma/Laser Tag (0.1-0.3 EC)</li>
+                                <li id="priority-3">Daily/Weekly quests with EC rewards</li>
+                                <li id="priority-4">Secret achievements (0.1 EC each)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="community-title">Join the Community</h3>
+                            <p id="community-text">Connect with other players to learn about event schedules, achievement tips, and team up for better results in team events.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Interactive Quiz -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="quiz-title">Test Your EC Knowledge!</h2>
                         <div class="interactive-tutorial" id="interactiveTutorial">
-                            <h3 id="quiz-title">Test Your Trading Knowledge!</h3>
-                            <p id="quiz-desc">Answer the following questions to test your understanding of Trading.</p>
+                            <h3 id="quiz-subtitle">Event Coins Quiz</h3>
+                            <p id="quiz-desc">Answer these questions to test your understanding of Event Coins in Graal Era.</p>
                             <div id="quizContainer"></div>
                             <div id="quizResult" class="quiz-result"></div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Guide for Successful Trading -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="success-title">Guide for Successful Trading</h2>
-                        <div class="tip">
-                            <h3 id="strategy-buy-low">Buy Low, Sell High</h3>
-                            <p id="strategy-buy-low-text">Purchase items when they're cheap (e.g., during events) and sell them when prices rise.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-diversify">Diversify Your Portfolio</h3>
-                            <p id="strategy-diversify-text">Trade a variety of items to reduce risk. Don't put all your Trochus into one type of item.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-patience">Patience is Key</h3>
-                            <p id="strategy-patience-text">Wait for the right opportunity. Don't rush into bad deals.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Advanced Strategies -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="advanced-title">Advanced Trading Strategies</h2>
-                        <div class="tip">
-                            <h3 id="strategy-flipping">Flipping Items</h3>
-                            <p id="strategy-flipping-text">Buy undervalued items and sell them for a profit. Research prices to find good deals.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-event">Event Trading</h3>
-                            <p id="strategy-event-text">During events, buy rare items and sell them later when they become more valuable.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-bulk">Bulk Trading</h3>
-                            <p id="strategy-bulk-text">Trade in large quantities to negotiate better deals with other players.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Common Mistakes to Avoid -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="mistakes-title">Common Trading Mistakes to Avoid</h2>
-                        <div class="tip">
-                            <h3 id="mistake-overpaying">Overpaying</h3>
-                            <p id="mistake-overpaying-text">Always check the value of items before trading. Use tools like the <a href="SellablesCalculator.html" id="calculator-link">Sellables Calculator</a>.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="mistake-ratios">Ignoring Ratios</h3>
-                            <p id="mistake-ratios-text">Understanding ratios is crucial for fair trades. Don't accept deals that don't make sense.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="mistake-scams">Scams</h3>
-                            <p id="mistake-scams-text">Be cautious of fake offers or misleading trades. Always double-check before confirming.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Tools and Resources -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="tools-title">Trading Tools and Resources</h2>
-                        <div class="tip">
-                            <h3 id="tool-calculator">Sellables Calculator</h3>
-                            <p id="tool-calculator-text">Use the <a href="SellablesCalculator.html" id="calculator-link2">Sellables Calculator</a> to determine the value of your items and make informed trades.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="tool-community">Community Forums</h3>
-                            <p id="tool-community-text">Join forums or Discord servers to discuss trading Guide and stay updated on market trends.</p>
                         </div>
                     </div>
                 </article>
@@ -843,29 +924,31 @@
                 <article class="article">
                     <div class="article-content">
                         <h2 id="conclusion-title">Conclusion</h2>
-                        <p id="conclusion-text">Trading in Era can be highly rewarding if you follow these Guide and strategies. Practice, experiment, and always stay informed. Happy trading!</p>
+                        <p id="conclusion-text">Earning Event Coins requires persistence and knowledge of all available methods. By participating in events, completing achievements, and staying consistent with daily activities, you can accumulate enough EC to purchase exclusive items from event shops. Happy hunting!</p>
                     </div>
                 </article>
             </div>
 
             <div class="sidebar">
                 <div class="sidebar-widget">
-                    <h3 id="tools-title-sidebar">Trading Tools</h3>
+                    <h3 id="ec-methods-title">EC Earning Methods</h3>
                     <ul class="featured-list">
                         <li>
-                            <a href="SellablesCalculator.html" id="tool-calculator-link">Sellables Calculator</a>
+                            <a href="#event-house-title" id="method-event-house">Event House</a>
                         </li>
                         <li>
-                            <a href="RatioHistory.html" id="tool-ratio-link">Ratio History</a>
+                            <a href="#event-bot-title" id="method-event-bot">Event Bot</a>
                         </li>
                         <li>
-                            <a href="ProfitLoss.html" id="tool-profit-link">Profit & Loss Tracker</a>
+                            <a href="#plasma-laser-title" id="method-plasma">Plasma/Laser MVP</a>
                         </li>
                         <li>
-                            <a href="PriceHouse.html" id="tool-price-link">Price House</a>
+                            <a href="#achievements-title" id="method-achievements">Secret Achievements</a>
+                        </li>
+                        <li>
+                            <a href="#quests-title" id="method-quests">Daily/Weekly Quests</a>
                         </li>
                     </ul>
-                    <a href="SellablesCalculator.html" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="calculator-btn">Use Calculator</a>
                 </div>
 
                 <div class="sidebar-widget">
@@ -878,22 +961,22 @@
                 </div>
 
                 <div class="sidebar-widget">
-                    <h3 id="values-title">Current Trade Values</h3>
+                    <h3 id="popular-events-title">Popular Event Rewards</h3>
                     <ul class="featured-list">
-                        <li><a href="#" id="value-dragon">Dragon Shield: 15,000-18,000 Gralats</a></li>
-                        <li><a href="#" id="value-angel">Angel Wings: 8,000-10,000 Gralats</a></li>
-                        <li><a href="#" id="value-fire">Fire Sword: 12,000-15,000 Gralats</a></li>
-                        <li><a href="#" id="value-ec">EC Items: Current Rates</a></li>
+                        <li><a href="#" id="reward-1">Seasonal Hats</a></li>
+                        <li><a href="#" id="reward-2">Exclusive Bodies</a></li>
+                        <li><a href="#" id="reward-3">Rare Shields</a></li>
+                        <li><a href="#" id="reward-4">Special Mounts</a></li>
                     </ul>
                 </div>
 
                 <div class="sidebar-widget">
-                    <h3 id="guides-title">Popular Guides</h3>
+                    <h3 id="related-guides-title">Related Guides</h3>
                     <ul class="featured-list">
-                        <li><a href="#" id="guide-deals">How to Spot Good Deals</a></li>
-                        <li><a href="#" id="guide-negotiation">Negotiation Techniques</a></li>
-                        <li><a href="#" id="guide-event">Event Item Investment Guide</a></li>
-                        <li><a href="#" id="guide-scams">Avoiding Scams</a></li>
+                        <li><a href="secret-achievements.html" id="guide-achievements">Secret Achievements</a></li>
+                        <li><a href="workguide.html" id="guide-gralats">Get Gralats</a></li>
+                        <li><a href="tradeguide.html" id="guide-trading">Trading Guide</a></li>
+                        <li><a href="upload.html" id="guide-upload">Upload Guide</a></li>
                     </ul>
                 </div>
             </div>
@@ -912,9 +995,9 @@
                     <h3 id="links-title-footer">Quick Links</h3>
                     <ul>
                         <li><a href="index.html" id="link-home-footer">Home</a></li>
-                        <li><a href="SellablesCalculator.html" id="link-calculator-footer">Sellables Calculator</a></li>
-                        <li><a href="TradingGuide.html" id="link-trading-footer">Trading Guide</a></li>
-                        <li><a href="SecretAchievements.html" id="link-achievements-footer">Secret Achievements</a></li>
+                        <li><a href="eventsguide.html" id="link-events-footer">Event Coins Guide</a></li>
+                        <li><a href="secret-achievements.html" id="link-achievements-footer">Secret Achievements</a></li>
+                        <li><a href="workguide.html" id="link-gralats-footer">Get Gralats</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -929,7 +1012,7 @@
                 <div class="footer-section">
                     <h3 id="connect-title-footer">Connect</h3>
                     <ul>
-                        <li><a href="#" id="link-discord-footer">About Me</a></li>
+                        <li><a href="#" id="link-discord-footer">Our Discord Server</a></li>
                         <li><a href="#" id="link-youtube-footer">YouTube</a></li>
                         <li><a href="ContactUs.html" id="link-contact-footer">Contact Us</a></li>
                     </ul>
@@ -942,26 +1025,26 @@
     </footer>
 
     <script>
-        // Quiz Questions and Answers
+        // Quiz Questions and Answers for Event Coins
         const quizQuestions = [
             {
-                question: "Is it a good idea to buy items during events when they're cheap?",
-                answer: true
-            },
-            {
-                question: "Should you always accept the first trade offer you receive?",
+                question: "Do team events usually reward all members with 1 full EC?",
                 answer: false
             },
             {
-                question: "Is it important to check the ratio before trading?",
+                question: "Can you earn EC pieces from secret achievements?",
                 answer: true
             },
             {
-                question: "Should you trade all your Trochus for one rare item?",
-                answer: false
+                question: "Does becoming MVP in Plasma or Laser Tag reward EC?",
+                answer: true
             },
             {
-                question: "Is patience important when trading?",
+                question: "Do daily and weekly quests sometimes reward EC?",
+                answer: true
+            },
+            {
+                question: "Do you need to enable Event Bot in settings to receive event invitations?",
                 answer: true
             }
         ];
@@ -1006,89 +1089,100 @@
         // Language translation data
         const translations = {
             'en': {
-                'hero-title': 'Master Graal Era Trading',
-                'hero-description': 'Learn expert strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert in Graal Era.',
-                'tag-trading': 'Trading',
+                'hero-title': 'Master Graal Era Event Coins',
+                'hero-description': 'Learn all methods to earn Event Coins through events, achievements, and daily quests. Get exclusive rewards with our comprehensive guide.',
+                'tag-events': 'Event Coins',
                 'tag-guide': 'Guide',
-                'intro-title': 'Introduction to Graal Era Trading',
+                'intro-title': 'Introduction to Event Coins (EC)',
                 'intro-date': 'Updated on January 1, 2026',
-                'intro-text': 'Trading is a key part of Era\'s economy. By buying and selling items, you can earn Gralats, Trochus, and other valuable resources. This tutorial will teach you the basics, advanced strategies, and tools to succeed.',
-                'basics-title': 'Basics of Trading',
-                'what-is-trading': 'What is Trading?',
-                'what-is-trading-text': 'Trading involves exchanging items, Gralats, or Trochus with other players. It\'s a great way to get the items you need while earning profits.',
-                'key-terms-title': 'Key Terms',
-                'term-gralats': 'Gralats',
-                'term-gralats-desc': 'The main currency in Era.',
-                'term-trochus': 'Trochus',
-                'term-trochus-desc': 'A secondary currency used for trading.',
-                'term-sellables': 'Sellables',
-                'term-sellables-desc': 'Items that can be sold for Gralats or Trochus.',
-                'term-ratio': 'Ratio',
-                'term-ratio-desc': 'The exchange rate between Trochus and Gralats (e.g., 1 Trochus : $4 Gralats).',
-                'tutorial-title': 'Interactive Trading Tutorial',
-                'quiz-title': 'Test Your Trading Knowledge!',
-                'quiz-desc': 'Answer the following questions to test your understanding of Trading.',
-                'success-title': 'Guide for Successful Trading',
-                'strategy-buy-low': 'Buy Low, Sell High',
-                'strategy-buy-low-text': 'Purchase items when they\'re cheap (e.g., during events) and sell them when prices rise.',
-                'strategy-diversify': 'Diversify Your Portfolio',
-                'strategy-diversify-text': 'Trade a variety of items to reduce risk. Don\'t put all your Trochus into one type of item.',
-                'strategy-patience': 'Patience is Key',
-                'strategy-patience-text': 'Wait for the right opportunity. Don\'t rush into bad deals.',
-                'advanced-title': 'Advanced Trading Strategies',
-                'strategy-flipping': 'Flipping Items',
-                'strategy-flipping-text': 'Buy undervalued items and sell them for a profit. Research prices to find good deals.',
-                'strategy-event': 'Event Trading',
-                'strategy-event-text': 'During events, buy rare items and sell them later when they become more valuable.',
-                'strategy-bulk': 'Bulk Trading',
-                'strategy-bulk-text': 'Trade in large quantities to negotiate better deals with other players.',
-                'mistakes-title': 'Common Trading Mistakes to Avoid',
-                'mistake-overpaying': 'Overpaying',
-                'mistake-overpaying-text': 'Always check the value of items before trading. Use tools like the Sellables Calculator.',
-                'mistake-ratios': 'Ignoring Ratios',
-                'mistake-ratios-text': 'Understanding ratios is crucial for fair trades. Don\'t accept deals that don\'t make sense.',
-                'mistake-scams': 'Scams',
-                'mistake-scams-text': 'Be cautious of fake offers or misleading trades. Always double-check before confirming.',
-                'tools-title': 'Trading Tools and Resources',
-                'tool-calculator': 'Sellables Calculator',
-                'tool-calculator-text': 'Use the Sellables Calculator to determine the value of your items and make informed trades.',
-                'tool-community': 'Community Forums',
-                'tool-community-text': 'Join forums or Discord servers to discuss trading Guide and stay updated on market trends.',
+                'intro-text': 'Event Coins (EC) are a special currency in Graal Era used to buy exclusive rewards from event shops. This guide will show you all the methods to earn EC through events, achievements, and daily activities.',
+                'event-house-title': 'Event House & Event Bots',
+                'event-house-subtitle': 'Event House',
+                'event-house-text': 'Join when admins host official events:',
+                'event-house-1': 'Team events usually reward only 0.1 EC for the winning team',
+                'event-house-2': 'Tag Team Spar (TTS): Only the final winning player gets 1 EC',
+                'event-house-3': 'Races, chance events, and skill-based events reward 1 EC if you win',
+                'event-bot-title': 'Event Bot',
+                'event-bot-text': 'Enable Event Bot in your settings to receive event invitations:',
+                'event-bot-1': 'Go into settings and enable Event Bot notifications',
+                'event-bot-2': 'When the bot invites you, join the event quickly',
+                'event-bot-3': 'Winning the event rewards you with 1 full EC',
+                'plasma-laser-title': 'Plasma & Laser Tag MVP',
+                'plasma-title': 'Plasma (PvP)',
+                'plasma-text': 'Become the MVP in plasma fights to earn EC:',
+                'plasma-1': 'Focus on getting the highest score in matches',
+                'plasma-2': 'MVP typically receives 0.1-0.3 EC depending on performance',
+                'plasma-3': 'Play during peak hours for more competitive matches',
+                'laser-title': 'Laser Tag',
+                'laser-text': 'Be the MVP in laser tag matches to earn EC:',
+                'laser-1': 'Similar to plasma, aim for the highest score',
+                'laser-2': 'MVP rewards range from 0.1-0.3 EC',
+                'laser-3': 'Practice aiming and movement to improve your skills',
+                'achievements-title': 'Secret Achievements',
+                'secret-achievements-subtitle': 'Hidden EC Rewards',
+                'secret-achievements-text': 'Many secret or hidden achievements reward EC pieces:',
+                'achievements-1': 'Most achievements give 0.1 EC pieces rather than full EC',
+                'achievements-2': 'When you collect 0.3 EC pieces, it becomes 1 full EC',
+                'achievements-3': 'Example: 3 secret achievements (0.1 + 0.1 + 0.1) = 1 EC',
+                'youtube-tip-title': 'Finding Secret Achievements',
+                'youtube-tip-text': 'The easiest way is to check YouTube videos or ask experienced players about which achievements are still available and how to complete them.',
+                'quests-title': 'Daily & Weekly Quests',
+                'quests-subtitle': 'Regular EC Opportunities',
+                'quests-text': 'Quests reset daily and weekly with EC rewards:',
+                'quests-1': 'Some quests reward Event Coin pieces (e.g., 0.1 EC)',
+                'quests-2': 'Check your quest log regularly for EC opportunities',
+                'quests-3': 'Focus on completing quests with EC rewards first',
+                'hi5-quest-title': 'Hi5 Quest Strategy',
+                'hi5-quest-text': 'For the "Hi5 Quest," go to Start area right after daily reset — you\'ll find many players doing it at the same time, making it easier to complete quickly.',
+                'tips-title': 'EC Collection Tips & Strategies',
+                'consistency-title': 'Be Consistent',
+                'consistency-text': 'Regular participation is key to accumulating EC over time. Even small amounts add up!',
+                'priority-title': 'Prioritize High-Value Activities',
+                'priority-text': 'Focus on activities that give full EC first, then work on EC pieces:',
+                'priority-1': 'Event wins (1 EC)',
+                'priority-2': 'MVP in Plasma/Laser Tag (0.1-0.3 EC)',
+                'priority-3': 'Daily/Weekly quests with EC rewards',
+                'priority-4': 'Secret achievements (0.1 EC each)',
+                'community-title': 'Join the Community',
+                'community-text': 'Connect with other players to learn about event schedules, achievement tips, and team up for better results in team events.',
+                'quiz-title': 'Test Your EC Knowledge!',
+                'quiz-subtitle': 'Event Coins Quiz',
+                'quiz-desc': 'Answer these questions to test your understanding of Event Coins in Graal Era.',
                 'conclusion-title': 'Conclusion',
-                'conclusion-text': 'Trading in Era can be highly rewarding if you follow these Guide and strategies. Practice, experiment, and always stay informed. Happy trading!',
-                'tools-title-sidebar': 'Trading Tools',
-                'tool-calculator-link': 'Sellables Calculator',
-                'tool-ratio-link': 'Ratio History',
-                'tool-profit-link': 'Profit & Loss Tracker',
-                'tool-price-link': 'Price House',
-                'calculator-btn': 'Use Calculator',
+                'conclusion-text': 'Earning Event Coins requires persistence and knowledge of all available methods. By participating in events, completing achievements, and staying consistent with daily activities, you can accumulate enough EC to purchase exclusive items from event shops. Happy hunting!',
+                'ec-methods-title': 'EC Earning Methods',
+                'method-event-house': 'Event House',
+                'method-event-bot': 'Event Bot',
+                'method-plasma': 'Plasma/Laser MVP',
+                'method-achievements': 'Secret Achievements',
+                'method-quests': 'Daily/Weekly Quests',
                 'ad-title': 'Advertisement',
                 'ad-label': 'Advertisements',
-                'values-title': 'Current Trade Values',
-                'value-dragon': 'Dragon Shield: 15,000-18,000 Gralats',
-                'value-angel': 'Angel Wings: 8,000-10,000 Gralats',
-                'value-fire': 'Fire Sword: 12,000-15,000 Gralats',
-                'value-ec': 'EC Items: Current Rates',
-                'guides-title': 'Popular Guides',
-                'guide-deals': 'How to Spot Good Deals',
-                'guide-negotiation': 'Negotiation Techniques',
-                'guide-event': 'Event Item Investment Guide',
-                'guide-scams': 'Avoiding Scams',
+                'popular-events-title': 'Popular Event Rewards',
+                'reward-1': 'Seasonal Hats',
+                'reward-2': 'Exclusive Bodies',
+                'reward-3': 'Rare Shields',
+                'reward-4': 'Special Mounts',
+                'related-guides-title': 'Related Guides',
+                'guide-achievements': 'Secret Achievements',
+                'guide-gralats': 'Get Gralats',
+                'guide-trading': 'Trading Guide',
+                'guide-upload': 'Upload Guide',
                 'about-title-footer': 'About GraalGuide',
                 'about-desc-footer': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
                 'disclaimer-footer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
                 'links-title-footer': 'Quick Links',
                 'link-home-footer': 'Home',
-                'link-calculator-footer': 'Sellables Calculator',
-                'link-trading-footer': 'Trading Guide',
+                'link-events-footer': 'Event Coins Guide',
                 'link-achievements-footer': 'Secret Achievements',
+                'link-gralats-footer': 'Get Gralats',
                 'legal-title-footer': 'Legal & Policies',
                 'link-privacy-footer': 'Privacy Policy',
                 'link-terms-footer': 'Terms of Service',
                 'link-cookie-footer': 'Cookie Policy',
                 'link-disclaimer-footer': 'Disclaimer',
                 'connect-title-footer': 'Connect',
-                'link-discord-footer': 'About Me',
+                'link-discord-footer': 'Our Discord Server',
                 'link-youtube-footer': 'YouTube',
                 'link-contact-footer': 'Contact Us',
                 'copyright-footer': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
@@ -1110,108 +1204,7 @@
                 'nav-achievements': 'Secret Achievements'
             },
             'pt': {
-                'hero-title': 'Domine o Comércio do Graal Era',
-                'hero-description': 'Aprenda estratégias especializadas, evite erros comuns e use nosso tutorial interativo para se tornar um especialista em trading no Graal Era.',
-                'tag-trading': 'Trading',
-                'tag-guide': 'Guia',
-                'intro-title': 'Introdução ao Trading no Graal Era',
-                'intro-date': 'Atualizado em 15 de Janeiro de 2025',
-                'intro-text': 'O trading é uma parte fundamental da economia do Era. Comprando e vendendo itens, você pode ganhar Gralats, Trochus e outros recursos valiosos. Este tutorial ensinará o básico, estratégias avançadas e ferramentas para ter sucesso.',
-                'basics-title': 'Básico do Trading',
-                'what-is-trading': 'O que é Trading?',
-                'what-is-trading-text': 'Trading envolve trocar itens, Gralats ou Trochus com outros jogadores. É uma ótima maneira de obter os itens que você precisa enquanto obtém lucros.',
-                'key-terms-title': 'Termos Chave',
-                'term-gralats': 'Gralats',
-                'term-gralats-desc': 'A principal moeda no Era.',
-                'term-trochus': 'Trochus',
-                'term-trochus-desc': 'Uma moeda secundária usada para trading.',
-                'term-sellables': 'Vendáveis',
-                'term-sellables-desc': 'Itens que podem ser vendidos por Gralats ou Trochus.',
-                'term-ratio': 'Ratio',
-                'term-ratio-desc': 'A taxa de câmbio entre Trochus e Gralats (ex.: 1 Trochus : $4 Gralats).',
-                'tutorial-title': 'Tutorial Interativo de Trading',
-                'quiz-title': 'Teste Seu Conhecimento de Trading!',
-                'quiz-desc': 'Responda as seguintes perguntas para testar seu entendimento sobre Trading.',
-                'success-title': 'Guia para Trading Bem-Sucedido',
-                'strategy-buy-low': 'Compre Baixo, Venda Alto',
-                'strategy-buy-low-text': 'Compre itens quando estiverem baratos (ex.: durante eventos) e venda quando os preços subirem.',
-                'strategy-diversify': 'Diversifique Seu Portfólio',
-                'strategy-diversify-text': 'Negocie uma variedade de itens para reduzir riscos. Não coloque todo seu Trochus em um tipo de item.',
-                'strategy-patience': 'Paciência é Fundamental',
-                'strategy-patience-text': 'Espere pela oportunidade certa. Não se apresse em fazer negócios ruins.',
-                'advanced-title': 'Estratégias Avançadas de Trading',
-                'strategy-flipping': 'Revenda de Itens',
-                'strategy-flipping-text': 'Compre itens subvalorizados e venda-os com lucro. Pesquise preços para encontrar bons negócios.',
-                'strategy-event': 'Trading em Eventos',
-                'strategy-event-text': 'Durante eventos, compre itens raros e venda-os depois quando se tornarem mais valiosos.',
-                'strategy-bulk': 'Trading em Quantidade',
-                'strategy-bulk-text': 'Negocie em grandes quantidades para conseguir melhores negócios com outros jogadores.',
-                'mistakes-title': 'Erros Comuns de Trading a Evitar',
-                'mistake-overpaying': 'Pagar a Mais',
-                'mistake-overpaying-text': 'Sempre verifique o valor dos itens antes de negociar. Use ferramentas como a Calculadora de Vendáveis.',
-                'mistake-ratios': 'Ignorar Ratios',
-                'mistake-ratios-text': 'Entender ratios é crucial para negociações justas. Não aceite negócios que não façam sentido.',
-                'mistake-scams': 'Golpes',
-                'mistake-scams-text': 'Tenha cuidado com ofertas falsas ou negociações enganosas. Sempre verifique duas vezes antes de confirmar.',
-                'tools-title': 'Ferramentas e Recursos de Trading',
-                'tool-calculator': 'Calculadora de Vendáveis',
-                'tool-calculator-text': 'Use a Calculadora de Vendáveis para determinar o valor dos seus itens e fazer negociações informadas.',
-                'tool-community': 'Fóruns da Comunidade',
-                'tool-community-text': 'Participe de fóruns ou servidores do Discord para discutir guias de trading e manter-se atualizado sobre tendências do mercado.',
-                'conclusion-title': 'Conclusão',
-                'conclusion-text': 'Trading no Era pode ser muito recompensador se você seguir estes guias e estratégias. Pratique, experimente e sempre mantenha-se informado. Boas negociações!',
-                'tools-title-sidebar': 'Ferramentas de Trading',
-                'tool-calculator-link': 'Calculadora de Vendáveis',
-                'tool-ratio-link': 'Histórico de Ratios',
-                'tool-profit-link': 'Rastreador de Lucro & Perda',
-                'tool-price-link': 'Casa de Preços',
-                'calculator-btn': 'Usar Calculadora',
-                'ad-title': 'Publicidade',
-                'ad-label': 'Anúncios',
-                'values-title': 'Valores Atuais de Troca',
-                'value-dragon': 'Escudo do Dragão: 15.000-18.000 Gralats',
-                'value-angel': 'Asas de Anjo: 8.000-10.000 Gralats',
-                'value-fire': 'Espada de Fogo: 12.000-15.000 Gralats',
-                'value-ec': 'Itens de EC: Taxas Atuais',
-                'guides-title': 'Guias Populares',
-                'guide-deals': 'Como Identificar Boas Ofertas',
-                'guide-negotiation': 'Técnicas de Negociação',
-                'guide-event': 'Guia de Investimento em Itens de Evento',
-                'guide-scams': 'Evitando Golpes',
-                'about-title-footer': 'Sobre o GraalGuide',
-                'about-desc-footer': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
-                'disclaimer-footer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
-                'links-title-footer': 'Links Rápidos',
-                'link-home-footer': 'Início',
-                'link-calculator-footer': 'Calculadora de Vendáveis',
-                'link-trading-footer': 'Guia de Trading',
-                'link-achievements-footer': 'Conquistas Secretas',
-                'legal-title-footer': 'Legal e Políticas',
-                'link-privacy-footer': 'Política de Privacidade',
-                'link-terms-footer': 'Termos de Serviço',
-                'link-cookie-footer': 'Política de Cookies',
-                'link-disclaimer-footer': 'Aviso Legal',
-                'connect-title-footer': 'Conectar',
-                'link-discord-footer': 'Nosso Servidor no Discord',
-                'link-youtube-footer': 'YouTube',
-                'link-contact-footer': 'Contate-Nos',
-                'copyright-footer': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
-                // Navigation
-                'nav-home': 'Início',
-                'nav-uploads': 'Uploads',
-                'nav-heads': 'Heads',
-                'nav-bodies': 'Bodies',
-                'nav-guides': 'Guia - Como?',
-                'nav-upload-guide': 'Upload',
-                'nav-trade-guide': 'Troca',
-                'nav-gralats': 'Obter Gralats',
-                'nav-events': 'Obter Moedas de Evento',
-                'nav-trade': 'Tabela de Troca',
-                'nav-calculator': 'Calculadora de Vendáveis',
-                'nav-ratio': 'Histórico de Ratios',
-                'nav-profit': 'Rastrear Lucro & Perda',
-                'nav-price': 'Casa de Preços',
-                'nav-achievements': 'Conquistas Secretas'
+                // Portuguese translations would go here
             }
         };
 
@@ -1234,7 +1227,7 @@
             if (lang === 'en') {
                 langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English"> English';
             } else if (lang === 'pt') {
-                langBtn.innerHTML = '<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy533My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCAzMCI+PHBhdGggZmlsbD0iIzAwOTIzNCIgZD0iTTAgMGg2MHYzMEgweiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDBoNjB2MjBIMHoiLz48cGF0aCBmaWxsPSIjZjEyYjI4IiBkPSJNMCAwaDYwdjEwSDB6Ii8+PHBhdGggZmlsbD0iIzAwOTIzNCIgZD0iTTMwIDE1YTMgMyAwIDEgMCAwLTYgMyAzIDAgMCAwIDAgNnoiLz48L3N2Zz4=" alt="Portuguese"> Português';
+                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese"> Português';
             }
             
             // Store language preference
