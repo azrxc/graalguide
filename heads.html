@@ -150,6 +150,7 @@
             align-items: center;
             transition: all 0.3s ease;
             font-size: var(--font-sm);
+            height: 40px;
         }
         
         .language-btn:hover {
@@ -158,6 +159,8 @@
         
         .language-btn img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 8px;
         }
         
@@ -189,22 +192,13 @@
         
         .language-options a img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 10px;
         }
         
         .language-selector:hover .language-options {
             display: block;
-        }
-
-         /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            font-size: var(--font-2xl);
-            cursor: pointer;
-            padding: 5px 10px;
         }
 
         /* Dropdown Menu */
@@ -414,6 +408,7 @@
             image-rendering: pixelated;
             border: 1px solid var(--border-color);
             border-radius: 3px;
+            background-size: 32px 560px; /* Set background size to match your head file dimensions */
         }
         
         .frame1 { background-position: 0 0; }
@@ -675,13 +670,14 @@
             }
             
             .language-selector {
-                margin: 15px 0 0;
+                margin: 10px 0 0;
                 width: 100%;
             }
             
             .language-btn {
                 width: 100%;
                 justify-content: center;
+                height: 38px;
             }
             
             .language-options {
@@ -702,6 +698,7 @@
             .head {
                 width: 28px;
                 height: 28px;
+                background-size: 28px 490px; /* Adjusted for mobile */
             }
             
             .frame1 { background-position: 0 0; }
@@ -769,6 +766,7 @@
             .head {
                 width: 24px;
                 height: 24px;
+                background-size: 24px 420px; /* Adjusted for small mobile */
             }
             
             .frame1 { background-position: 0 0; }
