@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Privacy Policy - GraalGuide</title>
     <style>
         :root {
@@ -15,6 +15,16 @@
             --text-color: #e0e0e0;
             --text-muted: #9e9e9e;
             --border-color: #333;
+            
+            /* Responsive font sizes */
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-md: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.875rem;
+            --font-4xl: 2.25rem;
         }
         
         * { 
@@ -27,7 +37,8 @@
         body { 
             background-color: var(--dark-bg); 
             color: var(--text-color); 
-            line-height: 1.6; 
+            line-height: 1.6;
+            font-size: var(--font-md);
         }
         
         a { 
@@ -41,7 +52,7 @@
         }
         
         .container { 
-            max-width: 800px; 
+            max-width: 1200px; 
             margin: 0 auto; 
             padding: 0 15px; 
         }
@@ -65,7 +76,7 @@
         }
         
         .logo { 
-            font-size: 28px; 
+            font-size: var(--font-2xl); 
             font-weight: 800; 
             display: flex;
             align-items: center;
@@ -78,10 +89,12 @@
         nav ul { 
             display: flex; 
             list-style: none; 
+            position: relative; 
         }
         
         nav ul li { 
             margin-left: 25px; 
+            position: relative; 
         }
         
         nav ul li a { 
@@ -90,6 +103,7 @@
             display: block; 
             padding: 5px 0; 
             position: relative;
+            font-size: var(--font-md);
         }
         
         nav ul li a::after {
@@ -123,10 +137,16 @@
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
         }
         
         .language-btn:hover {
             background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .language-btn img {
+            width: 20px;
+            margin-right: 8px;
         }
         
         .language-options {
@@ -148,13 +168,68 @@
             padding: 10px 15px;
             color: var(--text-color);
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
         }
         
         .language-options a:hover {
             background: rgba(255, 255, 255, 0.05);
         }
         
+        .language-options a img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
         .language-selector:hover .language-options {
+            display: block;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+            font-size: var(--font-sm);
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+        
+        .dropdown:hover .dropdown-menu {
             display: block;
         }
 
@@ -165,16 +240,17 @@
         }
         
         .page-header h1 {
-            font-size: 2.5rem;
+            font-size: var(--font-3xl);
             margin-bottom: 15px;
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
         
         .page-header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: var(--font-lg);
         }
 
         /* Content Sections */
@@ -192,16 +268,20 @@
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--border-color);
+            font-size: var(--font-xl);
+            font-weight: 700;
         }
         
         .content-section h3 {
             color: var(--secondary-color);
             margin: 25px 0 15px;
+            font-size: var(--font-lg);
         }
         
         .content-section p, .content-section ul {
             margin-bottom: 15px;
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
         
         .content-section ul {
@@ -238,10 +318,12 @@
             color: var(--primary-color); 
             margin-bottom: 20px; 
             font-weight: 700;
+            font-size: var(--font-lg);
         }
         
         .footer-section p, .footer-section li {
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
         
         .footer-section ul { 
@@ -255,6 +337,7 @@
         .footer-section ul li a { 
             color: var(--text-muted); 
             transition: all 0.3s ease;
+            font-size: var(--font-md);
         }
         
         .footer-section ul li a:hover { 
@@ -266,33 +349,84 @@
             text-align: center; 
             padding-top: 20px; 
             border-top: 1px solid var(--border-color); 
-            font-size: 0.9rem; 
+            font-size: var(--font-sm); 
             color: var(--text-muted); 
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: var(--font-2xl);
+            }
+            
+            .page-header p {
+                font-size: var(--font-md);
+            }
+        }
+        
         @media (max-width: 768px) {
+            :root {
+                --font-xs: 0.7rem;
+                --font-sm: 0.8rem;
+                --font-md: 0.9rem;
+                --font-lg: 1rem;
+                --font-xl: 1.1rem;
+                --font-2xl: 1.3rem;
+                --font-3xl: 1.5rem;
+                --font-4xl: 1.7rem;
+            }
+            
             .header-content { 
-                flex-direction: column; 
-                text-align: center; 
+                flex-direction: row;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--darker-bg);
+                padding: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+                border-top: 1px solid var(--border-color);
+            }
+            
+            nav.active {
+                display: block;
             }
             
             nav ul { 
-                margin-top: 15px; 
-                justify-content: center; 
-                flex-wrap: wrap; 
+                flex-direction: column;
+                margin-top: 0;
             }
             
             nav ul li { 
-                margin: 5px 10px; 
+                margin: 10px 0; 
             }
             
-            .language-selector {
-                margin: 15px auto 0;
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                margin: 10px 0;
+                border: none;
+                background: var(--dark-bg);
             }
             
-            .page-header h1 {
-                font-size: 2rem;
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .page-header {
+                padding: 40px 0 20px;
             }
             
             .content-section {
@@ -301,9 +435,43 @@
             
             .footer-content { 
                 flex-direction: column; 
+                gap: 20px;
+            }
+            
+            .language-selector {
+                margin: 10px 0 0;
             }
         }
         
+        @media (max-width: 480px) {
+            :root {
+                --font-xs: 0.65rem;
+                --font-sm: 0.75rem;
+                --font-md: 0.85rem;
+                --font-lg: 0.95rem;
+                --font-xl: 1.05rem;
+                --font-2xl: 1.2rem;
+                --font-3xl: 1.35rem;
+                --font-4xl: 1.5rem;
+            }
+            
+            .logo {
+                font-size: var(--font-xl);
+            }
+            
+            .page-header {
+                padding: 30px 0 15px;
+            }
+            
+            .content-section {
+                padding: 15px;
+            }
+            
+            footer {
+                padding: 30px 0 15px;
+            }
+        }
+
         /* Language Toggle */
         .language-content {
             display: none;
@@ -311,6 +479,13 @@
         
         .language-content.active {
             display: block;
+        }
+        
+        /* Prevent zoom on focus for iOS */
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
         }
     </style>
 </head>
@@ -323,19 +498,52 @@
                         <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                     </a>
                 </div>
-                <nav>
+                <button class="mobile-menu-btn">☰</button>
+                <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                        <li><a href="index.html" data-translate="nav-home">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" data-translate="nav-uploads">Uploads</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-translate="nav-guides">Guides - How to?</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upload.html" data-translate="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" data-translate="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide.html" data-translate="nav-gralats-guide">Get Gralats</a></li>
+                                <li><a href="eventsguide.html" data-translate="nav-events-guide">Get Event Coins</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-translate="nav-trade">Trade Table</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sellablescalculator.html" data-translate="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" data-translate="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" data-translate="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" data-translate="nav-price">Price House</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
                 </nav>
                 <div class="language-selector">
-                    <button class="language-btn" id="language-toggle">
-                        <span id="current-language">English</span>
+                    <button class="language-btn" id="current-language">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                        <span data-translate="language-en">English</span>
                     </button>
                     <div class="language-options">
-                        <a href="#" data-lang="en">English</a>
-                        <a href="#" data-lang="pt">Português</a>
+                        <a href="#" data-lang="en">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            <span data-translate="language-en">English</span>
+                        </a>
+                        <a href="#" data-lang="pt">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                            <span data-translate="language-pt">Português</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -541,27 +749,184 @@
     </footer>
 
     <script>
+        // Language translations
+        const translations = {
+            'en': {
+                // Navigation
+                'nav-home': 'Home',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guides - How to?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Trade',
+                'nav-gralats-guide': 'Get Gralats',
+                'nav-events-guide': 'Get Event Coins',
+                'nav-trade': 'Trade Table',
+                'nav-calculator': 'Sellables Calculator',
+                'nav-ratio': 'Ratio History',
+                'nav-profit': 'Profit & Loss Tracker',
+                'nav-price': 'Price House',
+                'nav-achievements': 'Secret Achievements',
+                
+                // Footer
+                'about-title': 'About GraalGuide',
+                'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
+                'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
+                
+                'links-title': 'Quick Links',
+                'link1': 'Home',
+                'link2': 'Uploads',
+                'link3': 'Trading Guide',
+                'link4': 'Secret Achievements',
+                
+                'legal-title': 'Legal & Policies',
+                'policy1': 'Privacy Policy',
+                'policy2': 'Terms of Service',
+                'policy3': 'Cookie Policy',
+                'policy4': 'Disclaimer',
+                
+                'connect-title': 'Connect',
+                'connect1': 'About Me',
+                'connect2': 'YouTube',
+                'connect3': 'Contact Us',
+                
+                // Language selector
+                'language-en': 'English',
+                'language-pt': 'Português'
+            },
+            'pt': {
+                // Navigation
+                'nav-home': 'Início',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guias - Como?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Trocar',
+                'nav-gralats-guide': 'Conseguir Gralats',
+                'nav-events-guide': 'Conseguir Moedas de Evento',
+                'nav-trade': 'Tabela de Troca',
+                'nav-calculator': 'Calculadora de Vendáveis',
+                'nav-ratio': 'Histórico de Ratios',
+                'nav-profit': 'Rastrear Lucro & Perda',
+                'nav-price': 'Casa de Preços',
+                'nav-achievements': 'Conquistas Secretas',
+                
+                // Footer
+                'about-title': 'Sobre o GraalGuide',
+                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
+                'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
+                
+                'links-title': 'Links Rápidos',
+                'link1': 'Início',
+                'link2': 'Uploads',
+                'link3': 'Guia de Troca',
+                'link4': 'Conquistas Secretas',
+                
+                'legal-title': 'Legal e Políticas',
+                'policy1': 'Política de Privacidade',
+                'policy2': 'Termos de Serviço',
+                'policy3': 'Política de Cookies',
+                'policy4': 'Aviso Legal',
+                
+                'connect-title': 'Conectar',
+                'connect1': 'Sobre Mim',
+                'connect2': 'YouTube',
+                'connect3': 'Contate-Nos',
+                
+                // Language selector
+                'language-en': 'Inglês',
+                'language-pt': 'Português'
+            }
+        };
+
+        // Set default language
+        let currentLang = 'en';
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update language button
+            const languageBtn = document.getElementById('current-language');
+            const flagImg = languageBtn.querySelector('img');
+            const langText = languageBtn.querySelector('span');
+            
+            if (lang === 'en') {
+                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
+                langText.textContent = 'English';
+            } else if (lang === 'pt') {
+                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
+                langText.textContent = 'Português';
+            }
+            
+            // Toggle language content visibility
+            document.getElementById('content-en').classList.toggle('active', lang === 'en');
+            document.getElementById('content-pt').classList.toggle('active', lang === 'pt');
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Initialize language
         document.addEventListener('DOMContentLoaded', function() {
-            const languageToggle = document.getElementById('language-toggle');
-            const currentLanguage = document.getElementById('current-language');
+            // Check for saved language preference
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) {
+                changeLanguage(savedLang);
+            }
+            
+            // Set up language selector event listeners
+            document.querySelectorAll('.language-options a').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickInsideMenuBtn = mobileMenuBtn.contains(event.target);
+                
+                if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+            });
+            
+            // Original language toggle functionality
+            const languageToggle = document.getElementById('current-language');
             const languageOptions = document.querySelectorAll('.language-options a');
             const englishContent = document.getElementById('content-en');
             const portugueseContent = document.getElementById('content-pt');
             
-            // Language toggle functionality
             languageOptions.forEach(option => {
                 option.addEventListener('click', function(e) {
                     e.preventDefault();
                     const lang = this.getAttribute('data-lang');
                     
                     if (lang === 'en') {
-                        currentLanguage.textContent = 'English';
-                        englishContent.classList.add('active');
-                        portugueseContent.classList.remove('active');
+                        changeLanguage('en');
                     } else if (lang === 'pt') {
-                        currentLanguage.textContent = 'Português';
-                        portugueseContent.classList.add('active');
-                        englishContent.classList.remove('active');
+                        changeLanguage('pt');
                     }
                 });
             });
