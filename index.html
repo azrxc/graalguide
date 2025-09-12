@@ -74,6 +74,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            position: relative;
         }
         
         .logo { 
@@ -128,69 +129,6 @@
             width: 100%;
         }
 
-        /* Language Selector */
-        .language-selector {
-            margin-left: 20px;
-            position: relative;
-        }
-        
-        .language-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            font-size: var(--font-sm);
-        }
-        
-        .language-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .language-btn img {
-            width: 20px;
-            margin-right: 8px;
-        }
-        
-        .language-options {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            width: 150px;
-            z-index: 1000;
-            margin-top: 5px;
-        }
-        
-        .language-options a {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            font-size: var(--font-sm);
-        }
-        
-        .language-options a:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .language-options a img {
-            width: 20px;
-            margin-right: 10px;
-        }
-        
-        .language-selector:hover .language-options {
-            display: block;
-        }
-
         /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
@@ -200,6 +138,7 @@
             font-size: var(--font-2xl);
             cursor: pointer;
             padding: 5px 10px;
+            z-index: 1001;
         }
 
         /* Language Selector */
@@ -569,7 +508,7 @@
             font-size: var(--font-md);
         }
         
-        .featured-list a:hover {
+        .feature极-list a:hover {
             color: var(--primary-color);
         }
 
@@ -673,6 +612,7 @@
             
             .header-content { 
                 flex-direction: row;
+                align-items: center;
             }
             
             nav {
@@ -714,6 +654,23 @@
                 display: block;
             }
             
+            .language-selector {
+                margin: 10px 0 0;
+                width: 100%;
+            }
+            
+            .language-btn {
+                width: 100%;
+                justify-content: center;
+                height: 38px;
+            }
+            
+            .language-options {
+                width: 100%;
+                right: auto;
+                left: 0;
+            }
+            
             .hero { 
                 padding: 60px 0;
             }
@@ -735,10 +692,6 @@
             .footer-content { 
                 flex-direction: column; 
                 gap: 20px;
-            }
-            
-            .language-selector {
-                margin: 10px 0 0;
             }
             
             .article-img {
@@ -1120,7 +1073,7 @@
                 'article2-title': 'Troca: Maximize Seus Lucros no Graal Era',
                 'article2-date': 'Atualizado em 1 de Janeiro de 2026',
                 'article2-desc': 'Domine a arte da troca no Graal Era com nosso guia completo. Aprenda a identificar itens valiosos, negociar melhores acordos e aumentar o valor do seu inventário.',
-                'article2-desc2': 'Entenda as tendências atuais do mercado, valores de itens e estratégias de troca usadas por traders bem-sucedidos.',
+                'article2-desc2': 'Entenda as tendências atuais do mercado, valores de itens e estratégias de troca usadas por traders well-sucedidos.',
                 'read-guide': 'Ler Guia de Troca',
                 
                 'tag-events': 'Moedas de Evento',
@@ -1231,6 +1184,12 @@
             
             mobileMenuBtn.addEventListener('click', function() {
                 mainNav.classList.toggle('active');
+                // Close dropdowns when menu is toggled on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                }
             });
             
             // Close menu when clicking outside
@@ -1242,6 +1201,37 @@
                     mainNav.classList.remove('active');
                 }
             });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown') && !e.target.closest('.language-selector')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelector('.language-options').style.display = 'none';
+                }
+            });
+            
+            // Handle dropdown toggles on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                            if (menu !== dropdownMenu) {
+                                menu.style.display = 'none';
+                            }
+                        });
+                        
+                        // Toggle this dropdown
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
         });
     </script>
 </body>
