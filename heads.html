@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Heads Gallery - GraalGuide Graal Era Custom Heads</title>
     <meta name="description" content="Filter by gender and color to find the perfect head for your character.">
     <style>
@@ -16,6 +16,16 @@
             --text-color: #e0e0e0;
             --text-muted: #9e9e9e;
             --border-color: #333;
+            
+            /* Responsive font sizes */
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-md: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.875rem;
+            --font-4xl: 2.25rem;
         }
         
         * { 
@@ -28,7 +38,8 @@
         body { 
             background-color: var(--dark-bg); 
             color: var(--text-color); 
-            line-height: 1.6; 
+            line-height: 1.6;
+            font-size: var(--font-md);
         }
         
         a { 
@@ -66,7 +77,7 @@
         }
         
         .logo { 
-            font-size: 28px; 
+            font-size: var(--font-2xl); 
             font-weight: 800; 
             display: flex;
             align-items: center;
@@ -93,6 +104,7 @@
             display: block; 
             padding: 5px 0; 
             position: relative;
+            font-size: var(--font-md);
         }
         
         nav ul li a::after {
@@ -116,9 +128,9 @@
             background: transparent;
             border: none;
             color: var(--text-color);
-            font-size: 24px;
+            font-size: var(--font-2xl);
             cursor: pointer;
-            padding: 5px;
+            padding: 5px 10px;
         }
 
         /* Language Selector */
@@ -137,6 +149,7 @@
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
         }
         
         .language-btn:hover {
@@ -167,6 +180,7 @@
             padding: 10px 15px;
             color: var(--text-color);
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
         }
         
         .language-options a:hover {
@@ -208,6 +222,7 @@
             display: block;
             padding: 10px 20px;
             font-weight: normal !important;
+            font-size: var(--font-sm);
         }
         
         .dropdown-menu a:hover {
@@ -242,7 +257,7 @@
         }
         
         .page-header h1 {
-            font-size: 2.8rem;
+            font-size: var(--font-4xl);
             margin-bottom: 15px;
             font-weight: 800;
             position: relative;
@@ -251,7 +266,7 @@
         .page-header p {
             max-width: 700px;
             margin: 0 auto;
-            font-size: 1.1rem;
+            font-size: var(--font-lg);
             color: rgba(255, 255, 255, 0.9);
             position: relative;
         }
@@ -279,6 +294,7 @@
             border-bottom: 2px solid var(--primary-color);
             color: var(--text-color);
             font-weight: 700;
+            font-size: var(--font-lg);
         }
         
         .filter-group {
@@ -289,6 +305,7 @@
             margin-bottom: 12px;
             color: var(--text-color);
             font-weight: 600;
+            font-size: var(--font-md);
         }
         
         .color-filters {
@@ -333,6 +350,7 @@
             transition: all 0.2s ease;
             padding: 5px;
             border-radius: 4px;
+            font-size: var(--font-md);
         }
         
         .filter-options label:hover {
@@ -407,6 +425,7 @@
             transition: all 0.3s ease;
             margin-top: 20px;
             box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+            font-size: var(--font-md);
         }
         
         .reset-btn:hover {
@@ -435,6 +454,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 500;
+            font-size: var(--font-md);
         }
         
         .pagination a:hover, .pagination a.active {
@@ -511,10 +531,12 @@
             color: var(--primary-color); 
             margin-bottom: 20px; 
             font-weight: 700;
+            font-size: var(--font-lg);
         }
         
         .footer-section p, .footer-section li {
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
         
         .footer-section ul { 
@@ -528,6 +550,7 @@
         .footer-section ul li a { 
             color: var(--text-muted); 
             transition: all 0.3s ease;
+            font-size: var(--font-md);
         }
         
         .footer-section ul li a:hover { 
@@ -539,7 +562,7 @@
             text-align: center; 
             padding-top: 20px; 
             border-top: 1px solid var(--border-color); 
-            font-size: 0.9rem; 
+            font-size: var(--font-sm); 
             color: var(--text-muted); 
         }
 
@@ -555,9 +578,16 @@
             font-weight: 600;
             text-align: center;
             box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+            font-size: var(--font-md);
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+        
         @media (max-width: 992px) {
             .gallery-content { 
                 flex-direction: column; 
@@ -571,9 +601,24 @@
             .heads-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             }
+            
+            .page-header h1 {
+                font-size: var(--font-3xl);
+            }
         }
         
         @media (max-width: 768px) {
+            :root {
+                --font-xs: 0.7rem;
+                --font-sm: 0.8rem;
+                --font-md: 0.9rem;
+                --font-lg: 1rem;
+                --font-xl: 1.1rem;
+                --font-2xl: 1.3rem;
+                --font-3xl: 1.5rem;
+                --font-4xl: 1.7rem;
+            }
+            
             .header-content { 
                 flex-direction: row;
                 align-items: center;
@@ -586,9 +631,10 @@
                 left: 0;
                 right: 0;
                 background: var(--darker-bg);
-                padding: 20px;
+                padding: 15px;
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
                 z-index: 999;
+                border-top: 1px solid var(--border-color);
             }
             
             nav.active {
@@ -652,16 +698,17 @@
             .frame3 { background-position: 0 -56px; }
             .frame4 { background-position: 0 -84px; }
             
-            .page-header h1 {
-                font-size: 2.2rem;
-            }
-            
             .page-header {
                 padding: 40px 0;
             }
             
+            .page-header h1 {
+                font-size: var(--font-2xl);
+            }
+            
             .footer-content { 
                 flex-direction: column; 
+                gap: 20px;
             }
             
             /* Mobile filter toggle */
@@ -679,11 +726,30 @@
             
             .pagination a {
                 padding: 8px 12px;
-                font-size: 0.9rem;
+                font-size: var(--font-sm);
+            }
+            
+            .gallery-filters {
+                padding: 20px;
             }
         }
 
         @media (max-width: 480px) {
+            :root {
+                --font-xs: 0.65rem;
+                --font-sm: 0.75rem;
+                --font-md: 0.85rem;
+                --font-lg: 0.95rem;
+                --font-xl: 1.05rem;
+                --font-2xl: 1.2rem;
+                --font-3xl: 1.35rem;
+                --font-4xl: 1.5rem;
+            }
+            
+            .logo {
+                font-size: var(--font-xl);
+            }
+            
             .heads-grid {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
                 gap: 12px;
@@ -700,15 +766,19 @@
             .frame4 { background-position: 0 -72px; }
             
             .page-header h1 {
-                font-size: 1.8rem;
+                font-size: var(--font-xl);
             }
             
             .page-header p {
-                font-size: 1rem;
+                font-size: var(--font-md);
             }
             
             .pagination {
                 flex-wrap: wrap;
+            }
+            
+            footer {
+                padding: 30px 0 15px;
             }
         }
         
@@ -718,6 +788,7 @@
             text-align: center;
             padding: 60px 20px;
             color: var(--text-muted);
+            font-size: var(--font-lg);
         }
         
         .no-results::before {
@@ -725,6 +796,13 @@
             font-size: 3rem;
             display: block;
             margin-bottom: 15px;
+        }
+        
+        /* Prevent zoom on focus for iOS */
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
         }
     </style>
 </head>
@@ -738,48 +816,48 @@
                 <button class="mobile-menu-btn">☰</button>
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html" id="nav-home">Home</a></li>
+                        <li><a href="index.html" data-translate="nav-home">Home</a></li>
                         <li class="dropdown">
-                            <a href="#" id="nav-uploads">Uploads</a>
+                            <a href="#" data-translate="nav-uploads">Uploads</a>
                             <ul class="dropdown-menu">
-                                <li><a href="heads.html" id="nav-heads">Heads</a></li>
-                                <li><a href="bodies.html" id="nav-bodies">Bodies</a></li>
+                                <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="nav-guides">Guide - How to?</a>
+                            <a href="#" data-translate="nav-guides">Guides - How to?</a>
                             <ul class="dropdown-menu">
-                                <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
-                                <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
-                                <li><a href="workguide.html" id="nav-gralats">Get Gralats</a></li>
-                                <li><a href="eventsguide.html" id="nav-events">Get Event Coins</a></li>
+                                <li><a href="upload.html" data-translate="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" data-translate="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide.html" data-translate="nav-gralats-guide">Get Gralats</a></li>
+                                <li><a href="eventsguide.html" data-translate="nav-events-guide">Get Event Coins</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="nav-trade">Trade Table</a>
+                            <a href="#" data-translate="nav-trade">Trade Table</a>
                             <ul class="dropdown-menu">
-                                <li><a href="sellablescalculator.html" id="nav-calculator">Sellables Calculator</a></li>
-                                <li><a href="ratiohistory.html" id="nav-ratio">Ratio History</a></li>
-                                <li><a href="profit&loss.html" id="nav-profit">Profit & Loss Tracker</a></li>
-                                <li><a href="pricehouse.html" id="nav-price">Price House</a></li>
+                                <li><a href="sellablescalculator.html" data-translate="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" data-translate="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" data-translate="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" data-translate="nav-price">Price House</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html" id="nav-achievements">Secret Achievements</a></li>
+                        <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
                 </nav>
                 <div class="language-selector">
-                    <button class="language-btn">
+                    <button class="language-btn" id="current-language">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                        <span id="current-language-text">English</span>
+                        <span data-translate="language-en">English</span>
                     </button>
                     <div class="language-options">
                         <a href="#" data-lang="en">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                            English
+                            <span data-translate="language-en">English</span>
                         </a>
                         <a href="#" data-lang="pt">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
-                            Português
+                            <span data-translate="language-pt">Português</span>
                         </a>
                     </div>
                 </div>
@@ -789,33 +867,33 @@
 
     <div class="page-header">
         <div class="container">
-            <h1 id="page-title">Graal Era Heads Gallery</h1>
-            <p id="page-description">Filter by gender and color to find the perfect head for your character.</p>
+            <h1 id="page-title" data-translate="page-title">Graal Era Heads Gallery</h1>
+            <p id="page-description" data-translate="page-description">Filter by gender and color to find the perfect head for your character.</p>
         </div>
     </div>
 
     <div class="container">
-        <div class="mobile-filter-toggle" id="filter-toggle">
+        <div class="mobile-filter-toggle" id="filter-toggle" data-translate="filter-toggle">
             Show Filters
         </div>
         
         <div class="gallery-content">
             <div class="gallery-filters" id="gallery-filters">
-                <h3 id="filter-title">Filters</h3>
+                <h3 id="filter-title" data-translate="filter-title">Filters</h3>
                 
                 <div class="filter-group">
-                    <h4 id="gender-title">Gender</h4>
+                    <h4 id="gender-title" data-translate="gender-title">Gender</h4>
                     <ul class="filter-options">
-                        <li><label><input type="checkbox" name="gender" value="all" checked> <span id="gender-all">All Genders</span></label></li>
-                        <li><label><input type="checkbox" name="gender" value="male"> <span id="gender-male">Male</span></label></li>
-                        <li><label><input type="checkbox" name="gender" value="female"> <span id="gender-female">Female</span></label></li>
-                        <li><label><input type="checkbox" name="gender" value="nonhuman"> <span id="gender-nonhuman">Non-Human</span></label></li>
-                        <li><label><input type="checkbox" name="gender" value="noobie"> <span id="gender-noobie">Noobies</span></label></li>
+                        <li><label><input type="checkbox" name="gender" value="all" checked> <span id="gender-all" data-translate="gender-all">All Genders</span></label></li>
+                        <li><label><input type="checkbox" name="gender" value="male"> <span id="gender-male" data-translate="gender-male">Male</span></label></li>
+                        <li><label><input type="checkbox" name="gender" value="female"> <span id="gender-female" data-translate="gender-female">Female</span></label></li>
+                        <li><label><input type="checkbox" name="gender" value="nonhuman"> <span id="gender-nonhuman" data-translate="gender-nonhuman">Non-Human</span></label></li>
+                        <li><label><input type="checkbox" name="gender" value="noobie"> <span id="gender-noobie" data-translate="gender-noobie">Noobies</span></label></li>
                     </ul>
                 </div>
                 
                 <div class="filter-group">
-                    <h4 id="color-title">Color</h4>
+                    <h4 id="color-title" data-translate="color-title">Color</h4>
                     <div class="color-filters">
                         <div class="color-filter active" data-color="all" style="background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);" title="All Colors"></div>
                         <div class="color-filter" data-color="black" style="background-color: #000000;" title="Black"></div>
@@ -830,7 +908,7 @@
                     </div>
                 </div>
                 
-                <button id="reset-filters" class="reset-btn">Reset All Filters</button>
+                <button id="reset-filters" class="reset-btn" data-translate="reset-filters">Reset All Filters</button>
             </div>
             
             <div class="gallery-container">
@@ -859,39 +937,39 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title">About GraalGuide</h3>
-                    <p id="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
-                    <p><em id="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                    <h3 id="about-title" data-translate="about-title">About GraalGuide</h3>
+                    <p id="about-desc" data-translate="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p><em id="disclaimer" data-translate="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3 id="links-title">Quick Links</h3>
+                    <h3 id="links-title" data-translate="links-title">Quick Links</h3>
                     <ul>
-                        <li><a href="index.html" id="link1">Home</a></li>
-                        <li><a href="upload.html" id="link2">Uploads</a></li>
-                        <li><a href="tradeguide.html" id="link3">Trading Guide</a></li>
-                        <li><a href="secret-achievements.html" id="link4">Secret Achievements</a></li>
+                        <li><a href="index.html" id="link1" data-translate="link1">Home</a></li>
+                        <li><a href="upload.html" id="link2" data-translate="link2">Uploads</a></li>
+                        <li><a href="tradeguide.html" id="link3" data-translate="link3">Trading Guide</a></li>
+                        <li><a href="secret-achievements.html" id="link4" data-translate="link4">Secret Achievements</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="legal-title">Legal & Policies</h3>
+                    <h3 id="legal-title" data-translate="legal-title">Legal & Policies</h3>
                     <ul>
-                        <li><a href="privacypolicy.html" id="policy1">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" id="policy2">Terms of Service</a></li>
-                        <li><a href="cookiepolicy.html" id="policy3">Cookie Policy</a></li>
-                        <li><a href="disclamer.html" id="policy4">Disclaimer</a></li>
+                        <li><a href="privacypolicy.html" id="policy1" data-translate="policy1">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" id="policy2" data-translate="policy2">Terms of Service</a></li>
+                        <li><a href="cookiepolicy.html" id="policy3" data-translate="policy3">Cookie Policy</a></li>
+                        <li><a href="disclamer.html" id="policy4" data-translate="policy4">Disclaimer</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="connect-title">Connect</h3>
+                    <h3 id="connect-title" data-translate="connect-title">Connect</h3>
                     <ul>
-                        <li><a href="aboutme.html" id="connect1">About Me</a></li>
-                        <li><a href="https://www.youtube.com/@azrxc" id="connect2">YouTube</a></li>
-                        <li><a href="contact-us.html" id="connect3">Contact Us</a></li>
+                        <li><a href="aboutme.html" id="connect1" data-translate="connect1">About Me</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc" id="connect2" data-translate="connect2">YouTube</a></li>
+                        <li><a href="contact-us.html" id="connect3" data-translate="connect3">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright" data-translate="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
             </div>
         </div>
     </footer>
@@ -1769,6 +1847,7 @@
         let currentColorFilter = "all";
         let currentGenderFilters = ["all"];
         let filteredHeads = [...headsData];
+        let currentLang = 'en';
 
         // Language translation data
         const translations = {
@@ -1791,11 +1870,11 @@
                 'nav-uploads': 'Uploads',
                 'nav-heads': 'Heads',
                 'nav-bodies': 'Bodies',
-                'nav-guides': 'Guide - How to?',
+                'nav-guides': 'Guides - How to?',
                 'nav-upload-guide': 'Upload',
                 'nav-trade-guide': 'Trade',
-                'nav-gralats': 'Get Gralats',
-                'nav-events': 'Get Event Coins',
+                'nav-gralats-guide': 'Get Gralats',
+                'nav-events-guide': 'Get Event Coins',
                 'nav-trade': 'Trade Table',
                 'nav-calculator': 'Sellables Calculator',
                 'nav-ratio': 'Ratio History',
@@ -1824,7 +1903,7 @@
                 'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
                 
                 // Language selector
-                'current-language-text': 'English'
+                'language-en': 'English'
             },
             'pt': {
                 'page-title': 'Galeria de Heads do Graal Era',
@@ -1848,8 +1927,8 @@
                 'nav-guides': 'Guia - Como?',
                 'nav-upload-guide': 'Upload',
                 'nav-trade-guide': 'Trocar',
-                'nav-gralats': 'Conseguir Gralats',
-                'nav-events': 'Conseguir Moedas de Evento',
+                'nav-gralats-guide': 'Conseguir Gralats',
+                'nav-events-guide': 'Conseguir Moedas de Evento',
                 'nav-trade': 'Tabela de Troca',
                 'nav-calculator': 'Calculadora de Vendáveis',
                 'nav-ratio': 'Histórico de Ratios',
@@ -1878,38 +1957,43 @@
                 'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
                 
                 // Language selector
-                'current-language-text': 'Português'
+                'language-en': 'Português'
             }
         };
 
         // Function to change language
         function changeLanguage(lang) {
-            const elements = document.querySelectorAll('[id]');
-            elements.forEach(element => {
-                const key = element.id;
+            currentLang = lang;
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
                 if (translations[lang] && translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
+                    element.textContent = translations[lang][key];
                 }
             });
             
-            // Update language button text and flag
-            const langBtn = document.querySelector('.language-btn');
-            const langImg = langBtn.querySelector('img');
-            const langText = document.getElementById('current-language-text');
+            // Update language button
+            const languageBtn = document.getElementById('current-language');
+            const flagImg = languageBtn.querySelector('img');
+            const langText = languageBtn.querySelector('span');
             
             if (lang === 'en') {
-                langImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
+                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
                 langText.textContent = 'English';
             } else if (lang === 'pt') {
-                langImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
+                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
                 langText.textContent = 'Português';
             }
             
-            // Store language preference
+            // Update filter toggle text if filters are open
+            const galleryFilters = document.getElementById('gallery-filters');
+            const filterToggle = document.getElementById('filter-toggle');
+            if (galleryFilters.classList.contains('active')) {
+                filterToggle.textContent = translations[lang]['filter-toggle'].replace('Show', 'Hide');
+            }
+            
+            // Save language preference
             localStorage.setItem('preferredLanguage', lang);
         }
 
@@ -2036,6 +2120,16 @@
                 mainNav.classList.toggle('active');
             });
             
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickInsideMenuBtn = mobileMenuBtn.contains(event.target);
+                
+                if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+            });
+            
             // Mobile filter toggle
             const filterToggle = document.getElementById('filter-toggle');
             const galleryFilters = document.getElementById('gallery-filters');
@@ -2141,16 +2235,6 @@
                     e.preventDefault();
                     const lang = this.getAttribute('data-lang');
                     changeLanguage(lang);
-                    currentLang = lang;
-                    
-                    // Update filter toggle text if filters are open
-                    const galleryFilters = document.getElementById('gallery-filters');
-                    const filterToggle = document.getElementById('filter-toggle');
-                    if (galleryFilters.classList.contains('active')) {
-                        filterToggle.textContent = translations[lang]['filter-toggle'].replace('Show', 'Hide');
-                    } else {
-                        filterToggle.textContent = translations[lang]['filter-toggle'];
-                    }
                 });
             });
             
