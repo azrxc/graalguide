@@ -177,6 +177,16 @@
             display: block;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
         /* Dropdown Menu */
         .dropdown-menu {
             display: none;
@@ -546,28 +556,54 @@
         
         @media (max-width: 768px) {
             .header-content { 
-                flex-direction: column; 
+                flex-direction: row; 
                 text-align: center; 
             }
             
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--darker-bg);
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
             nav ul { 
-                margin-top: 15px; 
-                justify-content: center; 
-                flex-wrap: wrap; 
+                flex-direction: column;
+                margin-top: 0;
             }
             
             nav ul li { 
-                margin: 5px 10px; 
+                margin: 10px 0; 
+            }
+            
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                margin: 10px 0;
+                border: none;
+                background: var(--dark-bg);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .hero h1 { 
                 font-size: 2.2rem; 
             }
             
-            .dropdown-menu { 
-                position: static; 
-                width: 100%; 
-                margin-top: 5px; 
+            .hero {
+                padding: 80px 0;
             }
             
             .footer-content { 
@@ -588,50 +624,51 @@
                     <!-- Using text instead of image for logo -->
                     <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                 </div>
-                <nav>
+                <button class="mobile-menu-btn">☰</button>
+                <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html" data-translate="nav-home">Home</a></li>
                         <li class="dropdown">
-                            <a href="#">Uploads</a>
+                            <a href="#" data-translate="nav-uploads">Uploads</a>
                             <ul class="dropdown-menu">
-                                <li><a href="heads.html">Heads</a></li>
-                                <li><a href="bodies.html">Bodies</a></li>
+                                <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Guide - How to?</a>
+                            <a href="#" data-translate="nav-guides">Guides - How to?</a>
                             <ul class="dropdown-menu">
-                                <li><a href="upload.html">Upload</a></li>
-                                <li><a href="tradeguide.html">Trade</a></li>
-                                <li><a href="workguide.html">Get Gralats</a></li>
-                                <li><a href="eventsguide.html">Get Event Coins</a></li>
+                                <li><a href="upload.html" data-translate="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" data-translate="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide.html" data-translate="nav-gralats-guide">Get Gralats</a></li>
+                                <li><a href="eventsguide.html" data-translate="nav-events-guide">Get Event Coins</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Trade Table</a>
+                            <a href="#" data-translate="nav-trade">Trade Table</a>
                             <ul class="dropdown-menu">
-                                <li><a href="sellablescalculator.html">Sellables Calculator</a></li>
-                                <li><a href="ratiohistory.html">Ratio History</a></li>
-                                <li><a href="profit&loss.html">Profit & Loss Tracker</a></li>
-                                <li><a href="pricehouse.html">Price House</a></li>
+                                <li><a href="sellablescalculator.html" data-translate="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" data-translate="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" data-translate="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" data-translate="nav-price">Price House</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
+                        <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
                 </nav>
                 <div class="language-selector">
-                    <button class="language-btn">
+                    <button class="language-btn" id="current-language">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                        English
+                        <span data-translate="language-en">English</span>
                     </button>
                     <div class="language-options">
                         <a href="#" data-lang="en">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                            English
+                            <span data-translate="language-en">English</span>
                         </a>
                         <a href="#" data-lang="pt">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
-                            Português
+                            <span data-translate="language-pt">Português</span>
                         </a>
                     </div>
                 </div>
@@ -643,10 +680,10 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Graal Guide</h1>
-                <p id="hero-text">The ultimate resource from Graal player to another players</p>
-                <a href="upload.html" class="btn" id="browse-btn">Browse Uploads</a>
-                <a href="tradeguide.html" class="btn btn-secondary" id="trading-btn">Trading Guides</a>
-                <a href="https://discord.gg/graalians" class="btn btn-accent" id="discord-btn">Join Official Discord</a>
+                <p id="hero-text" data-translate="hero-text">The ultimate resource from Graal players to other players</p>
+                <a href="upload.html" class="btn" id="browse-btn" data-translate="browse-btn">Browse Uploads</a>
+                <a href="tradeguide.html" class="btn btn-secondary" id="trading-btn" data-translate="trading-btn">Trading Guides</a>
+                <a href="https://discord.gg/graalians" class="btn btn-accent" id="discord-btn" data-translate="discord-btn">Join Official Discord</a>
             </div>
         </div>
     </section>
@@ -657,78 +694,78 @@
                 <article class="article">
                     <img src="image/a/notice.png" alt="Graal Era Uploads" class="article-img">
                     <div class="article-content">
-                        <span class="tag tag-news">Updates Notice</span>
-                        <h2 id="article1-title">📢 Graal Guide: Notice 0.1v</h2>
-                        <div class="article-meta" id="article1-date">Updated on January 1, 2026</div>
-                        <p>This site is still under development. Thanks for your patience, more updates coming soon!</p>
+                        <span class="tag tag-news" data-translate="tag-news">Updates Notice</span>
+                        <h2 id="article1-title" data-translate="article1-title">📢 Graal Guide: Notice 0.1v</h2>
+                        <div class="article-meta" id="article1-date" data-translate="article1-date">Updated on January 1, 2026</div>
+                        <p data-translate="article1-desc">This site is still under development. Thanks for your patience, more updates coming soon!</p>
                     </div>
                 </article>
 
                 <article class="article">
                     <img src="image/a/trade.jpg" alt="Graal Era Trading" class="article-img">
                     <div class="article-content">
-                        <span class="tag tag-tro">Trading</span>
-                        <span class="tag tag-guide">Guide</span>
-                        <h2 id="article2-title">Trading: Maximize Your Profits in Graal Era</h2>
-                        <div class="article-meta" id="article2-date">Updated on January 1, 2026</div>
-                        <p id="article2-desc">Master the art of trading in Graal Era with our comprehensive guide. Learn how to identify valuable items, negotiate better deals, and build your inventory worth.</p>
-                        <p>Understand the current market trends, item values, and trading strategies used by successful traders.</p>
-                        <a href="tradeguide.html" class="btn" id="article2-btn">Read Trading Guide</a>
+                        <span class="tag tag-tro" data-translate="tag-trading">Trading</span>
+                        <span class="tag tag-guide" data-translate="tag-guide">Guide</span>
+                        <h2 id="article2-title" data-translate="article2-title">Trading: Maximize Your Profits in Graal Era</h2>
+                        <div class="article-meta" id="article2-date" data-translate="article2-date">Updated on January 1, 2026</div>
+                        <p id="article2-desc" data-translate="article2-desc">Master the art of trading in Graal Era with our comprehensive guide. Learn how to identify valuable items, negotiate better deals, and build your inventory worth.</p>
+                        <p data-translate="article2-desc2">Understand the current market trends, item values, and trading strategies used by successful traders.</p>
+                        <a href="tradeguide.html" class="btn" id="article2-btn" data-translate="read-guide">Read Trading Guide</a>
                     </div>
                 </article>
 
                 <article class="article">
                     <img src="image/a/ev.jpg" alt="Graal Era Achievements" class="article-img">
                     <div class="article-content">
-                        <span class="tag tag-ec">Event Coins</span>
-                        <span class="tag tag-guide">Guide</span>
-                        <h2 id="article3-title">100+ Secret Achievements: How to Get Free Event Coins</h2>
-                        <div class="article-meta" id="article3-date">Updated on January 1, 2026</div>
-                        <p id="article3-desc">Discover all hidden achievements in Graal Era and learn how to get free Event Coins. Our guide covers everything with YouTube guide videos.</p>
-                        <a href="secret-achievements.html" class="btn" id="article3-btn">View All Achievements</a>
+                        <span class="tag tag-ec" data-translate="tag-events">Event Coins</span>
+                        <span class="tag tag-guide" data-translate="tag-guide">Guide</span>
+                        <h2 id="article3-title" data-translate="article3-title">100+ Secret Achievements: How to Get Free Event Coins</h2>
+                        <div class="article-meta" id="article3-date" data-translate="article3-date">Updated on January 1, 2026</div>
+                        <p id="article3-desc" data-translate="article3-desc">Discover all hidden achievements in Graal Era and learn how to get free Event Coins. Our guide covers everything with YouTube guide videos.</p>
+                        <a href="secret-achievements.html" class="btn" id="article3-btn" data-translate="view-achievements">View All Achievements</a>
                     </div>
                 </article>
             </div>
 
             <div class="sidebar">
                 <div class="sidebar-widget">
-                    <h3 id="popular-title">Most Visited</h3>
+                    <h3 id="popular-title" data-translate="popular-title">Most Visited</h3>
                     <ul class="featured-list">
                         <li>
                             <img src="image/bodies/23.png" alt="Animated Head">
-                            <a href="bodies.html" id="popular1">Bodies Upload Collection</a>
+                            <a href="bodies.html" id="popular1" data-translate="popular1">Bodies Upload Collection</a>
                         </li>
                         <li>
                             <img src="image/a/tro.png" alt="Custom Body">
-                            <a href="sellablescalculator.html" id="popular2">Sellables Calculator</a>
+                            <a href="sellablescalculator.html" id="popular2" data-translate="popular2">Sellables Calculator</a>
                         </li>
                         <li>
                             <img src="image/a/ec.png" alt="Shield Design">
-                            <a href="secret-achievements.html" id="popular3">Secret Achievements</a>
+                            <a href="secret-achievements.html" id="popular3" data-translate="popular3">Secret Achievements</a>
                         </li>
                         <li>
                             <img src="image/a/head.png" alt="GIF Upload">
-                            <a href="heads.html" id="popular4">Heads Upload Collection</a>
+                            <a href="heads.html" id="popular4" data-translate="popular4">Heads Upload Collection</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="sidebar-widget">
-                    <h3 id="ad-title">Advertisement</h3>
+                    <h3 id="ad-title" data-translate="ad-title">Advertisement</h3>
                     <div class="ad-container">
-                        <span class="ad-label" id="ad-label">Advertisements</span>
+                        <span class="ad-label" id="ad-label" data-translate="ad-label">Advertisements</span>
                         <!-- AdSense Ad Unit -->
-                        <div style="color: var(--text-muted);">Responsive Ad Unit</div>
+                        <div style="color: var(--text-muted);" data-translate="ad-text">Responsive Ad Unit</div>
                     </div>
                 </div>
 
                 <div class="sidebar-widget">
-                    <h3 id="guides-title">Latest Guides</h3>
+                    <h3 id="guides-title" data-translate="guides-title">Latest Guides</h3>
                     <ul class="featured-list">
-                        <li><a href="upload.html" id="guide1">How to Upload?</a></li>
-                        <li><a href="tradeguide.html" id="guide1">How to Trade?</a></li>
-                        <li><a href="eventsguide.html" id="guide2">How to Get Event Coins?</a></li>
-                        <li><a href="workguide.html" id="guide3">How to Earn Gralats?</a></li>
+                        <li><a href="upload.html" id="guide1" data-translate="guide1">How to Upload?</a></li>
+                        <li><a href="tradeguide.html" id="guide2" data-translate="guide2">How to Trade?</a></li>
+                        <li><a href="eventsguide.html" id="guide3" data-translate="guide3">How to Get Event Coins?</a></li>
+                        <li><a href="workguide.html" id="guide4" data-translate="guide4">How to Earn Gralats?</a></li>
                     </ul>
                 </div>
             </div>
@@ -739,45 +776,283 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title">About GraalGuide</h3>
-                    <p id="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
-                    <p><em id="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                    <h3 id="about-title" data-translate="about-title">About GraalGuide</h3>
+                    <p id="about-desc" data-translate="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p><em id="disclaimer" data-translate="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3 id="links-title">Quick Links</h3>
+                    <h3 id="links-title" data-translate="links-title">Quick Links</h3>
                     <ul>
-                        <li><a href="index.html" id="link1">Home</a></li>
-                        <li><a href="upload.html" id="link2">Uploads</a></li>
-                        <li><a href="tradeguide.html" id="link3">Trading Guide</a></li>
-                        <li><a href="secret-achievements.html" id="link4">Secret Achievements</a></li>
+                        <li><a href="index.html" id="link1" data-translate="link1">Home</a></li>
+                        <li><a href="upload.html" id="link2" data-translate="link2">Uploads</a></li>
+                        <li><a href="tradeguide.html" id="link3" data-translate="link3">Trading Guide</a></li>
+                        <li><a href="secret-achievements.html" id="link4" data-translate="link4">Secret Achievements</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="legal-title">Legal & Policies</h3>
+                    <h3 id="legal-title" data-translate="legal-title">Legal & Policies</h3>
                     <ul>
-                        <li><a href="privacypolicy.html" id="policy1">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" id="policy2">Terms of Service</a></li>
-                        <li><a href="cookiepolicy.html" id="policy3">Cookie Policy</a></li>
-                        <li><a href="disclamer.html" id="policy4">Disclaimer</a></li>
+                        <li><a href="privacypolicy.html" id="policy1" data-translate="policy1">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" id="policy2" data-translate="policy2">Terms of Service</a></li>
+                        <li><a href="cookiepolicy.html" id="policy3" data-translate="policy3">Cookie Policy</a></li>
+                        <li><a href="disclamer.html" id="policy4" data-translate="policy4">Disclaimer</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="connect-title">Connect</h3>
+                    <h3 id="connect-title" data-translate="connect-title">Connect</h3>
                     <ul>
-                        <li><a href="aboutme.html" id="connect1">About Me</a></li>
-                        <li><a href="https://www.youtube.com/@azrxc" id="connect2">YouTube</a></li>
-                        <li><a href="contact-us.html" id="connect3">Contact Us</a></li>
+                        <li><a href="aboutme.html" id="connect1" data-translate="connect1">About Me</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc" id="connect2" data-translate="connect2">YouTube</a></li>
+                        <li><a href="contact-us.html" id="connect3" data-translate="connect3">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright" data-translate="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        
+        // Language translations
+        const translations = {
+            'en': {
+                // Navigation
+                'nav-home': 'Home',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guides - How to?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Trade',
+                'nav-gralats-guide': 'Get Gralats',
+                'nav-events-guide': 'Get Event Coins',
+                'nav-trade': 'Trade Table',
+                'nav-calculator': 'Sellables Calculator',
+                'nav-ratio': 'Ratio History',
+                'nav-profit': 'Profit & Loss Tracker',
+                'nav-price': 'Price House',
+                'nav-achievements': 'Secret Achievements',
+                
+                // Hero section
+                'hero-text': 'The ultimate resource from Graal players to other players',
+                'browse-btn': 'Browse Uploads',
+                'trading-btn': 'Trading Guides',
+                'discord-btn': 'Join Official Discord',
+                
+                // Articles
+                'tag-news': 'Updates Notice',
+                'article1-title': '📢 Graal Guide: Notice 0.1v',
+                'article1-date': 'Updated on January 1, 2026',
+                'article1-desc': 'This site is still under development. Thanks for your patience, more updates coming soon!',
+                
+                'tag-trading': 'Trading',
+                'tag-guide': 'Guide',
+                'article2-title': 'Trading: Maximize Your Profits in Graal Era',
+                'article2-date': 'Updated on January 1, 2026',
+                'article2-desc': 'Master the art of trading in Graal Era with our comprehensive guide. Learn how to identify valuable items, negotiate better deals, and build your inventory worth.',
+                'article2-desc2': 'Understand the current market trends, item values, and trading strategies used by successful traders.',
+                'read-guide': 'Read Trading Guide',
+                
+                'tag-events': 'Event Coins',
+                'article3-title': '100+ Secret Achievements: How to Get Free Event Coins',
+                'article3-date': 'Updated on January 1, 2026',
+                'article3-desc': 'Discover all hidden achievements in Graal Era and learn how to get free Event Coins. Our guide covers everything with YouTube guide videos.',
+                'view-achievements': 'View All Achievements',
+                
+                // Sidebar
+                'popular-title': 'Most Visited',
+                'popular1': 'Bodies Upload Collection',
+                'popular2': 'Sellables Calculator',
+                'popular3': 'Secret Achievements',
+                'popular4': 'Heads Upload Collection',
+                
+                'ad-title': 'Advertisement',
+                'ad-label': 'Advertisements',
+                'ad-text': 'Responsive Ad Unit',
+                
+                'guides-title': 'Latest Guides',
+                'guide1': 'How to Upload?',
+                'guide2': 'How to Trade?',
+                'guide3': 'How to Get Event Coins?',
+                'guide4': 'How to Earn Gralats?',
+                
+                // Footer
+                'about-title': 'About GraalGuide',
+                'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
+                'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
+                
+                'links-title': 'Quick Links',
+                'link1': 'Home',
+                'link2': 'Uploads',
+                'link3': 'Trading Guide',
+                'link4': 'Secret Achievements',
+                
+                'legal-title': 'Legal & Policies',
+                'policy1': 'Privacy Policy',
+                'policy2': 'Terms of Service',
+                'policy3': 'Cookie Policy',
+                'policy4': 'Disclaimer',
+                
+                'connect-title': 'Connect',
+                'connect1': 'About Me',
+                'connect2': 'YouTube',
+                'connect3': 'Contact Us',
+                
+                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
+                
+                // Language selector
+                'language-en': 'English',
+                'language-pt': 'Português'
+            },
+            'pt': {
+                // Navigation
+                'nav-home': 'Início',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guias - Como?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Trocar',
+                'nav-gralats-guide': 'Conseguir Gralats',
+                'nav-events-guide': 'Conseguir Moedas de Evento',
+                'nav-trade': 'Tabela de Troca',
+                'nav-calculator': 'Calculadora de Vendáveis',
+                'nav-ratio': 'Histórico de Ratios',
+                'nav-profit': 'Rastrear Lucro & Perda',
+                'nav-price': 'Casa de Preços',
+                'nav-achievements': 'Conquistas Secretas',
+                
+                // Hero section
+                'hero-text': 'O recurso definitivo de jogadores de Graal para outros jogadores',
+                'browse-btn': 'Navegar Uploads',
+                'trading-btn': 'Guias de Troca',
+                'discord-btn': 'Entrar no Discord Oficial',
+                
+                // Articles
+                'tag-news': 'Aviso de Atualizações',
+                'article1-title': '📢 Graal Guide: Aviso 0.1v',
+                'article1-date': 'Atualizado em 1 de Janeiro de 2026',
+                'article1-desc': 'Este site ainda está em desenvolvimento. Obrigado pela sua paciência, mais atualizações em breve!',
+                
+                'tag-trading': 'Troca',
+                'tag-guide': 'Guia',
+                'article2-title': 'Troca: Maximize Seus Lucros no Graal Era',
+                'article2-date': 'Atualizado em 1 de Janeiro de 2026',
+                'article2-desc': 'Domine a arte da troca no Graal Era com nosso guia completo. Aprenda a identificar itens valiosos, negociar melhores acordos e aumentar o valor do seu inventário.',
+                'article2-desc2': 'Entenda as tendências atuais do mercado, valores de itens e estratégias de troca usadas por traders bem-sucedidos.',
+                'read-guide': 'Ler Guia de Troca',
+                
+                'tag-events': 'Moedas de Evento',
+                'article3-title': '100+ Conquistas Secretas: Como Conseguir Moedas de Evento Grátis',
+                'article3-date': 'Atualizado em 1 de Janeiro de 2026',
+                'article3-desc': 'Descubra todas as conquistas secretas no Graal Era e aprenda a conseguir Moedas de Evento grátis. Nosso guia cobre tudo com vídeos guia no YouTube.',
+                'view-achievements': 'Ver Todas as Conquistas',
+                
+                // Sidebar
+                'popular-title': 'Mais Visitados',
+                'popular1': 'Coleção de Bodies',
+                'popular2': 'Calculadora de Vendáveis',
+                'popular3': 'Conquistas Secretas',
+                'popular4': 'Coleção de Heads',
+                
+                'ad-title': 'Publicidade',
+                'ad-label': 'Anúncios',
+                'ad-text': 'Unidade de Anúncio Responsiva',
+                
+                'guides-title': 'Guias Recentes',
+                'guide1': 'Como Fazer Upload?',
+                'guide2': 'Como Trocar?',
+                'guide3': 'Como Conseguir Moedas de Evento?',
+                'guide4': 'Como Ganhar Gralats?',
+                
+                // Footer
+                'about-title': 'Sobre o GraalGuide',
+                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
+                'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
+                
+                'links-title': 'Links Rápidos',
+                'link1': 'Início',
+                'link2': 'Uploads',
+                'link3': 'Guia de Troca',
+                'link4': 'Conquistas Secretas',
+                
+                'legal-title': 'Legal e Políticas',
+                'policy1': 'Política de Privacidade',
+                'policy2': 'Termos de Serviço',
+                'policy3': 'Política de Cookies',
+                'policy4': 'Aviso Legal',
+                
+                'connect-title': 'Conectar',
+                'connect1': 'Sobre Mim',
+                'connect2': 'YouTube',
+                'connect3': 'Contate-Nos',
+                
+                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
+                
+                // Language selector
+                'language-en': 'Inglês',
+                'language-pt': 'Português'
+            }
+        };
+
+        // Set default language
+        let currentLang = 'en';
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update language button
+            const languageBtn = document.getElementById('current-language');
+            const flagImg = languageBtn.querySelector('img');
+            const langText = languageBtn.querySelector('span');
+            
+            if (lang === 'en') {
+                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
+                langText.textContent = 'English';
+            } else if (lang === 'pt') {
+                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
+                langText.textContent = 'Português';
+            }
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved language preference
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) {
+                changeLanguage(savedLang);
+            }
+            
+            // Set up language selector event listeners
+            document.querySelectorAll('.language-options a').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+            });
+        });
     </script>
 </body>
 </html>
