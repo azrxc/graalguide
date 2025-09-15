@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Price House - GraalGuide Graal Era Item Prices</title>
     <meta name="description" content="Comprehensive price guide for Graal Era items. Find current market values for heads, bodies, shields, and more.">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
+     crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-4927938315377514">
     <style>
         :root {
             --primary-color: #8a2be2; /* Purple accent */
@@ -16,6 +19,16 @@
             --text-color: #e0e0e0;
             --text-muted: #9e9e9e;
             --border-color: #333;
+            
+            /* Responsive font sizes */
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-md: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.875rem;
+            --font-4xl: 2.25rem;
         }
         
         * { 
@@ -29,6 +42,7 @@
             background-color: var(--dark-bg); 
             color: var(--text-color); 
             line-height: 1.6; 
+            font-size: var(--font-md);
         }
         
         a { 
@@ -63,10 +77,11 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            position: relative;
         }
         
         .logo { 
-            font-size: 28px; 
+            font-size: var(--font-2xl); 
             font-weight: 800; 
             display: flex;
             align-items: center;
@@ -93,6 +108,7 @@
             display: block; 
             padding: 5px 0; 
             position: relative;
+            font-size: var(--font-md);
         }
         
         nav ul li a::after {
@@ -108,6 +124,18 @@
         
         nav ul li a:hover::after {
             width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
         }
 
         /* Language Selector */
@@ -126,6 +154,8 @@
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
+            height: 40px;
         }
         
         .language-btn:hover {
@@ -134,6 +164,8 @@
         
         .language-btn img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 8px;
         }
         
@@ -156,6 +188,7 @@
             padding: 10px 15px;
             color: var(--text-color);
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
         }
         
         .language-options a:hover {
@@ -164,6 +197,8 @@
         
         .language-options a img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 10px;
         }
         
@@ -197,6 +232,7 @@
             display: block;
             padding: 10px 20px;
             font-weight: normal !important;
+            font-size: var(--font-sm);
         }
         
         .dropdown-menu a:hover {
@@ -231,7 +267,7 @@
         }
         
         .page-header h1 {
-            font-size: 2.8rem;
+            font-size: var(--font-3xl);
             margin-bottom: 15px;
             font-weight: 800;
             position: relative;
@@ -240,7 +276,7 @@
         .page-header p {
             max-width: 700px;
             margin: 0 auto;
-            font-size: 1.1rem;
+            font-size: var(--font-lg);
             color: rgba(255, 255, 255, 0.9);
             position: relative;
         }
@@ -268,6 +304,7 @@
             border-bottom: 2px solid var(--primary-color);
             color: var(--text-color);
             font-weight: 700;
+            font-size: var(--font-lg);
         }
         
         .filter-group {
@@ -278,6 +315,7 @@
             margin-bottom: 12px;
             color: var(--text-color);
             font-weight: 600;
+            font-size: var(--font-md);
         }
         
         .filter-options {
@@ -295,6 +333,7 @@
             transition: all 0.2s ease;
             padding: 5px;
             border-radius: 4px;
+            font-size: var(--font-sm);
         }
         
         .filter-options label:hover {
@@ -321,7 +360,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: var(--font-md);
             color: var(--text-color);
         }
         
@@ -347,6 +386,7 @@
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
+            font-size: var(--font-md);
         }
         
         .price-table th {
@@ -417,6 +457,7 @@
             transition: all 0.3s ease;
             margin-top: 20px;
             box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+            font-size: var(--font-md);
         }
         
         .apply-btn:hover {
@@ -441,6 +482,7 @@
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
         }
         
         .pagination-controls button:disabled {
@@ -458,6 +500,7 @@
         .pagination-controls span {
             font-weight: bold;
             color: var(--text-color);
+            font-size: var(--font-md);
         }
 
         /* Footer */
@@ -486,10 +529,12 @@
             color: var(--primary-color); 
             margin-bottom: 20px; 
             font-weight: 700;
+            font-size: var(--font-lg);
         }
         
         .footer-section p, .footer-section li {
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
         
         .footer-section ul { 
@@ -503,6 +548,7 @@
         .footer-section ul li a { 
             color: var(--text-muted); 
             transition: all 0.3s ease;
+            font-size: var(--font-md);
         }
         
         .footer-section ul li a:hover { 
@@ -514,11 +560,78 @@
             text-align: center; 
             padding-top: 20px; 
             border-top: 1px solid var(--border-color); 
-            font-size: 0.9rem; 
+            font-size: var(--font-sm); 
             color: var(--text-muted); 
         }
 
+        /* Mobile Language Selector */
+        .mobile-language-selector {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+        }
+        
+        .mobile-language-selector .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        /* No results styling */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            font-size: var(--font-lg);
+        }
+        
+        .no-results::before {
+            content: "😢";
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
         /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+        
         @media (max-width: 992px) {
             .price-house-content { 
                 flex-direction: column; 
@@ -530,33 +643,90 @@
         }
         
         @media (max-width: 768px) {
+            :root {
+                --font-xs: 0.7rem;
+                --font-sm: 0.8rem;
+                --font-md: 0.9rem;
+                --font-lg: 1rem;
+                --font-xl: 1.1rem;
+                --font-2xl: 1.3rem;
+                --font-3xl: 1.5rem;
+                --font-4xl: 1.7rem;
+            }
+            
             .header-content { 
-                flex-direction: column; 
-                text-align: center; 
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--darker-bg);
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+                overflow-y: auto;
+                transition: all 0.3s ease;
+            }
+            
+            nav.active {
+                display: block;
             }
             
             nav ul { 
-                margin-top: 15px; 
-                justify-content: center; 
-                flex-wrap: wrap; 
+                flex-direction: column;
+                margin-top: 0;
             }
             
             nav ul li { 
-                margin: 5px 10px; 
+                margin: 10px 0; 
             }
             
-            .dropdown-menu { 
-                position: static; 
-                width: 100%; 
-                margin-top: 5px; 
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                margin: 10px 0;
+                border: none;
+                background: var(--dark-bg);
+                display: none;
             }
             
-            .footer-content { 
-                flex-direction: column; 
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .language-selector {
-                margin: 15px auto 0;
+                display: none;
+            }
+            
+            .mobile-language-selector {
+                display: block;
+            }
+            
+            .page-header { 
+                padding: 40px 0;
+            }
+            
+            .page-header h1 {
+                font-size: var(--font-2xl);
+            }
+            
+            .page-header p {
+                font-size: var(--font-md);
+            }
+            
+            .price-filters {
+                padding: 20px;
             }
             
             .price-table th:nth-child(3),
@@ -566,23 +736,69 @@
                 display: none;
             }
             
-            .page-header h1 {
-                font-size: 2.2rem;
+            .footer-content { 
+                flex-direction: column; 
+                gap: 20px;
+            }
+            
+            .pagination-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .pagination-controls button {
+                width: 100%;
             }
         }
         
-        /* No results styling */
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-muted);
+        @media (max-width: 480px) {
+            :root {
+                --font-xs: 0.65rem;
+                --font-sm: 0.75rem;
+                --font-md: 0.85rem;
+                --font-lg: 0.95rem;
+                --font-xl: 1.05rem;
+                --font-2xl: 1.2rem;
+                --font-3xl: 1.35rem;
+                --font-4xl: 1.5rem;
+            }
+            
+            .logo {
+                font-size: var(--font-xl);
+            }
+            
+            .page-header {
+                padding: 30px 0;
+            }
+            
+            .page-header h1 {
+                font-size: var(--font-xl);
+            }
+            
+            .price-filters {
+                padding: 15px;
+            }
+            
+            .price-table th, .price-table td {
+                padding: 10px;
+                font-size: var(--font-sm);
+            }
+            
+            .item-img {
+                width: 30px;
+                height: 30px;
+            }
+            
+            footer {
+                padding: 30px 0 15px;
+            }
         }
-        
-        .no-results::before {
-            content: "😢";
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 15px;
+
+        /* Prevent zoom on focus for iOS */
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
         }
     </style>
 </head>
@@ -593,50 +809,69 @@
                 <div class="logo">
                     <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                 </div>
-                <nav>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+                <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html" id="nav-home">Home</a></li>
+                        <li><a href="index.html" data-translate="nav-home">Home</a></li>
                         <li class="dropdown">
-                            <a href="#" id="nav-uploads">Uploads</a>
+                            <a href="#" data-translate="nav-uploads">Uploads</a>
                             <ul class="dropdown-menu">
-                                <li><a href="heads.html" id="nav-heads">Heads</a></li>
-                                <li><a href="bodies.html" id="nav-bodies">Bodies</a></li>
+                                <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="nav-guides">Guide - How to?</a>
+                            <a href="#" data-translate="nav-guides">Guides - How to?</a>
                             <ul class="dropdown-menu">
-                                <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
-                                <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
-                                <li><a href="workguide.html" id="nav-gralats">Get Gralats</a></li>
-                                <li><a href="eventsguide.html" id="nav-events">Get Event Coins</a></li>
+                                <li><a href="upload.html" data-translate="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" data-translate="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide.html" data-translate="nav-gralats-guide">Get Gralats</a></li>
+                                <li><a href="eventsguide.html" data-translate="nav-events-guide">Get Event Coins</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="nav-trade">Trade Table</a>
+                            <a href="#" data-translate="nav-trade">Trade Table</a>
                             <ul class="dropdown-menu">
-                                <li><a href="sellablescalculator.html" id="nav-calculator">Sellables Calculator</a></li>
-                                <li><a href="ratiohistory.html" id="nav-ratio">Ratio History</a></li>
-                                <li><a href="profit&loss.html" id="nav-profit">Profit & Loss Tracker</a></li>
-                                <li><a href="pricehouse.html" id="nav-price">Price House</a></li>
+                                <li><a href="sellablescalculator.html" data-translate="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" data-translate="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" data-translate="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" data-translate="nav-price">Price House</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html" id="nav-achievements">Secret Achievements</a></li>
+                        <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
+                    
+                    <!-- Mobile Language Selector -->
+                    <div class="mobile-language-selector">
+                        <button class="language-btn" id="mobile-language-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            <span data-translate="language-en">English</span>
+                        </button>
+                        <div class="mobile-language-options" id="mobile-language-options">
+                            <a href="#" data-lang="en">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                                <span data-translate="language-en">English</span>
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                                <span data-translate="language-pt">Português</span>
+                            </a>
+                        </div>
+                    </div>
                 </nav>
                 <div class="language-selector">
-                    <button class="language-btn">
+                    <button class="language-btn" id="current-language">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                        English
+                        <span data-translate="language-en">English</span>
                     </button>
                     <div class="language-options">
                         <a href="#" data-lang="en">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                            English
+                            <span data-translate="language-en">English</span>
                         </a>
                         <a href="#" data-lang="pt">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
-                            Português
+                            <span data-translate="language-pt">Português</span>
                         </a>
                     </div>
                 </div>
@@ -646,41 +881,41 @@
 
     <div class="page-header">
         <div class="container">
-            <h1 id="page-title">Graal Era Price House</h1>
-            <p id="page-description">Find current market values for all tradeable items in Graal Era. Prices are updated regularly based on community trading data.</p>
+            <h1 id="page-title" data-translate="page-title">Graal Era Price House</h1>
+            <p id="page-description" data-translate="page-description">Find current market values for all tradeable items in Graal Era. Prices are updated regularly based on community trading data.</p>
         </div>
     </div>
 
     <div class="container">
         <div class="price-house-content">
             <div class="price-filters">
-                <h3 id="filter-title">Filters</h3>
+                <h3 id="filter-title" data-translate="filter-title">Filters</h3>
                 
                 <div class="filter-group">
-                    <h4 id="item-type-title">Item Type</h4>
+                    <h4 id="item-type-title" data-translate="item-type-title">Item Type</h4>
                     <ul class="filter-options">
-                        <li><label><input type="checkbox" name="item-type" value="all" checked> <span id="item-all">All Items</span></label></li>
-                        <li><label><input type="checkbox" name="item-type" value="melee"> <span id="item-melee">Melees</span></label></li>
-                        <li><label><input type="checkbox" name="item-type" value="gun"> <span id="item-gun">Guns</span></label></li>
-                        <li><label><input type="checkbox" name="item-type" value="hat"> <span id="item-hat">Hats</span></label></li>
-                        <li><label><input type="checkbox" name="item-type" value="job"> <span id="item-job">Jobs</span></label></li>
-                        <li><label><input type="checkbox" name="item-type" value="toy"> <span id="item-toy">Toys</span></label></li>
+                        <li><label><input type="checkbox" name="item-type" value="all" checked> <span id="item-all" data-translate="item-all">All Items</span></label></li>
+                        <li><label><input type="checkbox" name="item-type" value="melee"> <span id="item-melee" data-translate="item-melee">Melees</span></label></li>
+                        <li><label><input type="checkbox" name="item-type" value="gun"> <span id="item-gun" data-translate="item-gun">Guns</span></label></li>
+                        <li><label><input type="checkbox" name="item-type" value="hat"> <span id="item-hat" data-translate="item-hat">Hats</span></label></li>
+                        <li><label><input type="checkbox" name="item-type" value="job"> <span id="item-job" data-translate="item-job">Jobs</span></label></li>
+                        <li><label><input type="checkbox" name="item-type" value="toy"> <span id="item-toy" data-translate="item-toy">Toys</span></label></li>
                     </ul>
                 </div>
                 
                 <div class="filter-group">
-                    <h4 id="price-range-title">Price Range</h4>
+                    <h4 id="price-range-title" data-translate="price-range-title">Price Range</h4>
                     <ul class="filter-options">
-                        <li><label><input type="checkbox" name="price-range" value="under-10k"> <span id="price-under-10k">Under 10k</span></label></li>
-                        <li><label><input type="checkbox" name="price-range" value="10k-50k"> <span id="price-10k-50k">10k - 50k</span></label></li>
-                        <li><label><input type="checkbox" name="price-range" value="50k-100k"> <span id="price-50k-100k">50k - 100k</span></label></li>
-                        <li><label><input type="checkbox" name="price-range" value="100k-250k"> <span id="price-100k-250k">100k - 250k</span></label></li>
-                        <li><label><input type="checkbox" name="price-range" value="250k-500k"> <span id="price-250k-500k">250k - 500k</span></label></li>
-                        <li><label><input type="checkbox" name="price-range" value="over-500k"> <span id="price-over-500k">Over 500k</span></label></li>
+                        <li><label><input type="checkbox" name="price-range" value="under-10k"> <span id="price-under-10k" data-translate="price-under-10k">Under 10k</span></label></li>
+                        <li><label><input type="checkbox" name="price-range" value="10k-50k"> <span id="price-10k-50k" data-translate="price-10k-50k">10k - 50k</span></label></li>
+                        <li><label><input type="checkbox" name="price-range" value="50k-100k"> <span id="price-50k-100k" data-translate="price-50k-100k">50k - 100k</span></label></li>
+                        <li><label><input type="checkbox" name="price-range" value="100k-250k"> <span id="price-100k-250k" data-translate="price-100k-250k">100k - 250k</span></label></li>
+                        <li><label><input type="checkbox" name="price-range" value="250k-500k"> <span id="price-250k-500k" data-translate="price-250k-500k">250k - 500k</span></label></li>
+                        <li><label><input type="checkbox" name="price-range" value="over-500k"> <span id="price-over-500k" data-translate="price-over-500k">Over 500k</span></label></li>
                     </ul>
                 </div>
                 
-                <button id="apply-filters" class="apply-btn">Apply Filters</button>
+                <button id="apply-filters" class="apply-btn" data-translate="apply-filters">Apply Filters</button>
             </div>
             
             <div class="price-table-container">
@@ -748,7 +983,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright" data-translate="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
             </div>
         </div>
     </footer>
@@ -785,7 +1020,7 @@
             }, 
         ];
 
-        // Language translation data
+        // Language translations
         const translations = {
             'en': {
                 'page-title': 'Graal Era Price House',
@@ -812,11 +1047,11 @@
                 'nav-uploads': 'Uploads',
                 'nav-heads': 'Heads',
                 'nav-bodies': 'Bodies',
-                'nav-guides': 'Guide - How to?',
+                'nav-guides': 'Guides - How to?',
                 'nav-upload-guide': 'Upload',
                 'nav-trade-guide': 'Trade',
-                'nav-gralats': 'Get Gralats',
-                'nav-events': 'Get Event Coins',
+                'nav-gralats-guide': 'Get Gralats',
+                'nav-events-guide': 'Get Event Coins',
                 'nav-trade': 'Trade Table',
                 'nav-calculator': 'Sellables Calculator',
                 'nav-ratio': 'Ratio History',
@@ -829,20 +1064,24 @@
                 'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
                 'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
                 'links-title': 'Quick Links',
-                'link-home': 'Home',
-                'link-uploads': 'Uploads',
-                'link-trade': 'Trade Table',
-                'link-achievements': 'Secret Achievements',
+                'link1': 'Home',
+                'link2': 'Uploads',
+                'link3': 'Trading Guide',
+                'link4': 'Secret Achievements',
                 'legal-title': 'Legal & Policies',
-                'policy-privacy': 'Privacy Policy',
-                'policy-terms': 'Terms of Service',
-                'policy-cookie': 'Cookie Policy',
-                'policy-disclaimer': 'Disclaimer',
+                'policy1': 'Privacy Policy',
+                'policy2': 'Terms of Service',
+                'policy3': 'Cookie Policy',
+                'policy4': 'Disclaimer',
                 'connect-title': 'Connect',
-                'connect-discord': 'About Me',
-                'connect-youtube': 'YouTube',
-                'connect-contact': 'Contact Us',
-                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.'
+                'connect1': 'About Me',
+                'connect2': 'YouTube',
+                'connect3': 'Contact Us',
+                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
+                
+                // Language selector
+                'language-en': 'English',
+                'language-pt': 'Português'
             },
             'pt': {
                 'page-title': 'Casa de Preços do Graal Era',
@@ -872,8 +1111,8 @@
                 'nav-guides': 'Guia - Como?',
                 'nav-upload-guide': 'Upload',
                 'nav-trade-guide': 'Troca',
-                'nav-gralats': 'Obter Gralats',
-                'nav-events': 'Obter Moedas de Evento',
+                'nav-gralats-guide': 'Obter Gralats',
+                'nav-events-guide': 'Obter Moedas de Evento',
                 'nav-trade': 'Tabela de Troca',
                 'nav-calculator': 'Calculadora de Vendáveis',
                 'nav-ratio': 'Histórico de Ratios',
@@ -886,34 +1125,38 @@
                 'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
                 'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
                 'links-title': 'Links Rápidos',
-                'link-home': 'Início',
-                'link-uploads': 'Uploads',
-                'link-trade': 'Tabela de Troca',
-                'link-achievements': 'Conquistas Secretas',
+                'link1': 'Início',
+                'link2': 'Uploads',
+                'link3': 'Guia de Troca',
+                'link4': 'Conquistas Secretas',
                 'legal-title': 'Legal e Políticas',
-                'policy-privacy': 'Política de Privacidade',
-                'policy-terms': 'Termos de Serviço',
-                'policy-cookie': 'Política de Cookies',
-                'policy-disclaimer': 'Aviso Legal',
+                'policy1': 'Política de Privacidade',
+                'policy2': 'Termos de Serviço',
+                'policy3': 'Política de Cookies',
+                'policy4': 'Aviso Legal',
                 'connect-title': 'Conectar',
-                'connect-discord': 'Nosso Servidor no Discord',
-                'connect-youtube': 'YouTube',
-                'connect-contact': 'Contate-Nos',
-                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.'
+                'connect1': 'Sobre Mim',
+                'connect2': 'YouTube',
+                'connect3': 'Contate-Nos',
+                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
+                
+                // Language selector
+                'language-en': 'Inglês',
+                'language-pt': 'Português'
             }
         };
 
-        // Configuration
-        const itemsPerPage = 10; // Number of items to show per page
-        let currentPage = 1;
-        let filteredItems = [...itemsData];
+        // Set default language
+        let currentLang = 'en';
 
         // Function to change language
         function changeLanguage(lang) {
-            const elements = document.querySelectorAll('[id]');
-            elements.forEach(element => {
-                const key = element.id;
-                if (translations[lang] && translations[lang][key]) {
+            currentLang = lang;
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
                     if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                         element.placeholder = translations[lang][key];
                     } else {
@@ -922,17 +1165,29 @@
                 }
             });
             
-            // Update language button text and flag
-            const langBtn = document.querySelector('.language-btn');
-            if (lang === 'en') {
-                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English"> English';
-            } else if (lang === 'pt') {
-                langBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese"> Português';
-            }
+            // Update language buttons
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                const flagImg = btn.querySelector('img');
+                const langText = btn.querySelector('span');
+                
+                if (lang === 'en') {
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
+                    langText.textContent = translations[lang]['language-en'];
+                } else if (lang === 'pt') {
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
+                    langText.textContent = translations[lang]['language-pt'];
+                }
+            });
             
-            // Store language preference
+            // Save language preference
             localStorage.setItem('preferredLanguage', lang);
         }
+
+        // Configuration
+        const itemsPerPage = 10; // Number of items to show per page
+        let currentPage = 1;
+        let filteredItems = [...itemsData];
 
         // Function to render items based on current page and filters
         function renderItems() {
@@ -1113,13 +1368,118 @@
             });
             
             // Language selection event listeners
-            document.querySelectorAll('.language-options a').forEach(link => {
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const lang = this.getAttribute('data-lang');
                     changeLanguage(lang);
+                    
+                    // Close mobile language options after selection
+                    document.getElementById('mobile-language-options').style.display = 'none';
                 });
             });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+                
+                // Close dropdowns when menu is toggled on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Mobile language selector toggle
+            const mobileLanguageBtn = document.getElementById('mobile-language-btn');
+            const mobileLanguageOptions = document.getElementById('mobile-language-options');
+            
+            mobileLanguageBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickInsideMenuBtn = mobileMenuBtn.contains(event.target);
+                
+                if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+                
+                // Close mobile language options when clicking outside
+                if (!mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
+                    mobileLanguageOptions.style.display = 'none';
+                }
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown') && !e.target.closest('.language-selector')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelector('.language-options').style.display = 'none';
+                }
+            });
+            
+            // Handle dropdown toggles on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll('.dropdown').forEach(item => {
+                            if (item !== dropdown) {
+                                item.classList.remove('active');
+                                item.querySelector('.dropdown-menu').style.display = 'none';
+                            }
+                        });
+                        
+                        // Toggle this dropdown
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
+            
+            // Handle desktop dropdown hover
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+                
+                // Desktop language selector
+                const languageSelector = document.querySelector('.language-selector');
+                languageSelector.addEventListener('mouseenter', function() {
+                    this.querySelector('.language-options').style.display = 'block';
+                });
+                
+                languageSelector.addEventListener('mouseleave', function() {
+                    this.querySelector('.language-options').style.display = 'none';
+                });
+            }
             
             // Filter checkboxes logic
             document.querySelectorAll('input[name="item-type"]').forEach(checkbox => {

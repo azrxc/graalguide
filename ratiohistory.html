@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Ratio History - GraalGuide: Track Graal Era Trochus to Gralat Exchange Rates</title>
     <meta name="description" content="Track the historical Trochus to Gralat exchange rates in Graal Era. Understand market trends and make informed trading decisions with our ratio history charts.">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
@@ -20,6 +20,16 @@
             --text-color: #e0e0e0;
             --text-muted: #9e9e9e;
             --border-color: #333;
+            
+            /* Responsive font sizes */
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-md: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.875rem;
+            --font-4xl: 2.25rem;
         }
         
         * { 
@@ -33,6 +43,7 @@
             background-color: var(--dark-bg); 
             color: var(--text-color); 
             line-height: 1.6; 
+            font-size: var(--font-md);
         }
         
         a { 
@@ -67,10 +78,11 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            position: relative;
         }
         
         .logo { 
-            font-size: 28px; 
+            font-size: var(--font-2xl); 
             font-weight: 800; 
             display: flex;
             align-items: center;
@@ -97,6 +109,7 @@
             display: block; 
             padding: 5px 0; 
             position: relative;
+            font-size: var(--font-md);
         }
         
         nav ul li a::after {
@@ -112,6 +125,18 @@
         
         nav ul li a:hover::after {
             width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
         }
 
         /* Language Selector */
@@ -130,6 +155,8 @@
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
+            height: 40px;
         }
         
         .language-btn:hover {
@@ -139,8 +166,8 @@
         .language-btn img {
             width: 20px;
             height: 15px;
-            margin-right: 8px;
             object-fit: cover;
+            margin-right: 8px;
         }
         
         .language-options {
@@ -162,6 +189,7 @@
             padding: 10px 15px;
             color: var(--text-color);
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
         }
         
         .language-options a:hover {
@@ -171,8 +199,8 @@
         .language-options a img {
             width: 20px;
             height: 15px;
-            margin-right: 10px;
             object-fit: cover;
+            margin-right: 10px;
         }
         
         .language-selector:hover .language-options {
@@ -205,6 +233,7 @@
             display: block;
             padding: 10px 20px;
             font-weight: normal !important;
+            font-size: var(--font-sm);
         }
         
         .dropdown-menu a:hover {
@@ -239,7 +268,7 @@
         }
         
         .page-header h1 {
-            font-size: 2.8rem;
+            font-size: var(--font-3xl);
             margin-bottom: 15px;
             font-weight: 800;
             position: relative;
@@ -248,7 +277,7 @@
         .page-header p {
             max-width: 700px;
             margin: 0 auto;
-            font-size: 1.1rem;
+            font-size: var(--font-lg);
             color: rgba(255, 255, 255, 0.9);
             position: relative;
         }
@@ -259,7 +288,7 @@
             border-radius: 10px; 
             padding: 25px; 
             margin: 30px 0; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
             border: 1px solid var(--border-color);
         }
         
@@ -269,27 +298,28 @@
             padding-bottom: 10px;
             border-bottom: 2px solid var(--primary-color);
             font-weight: 700;
+            font-size: var(--font-xl);
+        }
+
+        /* Current Month */
+        .current-month {
+            text-align: center;
+            font-size: var(--font-xl);
+            color: var(--text-color);
+            margin: 20px 0;
+            font-weight: bold;
         }
 
         /* Chart Container */
         .chart-container {
             margin: 20px auto;
             max-width: 800px;
-            background: var(--card-bg);
+            background: var(--darker-bg);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             border: 1px solid var(--border-color);
             height: 400px;
-        }
-
-        /* Current Month */
-        .current-month {
-            text-align: center;
-            font-size: 1.4rem;
-            color: var(--text-color);
-            margin: 20px 0;
-            font-weight: bold;
         }
 
         /* Guide Book Section */
@@ -302,18 +332,21 @@
             margin-top: 0;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--primary-color);
+            font-size: var(--font-lg);
         }
         
         .guide-book h4 {
             color: var(--text-color);
             margin-top: 20px;
             margin-bottom: 10px;
+            font-size: var(--font-md);
         }
         
         .guide-book p {
             line-height: 1.6;
             margin-bottom: 15px;
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
         
         .guide-book ul {
@@ -325,6 +358,7 @@
             margin-bottom: 10px;
             line-height: 1.6;
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
 
         /* Footer */
@@ -353,10 +387,12 @@
             color: var(--primary-color); 
             margin-bottom: 20px; 
             font-weight: 700;
+            font-size: var(--font-lg);
         }
         
         .footer-section p, .footer-section li {
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
         
         .footer-section ul { 
@@ -370,6 +406,7 @@
         .footer-section ul li a { 
             color: var(--text-muted); 
             transition: all 0.3s ease;
+            font-size: var(--font-md);
         }
         
         .footer-section ul li a:hover { 
@@ -381,48 +418,211 @@
             text-align: center; 
             padding-top: 20px; 
             border-top: 1px solid var(--border-color); 
-            font-size: 0.9rem; 
+            font-size: var(--font-sm); 
             color: var(--text-muted); 
         }
 
+        /* Mobile Language Selector */
+        .mobile-language-selector {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+        }
+        
+        .mobile-language-selector .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
         /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+        
         @media (max-width: 768px) {
+            :root {
+                --font-xs: 0.7rem;
+                --font-sm: 0.8rem;
+                --font-md: 0.9rem;
+                --font-lg: 1rem;
+                --font-xl: 1.1rem;
+                --font-2xl: 1.3rem;
+                --font-3xl: 1.5rem;
+                --font-4xl: 1.7rem;
+            }
+            
             .header-content { 
-                flex-direction: column; 
-                text-align: center; 
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--darker-bg);
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+                overflow-y: auto;
+                transition: all 0.3s ease;
+            }
+            
+            nav.active {
+                display: block;
             }
             
             nav ul { 
-                margin-top: 15px; 
-                justify-content: center; 
-                flex-wrap: wrap; 
+                flex-direction: column;
+                margin-top: 0;
             }
             
             nav ul li { 
-                margin: 5px 10px; 
+                margin: 10px 0; 
             }
             
-            .dropdown-menu { 
-                position: static; 
-                width: 100%; 
-                margin-top: 5px; 
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                margin: 10px 0;
+                border: none;
+                background: var(--dark-bg);
+                display: none;
             }
             
-            .footer-content { 
-                flex-direction: column; 
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .language-selector {
-                margin: 15px auto 0;
+                display: none;
+            }
+            
+            .mobile-language-selector {
+                display: block;
+            }
+            
+            .page-header { 
+                padding: 40px 0;
             }
             
             .page-header h1 {
-                font-size: 2.2rem;
+                font-size: var(--font-2xl);
+            }
+            
+            .page-header p {
+                font-size: var(--font-md);
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .current-month {
+                font-size: var(--font-lg);
             }
             
             .chart-container {
                 padding: 15px;
                 height: 300px;
+            }
+            
+            .footer-content { 
+                flex-direction: column; 
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            :root {
+                --font-xs: 0.65rem;
+                --font-sm: 0.75rem;
+                --font-md: 0.85rem;
+                --font-lg: 0.95rem;
+                --font-xl: 1.05rem;
+                --font-2xl: 1.2rem;
+                --font-3xl: 1.35rem;
+                --font-4xl: 1.5rem;
+            }
+            
+            .logo {
+                font-size: var(--font-xl);
+            }
+            
+            .page-header {
+                padding: 30px 0;
+            }
+            
+            .page-header h1 {
+                font-size: var(--font-xl);
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .current-month {
+                font-size: var(--font-md);
+            }
+            
+            .chart-container {
+                padding: 10px;
+                height: 250px;
+            }
+            
+            footer {
+                padding: 30px 0 15px;
+            }
+        }
+
+        /* Prevent zoom on focus for iOS */
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
             }
         }
     </style>
@@ -434,50 +634,69 @@
                 <div class="logo">
                     <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                 </div>
-                <nav>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+                <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html" id="nav-home">Home</a></li>
+                        <li><a href="index.html" data-translate="nav-home">Home</a></li>
                         <li class="dropdown">
-                            <a href="#" id="nav-uploads">Uploads</a>
+                            <a href="#" data-translate="nav-uploads">Uploads</a>
                             <ul class="dropdown-menu">
-                                <li><a href="heads.html" id="nav-heads">Heads</a></li>
-                                <li><a href="bodies.html" id="nav-bodies">Bodies</a></li>
+                                <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="nav-guides">Guide - How to?</a>
+                            <a href="#" data-translate="nav-guides">Guides - How to?</a>
                             <ul class="dropdown-menu">
-                                <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
-                                <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
-                                <li><a href="workguide.html" id="nav-gralats">Get Gralats</a></li>
-                                <li><a href="eventsguide.html" id="nav-events">Get Event Coins</a></li>
+                                <li><a href="upload.html" data-translate="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" data-translate="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide.html" data-translate="nav-gralats-guide">Get Gralats</a></li>
+                                <li><a href="eventsguide.html" data-translate="nav-events-guide">Get Event Coins</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="nav-trade">Trade Table</a>
+                            <a href="#" data-translate="nav-trade">Trade Table</a>
                             <ul class="dropdown-menu">
-                                <li><a href="sellablescalculator.html" id="nav-calculator">Sellables Calculator</a></li>
-                                <li><a href="ratiohistory.html" id="nav-ratio">Ratio History</a></li>
-                                <li><a href="profit&loss.html" id="nav-profit">Profit & Loss Tracker</a></li>
-                                <li><a href="pricehouse.html" id="nav-price">Price House</a></li>
+                                <li><a href="sellablescalculator.html" data-translate="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" data-translate="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" data-translate="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" data-translate="nav-price">Price House</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html" id="nav-achievements">Secret Achievements</a></li>
+                        <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
+                    
+                    <!-- Mobile Language Selector -->
+                    <div class="mobile-language-selector">
+                        <button class="language-btn" id="mobile-language-btn">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
+                            <span data-translate="language-en">English</span>
+                        </button>
+                        <div class="mobile-language-options" id="mobile-language-options">
+                            <a href="#" data-lang="en">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                <span data-translate="language-en">English</span>
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                <span data-translate="language-pt">Português</span>
+                            </a>
+                        </div>
+                    </div>
                 </nav>
                 <div class="language-selector">
-                    <button class="language-btn">
+                    <button class="language-btn" id="current-language">
                         <img src="https://flagcdn.com/w40/us.png" alt="English">
-                        English
+                        <span data-translate="language-en">English</span>
                     </button>
                     <div class="language-options">
                         <a href="#" data-lang="en">
                             <img src="https://flagcdn.com/w40/us.png" alt="English">
-                            English
+                            <span data-translate="language-en">English</span>
                         </a>
                         <a href="#" data-lang="pt">
                             <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
-                            Português
+                            <span data-translate="language-pt">Português</span>
                         </a>
                     </div>
                 </div>
@@ -487,8 +706,8 @@
 
     <div class="page-header">
         <div class="container">
-            <h1 id="page-title">Ratio History</h1>
-            <p id="page-description">Track the historical Trochus to Gralat exchange rates and understand market trends in Graal Era.</p>
+            <h1 id="page-title" data-translate="page-title">Ratio History</h1>
+            <p id="page-description" data-translate="page-description">Track the historical Trochus to Gralat exchange rates and understand market trends in Graal Era.</p>
         </div>
     </div>
 
@@ -498,7 +717,7 @@
 
         <!-- Ratio History Graph -->
         <div class="section">
-            <h2 id="ratio-history-title">Trochus to Gralat Ratio History</h2>
+            <h2 id="ratio-history-title" data-translate="ratio-history-title">Trochus to Gralat Ratio History</h2>
             <div class="chart-container">
                 <canvas id="ratioHistoryChart"></canvas>
             </div>
@@ -506,74 +725,74 @@
 
         <!-- Guide Book Section -->
         <div class="section guide-book">
-            <h2 id="guide-title">📘 Trochus to Gralat Ratio Guide</h2>
-            <p id="guide-intro">
+            <h2 id="guide-title" data-translate="guide-title">📘 Trochus to Gralat Ratio Guide</h2>
+            <p id="guide-intro" data-translate="guide-intro">
                 Welcome to the ultimate guide to understanding the Trochus-to-Gralat ratio! Whether you're a new player or a seasoned trader, this guide will help you understand how the ratio works and what factors influence it. Let's dive in!
             </p>
 
-            <h4 id="what-is-ratio">What is the Ratio?</h4>
-            <p id="ratio-explanation">
-                The ratio represents how many Gralats you can trade for 1 Trochus. For example, a ratio of <strong>1:3.5</strong> means 1 Trochus is worth 3.5 Gralats. This ratio changes over time based on various factors in the game's economy.
+            <h4 id="what-is-ratio" data-translate="what-is-ratio">What is the Ratio?</h4>
+            <p id="ratio-explanation" data-translate="ratio-explanation">
+                The ratio represents how many Gralats you can trade for 1 Trochus. For example, a ratio of 1:3.5 means 1 Trochus is worth 3.5 Gralats. This ratio changes over time based on various factors in the game's economy.
             </p>
 
-            <h4 id="affects-ratio">What Affects the Ratio?</h4>
-            <p id="factors-intro">
-                The ratio is influenced by the balance between the <strong>supply of Trochus</strong> and the <strong>demand for Gralats</strong>. Here's a detailed breakdown of the key factors:
+            <h4 id="affects-ratio" data-translate="affects-ratio">What Affects the Ratio?</h4>
+            <p id="factors-intro" data-translate="factors-intro">
+                The ratio is influenced by the balance between the supply of Trochus and the demand for Gralats. Here's a detailed breakdown of the key factors:
             </p>
             <ul id="factors-list">
                 <li>
-                    <strong id="player-activity">Player Activity</strong>:
+                    <strong id="player-activity" data-translate="player-activity">Player Activity</strong>:
                     <ul>
-                        <li id="player-activity-1">If many players are farming Trochus/Sellables, the supply increases, which can lower the ratio.</li>
-                        <li id="player-activity-2">If fewer players are farming Trochus/Sellables, the supply decreases, which can raise the ratio.</li>
+                        <li id="player-activity-1" data-translate="player-activity-1">If many players are farming Trochus/Sellables, the supply increases, which can lower the ratio.</li>
+                        <li id="player-activity-2" data-translate="player-activity-2">If fewer players are farming Trochus/Sellables, the supply decreases, which can raise the ratio.</li>
                     </ul>
                 </li>
                 <li>
-                    <strong id="game-events">In-Game Events</strong>:
+                    <strong id="game-events" data-translate="game-events">In-Game Events</strong>:
                     <ul>
-                        <li id="game-events-1">Events that make Trochus/Sellables easier to farm (double jobs) can increase supply and lower the ratio.</li>
-                        <li id="game-events-2">Events that require players to spend more Gralats (limited-time items/auctions) can increase demand for Gralats and raise the ratio.</li>
+                        <li id="game-events-1" data-translate="game-events-1">Events that make Trochus/Sellables easier to farm (double jobs) can increase supply and lower the ratio.</li>
+                        <li id="game-events-2" data-translate="game-events-2">Events that require players to spend more Gralats (limited-time items/auctions) can increase demand for Gralats and raise the ratio.</li>
                     </ul>
                 </li>
                 <li>
-                    <strong id="market-trends">Market Trends</strong>:
+                    <strong id="market-trends" data-translate="market-trends">Market Trends</strong>:
                     <ul>
-                        <li id="market-trends-1">If players start hoarding Trochus/Sellables, the supply decreases, which can raise the ratio.</li>
-                        <li id="market-trends-2">If players trade Trochus in bulk, the supply increases, which can lower the ratio.</li>
+                        <li id="market-trends-1" data-translate="market-trends-1">If players start hoarding Trochus/Sellables, the supply decreases, which can raise the ratio.</li>
+                        <li id="market-trends-2" data-translate="market-trends-2">If players trade Trochus in bulk, the supply increases, which can lower the ratio.</li>
                     </ul>
                 </li>
                 <li>
-                    <strong id="inflation">Inflation or Deflation</strong>:
+                    <strong id="inflation" data-translate="inflation">Inflation or Deflation</strong>:
                     <ul>
-                        <li id="inflation-1">If there's an oversupply of Gralats (farming exploits/macros), their value decreases, which can raise the ratio.</li>
-                        <li id="inflation-2">If Gralats become scarcer (increased spending), their value increases, which can lower the ratio.</li>
+                        <li id="inflation-1" data-translate="inflation-1">If there's an oversupply of Gralats (farming exploits/macros), their value decreases, which can raise the ratio.</li>
+                        <li id="inflation-2" data-translate="inflation-2">If Gralats become scarcer (increased spending), their value increases, which can lower the ratio.</li>
                     </ul>
                 </li>
                 <li>
-                    <strong id="external-factors">External Factors</strong>:
+                    <strong id="external-factors" data-translate="external-factors">External Factors</strong>:
                     <ul>
-                        <li id="external-1">Real-world events (holidays/school schedules) can affect player activity and influence the ratio.</li>
-                        <li id="external-2">Community trends (players collectively deciding to farm or avoid farming Trochus/Sellables) can also impact the ratio.</li>
+                        <li id="external-1" data-translate="external-1">Real-world events (holidays/school schedules) can affect player activity and influence the ratio.</li>
+                        <li id="external-2" data-translate="external-2">Community trends (players collectively deciding to farm or avoid farming Trochus/Sellables) can also impact the ratio.</li>
                     </ul>
                 </li>
             </ul>
 
-            <h4 id="how-to-use">How to Use This Information</h4>
-            <p id="usage-intro">
+            <h4 id="how-to-use" data-translate="how-to-use">How to Use This Information</h4>
+            <p id="usage-intro" data-translate="usage-intro">
                 Understanding these factors can help you make better trading decisions. For example:
             </p>
             <ul id="usage-examples">
-                <li id="example-1">If you notice the ratio is low (1:$4-5+), it might be a good time to trade Trochus for Gralats.</li>
-                <li id="example-2">If you expect the ratio to rise (1:$3-4), you might want to hold onto your Trochus/Sellables for a better deal later.</li>
+                <li id="example-1" data-translate="example-1">If you notice the ratio is low (1:$4-5+), it might be a good time to trade Trochus for Gralats.</li>
+                <li id="example-2" data-translate="example-2">If you expect the ratio to rise (1:$3-4), you might want to hold onto your Trochus/Sellables for a better deal later.</li>
             </ul>
 
-            <h4 id="final-tips">Final Tips</h4>
-            <p id="tip-1">
-                - Keep an eye on the <strong>Ratio History Graph</strong> to track trends over time.<br>
+            <h4 id="final-tips" data-translate="final-tips">Final Tips</h4>
+            <p id="tip-1" data-translate="tip-1">
+                - Keep an eye on the Ratio History Graph to track trends over time.<br>
                 - Stay active in the community to learn about upcoming events or changes.<br>
                 - Always think ahead and plan your trades based on the current economic climate.
             </p>
-            <p id="closing">
+            <p id="closing" data-translate="closing">
                 Happy trading, and may your Gralat stash grow! 🎮
             </p>
         </div>
@@ -615,15 +834,16 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright" data-translate="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Language translation data
+        // Language translations
         const translations = {
             'en': {
+                // Page content
                 'page-title': 'Ratio History',
                 'page-description': 'Track the historical Trochus to Gralat exchange rates and understand market trends in Graal Era.',
                 'current-month': 'Current Month:',
@@ -631,9 +851,9 @@
                 'guide-title': '📘 Trochus to Gralat Ratio Guide',
                 'guide-intro': 'Welcome to the ultimate guide to understanding the Trochus-to-Gralat ratio! Whether you\'re a new player or a seasoned trader, this guide will help you understand how the ratio works and what factors influence it. Let\'s dive in!',
                 'what-is-ratio': 'What is the Ratio?',
-                'ratio-explanation': 'The ratio represents how many Gralats you can trade for 1 Trochus. For example, a ratio of <strong>1:3.5</strong> means 1 Trochus is worth 3.5 Gralats. This ratio changes over time based on various factors in the game\'s economy.',
+                'ratio-explanation': 'The ratio represents how many Gralats you can trade for 1 Trochus. For example, a ratio of 1:3.5 means 1 Trochus is worth 3.5 Gralats. This ratio changes over time based on various factors in the game\'s economy.',
                 'affects-ratio': 'What Affects the Ratio?',
-                'factors-intro': 'The ratio is influenced by the balance between the <strong>supply of Trochus</strong> and the <strong>demand for Gralats</strong>. Here\'s a detailed breakdown of the key factors:',
+                'factors-intro': 'The ratio is influenced by the balance between the supply of Trochus and the demand for Gralats. Here\'s a detailed breakdown of the key factors:',
                 'player-activity': 'Player Activity',
                 'player-activity-1': 'If many players are farming Trochus/Sellables, the supply increases, which can lower the ratio.',
                 'player-activity-2': 'If fewer players are farming Trochus/Sellables, the supply decreases, which can raise the ratio.',
@@ -654,7 +874,7 @@
                 'example-1': 'If you notice the ratio is low (1:$4-5+), it might be a good time to trade Trochus for Gralats.',
                 'example-2': 'If you expect the ratio to rise (1:$3-4), you might want to hold onto your Trochus/Sellables for a better deal later.',
                 'final-tips': 'Final Tips',
-                'tip-1': '- Keep an eye on the <strong>Ratio History Graph</strong> to track trends over time.<br>- Stay active in the community to learn about upcoming events or changes.<br>- Always think ahead and plan your trades based on the current economic climate.',
+                'tip-1': 'Keep an eye on the Ratio History Graph to track trends over time. Stay active in the community to learn about upcoming events or changes. Always think ahead and plan your trades based on the current economic climate.',
                 'closing': 'Happy trading, and may your Gralat stash grow! 🎮',
                 
                 // Navigation
@@ -662,11 +882,11 @@
                 'nav-uploads': 'Uploads',
                 'nav-heads': 'Heads',
                 'nav-bodies': 'Bodies',
-                'nav-guides': 'Guide - How to?',
+                'nav-guides': 'Guides - How to?',
                 'nav-upload-guide': 'Upload',
                 'nav-trade-guide': 'Trade',
-                'nav-gralats': 'Get Gralats',
-                'nav-events': 'Get Event Coins',
+                'nav-gralats-guide': 'Get Gralats',
+                'nav-events-guide': 'Get Event Coins',
                 'nav-trade': 'Trade Table',
                 'nav-calculator': 'Sellables Calculator',
                 'nav-ratio': 'Ratio History',
@@ -679,22 +899,27 @@
                 'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.',
                 'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
                 'links-title': 'Quick Links',
-                'link-home': 'Home',
-                'link-calculator': 'Sellables Calculator',
-                'link-trade': 'Trading Guide',
-                'link-ratio': 'Ratio History',
+                'link1': 'Home',
+                'link2': 'Uploads',
+                'link3': 'Trading Guide',
+                'link4': 'Secret Achievements',
                 'legal-title': 'Legal & Policies',
-                'policy-privacy': 'Privacy Policy',
-                'policy-terms': 'Terms of Service',
-                'policy-cookie': 'Cookie Policy',
-                'policy-disclaimer': 'Disclaimer',
+                'policy1': 'Privacy Policy',
+                'policy2': 'Terms of Service',
+                'policy3': 'Cookie Policy',
+                'policy4': 'Disclaimer',
                 'connect-title': 'Connect',
-                'connect-discord': 'About Me',
-                'connect-youtube': 'YouTube',
-                'connect-contact': 'Contact Us',
-                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.'
+                'connect1': 'About Me',
+                'connect2': 'YouTube',
+                'connect3': 'Contact Us',
+                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
+                
+                // Language selector
+                'language-en': 'English',
+                'language-pt': 'Português'
             },
             'pt': {
+                // Page content
                 'page-title': 'Histórico de Ratios',
                 'page-description': 'Acompanhe as taxas de câmbio históricas de Trochus para Gralat e entenda as tendências do mercado no Graal Era.',
                 'current-month': 'Mês Atual:',
@@ -702,15 +927,15 @@
                 'guide-title': '📘 Guia de Ratio Trochus para Gralat',
                 'guide-intro': 'Bem-vindo ao guia definitivo para entender o ratio Trochus-para-Gralat! Quer você seja um jogador novo ou um comerciante experiente, este guia ajudará você a entender como o ratio funciona e quais fatores o influenciam. Vamos mergulhar!',
                 'what-is-ratio': 'O que é o Ratio?',
-                'ratio-explanation': 'O ratio representa quantos Gralats você pode trocar por 1 Trochus. Por exemplo, um ratio de <strong>1:3.5</strong> significa que 1 Trochus vale 3.5 Gralats. Este ratio muda ao longo do tempo com base em vários fatores na economia do jogo.',
+                'ratio-explanation': 'O ratio representa quantos Gralats você pode trocar por 1 Trochus. Por exemplo, um ratio de 1:3.5 significa que 1 Trochus vale 3.5 Gralats. Este ratio muda ao longo do tempo com base em vários fatores na economia do jogo.',
                 'affects-ratio': 'O que Afeta o Ratio?',
-                'factors-intro': 'O ratio é influenciado pelo equilíbrio entre a <strong>oferta de Trochus</strong> e a <strong>demanda por Gralats</strong>. Aqui está uma análise detalhada dos principais fatores:',
+                'factors-intro': 'O ratio is influenced by the balance between the supply of Trochus and the demand for Gralats. Aqui está uma análise detalhada dos principais fatores:',
                 'player-activity': 'Atividade do Jogador',
                 'player-activity-1': 'Se muitos jogadores estão farmando Trochus/Itens Vendáveis, a oferta aumenta, o que pode diminuir o ratio.',
                 'player-activity-2': 'Se menos jogadores estão farmando Trochus/Itens Vendáveis, a oferta diminui, o que pode aumentar o ratio.',
                 'game-events': 'Eventos no Jogo',
                 'game-events-1': 'Eventos que facilitam o farm de Trochus/Itens Vendáveis (empregos em dobro) podem aumentar a oferta e diminuir o ratio.',
-                'game-events-2': 'Eventos que exigem que os jogadores gastem mais Gralats (itens/leilões por tempo limitado) podem aumentar a demanda por Gralats e aumentar o ratio.',
+                'game-events-2': 'Eventos que exigem que os jogadores gastem mais Gralats (itens/leilões por tempo limitado) podem aumentar a demanda por Gralats and aumentar o ratio.',
                 'market-trends': 'Tendências de Mercado',
                 'market-trends-1': 'Se os jogadores começarem a acumular Trochus/Itens Vendáveis, a oferta diminui, o que pode aumentar o ratio.',
                 'market-trends-2': 'Se os jogadores negociarem Trochus em massa, a oferta aumenta, o que pode diminuir o ratio.',
@@ -725,7 +950,7 @@
                 'example-1': 'Se você notar que o ratio está baixo (1:$4-5+), pode ser um bom momento para trocar Trochus por Gralats.',
                 'example-2': 'Se você espera que o ratio suba (1:$3-4), pode valer a pena segurar seus Trochus/Itens Vendáveis para um negócio melhor depois.',
                 'final-tips': 'Dicas Finais',
-                'tip-1': '- Fique de olho no <strong>Gráfico de Histórico de Ratio</strong> para acompanhar as tendências ao longo do tempo.<br>- Mantenha-se ativo na comunidade para saber sobre eventos ou mudanças futuras.<br>- Sempre pense à frente e planeje suas negociações com base no clima econômico atual.',
+                'tip-1': 'Fique de olho no Gráfico de Histórico de Ratio para acompanhar as tendências ao longo do tempo. Mantenha-se ativo na comunidade para saber sobre eventos ou mudanças futuras. Sempre pense à frente e planeje suas negociações com base no clima econômico atual.',
                 'closing': 'Boas negociações, e que sua reserva de Gralats cresça! 🎮',
                 
                 // Navigation
@@ -736,8 +961,8 @@
                 'nav-guides': 'Guia - Como?',
                 'nav-upload-guide': 'Upload',
                 'nav-trade-guide': 'Troca',
-                'nav-gralats': 'Obter Gralats',
-                'nav-events': 'Obter Moedas de Evento',
+                'nav-gralats-guide': 'Obter Gralats',
+                'nav-events-guide': 'Obter Moedas de Evento',
                 'nav-trade': 'Tabela de Troca',
                 'nav-calculator': 'Calculadora de Vendáveis',
                 'nav-ratio': 'Histórico de Ratios',
@@ -750,49 +975,65 @@
                 'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos ferramentas, guias e recursos para melhorar sua experiência de jogo.',
                 'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
                 'links-title': 'Links Rápidos',
-                'link-home': 'Início',
-                'link-calculator': 'Calculadora de Vendáveis',
-                'link-trade': 'Guia de Troca',
-                'link-ratio': 'Histórico de Ratios',
+                'link1': 'Início',
+                'link2': 'Uploads',
+                'link3': 'Guia de Troca',
+                'link4': 'Conquistas Secretas',
                 'legal-title': 'Legal e Políticas',
-                'policy-privacy': 'Política de Privacidade',
-                'policy-terms': 'Termos de Serviço',
-                'policy-cookie': 'Política de Cookies',
-                'policy-disclaimer': 'Aviso Legal',
+                'policy1': 'Política de Privacidade',
+                'policy2': 'Termos de Serviço',
+                'policy3': 'Política de Cookies',
+                'policy4': 'Aviso Legal',
                 'connect-title': 'Conectar',
-                'connect-discord': 'Nosso Servidor no Discord',
-                'connect-youtube': 'YouTube',
-                'connect-contact': 'Contate-Nos',
-                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.'
+                'connect1': 'Sobre Mim',
+                'connect2': 'YouTube',
+                'connect3': 'Contate-Nos',
+                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
+                
+                // Language selector
+                'language-en': 'Inglês',
+                'language-pt': 'Português'
             }
         };
 
+        // Set default language
+        let currentLang = 'en';
+
         // Function to change language
         function changeLanguage(lang) {
-            const elements = document.querySelectorAll('[id]');
-            elements.forEach(element => {
-                const key = element.id;
-                if (translations[lang] && translations[lang][key]) {
+            currentLang = lang;
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
                     if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                         element.placeholder = translations[lang][key];
                     } else {
-                        element.innerHTML = translations[lang][key];
+                        element.textContent = translations[lang][key];
                     }
                 }
             });
             
-            // Update language button text and flag
-            const langBtn = document.querySelector('.language-btn');
-            if (lang === 'en') {
-                langBtn.innerHTML = '<img src="https://flagcdn.com/w40/us.png" alt="English"> English';
-            } else if (lang === 'pt') {
-                langBtn.innerHTML = '<img src="https://flagcdn.com/w40/br.png" alt="Portuguese"> Português';
-            }
+            // Update language buttons
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                const flagImg = btn.querySelector('img');
+                const langText = btn.querySelector('span');
+                
+                if (lang === 'en') {
+                    flagImg.src = 'https://flagcdn.com/w40/us.png';
+                    langText.textContent = translations[lang]['language-en'];
+                } else if (lang === 'pt') {
+                    flagImg.src = 'https://flagcdn.com/w40/br.png';
+                    langText.textContent = translations[lang]['language-pt'];
+                }
+            });
             
             // Update current month display
             document.getElementById('currentMonth').textContent = translations[lang]['current-month'] + ' ' + getCurrentMonth();
             
-            // Store language preference
+            // Save language preference
             localStorage.setItem('preferredLanguage', lang);
         }
 
@@ -895,13 +1136,118 @@
             renderChart();
             
             // Language selection event listeners
-            document.querySelectorAll('.language-options a').forEach(link => {
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const lang = this.getAttribute('data-lang');
                     changeLanguage(lang);
+                    
+                    // Close mobile language options after selection
+                    document.getElementById('mobile-language-options').style.display = 'none';
                 });
             });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+                
+                // Close dropdowns when menu is toggled on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Mobile language selector toggle
+            const mobileLanguageBtn = document.getElementById('mobile-language-btn');
+            const mobileLanguageOptions = document.getElementById('mobile-language-options');
+            
+            mobileLanguageBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickInsideMenuBtn = mobileMenuBtn.contains(event.target);
+                
+                if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+                
+                // Close mobile language options when clicking outside
+                if (!mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
+                    mobileLanguageOptions.style.display = 'none';
+                }
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown') && !e.target.closest('.language-selector')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelector('.language-options').style.display = 'none';
+                }
+            });
+            
+            // Handle dropdown toggles on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll('.dropdown').forEach(item => {
+                            if (item !== dropdown) {
+                                item.classList.remove('active');
+                                item.querySelector('.dropdown-menu').style.display = 'none';
+                            }
+                        });
+                        
+                        // Toggle this dropdown
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
+            
+            // Handle desktop dropdown hover
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+                
+                // Desktop language selector
+                const languageSelector = document.querySelector('.language-selector');
+                languageSelector.addEventListener('mouseenter', function() {
+                    this.querySelector('.language-options').style.display = 'block';
+                });
+                
+                languageSelector.addEventListener('mouseleave', function() {
+                    this.querySelector('.language-options').style.display = 'none';
+                });
+            }
         });
     </script>
 </body>
