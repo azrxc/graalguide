@@ -74,6 +74,7 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            position: relative;
         }
         
         .logo { 
@@ -131,6 +132,7 @@
             font-size: var(--font-2xl);
             cursor: pointer;
             padding: 5px 10px;
+            z-index: 1001;
         }
 
         /* Language Selector */
@@ -557,6 +559,52 @@
             font-size: var(--font-md);
         }
 
+        /* Mobile Language Selector */
+        .mobile-language-selector {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+        }
+        
+        .mobile-language-selector .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .container {
@@ -598,15 +646,17 @@
             
             nav {
                 display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 70px;
                 left: 0;
                 right: 0;
+                bottom: 0;
                 background: var(--darker-bg);
-                padding: 15px;
+                padding: 20px;
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
                 z-index: 999;
-                border-top: 1px solid var(--border-color);
+                overflow-y: auto;
+                transition: all 0.3s ease;
             }
             
             nav.active {
@@ -629,6 +679,11 @@
                 margin: 10px 0;
                 border: none;
                 background: var(--dark-bg);
+                display: none;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                display: block;
             }
             
             .mobile-menu-btn {
@@ -636,20 +691,11 @@
             }
             
             .language-selector {
-                margin: 10px 0 0;
-                width: 100%;
+                display: none;
             }
             
-            .language-btn {
-                width: 100%;
-                justify-content: center;
-                height: 38px;
-            }
-            
-            .language-options {
-                width: 100%;
-                right: auto;
-                left: 0;
+            .mobile-language-selector {
+                display: block;
             }
             
             .bodies-grid {
@@ -780,7 +826,7 @@
                 <div class="logo">
                     <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                 </div>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
                 <nav id="main-nav">
                     <ul>
                         <li><a href="index.html" data-translate="nav-home">Home</a></li>
@@ -811,6 +857,24 @@
                         </li>
                         <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
+                    
+                    <!-- Mobile Language Selector -->
+                    <div class="mobile-language-selector">
+                        <button class="language-btn" id="mobile-language-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            <span data-translate="language-en">English</span>
+                        </button>
+                        <div class="mobile-language-options" id="mobile-language-options">
+                            <a href="#" data-lang="en">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                                <span data-translate="language-en">English</span>
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                                <span data-translate="language-pt">Português</span>
+                            </a>
+                        </div>
+                    </div>
                 </nav>
                 <div class="language-selector">
                     <button class="language-btn" id="current-language">
@@ -2633,7 +2697,8 @@
                 'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
                 
                 // Language selector
-                'language-en': 'English'
+                'language-en': 'English',
+                'language-pt': 'Português'
             },
             'pt': {
                 'page-title': 'Galeria de Bodies do Graal Era',
@@ -2687,7 +2752,8 @@
                 'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
                 
                 // Language selector
-                'language-en': 'Português'
+                'language-en': 'Inglês',
+                'language-pt': 'Português'
             }
         };
 
@@ -2703,18 +2769,20 @@
                 }
             });
             
-            // Update language button
-            const languageBtn = document.getElementById('current-language');
-            const flagImg = languageBtn.querySelector('img');
-            const langText = languageBtn.querySelector('span');
-            
-            if (lang === 'en') {
-                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
-                langText.textContent = 'English';
-            } else if (lang === 'pt') {
-                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
-                langText.textContent = 'Português';
-            }
+            // Update language buttons
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                const flagImg = btn.querySelector('img');
+                const langText = btn.querySelector('span');
+                
+                if (lang === 'en') {
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
+                    langText.textContent = translations[lang]['language-en'];
+                } else if (lang === 'pt') {
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
+                    langText.textContent = translations[lang]['language-pt'];
+                }
+            });
             
             // Update filter toggle text if filters are open
             const galleryFilters = document.getElementById('gallery-filters');
@@ -2835,11 +2903,31 @@
             changeLanguage(savedLanguage);
             
             // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mainNav = document.getElementById('main-nav');
             
-            mobileMenuBtn.addEventListener('click', function() {
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
                 mainNav.classList.toggle('active');
+                
+                // Close dropdowns when menu is toggled on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Mobile language selector toggle
+            const mobileLanguageBtn = document.getElementById('mobile-language-btn');
+            const mobileLanguageOptions = document.getElementById('mobile-language-options');
+            
+            mobileLanguageBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
             });
             
             // Close menu when clicking outside
@@ -2849,6 +2937,11 @@
                 
                 if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
+                }
+                
+                // Close mobile language options when clicking outside
+                if (!mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
+                    mobileLanguageOptions.style.display = 'none';
                 }
             });
             
@@ -2937,23 +3030,65 @@
             });
             
             // Language selection event listeners
-            document.querySelectorAll('.language-options a').forEach(link => {
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const lang = this.getAttribute('data-lang');
                     changeLanguage(lang);
+                    
+                    // Close mobile language options after selection
+                    document.getElementById('mobile-language-options').style.display = 'none';
                 });
             });
             
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.dropdown') && !e.target.closest('.language-selector')) {
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.style.display = 'none';
+            // Handle dropdown toggles on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll('.dropdown').forEach(item => {
+                            if (item !== dropdown) {
+                                item.classList.remove('active');
+                                item.querySelector('.dropdown-menu').style.display = 'none';
+                            }
+                        });
+                        
+                        // Toggle this dropdown
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
                     });
-                    document.querySelector('.language-options').style.display = 'none';
-                }
-            });
+                });
+            }
+            
+            // Handle desktop dropdown hover
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+                
+                // Desktop language selector
+                const languageSelector = document.querySelector('.language-selector');
+                languageSelector.addEventListener('mouseenter', function() {
+                    this.querySelector('.language-options').style.display = 'block';
+                });
+                
+                languageSelector.addEventListener('mouseleave', function() {
+                    this.querySelector('.language-options').style.display = 'none';
+                });
+            }
         });
     </script>
 </body>
