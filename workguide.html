@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Work Guide - GraalGuide: Master Graal Era Jobs</title>
     <meta name="description" content="Master all jobs in Graal Era with our comprehensive guide. Learn how to maximize your Gralat earnings from Mining, Pizza Making, Digging, and more.">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
@@ -20,6 +20,16 @@
             --text-color: #e0e0e0;
             --text-muted: #9e9e9e;
             --border-color: #333;
+            
+            /* Responsive font sizes */
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-md: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.875rem;
+            --font-4xl: 2.25rem;
         }
         
         * { 
@@ -33,6 +43,7 @@
             background-color: var(--dark-bg); 
             color: var(--text-color); 
             line-height: 1.6; 
+            font-size: var(--font-md);
         }
         
         a { 
@@ -67,10 +78,11 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            position: relative;
         }
         
         .logo { 
-            font-size: 28px; 
+            font-size: var(--font-2xl); 
             font-weight: 800; 
             display: flex;
             align-items: center;
@@ -97,6 +109,7 @@
             display: block; 
             padding: 5px 0; 
             position: relative;
+            font-size: var(--font-md);
         }
         
         nav ul li a::after {
@@ -112,6 +125,18 @@
         
         nav ul li a:hover::after {
             width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
         }
 
         /* Language Selector */
@@ -130,6 +155,8 @@
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
+            height: 40px;
         }
         
         .language-btn:hover {
@@ -138,6 +165,8 @@
         
         .language-btn img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 8px;
         }
         
@@ -160,6 +189,7 @@
             padding: 10px 15px;
             color: var(--text-color);
             transition: all 0.3s ease;
+            font-size: var(--font-sm);
         }
         
         .language-options a:hover {
@@ -168,6 +198,8 @@
         
         .language-options a img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 10px;
         }
         
@@ -201,6 +233,7 @@
             display: block;
             padding: 10px 20px;
             font-weight: normal !important;
+            font-size: var(--font-sm);
         }
         
         .dropdown-menu a:hover {
@@ -228,7 +261,7 @@
         }
         
         .hero h1 { 
-            font-size: 3rem; 
+            font-size: var(--font-4xl); 
             margin-bottom: 20px; 
             font-weight: 800;
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
@@ -237,7 +270,7 @@
         }
         
         .hero p { 
-            font-size: 1.2rem; 
+            font-size: var(--font-lg); 
             max-width: 700px; 
             margin: 0 auto 30px; 
             color: var(--text-muted);
@@ -284,11 +317,12 @@
             margin-bottom: 15px; 
             color: var(--text-color); 
             font-weight: 700;
+            font-size: var(--font-xl);
         }
         
         .article-meta { 
             color: var(--text-muted); 
-            font-size: 0.9rem; 
+            font-size: var(--font-sm); 
             margin-bottom: 15px; 
             display: flex; 
             align-items: center; 
@@ -304,7 +338,7 @@
             color: var(--text-color); 
             padding: 5px 12px; 
             border-radius: 20px; 
-            font-size: 0.8rem; 
+            font-size: var(--font-xs); 
             margin-right: 10px; 
             margin-bottom: 10px;
             font-weight: 500;
@@ -324,6 +358,7 @@
         .article p, .article ul {
             margin-bottom: 15px;
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
         
         .article ul li {
@@ -345,11 +380,13 @@
             margin-top: 0; 
             color: var(--text-color); 
             font-weight: 600;
+            font-size: var(--font-lg);
         }
         
         .tip p { 
             margin: 10px 0; 
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
         
         .tip ul {
@@ -359,6 +396,7 @@
         .tip ul li {
             margin-bottom: 8px;
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
 
         /* Earnings Box */
@@ -374,11 +412,13 @@
             margin-top: 0; 
             color: var(--success-color); 
             font-weight: 600;
+            font-size: var(--font-md);
         }
         
         .earnings p { 
             margin: 5px 0; 
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
 
         /* Job Comparison Table */
@@ -433,6 +473,7 @@
             border-bottom: 2px solid var(--primary-color); 
             color: var(--text-color); 
             font-weight: 700;
+            font-size: var(--font-lg);
         }
         
         .ad-container { 
@@ -452,7 +493,7 @@
         .ad-label { 
             display: block; 
             text-align: center; 
-            font-size: 0.7rem; 
+            font-size: var(--font-xs); 
             color: var(--text-muted); 
             text-transform: uppercase; 
             letter-spacing: 1px; 
@@ -492,6 +533,7 @@
         .featured-list a {
             color: var(--text-color);
             transition: all 0.3s ease;
+            font-size: var(--font-md);
         }
         
         .featured-list a:hover {
@@ -524,10 +566,12 @@
             color: var(--primary-color); 
             margin-bottom: 20px; 
             font-weight: 700;
+            font-size: var(--font-lg);
         }
         
         .footer-section p, .footer-section li {
             color: var(--text-muted);
+            font-size: var(--font-md);
         }
         
         .footer-section ul { 
@@ -541,6 +585,7 @@
         .footer-section ul li a { 
             color: var(--text-muted); 
             transition: all 0.3s ease;
+            font-size: var(--font-md);
         }
         
         .footer-section ul li a:hover { 
@@ -552,11 +597,63 @@
             text-align: center; 
             padding-top: 20px; 
             border-top: 1px solid var(--border-color); 
-            font-size: 0.9rem; 
+            font-size: var(--font-sm); 
             color: var(--text-muted); 
         }
 
+        /* Mobile Language Selector */
+        .mobile-language-selector {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+        }
+        
+        .mobile-language-selector .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
         /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+        
         @media (max-width: 992px) {
             .main-content { 
                 flex-direction: column; 
@@ -568,37 +665,86 @@
         }
         
         @media (max-width: 768px) {
+            :root {
+                --font-xs: 0.7rem;
+                --font-sm: 0.8rem;
+                --font-md: 0.9rem;
+                --font-lg: 1rem;
+                --font-xl: 1.1rem;
+                --font-2xl: 1.3rem;
+                --font-3xl: 1.5rem;
+                --font-4xl: 1.7rem;
+            }
+            
             .header-content { 
-                flex-direction: column; 
-                text-align: center; 
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--darker-bg);
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+                overflow-y: auto;
+                transition: all 0.3s ease;
+            }
+            
+            nav.active {
+                display: block;
             }
             
             nav ul { 
-                margin-top: 15px; 
-                justify-content: center; 
-                flex-wrap: wrap; 
+                flex-direction: column;
+                margin-top: 0;
             }
             
             nav ul li { 
-                margin: 5px 10px; 
+                margin: 10px 0; 
             }
             
-            .dropdown-menu { 
-                position: static; 
-                width: 100%; 
-                margin-top: 5px; 
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                margin: 10px 0;
+                border: none;
+                background: var(--dark-bg);
+                display: none;
             }
             
-            .footer-content { 
-                flex-direction: column; 
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .language-selector {
-                margin: 15px auto 0;
+                display: none;
+            }
+            
+            .mobile-language-selector {
+                display: block;
+            }
+            
+            .hero {
+                padding: 60px 0;
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: var(--font-2xl);
+            }
+            
+            .hero p {
+                font-size: var(--font-md);
             }
             
             .job-table {
@@ -607,6 +753,47 @@
             
             .job-table th, .job-table td {
                 padding: 10px;
+            }
+            
+            .footer-content { 
+                flex-direction: column; 
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --font-xs: 0.65rem;
+                --font-sm: 0.75rem;
+                --font-md: 0.85rem;
+                --font-lg: 0.95rem;
+                --font-xl: 1.05rem;
+                --font-2xl: 1.2rem;
+                --font-3xl: 1.35rem;
+                --font-4xl: 1.5rem;
+            }
+            
+            .logo {
+                font-size: var(--font-xl);
+            }
+            
+            .hero h1 {
+                font-size: var(--font-xl);
+            }
+            
+            .hero p {
+                font-size: var(--font-md);
+            }
+            
+            footer {
+                padding: 30px 0 15px;
+            }
+        }
+        
+        /* Prevent zoom on focus for iOS */
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
             }
         }
     </style>
@@ -618,50 +805,69 @@
                 <div class="logo">
                     <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                 </div>
-                <nav>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+                <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html" id="nav-home">Home</a></li>
+                        <li><a href="index.html" data-translate="nav-home">Home</a></li>
                         <li class="dropdown">
-                            <a href="#" id="nav-uploads">Uploads</a>
+                            <a href="#" data-translate="nav-uploads">Uploads</a>
                             <ul class="dropdown-menu">
-                                <li><a href="heads.html" id="nav-heads">Heads</a></li>
-                                <li><a href="bodies.html" id="nav-bodies">Bodies</a></li>
+                                <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
+                                <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="nav-guides">Guide - How to?</a>
+                            <a href="#" data-translate="nav-guides">Guides - How to?</a>
                             <ul class="dropdown-menu">
-                                <li><a href="upload.html" id="nav-upload-guide">Upload</a></li>
-                                <li><a href="tradeguide.html" id="nav-trade-guide">Trade</a></li>
-                                <li><a href="workguide.html" id="nav-gralats">Get Gralats</a></li>
-                                <li><a href="eventsguide" id="nav-events">Get Event Coins</a></li>
+                                <li><a href="upload.html" data-translate="nav-upload-guide">Upload</a></li>
+                                <li><a href="tradeguide.html" data-translate="nav-trade-guide">Trade</a></li>
+                                <li><a href="workguide.html" data-translate="nav-gralats-guide">Get Gralats</a></li>
+                                <li><a href="eventsguide.html" data-translate="nav-events-guide">Get Event Coins</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" id="nav-trade">Trade Table</a>
+                            <a href="#" data-translate="nav-trade">Trade Table</a>
                             <ul class="dropdown-menu">
-                                <li><a href="sellablescalculator.html" id="nav-calculator">Sellables Calculator</a></li>
-                                <li><a href="ratiohistory.html" id="nav-ratio">Ratio History</a></li>
-                                <li><a href="profit&loss.html" id="nav-profit">Profit & Loss Tracker</a></li>
-                                <li><a href="pricehouse.html" id="nav-price">Price House</a></li>
+                                <li><a href="sellablescalculator.html" data-translate="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratiohistory.html" data-translate="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit&loss.html" data-translate="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="pricehouse.html" data-translate="nav-price">Price House</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html" id="nav-achievements">Secret Achievements</a></li>
+                        <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
+                    
+                    <!-- Mobile Language Selector -->
+                    <div class="mobile-language-selector">
+                        <button class="language-btn" id="mobile-language-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            <span data-translate="language-en">English</span>
+                        </button>
+                        <div class="mobile-language-options" id="mobile-language-options">
+                            <a href="#" data-lang="en">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                                <span data-translate="language-en">English</span>
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                                <span data-translate="language-pt">Português</span>
+                            </a>
+                        </div>
+                    </div>
                 </nav>
                 <div class="language-selector">
-                    <button class="language-btn">
+                    <button class="language-btn" id="current-language">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                        English
+                        <span data-translate="language-en">English</span>
                     </button>
                     <div class="language-options">
                         <a href="#" data-lang="en">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                            English
+                            <span data-translate="language-en">English</span>
                         </a>
                         <a href="#" data-lang="pt">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
-                            Português
+                            <span data-translate="language-pt">Português</span>
                         </a>
                     </div>
                 </div>
@@ -672,8 +878,8 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 id="hero-title">Master Graal Era Jobs</h1>
-                <p id="hero-description">Learn strategies, tools, and tips for Mining, Pizza Making, Digging, and more.</p>
+                <h1 id="hero-title" data-translate="hero-title">Master Graal Era Jobs</h1>
+                <p id="hero-description" data-translate="hero-description">Learn strategies, tools, and tips for Mining, Pizza Making, Digging, and more.</p>
             </div>
         </div>
     </section>
@@ -684,45 +890,45 @@
                 <!-- Introduction -->
                 <article class="article">
                     <div class="article-content">
-                        <span class="tag tag-jobs" id="tag-jobs">Jobs</span>
-                        <span class="tag tag-guide" id="tag-guide">Guide</span>
-                        <h2 id="intro-title">Introduction to Graal Era Jobs</h2>
-                        <div class="article-meta" id="intro-date">Updated on January 1, 2026</div>
-                        <p id="intro-text">Jobs are essential for earning Gralats in Graal Era. This comprehensive guide covers all seven major jobs, their requirements, earnings potential, and expert tips to maximize your profits.</p>
+                        <span class="tag tag-jobs" data-translate="tag-jobs">Jobs</span>
+                        <span class="tag tag-guide" data-translate="tag-guide">Guide</span>
+                        <h2 id="intro-title" data-translate="intro-title">Introduction to Graal Era Jobs</h2>
+                        <div class="article-meta" id="intro-date" data-translate="intro-date">Updated on January 1, 2026</div>
+                        <p id="intro-text" data-translate="intro-text">Jobs are essential for earning Gralats in Graal Era. This comprehensive guide covers all seven major jobs, their requirements, earnings potential, and expert tips to maximize your profits.</p>
                     </div>
                 </article>
 
                 <!-- Mining -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="mining-title">1. Mining</h2>
-                        <p id="mining-desc">Mining is one of the most stable, long-term money makers in Era.</p>
+                        <h2 id="mining-title" data-translate="mining-title">1. Mining</h2>
+                        <p id="mining-desc" data-translate="mining-desc">Mining is one of the most stable, long-term money makers in Era.</p>
                         
                         <div class="tip">
-                            <h3 id="mining-requirements">What you need:</h3>
+                            <h3 id="mining-requirements" data-translate="mining-requirements">What you need:</h3>
                             <ul>
-                                <li id="mining-tool">A <strong>drill</strong> (cost ≈ 140 Gralats)</li>
-                                <li id="mining-battery">Battery replacements (≈ 80 Gralats) once drill battery dies</li>
+                                <li id="mining-tool" data-translate="mining-tool">A <strong>drill</strong> (cost ≈ 140 Gralats)</li>
+                                <li id="mining-battery" data-translate="mining-battery">Battery replacements (≈ 80 Gralats) once drill battery dies</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="mining-how">How it works:</h3>
-                            <p id="mining-how-text">Mine rocks to gradually level up. At higher levels, rocks spawn faster, increasing your earning potential.</p>
+                            <h3 id="mining-how" data-translate="mining-how">How it works:</h3>
+                            <p id="mining-how-text" data-translate="mining-how-text">Mine rocks to gradually level up. At higher levels, rocks spawn faster, increasing your earning potential.</p>
                         </div>
                         
                         <div class="earnings">
-                            <h4 id="mining-earnings">Earnings:</h4>
-                            <p id="mining-earnings-text">At low level (level 0): <strong>≈ 500 Gralats/hour</strong></p>
-                            <p id="mining-earnings-note">Earnings increase at higher levels due to faster rock spawn rates</p>
+                            <h4 id="mining-earnings" data-translate="mining-earnings">Earnings:</h4>
+                            <p id="mining-earnings-text" data-translate="mining-earnings-text">At low level (level 0): <strong>≈ 500 Gralats/hour</strong></p>
+                            <p id="mining-earnings-note" data-translate="mining-earnings-note">Earnings increase at higher levels due to faster rock spawn rates</p>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="mining-tips">Tips:</h3>
+                            <h3 id="mining-tips" data-translate="mining-tips">Tips:</h3>
                             <ul>
-                                <li id="mining-tip-1">Rotate between several mining spots</li>
-                                <li id="mining-tip-2">Dont buy drill more than 1. Its useless, nothing happened.</li>
-                                <li id="mining-tip-3">Use mining to also get EC/achievements at key levels</li>
+                                <li id="mining-tip-1" data-translate="mining-tip-1">Rotate between several mining spots</li>
+                                <li id="mining-tip-2" data-translate="mining-tip-2">Don't buy more than one drill - it's unnecessary</li>
+                                <li id="mining-tip-3" data-translate="mining-tip-3">Use mining to also get EC/achievements at key levels</li>
                             </ul>
                         </div>
                     </div>
@@ -731,34 +937,34 @@
                 <!-- Pizza Making -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="pizza-title">2. Pizza Making (Speedy Pizza)</h2>
-                        <p id="pizza-desc">Fast, active job; good early money and rewards.</p>
+                        <h2 id="pizza-title" data-translate="pizza-title">2. Pizza Making (Speedy Pizza)</h2>
+                        <p id="pizza-desc" data-translate="pizza-desc">Fast, active job; good early money and rewards.</p>
                         
                         <div class="tip">
-                            <h3 id="pizza-requirements">What you need:</h3>
+                            <h3 id="pizza-requirements" data-translate="pizza-requirements">What you need:</h3>
                             <ul>
-                                <li id="pizza-tool"><strong>Pizza Peal</strong> tool (cost ≈ 40 Gralats)</li>
+                                <li id="pizza-tool" data-translate="pizza-tool"><strong>Pizza Peel</strong> tool (cost ≈ 40 Gralats)</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="pizza-how">How it works:</h3>
-                            <p id="pizza-how-text">Go to Speedy Pizza shop. Pick up box, sauce, cheese, toppings, bake in oven.</p>
-                            <p id="pizza-locations">Locations: Blackholst, Sea Side (Beach), Southridge, Veteran Pizzeria (unlock at ≈3,000 pizzas)</p>
+                            <h3 id="pizza-how" data-translate="pizza-how">How it works:</h3>
+                            <p id="pizza-how-text" data-translate="pizza-how-text">Go to Speedy Pizza shop. Pick up box, sauce, cheese, toppings, bake in oven.</p>
+                            <p id="pizza-locations" data-translate="pizza-locations">Locations: Blackholst, Sea Side (Beach), Southridge, Veteran Pizzeria (unlock at ≈3,000 pizzas)</p>
                         </div>
                         
                         <div class="earnings">
-                            <h4 id="pizza-earnings">Earnings:</h4>
-                            <p id="pizza-earnings-text">Each pizza: <strong>7-22 Gralats</strong> (depending on ingredients)</p>
-                            <p id="pizza-earnings-note">Estimated 3,000-20,000 Gralats/day with consistent work</p>
+                            <h4 id="pizza-earnings" data-translate="pizza-earnings">Earnings:</h4>
+                            <p id="pizza-earnings-text" data-translate="pizza-earnings-text">Each pizza: <strong>7-22 Gralats</strong> (depending on ingredients)</p>
+                            <p id="pizza-earnings-note" data-translate="pizza-earnings-note">Estimated 3,000-20,000 Gralats/day with consistent work</p>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="pizza-tips">Tips:</h3>
+                            <h3 id="pizza-tips" data-translate="pizza-tips">Tips:</h3>
                             <ul>
-                                <li id="pizza-tip-1">Go during off-peak hours for oven</li>
-                                <li id="pizza-tip-2">Use Veteran shop if unlocked (less crowded, faster)</li>
-                                <li id="pizza-tip-3">Dont empty your oven</li>
+                                <li id="pizza-tip-1" data-translate="pizza-tip-1">Go during off-peak hours for oven</li>
+                                <li id="pizza-tip-2" data-translate="pizza-tip-2">Use Veteran shop if unlocked (less crowded, faster)</li>
+                                <li id="pizza-tip-3" data-translate="pizza-tip-3">Don't empty your oven</li>
                             </ul>
                         </div>
                     </div>
@@ -767,31 +973,31 @@
                 <!-- Digging -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="digging-title">3. Digging / Shell Digging</h2>
-                        <p id="digging-desc">Digging shells or shells + sand is a mid-tier job; decent profit if you keep working.</p>
+                        <h2 id="digging-title" data-translate="digging-title">3. Digging / Shell Digging</h2>
+                        <p id="digging-desc" data-translate="digging-desc">Digging shells or shells + sand is a mid-tier job; decent profit if you keep working.</p>
                         
                         <div class="tip">
-                            <h3 id="digging-requirements">What you need:</h3>
+                            <h3 id="digging-requirements" data-translate="digging-requirements">What you need:</h3>
                             <ul>
-                                <li id="digging-tool">A <strong>shovel</strong> (≈50 Gralats)</li>
+                                <li id="digging-tool" data-translate="digging-tool">A <strong>shovel</strong> (≈50 Gralats)</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="digging-how">How it works:</h3>
-                            <p id="digging-how-text">Equip shovel, interact with sand spots. Shells/crab shells drop occasionally; crabs may appear and deal damage.</p>
+                            <h3 id="digging-how" data-translate="digging-how">How it works:</h3>
+                            <p id="digging-how-text" data-translate="digging-how-text">Equip shovel, interact with sand spots. Shells/crab shells drop occasionally; crabs may appear and deal damage.</p>
                         </div>
                         
                         <div class="earnings">
-                            <h4 id="digging-earnings">Earnings:</h4>
-                            <p id="digging-earnings-text">Crab shell: <strong>≈6 Gralats</strong>; other shells vary</p>
-                            <p id="digging-earnings-note">Realistic earnings lower than mining (high level)/pizza due to time between digs but good if you want to save for Trochus</p>
+                            <h4 id="digging-earnings" data-translate="digging-earnings">Earnings:</h4>
+                            <p id="digging-earnings-text" data-translate="digging-earnings-text">Crab shell: <strong>≈6 Gralats</strong>; other shells vary</p>
+                            <p id="digging-earnings-note" data-translate="digging-earnings-note">Realistic earnings lower than mining (high level)/pizza due to time between digs but good if you want to save for Trochus</p>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="digging-tips">Tips:</h3>
+                            <h3 id="digging-tips" data-translate="digging-tips">Tips:</h3>
                             <ul>
-                                <li id="digging-tip-1">Keep health topped up (crabs damage) by making another account with healing melee to heal you 24 hours.</li>
+                                <li id="digging-tip-1" data-translate="digging-tip-1">Keep health topped up (crabs damage) by making another account with healing melee to heal you 24 hours.</li>
                             </ul>
                         </div>
                     </div>
@@ -800,32 +1006,32 @@
                 <!-- Car Missions -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="missions-title">4. Car Missions (Delivery)</h2>
-                        <p id="missions-desc">High travel, decent payout if you know the map.</p>
+                        <h2 id="missions-title" data-translate="missions-title">4. Car Missions (Delivery)</h2>
+                        <p id="missions-desc" data-translate="missions-desc">High travel, decent payout if you know the map.</p>
                         
                         <div class="tip">
-                            <h3 id="missions-requirements">What you need:</h3>
+                            <h3 id="missions-requirements" data-translate="missions-requirements">What you need:</h3>
                             <ul>
-                                <li id="missions-tool">Access to mission via car mission NPCs</li>
-                                <li id="missions-vehicle">Own a car; map knowledge helps</li>
+                                <li id="missions-tool" data-translate="missions-tool">Access to mission via car mission NPCs</li>
+                                <li id="missions-vehicle" data-translate="missions-vehicle">Own a car; map knowledge helps</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="missions-how">How it works:</h3>
-                            <p id="missions-how-text">Pick up mission, drive to destinations, deliver passengers. Time & risk involved (you cant get damage if the passanger are with you in the car).</p>
+                            <h3 id="missions-how" data-translate="missions-how">How it works:</h3>
+                            <p id="missions-how-text" data-translate="missions-how-text">Pick up mission, drive to destinations, deliver passengers. Time & risk involved (you can't get damage if the passenger are with you in the car).</p>
                         </div>
                         
                         <div class="earnings">
-                            <h4 id="missions-earnings">Earnings:</h4>
-                            <p id="missions-earnings-text">Moderate — better than slow jobs but more risk/time</p>
+                            <h4 id="missions-earnings" data-translate="missions-earnings">Earnings:</h4>
+                            <p id="missions-earnings-text" data-translate="missions-earnings-text">Moderate — better than slow jobs but more risk/time</p>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="missions-tips">Tips:</h3>
+                            <h3 id="missions-tips" data-translate="missions-tips">Tips:</h3>
                             <ul>
-                                <li id="missions-tip-1">Car mission around VIP shop is the easiest</li>
-                                <li id="missions-tip-2">Know how to not get damage when you are trying to get a mission from the NPC in PK area</li>
+                                <li id="missions-tip-1" data-translate="missions-tip-1">Car mission around VIP shop is the easiest</li>
+                                <li id="missions-tip-2" data-translate="missions-tip-2">Know how to not get damage when you are trying to get a mission from the NPC in PK area</li>
                             </ul>
                         </div>
                     </div>
@@ -834,33 +1040,33 @@
                 <!-- Mushroom Picking -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="mushroom-title">5. Mushroom Picking</h2>
-                        <p id="mushroom-desc">Often underrated — good steady income if you have the tool.</p>
+                        <h2 id="mushroom-title" data-translate="mushroom-title">5. Mushroom Picking</h2>
+                        <p id="mushroom-desc" data-translate="mushroom-desc">Often underrated — good steady income if you have the tool.</p>
                         
                         <div class="tip">
-                            <h3 id="mushroom-requirements">What you need:</h3>
+                            <h3 id="mushroom-requirements" data-translate="mushroom-requirements">What you need:</h3>
                             <ul>
-                                <li id="mushroom-tool"><strong>Mushroom Knife</strong> (≈250 Gralats) from mushroom shop</li>
+                                <li id="mushroom-tool" data-translate="mushroom-tool"><strong>Mushroom Knife</strong> (≈250 Gralats) from mushroom shop</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="mushroom-how">How it works:</h3>
-                            <p id="mushroom-how-text">Find mushroom patches; use knife to pick mushrooms (fill progress to 100%) then sell.</p>
+                            <h3 id="mushroom-how" data-translate="mushroom-how">How it works:</h3>
+                            <p id="mushroom-how-text" data-translate="mushroom-how-text">Find mushroom patches; use knife to pick mushrooms (fill progress to 100%) then sell.</p>
                         </div>
                         
                         <div class="earnings">
-                            <h4 id="mushroom-earnings">Earnings:</h4>
-                            <p id="mushroom-earnings-text">Mushrooms sell for <strong>≈5 Gralats each</strong></p>
-                            <p id="mushroom-earnings-note">Earnings fluctuate based on pickup speed & competition</p>
+                            <h4 id="mushroom-earnings" data-translate="mushroom-earnings">Earnings:</h4>
+                            <p id="mushroom-earnings-text" data-translate="mushroom-earnings-text">Mushrooms sell for <strong>≈5 Gralats each</strong></p>
+                            <p id="mushroom-earnings-note" data-translate="mushroom-earnings-note">Earnings fluctuate based on pickup speed & competition</p>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="mushroom-tips">Tips:</h3>
+                            <h3 id="mushroom-tips" data-translate="mushroom-tips">Tips:</h3>
                             <ul>
-                                <li id="mushroom-tip-1">Go when fewer players are around patches</li>
-                                <li id="mushroom-tip-2">Attack the mushroom patches and another player at the same time (if they are trying to steal your mushroom) to increase your earning rate</li>
-                                <li id="mushroom-tip-3">Get OP mushroom knife that can poision or confused effect your competitiors</li>
+                                <li id="mushroom-tip-1" data-translate="mushroom-tip-1">Go when fewer players are around patches</li>
+                                <li id="mushroom-tip-2" data-translate="mushroom-tip-2">Attack the mushroom patches and another player at the same time (if they are trying to steal your mushroom) to increase your earning rate</li>
+                                <li id="mushroom-tip-3" data-translate="mushroom-tip-3">Get OP mushroom knife that can poison or confuse effect your competitors</li>
                             </ul>
                         </div>
                     </div>
@@ -869,32 +1075,32 @@
                 <!-- Trash Picking -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="trash-title">6. Trash Picking</h2>
-                        <p id="trash-desc">Easiest job to start; very low barrier.</p>
+                        <h2 id="trash-title" data-translate="trash-title">6. Trash Picking</h2>
+                        <p id="trash-desc" data-translate="trash-desc">Easiest job to start; very low barrier.</p>
                         
                         <div class="tip">
-                            <h3 id="trash-requirements">What you need:</h3>
+                            <h3 id="trash-requirements" data-translate="trash-requirements">What you need:</h3>
                             <ul>
-                                <li id="trash-tool"><strong>Trash pick</strong> (free at Recycling Depot)</li>
+                                <li id="trash-tool" data-translate="trash-tool"><strong>Trash pick</strong> (free at Recycling Depot)</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="trash-how">How it works:</h3>
-                            <p id="trash-how-text">Walk around streets & open areas outside buildings, pick up trash objects (paper, bottles, etc.).</p>
+                            <h3 id="trash-how" data-translate="trash-how">How it works:</h3>
+                            <p id="trash-how-text" data-translate="trash-how-text">Walk around streets & open areas outside buildings, pick up trash objects (paper, bottles, etc.).</p>
                         </div>
                         
                         <div class="earnings">
-                            <h4 id="trash-earnings">Earnings:</h4>
-                            <p id="trash-earnings-text">Trash items pay <strong>4-6 Gralats per piece</strong></p>
-                            <p id="trash-earnings-note">Overall earnings low – best as filler or beginner job</p>
+                            <h4 id="trash-earnings" data-translate="trash-earnings">Earnings:</h4>
+                            <p id="trash-earnings-text" data-translate="trash-earnings-text">Trash items pay <strong>4-6 Gralats per piece</strong></p>
+                            <p id="trash-earnings-note" data-translate="trash-earnings-note">Overall earnings low – best as filler or beginner job</p>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="trash-tips">Tips:</h3>
+                            <h3 id="trash-tips" data-translate="trash-tips">Tips:</h3>
                             <ul>
-                                <li id="trash-tip-1">Cover more ground; picking many small items adds up</li>
-                                <li id="trash-tip-2">Combine with walking or exploration to multitask</li>
+                                <li id="trash-tip-1" data-translate="trash-tip-1">Cover more ground; picking many small items adds up</li>
+                                <li id="trash-tip-2" data-translate="trash-tip-2">Combine with walking or exploration to multitask</li>
                             </ul>
                         </div>
                     </div>
@@ -903,30 +1109,30 @@
                 <!-- Fishing -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="fishing-title">7. Fishing</h2>
-                        <p id="fishing-desc">A relaxing job, high paced, less risky.</p>
+                        <h2 id="fishing-title" data-translate="fishing-title">7. Fishing</h2>
+                        <p id="fishing-desc" data-translate="fishing-desc">A relaxing job, high paced, less risky.</p>
                         
                         <div class="tip">
-                            <h3 id="fishing-requirements">What you need:</h3>
+                            <h3 id="fishing-requirements" data-translate="fishing-requirements">What you need:</h3>
                             <ul>
-                                <li id="fishing-tool">Fishing rod tool</li>
+                                <li id="fishing-tool" data-translate="fishing-tool">Fishing rod tool</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="fishing-how">How it works:</h3>
-                            <p id="fishing-how-text">Go to water areas, use rod, catch fish. Possibly lure under water or wait for fish to bite.</p>
+                            <h3 id="fishing-how" data-translate="fishing-how">How it works:</h3>
+                            <p id="fishing-how-text" data-translate="fishing-how-text">Go to water areas, use rod, catch fish. Possibly lure under water or wait for fish to bite.</p>
                         </div>
                         
                         <div class="earnings">
-                            <h4 id="fishing-earnings">Earnings:</h4>
-                            <p id="fishing-earnings-note">Considered high income but fish cant be traded</p>
+                            <h4 id="fishing-earnings" data-translate="fishing-earnings">Earnings:</h4>
+                            <p id="fishing-earnings-note" data-translate="fishing-earnings-note">Considered high income but fish can't be traded</p>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="fishing-tips">Tips:</h3>
+                            <h3 id="fishing-tips" data-translate="fishing-tips">Tips:</h3>
                             <ul>
-                                <li id="fishing-tip-1">Keep fishing to lvl up</li>
+                                <li id="fishing-tip-1" data-translate="fishing-tip-1">Keep fishing to level up</li>
                             </ul>
                         </div>
                     </div>
@@ -934,6 +1140,66 @@
 
             </div>
 
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <h3 id="job-comparison-title" data-translate="job-comparison-title">Job Comparison</h3>
+                    <table class="job-table">
+                        <thead>
+                            <tr>
+                                <th data-translate="job-name">Job</th>
+                                <th data-translate="job-earnings">Earnings/Hour</th>
+                                <th data-translate="job-difficulty">Difficulty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-translate="job-mining">Mining</td>
+                                <td data-translate="mining-rate">500-1000+</td>
+                                <td data-translate="mining-diff">Medium</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="job-pizza">Pizza Making</td>
+                                <td data-translate="pizza-rate">600-1200</td>
+                                <td data-translate="pizza-diff">Medium</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="job-digging">Digging</td>
+                                <td data-translate="digging-rate">300-600</td>
+                                <td data-translate="digging-diff">Easy</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="job-missions">Car Missions</td>
+                                <td data-translate="missions-rate">400-800</td>
+                                <td data-translate="missions-diff">Hard</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="job-mushroom">Mushroom Picking</td>
+                                <td data-translate="mushroom-rate">350-700</td>
+                                <td data-translate="mushroom-diff">Easy</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="job-trash">Trash Picking</td>
+                                <td data-translate="trash-rate">200-400</td>
+                                <td data-translate="trash-diff">Very Easy</td>
+                            </tr>
+                            <tr>
+                                <td data-translate="job-fishing">Fishing</td>
+                                <td data-translate="fishing-rate">400-900</td>
+                                <td data-translate="fishing-diff">Easy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="ad-title" data-translate="ad-title">Advertisement</h3>
+                    <div class="ad-container">
+                        <span class="ad-label" data-translate="ad-label">Advertisements</span>
+                        <!-- AdSense Ad Unit -->
+                        <div style="color: var(--text-muted);">Responsive Ad Unit</div>
+                    </div>
+                </div>  
+            </div>
         </div>
     </div>
 
@@ -941,43 +1207,511 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title-footer">About GraalGuide</h3>
-                    <p id="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
-                    <p><em id="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                    <h3 id="about-title-footer" data-translate="about-title-footer">About GraalGuide</h3>
+                    <p id="about-desc-footer" data-translate="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p><em id="disclaimer-footer" data-translate="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3 id="links-title-footer">Quick Links</h3>
+                    <h3 id="links-title-footer" data-translate="links-title-footer">Quick Links</h3>
                     <ul>
-                        <li><a href="index.html" id="link-home-footer">Home</a></li>
-                        <li><a href="secret-achievements.html" id="link-achievements-footer">Secret Achievements</a></li>
-                        <li><a href="eventsguide.html" id="link-events-footer">Event Coins Guide</a></li>
-                        <li><a href="workguide.html" id="link-gralats-footer">Get Gralats</a></li>
+                        <li><a href="index.html" id="link-home-footer" data-translate="link-home-footer">Home</a></li>
+                        <li><a href="secret-achievements.html" id="link-achievements-footer" data-translate="link-achievements-footer">Secret Achievements</a></li>
+                        <li><a href="eventsguide.html" id="link-events-footer" data-translate="link-events-footer">Event Coins Guide</a></li>
+                        <li><a href="workguide.html" id="link-gralats-footer" data-translate="link-gralats-footer">Get Gralats</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="legal-title-footer">Legal & Policies</h3>
+                    <h3 id="legal-title-footer" data-translate="legal-title-footer">Legal & Policies</h3>
                     <ul>
-                        <li><a href="PrivacyPolicy.html" id="link-privacy-footer">Privacy Policy</a></li>
-                        <li><a href="TermsConditions.html" id="link-terms-footer">Terms of Service</a></li>
-                        <li><a href="#" id="link-cookie-footer">Cookie Policy</a></li>
-                        <li><a href="Disclaimer.html" id="link-disclaimer-footer">Disclaimer</a></li>
+                        <li><a href="PrivacyPolicy.html" id="link-privacy-footer" data-translate="link-privacy-footer">Privacy Policy</a></li>
+                        <li><a href="TermsConditions.html" id="link-terms-footer" data-translate="link-terms-footer">Terms of Service</a></li>
+                        <li><a href="cookiepolicy.html" id="link-cookie-footer" data-translate="link-cookie-footer">Cookie Policy</a></li>
+                        <li><a href="Disclaimer.html" id="link-disclaimer-footer" data-translate="link-disclaimer-footer">Disclaimer</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="connect-title-footer">Connect</h3>
+                    <h3 id="connect-title-footer" data-translate="connect-title-footer">Connect</h3>
                     <ul>
-                        <li><a href="#" id="link-discord-footer">Our Discord Server</a></li>
-                        <li><a href="#" id="link-youtube-footer">YouTube</a></li>
-                        <li><a href="ContactUs.html" id="link-contact-footer">Contact Us</a></li>
+                        <li><a href="#" id="link-discord-footer" data-translate="link-discord-footer">Our Discord Server</a></li>
+                        <li><a href="#" id="link-youtube-footer" data-translate="link-youtube-footer">YouTube</a></li>
+                        <li><a href="ContactUs.html" id="link-contact-footer" data-translate="link-contact-footer">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright-footer">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright-footer" data-translate="copyright-footer">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
             </div>
         </div>
     </footer>
 
-    
+    <script>
+        // Language translation data
+        const translations = {
+            'en': {
+                'hero-title': 'Master Graal Era Jobs',
+                'hero-description': 'Learn strategies, tools, and tips for Mining, Pizza Making, Digging, and more.',
+                'tag-jobs': 'Jobs',
+                'tag-guide': 'Guide',
+                'intro-title': 'Introduction to Graal Era Jobs',
+                'intro-date': 'Updated on January 1, 2026',
+                'intro-text': 'Jobs are essential for earning Gralats in Graal Era. This comprehensive guide covers all seven major jobs, their requirements, earnings potential, and expert tips to maximize your profits.',
+                'mining-title': '1. Mining',
+                'mining-desc': 'Mining is one of the most stable, long-term money makers in Era.',
+                'mining-requirements': 'What you need:',
+                'mining-tool': 'A drill (cost ≈ 140 Gralats)',
+                'mining-battery': 'Battery replacements (≈ 80 Gralats) once drill battery dies',
+                'mining-how': 'How it works:',
+                'mining-how-text': 'Mine rocks to gradually level up. At higher levels, rocks spawn faster, increasing your earning potential.',
+                'mining-earnings': 'Earnings:',
+                'mining-earnings-text': 'At low level (level 0): ≈ 500 Gralats/hour',
+                'mining-earnings-note': 'Earnings increase at higher levels due to faster rock spawn rates',
+                'mining-tips': 'Tips:',
+                'mining-tip-1': 'Rotate between several mining spots',
+                'mining-tip-2': 'Don\'t buy more than one drill - it\'s unnecessary',
+                'mining-tip-3': 'Use mining to also get EC/achievements at key levels',
+                'pizza-title': '2. Pizza Making (Speedy Pizza)',
+                'pizza-desc': 'Fast, active job; good early money and rewards.',
+                'pizza-requirements': 'What you need:',
+                'pizza-tool': 'Pizza Peel tool (cost ≈ 40 Gralats)',
+                'pizza-how': 'How it works:',
+                'pizza-how-text': 'Go to Speedy Pizza shop. Pick up box, sauce, cheese, toppings, bake in oven.',
+                'pizza-locations': 'Locations: Blackholst, Sea Side (Beach), Southridge, Veteran Pizzeria (unlock at ≈3,000 pizzas)',
+                'pizza-earnings': 'Earnings:',
+                'pizza-earnings-text': 'Each pizza: 7-22 Gralats (depending on ingredients)',
+                'pizza-earnings-note': 'Estimated 3,000-20,000 Gralats/day with consistent work',
+                'pizza-tips': 'Tips:',
+                'pizza-tip-1': 'Go during off-peak hours for oven',
+                'pizza-tip-2': 'Use Veteran shop if unlocked (less crowded, faster)',
+                'pizza-tip-3': 'Don\'t empty your oven',
+                'digging-title': '3. Digging / Shell Digging',
+                'digging-desc': 'Digging shells or shells + sand is a mid-tier job; decent profit if you keep working.',
+                'digging-requirements': 'What you need:',
+                'digging-tool': 'A shovel (≈50 Gralats)',
+                'digging-how': 'How it works:',
+                'digging-how-text': 'Equip shovel, interact with sand spots. Shells/crab shells drop occasionally; crabs may appear and deal damage.',
+                'digging-earnings': 'Earnings:',
+                'digging-earnings-text': 'Crab shell: ≈6 Gralats; other shells vary',
+                'digging-earnings-note': 'Realistic earnings lower than mining (high level)/pizza due to time between digs but good if you want to save for Trochus',
+                'digging-tips': 'Tips:',
+                'digging-tip-1': 'Keep health topped up (crabs damage) by making another account with healing melee to heal you 24 hours.',
+                'missions-title': '4. Car Missions (Delivery)',
+                'missions-desc': 'High travel, decent payout if you know the map.',
+                'missions-requirements': 'What you need:',
+                'missions-tool': 'Access to mission via car mission NPCs',
+                'missions-vehicle': 'Own a car; map knowledge helps',
+                'missions-how': 'How it works:',
+                'missions-how-text': 'Pick up mission, drive to destinations, deliver passengers. Time & risk involved (you can\'t get damage if the passenger are with you in the car).',
+                'missions-earnings': 'Earnings:',
+                'missions-earnings-text': 'Moderate — better than slow jobs but more risk/time',
+                'missions-tips': 'Tips:',
+                'missions-tip-1': 'Car mission around VIP shop is the easiest',
+                'missions-tip-2': 'Know how to not get damage when you are trying to get a mission from the NPC in PK area',
+                'mushroom-title': '5. Mushroom Picking',
+                'mushroom-desc': 'Often underrated — good steady income if you have the tool.',
+                'mushroom-requirements': 'What you need:',
+                'mushroom-tool': 'Mushroom Knife (≈250 Gralats) from mushroom shop',
+                'mushroom-how': 'How it works:',
+                'mushroom-how-text': 'Find mushroom patches; use knife to pick mushrooms (fill progress to 100%) then sell.',
+                'mushroom-earnings': 'Earnings:',
+                'mushroom-earnings-text': 'Mushrooms sell for ≈5 Gralats each',
+                'mushroom-earnings-note': 'Earnings fluctuate based on pickup speed & competition',
+                'mushroom-tips': 'Tips:',
+                'mushroom-tip-1': 'Go when fewer players are around patches',
+                'mushroom-tip-2': 'Attack the mushroom patches and another player at the same time (if they are trying to steal your mushroom) to increase your earning rate',
+                'mushroom-tip-3': 'Get OP mushroom knife that can poison or confuse effect your competitors',
+                'trash-title': '6. Trash Picking',
+                'trash-desc': 'Easiest job to start; very low barrier.',
+                'trash-requirements': 'What you need:',
+                'trash-tool': 'Trash pick (free at Recycling Depot)',
+                'trash-how': 'How it works:',
+                'trash-how-text': 'Walk around streets & open areas outside buildings, pick up trash objects (paper, bottles, etc.).',
+                'trash-earnings': 'Earnings:',
+                'trash-earnings-text': 'Trash items pay 4-6 Gralats per piece',
+                'trash-earnings-note': 'Overall earnings low – best as filler or beginner job',
+                'trash-tips': 'Tips:',
+                'trash-tip-1': 'Cover more ground; picking many small items adds up',
+                'trash-tip-2': 'Combine with walking or exploration to multitask',
+                'fishing-title': '7. Fishing',
+                'fishing-desc': 'A relaxing job, high paced, less risky.',
+                'fishing-requirements': 'What you need:',
+                'fishing-tool': 'Fishing rod tool',
+                'fishing-how': 'How it works:',
+                'fishing-how-text': 'Go to water areas, use rod, catch fish. Possibly lure under water or wait for fish to bite.',
+                'fishing-earnings': 'Earnings:',
+                'fishing-earnings-note': 'Considered high income but fish can\'t be traded',
+                'fishing-tips': 'Tips:',
+                'fishing-tip-1': 'Keep fishing to level up',
+                'job-comparison-title': 'Job Comparison',
+                'job-name': 'Job',
+                'job-earnings': 'Earnings/Hour',
+                'job-difficulty': 'Difficulty',
+                'job-mining': 'Mining',
+                'mining-rate': '500-1000+',
+                'mining-diff': 'Medium',
+                'job-pizza': 'Pizza Making',
+                'pizza-rate': '600-1200',
+                'pizza-diff': 'Medium',
+                'job-digging': 'Digging',
+                'digging-rate': '300-600',
+                'digging-diff': 'Easy',
+                'job-missions': 'Car Missions',
+                'missions-rate': '400-800',
+                'missions-diff': 'Hard',
+                'job-mushroom': 'Mushroom Picking',
+                'mushroom-rate': '350-700',
+                'mushroom-diff': 'Easy',
+                'job-trash': 'Trash Picking',
+                'trash-rate': '200-400',
+                'trash-diff': 'Very Easy',
+                'job-fishing': 'Fishing',
+                'fishing-rate': '400-900',
+                'fishing-diff': 'Easy',
+                'about-title-footer': 'About GraalGuide',
+                'about-desc-footer': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
+                'disclaimer-footer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
+                'links-title-footer': 'Quick Links',
+                'link-home-footer': 'Home',
+                'link-achievements-footer': 'Secret Achievements',
+                'link-events-footer': 'Event Coins Guide',
+                'link-gralats-footer': 'Get Gralats',
+                'legal-title-footer': 'Legal & Policies',
+                'link-privacy-footer': 'Privacy Policy',
+                'link-terms-footer': 'Terms of Service',
+                'link-cookie-footer': 'Cookie Policy',
+                'link-disclaimer-footer': 'Disclaimer',
+                'connect-title-footer': 'Connect',
+                'link-discord-footer': 'Our Discord Server',
+                'link-youtube-footer': 'YouTube',
+                'link-contact-footer': 'Contact Us',
+                'copyright-footer': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
+                'ad-title': 'Advertisement',
+                'ad-label': 'Advertisements',
+                // Navigation
+                'nav-home': 'Home',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guides - How to?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Trade',
+                'nav-gralats-guide': 'Get Gralats',
+                'nav-events-guide': 'Get Event Coins',
+                'nav-trade': 'Trade Table',
+                'nav-calculator': 'Sellables Calculator',
+                'nav-ratio': 'Ratio History',
+                'nav-profit': 'Profit & Loss Tracker',
+                'nav-price': 'Price House',
+                'nav-achievements': 'Secret Achievements',
+                // Language selector
+                'language-en': 'English',
+                'language-pt': 'Português'
+            },
+            'pt': {
+                'hero-title': 'Domine os Empregos do Graal Era',
+                'hero-description': 'Aprenda estratégias, ferramentas e dicas para Mineração, Fabricação de Pizza, Escavação e muito mais.',
+                'tag-jobs': 'Empregos',
+                'tag-guide': 'Guia',
+                'intro-title': 'Introdução aos Empregos do Graal Era',
+                'intro-date': 'Atualizado em 1 de Janeiro de 2026',
+                'intro-text': 'Empregos são essenciais para ganhar Gralats no Graal Era. Este guia abrangente cobre todos os sete principais empregos, seus requisitos, potencial de ganhos e dicas especializadas para maximizar seus lucros.',
+                'mining-title': '1. Mineração',
+                'mining-desc': 'A mineração é uma das formas mais estáveis e de longo prazo de ganhar dinheiro no Era.',
+                'mining-requirements': 'O que você precisa:',
+                'mining-tool': 'Uma furadeira (custo ≈ 140 Gralats)',
+                'mining-battery': 'Substituições de bateria (≈ 80 Gralats) quando a bateria da furadeira acabar',
+                'mining-how': 'Como funciona:',
+                'mining-how-text': 'Mine rochas para subir de nível gradualmente. Em níveis mais altos, as rochas aparecem mais rápido, aumentando seu potencial de ganho.',
+                'mining-earnings': 'Ganhos:',
+                'mining-earnings-text': 'Em nível baixo (nível 0): ≈ 500 Gralats/hora',
+                'mining-earnings-note': 'Os ganhos aumentam em níveis mais altos devido às taxas mais rápidas de aparecimento de rochas',
+                'mining-tips': 'Dicas:',
+                'mining-tip-1': 'Gire entre vários pontos de mineração',
+                'mining-tip-2': 'Não compre mais de uma furadeira - é desnecessário',
+                'mining-tip-3': 'Use a mineração para também conseguir EC/conquistas em níveis-chave',
+                'pizza-title': '2. Fabricação de Pizza (Speedy Pizza)',
+                'pizza-desc': 'Trabalho rápido e ativo; bom dinheiro inicial e recompensas.',
+                'pizza-requirements': 'O que você precisa:',
+                'pizza-tool': 'Ferramenta de Pizza Peel (custo ≈ 40 Gralats)',
+                'pizza-how': 'Como funciona:',
+                'pizza-how-text': 'Vá à loja Speedy Pizza. Pegue a caixa, molho, queijo, coberturas, asse no forno.',
+                'pizza-locations': 'Localizações: Blackholst, Sea Side (Praia), Southridge, Pizzaria Veterana (desbloqueia em ≈3.000 pizzas)',
+                'pizza-earnings': 'Ganhos:',
+                'pizza-earnings-text': 'Cada pizza: 7-22 Gralats (dependendo dos ingredientes)',
+                'pizza-earnings-note': 'Estimativa de 3.000-20.000 Gralats/dia com trabalho consistente',
+                'pizza-tips': 'Dicas:',
+                'pizza-tip-1': 'Vá durante horários de menor movimento para o forno',
+                'pizza-tip-2': 'Use a loja Veterana se desbloqueada (menos lotada, mais rápida)',
+                'pizza-tip-3': 'Não esvazie seu forno',
+                'digging-title': '3. Escavação / Escavação de Conchas',
+                'digging-desc': 'Escavar conchas ou conchas + areia é um trabalho de nível médio; lucro decente se você continuar trabalhando.',
+                'digging-requirements': 'O que você precisa:',
+                'digging-tool': 'Uma pá (≈50 Gralats)',
+                'digging-how': 'Como funciona:',
+                'digging-how-text': 'Equipe a pá, interaja com pontos de areia. Conchas/caranguejos caem ocasionalmente; caranguejos podem aparecer e causar dano.',
+                'digging-earnings': 'Ganhos:',
+                'digging-earnings-text': 'Concha de caranguejo: ≈6 Gralats; outras conchas variam',
+                'digging-earnings-note': 'Ganhos realistas menores que mineração (alto nível)/pizza devido ao tempo entre escavações, mas bom se você quiser economizar para Trochus',
+                'digging-tips': 'Dicas:',
+                'digging-tip-1': 'Mantenha a saúde no máximo (danos de caranguejos) criando outra conta com melee de cura para curar você 24 horas por dia.',
+                'missions-title': '4. Missões de Carro (Entrega)',
+                'missions-desc': 'Muita viagem, pagamento decente se você conhecer o mapa.',
+                'missions-requirements': 'O que você precisa:',
+                'missions-tool': 'Acesso à missão via NPCs de missão de carro',
+                'missions-vehicle': 'Possuir um carro; conhecimento do mapa ajuda',
+                'missions-how': 'Como funciona:',
+                'missions-how-text': 'Pegue a missão, dirija até os destinos, entregue passageiros. Tempo e risco envolvidos (você não pode sofrer dano se o passageiro estiver com você no carro).',
+                'missions-earnings': 'Ganhos:',
+                'missions-earnings-text': 'Moderado — melhor que trabalhos lentos, mas mais risco/tempo',
+                'missions-tips': 'Dicas:',
+                'missions-tip-1': 'Missão de carro perto da loja VIP é a mais fácil',
+                'missions-tip-2': 'Saiba como não sofrer dano quando estiver tentando conseguir uma missão do NPC na área PK',
+                'mushroom-title': '5. Coleta de Cogumelos',
+                'mushroom-desc': 'Muitas vezes subestimada — boa renda estável se você tiver a ferramenta.',
+                'mushroom-requirements': 'O que você precisa:',
+                'mushroom-tool': 'Faca de Cogumelos (≈250 Gralats) da loja de cogumelos',
+                'mushroom-how': 'Como funciona:',
+                'mushroom-how-text': 'Encontre manchas de cogumelos; use a faca para colher cogumelos (preencha o progresso até 100%) e depois venda.',
+                'mushroom-earnings': 'Ganhos:',
+                'mushroom-earnings-text': 'Cogumelos vendem por ≈5 Gralats cada',
+                'mushroom-earnings-note': 'Os ganhos flutuam com base na velocidade de coleta e competição',
+                'mushroom-tips': 'Dicas:',
+                'mushroom-tip-1': 'Vá quando menos jogadores estiverem perto das manchas',
+                'mushroom-tip-2': 'Atacar as manchas de cogumelos e outro jogador ao mesmo tempo (se eles estiverem tentando roubar seu cogumelo) para aumentar sua taxa de ganho',
+                'mushroom-tip-3': 'Obtenha uma faca de cogumelos OP que possa envenenar ou confundir seus concorrentes',
+                'trash-title': '6. Coleta de Lixo',
+                'trash-desc': 'Trabalho mais fácil para começar; barreira muito baixa.',
+                'trash-requirements': 'O que você precisa:',
+                'trash-tool': 'Coletor de lixo (grátis no Depósito de Reciclagem)',
+                'trash-how': 'Como funciona:',
+                'trash-how-text': 'Ande pelas ruas e áreas abertas fora dos prédios, pegue objetos de lixo (papel, garrafas, etc.).',
+                'trash-earnings': 'Ganhos:',
+                'trash-earnings-text': 'Itens de lixo pagam 4-6 Gralats por peça',
+                'trash-earnings-note': 'Ganhos totais baixos – melhor como complemento ou trabalho para iniciantes',
+                'trash-tips': 'Dicas:',
+                'trash-tip-1': 'Cubra mais terreno; coletar muitos itens pequenos soma',
+                'trash-tip-2': 'Combine com caminhada ou exploração para multitarefa',
+                'fishing-title': '7. Pesca',
+                'fishing-desc': 'Um trabalho relaxante, ritmo acelerado, menos arriscado.',
+                'fishing-requirements': 'O que você precisa:',
+                'fishing-tool': 'Ferramenta de vara de pesca',
+                'fishing-how': 'Como funciona:',
+                'fishing-how-text': 'Vá para áreas de água, use a vara, pegue peixes. Possivelmente isca debaixo d\'água ou espere o peixe morder.',
+                'fishing-earnings': 'Ganhos:',
+                'fishing-earnings-note': 'Considerada alta renda, mas peixes não podem ser negociados',
+                'fishing-tips': 'Dicas:',
+                'fishing-tip-1': 'Continue pescando para subir de nível',
+                'job-comparison-title': 'Comparação de Empregos',
+                'job-name': 'Emprego',
+                'job-earnings': 'Ganhos/Hora',
+                'job-difficulty': 'Dificuldade',
+                'job-mining': 'Mineração',
+                'mining-rate': '500-1000+',
+                'mining-diff': 'Médio',
+                'job-pizza': 'Fabricação de Pizza',
+                'pizza-rate': '600-1200',
+                'pizza-diff': 'Médio',
+                'job-digging': 'Escavação',
+                'digging-rate': '300-600',
+                'digging-diff': 'Fácil',
+                'job-missions': 'Missões de Carro',
+                'missions-rate': '400-800',
+                'missions-diff': 'Difícil',
+                'job-mushroom': 'Coleta de Cogumelos',
+                'mushroom-rate': '350-700',
+                'mushroom-diff': 'Fácil',
+                'job-trash': 'Coleta de Lixo',
+                'trash-rate': '200-400',
+                'trash-diff': 'Muito Fácil',
+                'job-fishing': 'Pesca',
+                'fishing-rate': '400-900',
+                'fishing-diff': 'Fácil',
+                'about-title-footer': 'Sobre o GraalGuide',
+                'about-desc-footer': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
+                'disclaimer-footer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
+                'links-title-footer': 'Links Rápidos',
+                'link-home-footer': 'Início',
+                'link-achievements-footer': 'Conquistas Secretas',
+                'link-events-footer': 'Guia de Moedas de Evento',
+                'link-gralats-footer': 'Obter Gralats',
+                'legal-title-footer': 'Legal e Políticas',
+                'link-privacy-footer': 'Política de Privacidade',
+                'link-terms-footer': 'Termos de Serviço',
+                'link-cookie-footer': 'Política de Cookies',
+                'link-disclaimer-footer': 'Aviso Legal',
+                'connect-title-footer': 'Conectar',
+                'link-discord-footer': 'Nosso Servidor no Discord',
+                'link-youtube-footer': 'YouTube',
+                'link-contact-footer': 'Contate-Nos',
+                'copyright-footer': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
+                'ad-title': 'Publicidade',
+                'ad-label': 'Anúncios',
+                // Navigation
+                'nav-home': 'Início',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guias - Como?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Troca',
+                'nav-gralats-guide': 'Obter Gralats',
+                'nav-events-guide': 'Obter Moedas de Evento',
+                'nav-trade': 'Tabela de Troca',
+                'nav-calculator': 'Calculadora de Vendáveis',
+                'nav-ratio': 'Histórico de Ratios',
+                'nav-profit': 'Rastrear Lucro & Perda',
+                'nav-price': 'Casa de Preços',
+                'nav-achievements': 'Conquistas Secretas',
+                // Language selector
+                'language-en': 'Inglês',
+                'language-pt': 'Português'
+            }
+        };
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update language buttons
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                const flagImg = btn.querySelector('img');
+                const langText = btn.querySelector('span');
+                
+                if (lang === 'en') {
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
+                    langText.textContent = translations[lang]['language-en'];
+                } else if (lang === 'pt') {
+                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
+                    langText.textContent = translations[lang]['language-pt'];
+                }
+            });
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved language preference or default to English
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+                
+                // Close dropdowns when menu is toggled on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Mobile language selector toggle
+            const mobileLanguageBtn = document.getElementById('mobile-language-btn');
+            const mobileLanguageOptions = document.getElementById('mobile-language-options');
+            
+            mobileLanguageBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickInsideMenuBtn = mobileMenuBtn.contains(event.target);
+                
+                if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+                
+                // Close mobile language options when clicking outside
+                if (!mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
+                    mobileLanguageOptions.style.display = 'none';
+                }
+            });
+            
+            // Language selection event listeners
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    
+                    // Close mobile language options after selection
+                    document.getElementById('mobile-language-options').style.display = 'none';
+                });
+            });
+            
+            // Handle dropdown toggles on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll('.dropdown').forEach(item => {
+                            if (item !== dropdown) {
+                                item.classList.remove('active');
+                                item.querySelector('.dropdown-menu').style.display = 'none';
+                            }
+                        });
+                        
+                        // Toggle this dropdown
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
+            
+            // Handle desktop dropdown hover
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+                
+                // Desktop language selector
+                const languageSelector = document.querySelector('.language-selector');
+                languageSelector.addEventListener('mouseenter', function() {
+                    this.querySelector('.language-options').style.display = 'block';
+                });
+                
+                languageSelector.addEventListener('mouseleave', function() {
+                    this.querySelector('.language-options').style.display = 'none';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
