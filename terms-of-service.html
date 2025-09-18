@@ -37,7 +37,7 @@
         body { 
             background-color: var(--dark-bg); 
             color: var(--text-color); 
-            line-height: 1.6;
+            line-height: 1.6; 
             font-size: var(--font-md);
         }
         
@@ -73,11 +73,18 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            position: relative;
         }
         
         .logo { 
             font-size: var(--font-2xl); 
             font-weight: 800; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo a {
+            color: white;
             display: flex;
             align-items: center;
         }
@@ -121,6 +128,18 @@
             width: 100%;
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
+        }
+
         /* Language Selector */
         .language-selector {
             margin-left: 20px;
@@ -138,6 +157,7 @@
             align-items: center;
             transition: all 0.3s ease;
             font-size: var(--font-sm);
+            height: 40px;
         }
         
         .language-btn:hover {
@@ -146,6 +166,8 @@
         
         .language-btn img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 8px;
         }
         
@@ -177,22 +199,13 @@
         
         .language-options a img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 10px;
         }
         
         .language-selector:hover .language-options {
             display: block;
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            font-size: var(--font-2xl);
-            cursor: pointer;
-            padding: 5px 10px;
         }
 
         /* Dropdown Menu */
@@ -235,22 +248,39 @@
 
         /* Page Header */
         .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            padding: 60px 0;
+            color: white;
             text-align: center;
-            padding: 60px 0 30px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
         }
         
         .page-header h1 {
             font-size: var(--font-3xl);
             margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             font-weight: 800;
+            position: relative;
         }
         
         .page-header p {
-            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
             font-size: var(--font-lg);
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
         }
 
         /* Content Sections */
@@ -353,20 +383,56 @@
             color: var(--text-muted); 
         }
 
+        /* Mobile Language Selector */
+        .mobile-language-selector {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+        }
+        
+        .mobile-language-selector .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .container {
                 padding: 0 20px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .page-header h1 {
-                font-size: var(--font-2xl);
-            }
-            
-            .page-header p {
-                font-size: var(--font-md);
             }
         }
         
@@ -384,19 +450,22 @@
             
             .header-content { 
                 flex-direction: row;
+                align-items: center;
             }
             
             nav {
                 display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 70px;
                 left: 0;
                 right: 0;
+                bottom: 0;
                 background: var(--darker-bg);
-                padding: 15px;
+                padding: 20px;
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
                 z-index: 999;
-                border-top: 1px solid var(--border-color);
+                overflow-y: auto;
+                transition: all 0.3s ease;
             }
             
             nav.active {
@@ -419,14 +488,35 @@
                 margin: 10px 0;
                 border: none;
                 background: var(--dark-bg);
+                display: none;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                display: block;
             }
             
             .mobile-menu-btn {
                 display: block;
             }
             
-            .page-header {
-                padding: 40px 0 20px;
+            .language-selector {
+                display: none;
+            }
+            
+            .mobile-language-selector {
+                display: block;
+            }
+            
+            .page-header { 
+                padding: 40px 0;
+            }
+            
+            .page-header h1 {
+                font-size: var(--font-2xl);
+            }
+            
+            .page-header p {
+                font-size: var(--font-md);
             }
             
             .content-section {
@@ -436,10 +526,6 @@
             .footer-content { 
                 flex-direction: column; 
                 gap: 20px;
-            }
-            
-            .language-selector {
-                margin: 10px 0 0;
             }
         }
         
@@ -460,7 +546,11 @@
             }
             
             .page-header {
-                padding: 30px 0 15px;
+                padding: 30px 0;
+            }
+            
+            .page-header h1 {
+                font-size: var(--font-xl);
             }
             
             .content-section {
@@ -472,6 +562,15 @@
             }
         }
 
+        /* Language Toggle */
+        .language-content {
+            display: none;
+        }
+        
+        .language-content.active {
+            display: block;
+        }
+        
         /* Prevent zoom on focus for iOS */
         @media screen and (max-width: 768px) {
             input, select, textarea {
@@ -485,11 +584,11 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="index.html" style="color: inherit;">
+                    <a href="index.html">
                         <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                     </a>
                 </div>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
                 <nav id="main-nav">
                     <ul>
                         <li><a href="index.html" data-translate="nav-home">Home</a></li>
@@ -520,19 +619,37 @@
                         </li>
                         <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
+                    
+                    <!-- Mobile Language Selector -->
+                    <div class="mobile-language-selector">
+                        <button class="language-btn" id="mobile-language-btn">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
+                            <span data-translate="language-en">English</span>
+                        </button>
+                        <div class="mobile-language-options" id="mobile-language-options">
+                            <a href="#" data-lang="en">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                <span data-translate="language-en">English</span>
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                <span data-translate="language-pt">Português</span>
+                            </a>
+                        </div>
+                    </div>
                 </nav>
                 <div class="language-selector">
                     <button class="language-btn" id="current-language">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                        <img src="https://flagcdn.com/w40/us.png" alt="English">
                         <span data-translate="language-en">English</span>
                     </button>
                     <div class="language-options">
                         <a href="#" data-lang="en">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
                             <span data-translate="language-en">English</span>
                         </a>
                         <a href="#" data-lang="pt">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                            <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                             <span data-translate="language-pt">Português</span>
                         </a>
                     </div>
@@ -541,12 +658,14 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="page-header">
+    <div class="page-header">
+        <div class="container">
             <h1 id="tos-title">Terms of Service</h1>
             <p id="tos-subtitle">Effective Date: September 9, 2025</p>
         </div>
+    </div>
 
+    <div class="container">
         <!-- English Content -->
         <div class="language-content active" id="content-en">
             <div class="content-section">
@@ -637,7 +756,7 @@
 
             <div class="content-section">
                 <h2>5. Links de Terceiros</h2>
-                <p>Nosso site pode conter links para sites externos (ex: YouTube, páginas da comunidade, sites oficiais de upload).</p>
+                <p>Nosso site pode conectar a sites externos (ex: YouTube, páginas da comunidade, sites oficiais de upload).</p>
                 <p>Não somos responsáveis pelo conteúdo, políticas ou práticas de sites de terceiros.</p>
             </div>
 
@@ -821,18 +940,20 @@
             document.getElementById('tos-title').textContent = translations[lang]['tos-title'];
             document.getElementById('tos-subtitle').textContent = translations[lang]['tos-subtitle'];
             
-            // Update language button
-            const languageBtn = document.getElementById('current-language');
-            const flagImg = languageBtn.querySelector('img');
-            const langText = languageBtn.querySelector('span');
-            
-            if (lang === 'en') {
-                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
-                langText.textContent = 'English';
-            } else if (lang === 'pt') {
-                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
-                langText.textContent = 'Português';
-            }
+            // Update language buttons
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                const flagImg = btn.querySelector('img');
+                const langText = btn.querySelector('span');
+                
+                if (lang === 'en') {
+                    flagImg.src = 'https://flagcdn.com/w40/us.png';
+                    langText.textContent = translations[lang]['language-en'];
+                } else if (lang === 'pt') {
+                    flagImg.src = 'https://flagcdn.com/w40/br.png';
+                    langText.textContent = translations[lang]['language-pt'];
+                }
+            });
             
             // Toggle language content visibility
             document.getElementById('content-en').classList.toggle('active', lang === 'en');
@@ -842,29 +963,54 @@
             localStorage.setItem('preferredLanguage', lang);
         }
 
-        // Initialize language
+        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            // Check for saved language preference
-            const savedLang = localStorage.getItem('preferredLanguage');
-            if (savedLang) {
-                changeLanguage(savedLang);
+            // Check for saved language preference or default to English
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+                
+                // Close dropdowns when menu is toggled on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Mobile language selector toggle
+            const mobileLanguageBtn = document.getElementById('mobile-language-btn');
+            const mobileLanguageOptions = document.getElementById('mobile-language-options');
+            
+            if (mobileLanguageBtn) {
+                mobileLanguageBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
+                });
             }
             
-            // Set up language selector event listeners
-            document.querySelectorAll('.language-options a').forEach(option => {
-                option.addEventListener('click', function(e) {
+            // Language selection event listeners
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
+                link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const lang = this.getAttribute('data-lang');
                     changeLanguage(lang);
+                    
+                    // Close mobile language options after selection
+                    if (mobileLanguageOptions) {
+                        mobileLanguageOptions.style.display = 'none';
+                    }
                 });
-            });
-            
-            // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mainNav = document.getElementById('main-nav');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
             });
             
             // Close menu when clicking outside
@@ -875,7 +1021,64 @@
                 if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                 }
+                
+                // Close mobile language options when clicking outside
+                if (mobileLanguageBtn && mobileLanguageOptions && 
+                    !mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
+                    mobileLanguageOptions.style.display = 'none';
+                }
             });
+            
+            // Handle dropdown toggles on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll('.dropdown').forEach(item => {
+                            if (item !== dropdown) {
+                                item.classList.remove('active');
+                                item.querySelector('.dropdown-menu').style.display = 'none';
+                            }
+                        });
+                        
+                        // Toggle this dropdown
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
+            
+            // Handle desktop dropdown hover
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+                
+                // Desktop language selector
+                const languageSelector = document.querySelector('.language-selector');
+                if (languageSelector) {
+                    languageSelector.addEventListener('mouseenter', function() {
+                        this.querySelector('.language-options').style.display = 'block';
+                    });
+                    
+                    languageSelector.addEventListener('mouseleave', function() {
+                        this.querySelector('.language-options').style.display = 'none';
+                    });
+                }
+            }
         });
     </script>
 </body>
