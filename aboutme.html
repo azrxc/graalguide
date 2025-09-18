@@ -37,7 +37,7 @@
         body { 
             background-color: var(--dark-bg); 
             color: var(--text-color); 
-            line-height: 1.6;
+            line-height: 1.6; 
             font-size: var(--font-md);
         }
         
@@ -73,11 +73,18 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            position: relative;
         }
         
         .logo { 
             font-size: var(--font-2xl); 
             font-weight: 800; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo a {
+            color: white;
             display: flex;
             align-items: center;
         }
@@ -121,6 +128,18 @@
             width: 100%;
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
+        }
+
         /* Language Selector */
         .language-selector {
             margin-left: 20px;
@@ -138,6 +157,7 @@
             align-items: center;
             transition: all 0.3s ease;
             font-size: var(--font-sm);
+            height: 40px;
         }
         
         .language-btn:hover {
@@ -146,6 +166,8 @@
         
         .language-btn img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 8px;
         }
         
@@ -177,22 +199,13 @@
         
         .language-options a img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 10px;
         }
         
         .language-selector:hover .language-options {
             display: block;
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            font-size: var(--font-2xl);
-            cursor: pointer;
-            padding: 5px 10px;
         }
 
         /* Dropdown Menu */
@@ -235,22 +248,39 @@
 
         /* Page Header */
         .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            padding: 60px 0;
+            color: white;
             text-align: center;
-            padding: 60px 0 30px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
         }
         
         .page-header h1 {
             font-size: var(--font-3xl);
             margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             font-weight: 800;
+            position: relative;
         }
         
         .page-header p {
-            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
             font-size: var(--font-lg);
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
         }
 
         /* Profile Section */
@@ -268,12 +298,19 @@
         }
         
         .profile-image {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid var(--primary-color);
+            margin-bottom: 25px;
+            border: 4px solid var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
         }
         
         .profile-name {
@@ -284,29 +321,46 @@
         
         .profile-title {
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 500;
+            font-size: var(--font-lg);
         }
         
         .profile-description {
             color: var(--text-muted);
-            max-width: 700px;
-            margin-bottom: 30px;
+            max-width: 800px;
+            margin-bottom: 20px;
             line-height: 1.8;
+            font-size: var(--font-md);
+            text-align: center;
+        }
+        
+        .profile-description-container {
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .signature {
+            font-style: italic;
+            margin-top: 30px;
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: var(--font-lg);
         }
         
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
         
         .social-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: var(--dark-bg);
             color: var(--text-color);
@@ -407,20 +461,56 @@
             color: var(--text-muted); 
         }
 
+        /* Mobile Language Selector */
+        .mobile-language-selector {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+        }
+        
+        .mobile-language-selector .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .container {
                 padding: 0 20px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .page-header h1 {
-                font-size: var(--font-2xl);
-            }
-            
-            .page-header p {
-                font-size: var(--font-md);
             }
         }
         
@@ -438,19 +528,22 @@
             
             .header-content { 
                 flex-direction: row;
+                align-items: center;
             }
             
             nav {
                 display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 70px;
                 left: 0;
                 right: 0;
+                bottom: 0;
                 background: var(--darker-bg);
-                padding: 15px;
+                padding: 20px;
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
                 z-index: 999;
-                border-top: 1px solid var(--border-color);
+                overflow-y: auto;
+                transition: all 0.3s ease;
             }
             
             nav.active {
@@ -473,18 +566,45 @@
                 margin: 10px 0;
                 border: none;
                 background: var(--dark-bg);
+                display: none;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                display: block;
             }
             
             .mobile-menu-btn {
                 display: block;
             }
             
-            .page-header {
-                padding: 40px 0 20px;
+            .language-selector {
+                display: none;
+            }
+            
+            .mobile-language-selector {
+                display: block;
+            }
+            
+            .page-header { 
+                padding: 40px 0;
+            }
+            
+            .page-header h1 {
+                font-size: var(--font-2xl);
+            }
+            
+            .page-header p {
+                font-size: var(--font-md);
             }
             
             .profile-section {
                 padding: 30px 20px;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
             }
             
             .content-section {
@@ -494,10 +614,6 @@
             .footer-content { 
                 flex-direction: column; 
                 gap: 20px;
-            }
-            
-            .language-selector {
-                margin: 10px 0 0;
             }
         }
         
@@ -518,12 +634,13 @@
             }
             
             .page-header {
-                padding: 30px 0 15px;
+                padding: 30px 0;
             }
             
             .profile-image {
                 width: 120px;
                 height: 120px;
+                font-size: 2.5rem;
             }
             
             .profile-section {
@@ -539,6 +656,15 @@
             }
         }
 
+        /* Language Toggle */
+        .language-content {
+            display: none;
+        }
+        
+        .language-content.active {
+            display: block;
+        }
+        
         /* Prevent zoom on focus for iOS */
         @media screen and (max-width: 768px) {
             input, select, textarea {
@@ -552,11 +678,11 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="index.html" style="color: inherit;">
+                    <a href="index.html">
                         <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                     </a>
                 </div>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
                 <nav id="main-nav">
                     <ul>
                         <li><a href="index.html" data-translate="nav-home">Home</a></li>
@@ -587,19 +713,37 @@
                         </li>
                         <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
+                    
+                    <!-- Mobile Language Selector -->
+                    <div class="mobile-language-selector">
+                        <button class="language-btn" id="mobile-language-btn">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
+                            <span data-translate="language-en">English</span>
+                        </button>
+                        <div class="mobile-language-options" id="mobile-language-options">
+                            <a href="#" data-lang="en">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                <span data-translate="language-en">English</span>
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                <span data-translate="language-pt">Português</span>
+                            </a>
+                        </div>
+                    </div>
                 </nav>
                 <div class="language-selector">
                     <button class="language-btn" id="current-language">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                        <img src="https://flagcdn.com/w40/us.png" alt="English">
                         <span data-translate="language-en">English</span>
                     </button>
                     <div class="language-options">
                         <a href="#" data-lang="en">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
                             <span data-translate="language-en">English</span>
                         </a>
                         <a href="#" data-lang="pt">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                            <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                             <span data-translate="language-pt">Português</span>
                         </a>
                     </div>
@@ -608,37 +752,44 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="page-header">
+    <div class="page-header">
+        <div class="container">
             <h1 id="about-title">About Me</h1>
             <p id="about-subtitle">Creator of GraalGuide</p>
         </div>
+    </div>
 
+    <div class="container">
         <!-- English Content -->
         <div class="language-content active" id="content-en">
             <div class="profile-section">
-                <div class="profile-image-container">
-                    <div style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 3rem; color: white;">A</div>
-                </div>
+                <div class="profile-image">A</div>
                 <h2 class="profile-name">azrxc</h2>
-                <p class="profile-title">MBA Student & Graal Enthusiast</p>
-                <p class="profile-description">
-                    Welcome to GraalGuide. I am a student currently pursuing my MBA, and this website is one of my personal projects. 
-                    I started GraalGuide to create a simple and reliable fan resource where players can find guides, rules, and tips 
-                    about Graal Era in one place.
-                </p>
-                <p class="profile-description">
-                    I have been playing Graal since my primary school years. For me, it has always been more than just a game — 
-                    it became a place to make friends, learn English, and create lasting memories. Although life has become busier 
-                    and I no longer play as often, I still value what the game has given me, and I wanted to give something back to the community.
-                </p>
-                <p class="profile-description">
-                    This site may be minimal since I am not a professional developer, but I am committed to improving it and keeping 
-                    it useful for players. Thank you for visiting and supporting this project.
-                </p>
-                <p class="profile-description" style="font-style: italic; margin-top: 20px;">
-                    — azrxc
-                </p>
+                <p class="profile-title">Graal Enthusiast & Community Contributor</p>
+                
+                <div class="profile-description-container">
+                    <p class="profile-description">
+                        Welcome to GraalGuide. This website is one of my personal projects, created to serve as a reliable fan resource where players can easily find guides, rules, and tips about Graal Era.
+                    </p>
+                    
+                    <p class="profile-description">
+                        I have been playing Graal since my primary school years, with more than ten years of experience and over 10,000 hours of playtime. Back then, I often struggled with English in school and usually scored poorly in exams. But through playing Graal and communicating with players from around the world, my English began to improve naturally. The game gave me not only entertainment, but also the chance to learn, connect, and grow.
+                    </p>
+                    
+                    <p class="profile-description">
+                        During the COVID-19 lockdowns in Malaysia, Graal became an even bigger part of my life. While the world felt quiet, the game was alive with activity. I spent countless hours exploring, trading, and chatting, and it was during that time that I met many friends who were kind, supportive, and fun to be around. Some of them live in the same country as me, yet we've never met in real life, but we're still in contact to this day, which shows how strong the connections in this community can be.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Even though I no longer play as often, Graal has shaped my journey in many ways, and I wanted to give something back to the community that has given me so much. This site may be simple since I am not a professional developer, but I am committed to improving it and keeping it useful for players.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Thank you for visiting and supporting this project.
+                    </p>
+                    
+                    <p class="signature">- azrxc</p>
+                </div>
                 
                 <div class="social-links">
                     <a href="https://www.youtube.com/@azrxc" class="social-link" title="YouTube">
@@ -658,42 +809,47 @@
 
             <div class="content-section">
                 <h2>My Graal Journey</h2>
-                <p>I started playing Graal during my primary school years, and it quickly became more than just a game to me. Through Graal, I made friends from around the world, improved my English skills, and created memories that I still cherish today.</p>
-                <p>Although I don't play as often now due to my MBA studies and other responsibilities, the impact Graal had on my life remains significant. This website is my way of giving back to the community that gave me so much.</p>
+                <p>My journey with Graal began in primary school and has continued for over a decade. What started as a simple game quickly became a significant part of my life, helping me develop language skills, make international friends, and create lasting memories.</p>
+                <p>During the pandemic, Graal became my sanctuary - a place where I could connect with others when the real world felt isolated. The friendships I formed during that time remain some of the most meaningful connections I've made through gaming.</p>
             </div>
 
             <div class="content-section">
                 <h2>About GraalGuide</h2>
-                <p>GraalGuide was created to be a comprehensive resource for Graal Era players. The site includes guides, tutorials, trading resources, and information about secret achievements to help players get the most out of their gaming experience.</p>
-                <p>As a non-professional developer, I've done my best to create a clean, functional website that serves the community. I'm always open to feedback and suggestions for improvement.</p>
+                <p>GraalGuide was created to give back to the community that has given me so much. The site features comprehensive guides, trading resources, achievement tracking, and other tools to help players navigate the world of Graal Era.</p>
+                <p>As someone who isn't a professional developer, I've focused on creating a clean, functional website that serves the community's needs. I'm always open to feedback and suggestions for how to improve the site.</p>
             </div>
         </div>
 
         <!-- Portuguese Content -->
         <div class="language-content" id="content-pt">
             <div class="profile-section">
-                <div class="profile-image-container">
-                    <div style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 3rem; color: white;">A</div>
-                </div>
+                <div class="profile-image">A</div>
                 <h2 class="profile-name">azrxc</h2>
-                <p class="profile-title">Estudante de MBA e Entusiasta do Graal</p>
-                <p class="profile-description">
-                    Bem-vindo ao GraalGuide. Sou um estudante atualmente cursando MBA, e este site é um dos meus projetos pessoais. 
-                    Criei o GraalGuide para ser um recurso de fãs simples e confiável onde os jogadores podem encontrar guias, regras e dicas 
-                    sobre o Graal Era em um único lugar.
-                </p>
-                <p class="profile-description">
-                    Jogo Graal desde meus anos do ensino fundamental. Para mim, sempre foi mais do que apenas um jogo — 
-                    tornou-se um lugar para fazer amigos, aprender inglês e criar memórias duradouras. Embora a vida tenha ficado mais ocupada 
-                    e eu não jogue com tanta frequência, ainda valorizo o que o jogo me deu e quis retribuir algo à comunidade.
-                </p>
-                <p class="profile-description">
-                    Este site pode ser minimalista, pois não sou um desenvolvedor profissional, mas estou comprometido em melhorá-lo e mantê-lo 
-                    útil para os jogadores. Obrigado por visitar e apoiar este projeto.
-                </p>
-                <p class="profile-description" style="font-style: italic; margin-top: 20px;">
-                    — azrxc
-                </p>
+                <p class="profile-title">Entusiasta do Graal e Contribuidor da Comunidade</p>
+                
+                <div class="profile-description-container">
+                    <p class="profile-description">
+                        Bem-vindo ao GraalGuide. Este site é um dos meus projetos pessoais, criado para servir como um recurso de fãs confiável onde os jogadores podem facilmente encontrar guias, regras e dicas sobre o Graal Era.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Jogo Graal desde meus anos do ensino fundamental, com mais de dez anos de experiência e mais de 10.000 horas de tempo de jogo. Naquela época, eu frequentemente tinha dificuldades com inglês na escola e geralmente tirava notas baixas nas provas. Mas através de jogar Graal e me comunicar com jogadores de todo o mundo, meu inglês começou a melhorar naturalmente. O jogo me deu não apenas entretenimento, mas também a chance de aprender, conectar e crescer.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Durante os lockdowns da COVID-19 na Malásia, o Graal se tornou uma parte ainda maior da minha vida. Enquanto o mundo parecia quieto, o jogo estava cheio de atividade. Passei incontáveis horas explorando, negociando e conversando, e foi durante esse período que conheci muitos amigos que eram gentis, solidários e divertidos. Alguns deles moram no mesmo país que eu, ainda assim nunca nos encontramos pessoalmente, mas ainda mantemos contato até hoje, o que mostra o quão fortes podem ser as conexões nesta comunidade.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Mesmo que eu não jogue mais com tanta frequência, o Graal moldou minha jornada de muitas maneiras, e eu quis retribuir algo à comunidade que me deu tanto. Este site pode ser simples, já que não sou um desenvolvedor profissional, mas estou comprometido em melhorá-lo e mantê-lo útil para os jogadores.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Obrigado por visitar e apoiar este projeto.
+                    </p>
+                    
+                    <p class="signature">- azrxc</p>
+                </div>
                 
                 <div class="social-links">
                     <a href="https://www.youtube.com/@azrxc" class="social-link" title="YouTube">
@@ -713,14 +869,14 @@
 
             <div class="content-section">
                 <h2>Minha Jornada no Graal</h2>
-                <p>Comecei a jogar Graal durante meus anos do ensino fundamental, e rapidamente se tornou mais do que apenas um jogo para mim. Através do Graal, fiz amigos de todo o mundo, melhorei minhas habilidades em inglês e criei memórias que ainda guardo com carinho hoje.</p>
-                <p>Embora eu não jogue com tanta frequência agora devido aos meus estudos de MBA e outras responsabilidades, o impacto que o Graal teve na minha vida permanece significativo. Este site é minha maneira de retribuir à comunidade que me deu tanto.</p>
+                <p>Minha jornada com o Graal começou no ensino fundamental e continuou por mais de uma década. O que começou como um simples jogo rapidamente se tornou uma parte significativa da minha vida, me ajudando a desenvolver habilidades linguísticas, fazer amigos internacionais e criar memórias duradouras.</p>
+                <p>Durante a pandemia, o Graal se tornou meu santuário - um lugar onde eu poderia me conectar com outras pessoas quando o mundo real parecia isolado. As amizades que formei durante esse período permanecem como algumas das conexões mais significativas que fiz através dos jogos.</p>
             </div>
 
             <div class="content-section">
                 <h2>Sobre o GraalGuide</h2>
-                <p>O GraalGuide foi criado para ser um recurso abrangente para jogadores do Graal Era. O site inclui guias, tutoriais, recursos de troca e informações sobre conquistas secretas para ajudar os jogadores a aproveitar ao máximo sua experiência de jogo.</p>
-                <p>Como não sou um desenvolvedor profissional, fiz o possível para criar um site limpo e funcional que sirva à comunidade. Estou sempre aberto a feedback e sugestões de melhorias.</p>
+                <p>O GraalGuide foi criado para retribuir à comunidade que me deu tanto. O site apresenta guias abrangentes, recursos de negociação, rastreamento de conquistas e outras ferramentas para ajudar os jogadores a navegar no mundo do Graal Era.</p>
+                <p>Como alguém que não é um desenvolvedor profissional, concentrei-me em criar um site limpo e funcional que atenda às necessidades da comunidade. Estou sempre aberto a feedback e sugestões sobre como melhorar o site.</p>
             </div>
         </div>
     </div>
@@ -729,7 +885,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title-footer" data-translate="about-title">About GraalGuide</h3>
+                    <h3 id="about-title-footer" data-translate="about-titlef">About GraalGuide</h3>
                     <p id="about-desc" data-translate="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
                     <p><em id="disclaimer" data-translate="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
                 </div>
@@ -792,7 +948,7 @@
                 'about-subtitle': 'Creator of GraalGuide',
                 
                 // Footer
-                'about-title': 'About GraalGuide',
+                'about-titlef': 'About GraalGuide',
                 'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
                 'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
                 
@@ -840,7 +996,7 @@
                 'about-subtitle': 'Criador do GraalGuide',
                 
                 // Footer
-                'about-title': 'Sobre o GraalGuide',
+                'about-titlef': 'Sobre o GraalGuide',
                 'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
                 'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
                 
@@ -886,18 +1042,20 @@
             document.getElementById('about-title').textContent = translations[lang]['about-title'];
             document.getElementById('about-subtitle').textContent = translations[lang]['about-subtitle'];
             
-            // Update language button
-            const languageBtn = document.getElementById('current-language');
-            const flagImg = languageBtn.querySelector('img');
-            const langText = languageBtn.querySelector('span');
-            
-            if (lang === 'en') {
-                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
-                langText.textContent = 'English';
-            } else if (lang === 'pt') {
-                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
-                langText.textContent = 'Português';
-            }
+            // Update language buttons
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                const flagImg = btn.querySelector('img');
+                const langText = btn.querySelector('span');
+                
+                if (lang === 'en') {
+                    flagImg.src = 'https://flagcdn.com/w40/us.png';
+                    langText.textContent = translations[lang]['language-en'];
+                } else if (lang === 'pt') {
+                    flagImg.src = 'https://flagcdn.com/w40/br.png';
+                    langText.textContent = translations[lang]['language-pt'];
+                }
+            });
             
             // Toggle language content visibility
             document.getElementById('content-en').classList.toggle('active', lang === 'en');
@@ -907,29 +1065,54 @@
             localStorage.setItem('preferredLanguage', lang);
         }
 
-        // Initialize language
+        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            // Check for saved language preference
-            const savedLang = localStorage.getItem('preferredLanguage');
-            if (savedLang) {
-                changeLanguage(savedLang);
+            // Check for saved language preference or default to English
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+                
+                // Close dropdowns when menu is toggled on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Mobile language selector toggle
+            const mobileLanguageBtn = document.getElementById('mobile-language-btn');
+            const mobileLanguageOptions = document.getElementById('mobile-language-options');
+            
+            if (mobileLanguageBtn) {
+                mobileLanguageBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
+                });
             }
             
-            // Set up language selector event listeners
-            document.querySelectorAll('.language-options a').forEach(option => {
-                option.addEventListener('click', function(e) {
+            // Language selection event listeners
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
+                link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const lang = this.getAttribute('data-lang');
                     changeLanguage(lang);
+                    
+                    // Close mobile language options after selection
+                    if (mobileLanguageOptions) {
+                        mobileLanguageOptions.style.display = 'none';
+                    }
                 });
-            });
-            
-            // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mainNav = document.getElementById('main-nav');
-            
-            mobileMenuBtn.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
             });
             
             // Close menu when clicking outside
@@ -940,7 +1123,64 @@
                 if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                 }
+                
+                // Close mobile language options when clicking outside
+                if (mobileLanguageBtn && mobileLanguageOptions && 
+                    !mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
+                    mobileLanguageOptions.style.display = 'none';
+                }
             });
+            
+            // Handle dropdown toggles on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll('.dropdown').forEach(item => {
+                            if (item !== dropdown) {
+                                item.classList.remove('active');
+                                item.querySelector('.dropdown-menu').style.display = 'none';
+                            }
+                        });
+                        
+                        // Toggle this dropdown
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
+            
+            // Handle desktop dropdown hover
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+                
+                // Desktop language selector
+                const languageSelector = document.querySelector('.language-selector');
+                if (languageSelector) {
+                    languageSelector.addEventListener('mouseenter', function() {
+                        this.querySelector('.language-options').style.display = 'block';
+                    });
+                    
+                    languageSelector.addEventListener('mouseleave', function() {
+                        this.querySelector('.language-options').style.display = 'none';
+                    });
+                }
+            }
         });
     </script>
 </body>
