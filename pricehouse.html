@@ -443,7 +443,7 @@
         }
         
         /* Improved Reset Button */
-        .apply-btn {
+        .reset-btn {
             display: block;
             width: 100%;
             background: linear-gradient(135deg, var(--accent-color) 0%, #d84315 100%);
@@ -460,7 +460,7 @@
             font-size: var(--font-md);
         }
         
-        .apply-btn:hover {
+        .reset-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
         }
@@ -575,6 +575,7 @@
         .mobile-language-selector .language-btn {
             width: 100%;
             justify-content: center;
+            margin-bottom: 10px;
         }
         
         .mobile-language-options {
@@ -623,6 +624,21 @@
             font-size: 3rem;
             display: block;
             margin-bottom: 15px;
+        }
+
+        /* Mobile Filter Toggle */
+        .mobile-filter-toggle {
+            display: none;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+            font-size: var(--font-md);
         }
 
         /* Responsive */
@@ -727,6 +743,11 @@
             
             .price-filters {
                 padding: 20px;
+                display: none; /* Hide filters by default on mobile */
+            }
+            
+            .price-filters.active {
+                display: block; /* Show when active */
             }
             
             .price-table th:nth-child(3),
@@ -748,6 +769,11 @@
             
             .pagination-controls button {
                 width: 100%;
+            }
+            
+            /* Mobile filter toggle */
+            .mobile-filter-toggle {
+                display: block;
             }
         }
         
@@ -887,8 +913,13 @@
     </div>
 
     <div class="container">
+        <!-- Mobile Filter Toggle Button -->
+        <div class="mobile-filter-toggle" id="filter-toggle" data-translate="filter-toggle">
+            Show Filters
+        </div>
+        
         <div class="price-house-content">
-            <div class="price-filters">
+            <div class="price-filters" id="price-filters">
                 <h3 id="filter-title" data-translate="filter-title">Filters</h3>
                 
                 <div class="filter-group">
@@ -915,13 +946,13 @@
                     </ul>
                 </div>
                 
-                <button id="apply-filters" class="apply-btn" data-translate="apply-filters">Apply Filters</button>
+                <button id="reset-filters" class="reset-btn" data-translate="reset-filters">Reset All Filters</button>
             </div>
             
             <div class="price-table-container">
                 <div class="search-box">
                     <input type="text" id="search-input" placeholder="Search for items...">
-                    <i>🔍</i>
+                    <i>🔍︎</i>
                 </div>
                 
                 <table class="price-table">
@@ -1017,7 +1048,52 @@
                 type: ["job"],
                 priceRange: "under-10k",
                 image: "image/rock.png"
+            },
+            { 
+                name: "Winter Staff", 
+                price: "0", 
+                trend: "stable", 
+                updated: "9/11/2025",
+                type: ["melee"],
+                priceRange: "",
+                image: "image/pricehouse/2.png"
+            },  
+            { 
+                name: "Tactical Dagger", 
+                price: "0", 
+                trend: "stable", 
+                updated: "9/11/2025",
+                type: ["melee"],
+                priceRange: "",
+                image: "image/pricehouse/3.png"
             }, 
+            { 
+                name: "Black Matter Katana", 
+                price: "0", 
+                trend: "stable", 
+                updated: "9/11/2025",
+                type: ["melee"],
+                priceRange: "",
+                image: "image/pricehouse/4.gif"
+            }, 
+            { 
+                name: "Sky Breaker", 
+                price: "0", 
+                trend: "stable", 
+                updated: "9/11/2025",
+                type: ["melee"],
+                priceRange: "",
+                image: "image/pricehouse/5.png"
+            },
+            { 
+                name: "Rage Blade", 
+                price: "0", 
+                trend: "stable", 
+                updated: "9/11/2025",
+                type: ["melee"],
+                priceRange: "",
+                image: "image/pricehouse/6.png"
+            },
         ];
 
         // Language translations
@@ -1040,7 +1116,8 @@
                 'price-100k-250k': '100k - 250k',
                 'price-250k-500k': '250k - 500k',
                 'price-over-500k': 'Over 500k',
-                'apply-filters': 'Apply Filters',
+                'reset-filters': 'Reset All Filters',
+                'filter-toggle': 'Show Filters',
                 
                 // Navigation
                 'nav-home': 'Home',
@@ -1101,7 +1178,8 @@
                 'price-100k-250k': '100k - 250k',
                 'price-250k-500k': '250k - 500k',
                 'price-over-500k': 'Acima de 500k',
-                'apply-filters': 'Aplicar Filtros',
+                'reset-filters': 'Redefinir Filtros',
+                'filter-toggle': 'Mostrar Filtros',
                 
                 // Navigation
                 'nav-home': 'Início',
@@ -1180,6 +1258,13 @@
                 }
             });
             
+            // Update filter toggle text if filters are open
+            const priceFilters = document.getElementById('price-filters');
+            const filterToggle = document.getElementById('filter-toggle');
+            if (priceFilters.classList.contains('active')) {
+                filterToggle.textContent = translations[lang]['filter-toggle'].replace('Show', 'Hide');
+            }
+            
             // Save language preference
             localStorage.setItem('preferredLanguage', lang);
         }
@@ -1188,6 +1273,8 @@
         const itemsPerPage = 10; // Number of items to show per page
         let currentPage = 1;
         let filteredItems = [...itemsData];
+        let selectedTypes = ["all"];
+        let selectedPriceRanges = [];
 
         // Function to render items based on current page and filters
         function renderItems() {
@@ -1256,11 +1343,8 @@
             document.getElementById('next-page').disabled = currentPage === totalPages || totalPages === 0;
         }
 
-        // Function to apply filters
+        // Function to apply filters automatically
         function applyFilters() {
-            const selectedTypes = Array.from(document.querySelectorAll('input[name="item-type"]:checked')).map(input => input.value);
-            const selectedPriceRanges = Array.from(document.querySelectorAll('input[name="price-range"]:checked')).map(input => input.value);
-            
             // Reset to first page when filters change
             currentPage = 1;
             
@@ -1290,8 +1374,53 @@
             // Initial render
             renderItems();
             
-            // Set up event listeners
-            document.getElementById('apply-filters').addEventListener('click', applyFilters);
+            // Set up event listeners for filters (auto-apply)
+            document.querySelectorAll('input[name="item-type"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.value === 'all' && this.checked) {
+                        // If "All" is checked, uncheck others
+                        document.querySelectorAll('input[name="item-type"]').forEach(cb => {
+                            if (cb.value !== 'all') cb.checked = false;
+                        });
+                        selectedTypes = ["all"];
+                    } else {
+                        // If a specific type is checked, uncheck "All"
+                        document.querySelector('input[name="item-type"][value="all"]').checked = false;
+                        
+                        // Get all checked types
+                        selectedTypes = Array.from(document.querySelectorAll('input[name="item-type"]:checked')).map(input => input.value);
+                        
+                        // If nothing is checked, default to "All"
+                        if (selectedTypes.length === 0) {
+                            document.querySelector('input[name="item-type"][value="all"]').checked = true;
+                            selectedTypes = ["all"];
+                        }
+                    }
+                    
+                    applyFilters();
+                });
+            });
+            
+            document.querySelectorAll('input[name="price-range"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Get all checked price ranges
+                    selectedPriceRanges = Array.from(document.querySelectorAll('input[name="price-range"]:checked')).map(input => input.value);
+                    
+                    applyFilters();
+                });
+            });
+            
+            // Reset filters button
+            document.getElementById('reset-filters').addEventListener('click', function() {
+                document.querySelectorAll('input[name="item-type"]').forEach(cb => cb.checked = false);
+                document.querySelector('input[name="item-type"][value="all"]').checked = true;
+                selectedTypes = ["all"];
+                
+                document.querySelectorAll('input[name="price-range"]').forEach(cb => cb.checked = false);
+                selectedPriceRanges = [];
+                
+                applyFilters();
+            });
             
             document.getElementById('prev-page').addEventListener('click', function() {
                 if (currentPage > 1) {
@@ -1407,6 +1536,17 @@
                 mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
             });
             
+            // Mobile filter toggle
+            const filterToggle = document.getElementById('filter-toggle');
+            const priceFilters = document.getElementById('price-filters');
+            
+            filterToggle.addEventListener('click', function() {
+                priceFilters.classList.toggle('active');
+                this.textContent = priceFilters.classList.contains('active') ? 
+                    translations[currentLang]['filter-toggle'].replace('Show', 'Hide') : 
+                    translations[currentLang]['filter-toggle'];
+            });
+            
             // Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 const isClickInsideNav = mainNav.contains(event.target);
@@ -1419,6 +1559,15 @@
                 // Close mobile language options when clicking outside
                 if (!mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
                     mobileLanguageOptions.style.display = 'none';
+                }
+                
+                // Close filters when clicking outside on mobile
+                if (window.innerWidth <= 768 && 
+                    !priceFilters.contains(event.target) && 
+                    !filterToggle.contains(event.target) && 
+                    priceFilters.classList.contains('active')) {
+                    priceFilters.classList.remove('active');
+                    filterToggle.textContent = translations[currentLang]['filter-toggle'];
                 }
             });
             
@@ -1480,21 +1629,6 @@
                     this.querySelector('.language-options').style.display = 'none';
                 });
             }
-            
-            // Filter checkboxes logic
-            document.querySelectorAll('input[name="item-type"]').forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    if (this.value === 'all' && this.checked) {
-                        // If "All" is checked, uncheck others
-                        document.querySelectorAll('input[name="item-type"]').forEach(cb => {
-                            if (cb.value !== 'all') cb.checked = false;
-                        });
-                    } else {
-                        // If a specific type is checked, uncheck "All"
-                        document.querySelector('input[name="item-type"][value="all"]').checked = false;
-                    }
-                });
-            });
         });
     </script>
 </body>
