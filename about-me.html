@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Cookie Policy - GraalGuide</title>
-    <style>
+    <title>About Me - GraalGuide</title>
+    <style> 
         :root {
             --primary-color: #8a2be2; /* Purple accent */
             --secondary-color: #00bcd4; /* Teal accent */
@@ -283,6 +283,97 @@
             position: relative;
         }
 
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 4px solid var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+        }
+        
+        .profile-name {
+            font-size: var(--font-2xl);
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        .profile-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-weight: 500;
+            font-size: var(--font-lg);
+        }
+        
+        .profile-description {
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: var(--font-md);
+            text-align: center;
+        }
+        
+        .profile-description-container {
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .signature {
+            font-style: italic;
+            margin-top: 30px;
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: var(--font-lg);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--dark-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .social-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
         /* Content Sections */
         .content-section {
             background: var(--card-bg);
@@ -302,24 +393,11 @@
             font-weight: 700;
         }
         
-        .content-section h3 {
-            color: var(--secondary-color);
-            margin: 25px 0 15px;
-            font-size: var(--font-lg);
-        }
-        
-        .content-section p, .content-section ul {
+        .content-section p {
             margin-bottom: 15px;
             color: var(--text-muted);
             font-size: var(--font-md);
-        }
-        
-        .content-section ul {
-            padding-left: 20px;
-        }
-        
-        .content-section li {
-            margin-bottom: 10px;
+            line-height: 1.8;
         }
 
         /* Footer */
@@ -519,6 +597,16 @@
                 font-size: var(--font-md);
             }
             
+            .profile-section {
+                padding: 30px 20px;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+            
             .content-section {
                 padding: 20px;
             }
@@ -549,8 +637,14 @@
                 padding: 30px 0;
             }
             
-            .page-header h1 {
-                font-size: var(--font-xl);
+            .profile-image {
+                width: 120px;
+                height: 120px;
+                font-size: 2.5rem;
+            }
+            
+            .profile-section {
+                padding: 20px 15px;
             }
             
             .content-section {
@@ -577,7 +671,17 @@
                 font-size: 16px !important;
             }
         }
+        
     </style>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VVS6GWC596');
+</script>
 </head>
 <body>
     <header>
@@ -603,18 +707,18 @@
                             <a href="#" data-translate="nav-guides">Guides - How to?</a>
                             <ul class="dropdown-menu">
                                 <li><a href="upload.html" data-translate="nav-upload-guide">Upload</a></li>
-                                <li><a href="tradeguide.html" data-translate="nav-trade-guide">Trade</a></li>
-                                <li><a href="workguide.html" data-translate="nav-gralats-guide">Get Gralats</a></li>
-                                <li><a href="eventsguide.html" data-translate="nav-events-guide">Get Event Coins</a></li>
+                                <li><a href="trade-guide.html" data-translate="nav-trade-guide">Trade</a></li>
+                                <li><a href="job-guide.html" data-translate="nav-gralats-guide">Get Gralats</a></li>
+                                <li><a href="events-guide.html" data-translate="nav-events-guide">Get Event Coins</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" data-translate="nav-trade">Trade Table</a>
                             <ul class="dropdown-menu">
-                                <li><a href="sellablescalculator.html" data-translate="nav-calculator">Sellables Calculator</a></li>
-                                <li><a href="ratiohistory.html" data-translate="nav-ratio">Ratio History</a></li>
-                                <li><a href="profit&loss.html" data-translate="nav-profit">Profit & Loss Tracker</a></li>
-                                <li><a href="pricehouse.html" data-translate="nav-price">Price House</a></li>
+                                <li><a href="sellables-calculator.html" data-translate="nav-calculator">Sellables Calculator</a></li>
+                                <li><a href="ratio-history.html" data-translate="nav-ratio">Ratio History</a></li>
+                                <li><a href="profit-loss.html" data-translate="nav-profit">Profit & Loss Tracker</a></li>
+                                <li><a href="price-house.html" data-translate="nav-price">Price House</a></li>
                             </ul>
                         </li>
                         <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
@@ -656,114 +760,133 @@
                 </div>
             </div>
         </div>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VVS6GWC596');
-</script>
     </header>
 
     <div class="page-header">
         <div class="container">
-            <h1 id="cookie-title">Cookie Policy</h1>
-            <p id="cookie-subtitle">Effective Date: September 9, 2025</p>
+            <h1 id="about-title">About Me</h1>
+            <p id="about-subtitle">Creator of GraalGuide</p>
         </div>
     </div>
 
     <div class="container">
         <!-- English Content -->
         <div class="language-content active" id="content-en">
-            <div class="content-section">
-                <h2>1. What Are Cookies?</h2>
-                <p>Cookies are small text files stored on your device when you visit a website. They help websites remember your preferences, improve functionality, and analyze site usage.</p>
+            <div class="profile-section">
+                <div class="profile-image">A</div>
+                <h2 class="profile-name">azrxc</h2>
+                <p class="profile-title">Graal Enthusiast & Community Contributor</p>
+                
+                <div class="profile-description-container">
+                    <p class="profile-description">
+                        Welcome to GraalGuide. This website is one of my personal projects, created to serve as a reliable fan resource where players can easily find guides, rules, and tips about Graal Era.
+                    </p>
+                    
+                    <p class="profile-description">
+                        I have been playing Graal since my primary school years, with more than ten years of experience and over 10,000 hours of playtime. Back then, I often struggled with English in school and usually scored poorly in exams. But through playing Graal and communicating with players from around the world, my English began to improve naturally. The game gave me not only entertainment, but also the chance to learn, connect, and grow.
+                    </p>
+                    
+                    <p class="profile-description">
+                        During the COVID-19 lockdowns in Malaysia, Graal became an even bigger part of my life. While the world felt quiet, the game was alive with activity. I spent countless hours exploring, trading, and chatting, and it was during that time that I met many friends who were kind, supportive, and fun to be around. Some of them live in the same country as me, yet we've never met in real life, but we're still in contact to this day, which shows how strong the connections in this community can be.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Even though I no longer play as often, Graal has shaped my journey in many ways, and I wanted to give something back to the community that has given me so much. This site may be simple since I am not a professional developer, but I am committed to improving it and keeping it useful for players.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Thank you for visiting and supporting this project.
+                    </p>
+                    
+                    <p class="signature">- azrxc</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@azrxc" class="social-link" title="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path>
+                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                        </svg>
+                    </a>
+                    <a href="mailto:graalguide.contact.com" class="social-link" title="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
             <div class="content-section">
-                <h2>2. How We Use Cookies</h2>
-                <p>We may use cookies for the following purposes:</p>
-                <ul>
-                    <li><strong>Essential cookies:</strong> Required for the site to function (e.g., navigation, page loading).</li>
-                    <li><strong>Performance & analytics cookies:</strong> To understand how visitors use the site (e.g., which pages are most popular, how users interact).</li>
-                    <li><strong>Advertising cookies (if applicable):</strong> If we display ads (such as Google AdSense), third-party vendors may use cookies to deliver personalized ads based on your browsing history.</li>
-                </ul>
+                <h2>My Graal Journey</h2>
+                <p>My journey with Graal began in primary school and has continued for over a decade. What started as a simple game quickly became a significant part of my life, helping me develop language skills, make international friends, and create lasting memories.</p>
+                <p>During the pandemic, Graal became my sanctuary - a place where I could connect with others when the real world felt isolated. The friendships I formed during that time remain some of the most meaningful connections I've made through gaming.</p>
             </div>
 
             <div class="content-section">
-                <h2>3. Third-Party Cookies</h2>
-                <p>Some cookies may be placed by third-party services, such as Google Analytics or Google AdSense.</p>
-                <p>These services may collect information about your browsing behavior across different websites to show relevant ads.</p>
-                <p>You can review Google's advertising policies here: <a href="https://policies.google.com/technologies/ads" target="_blank">Google Privacy & Terms</a>.</p>
-            </div>
-
-            <div class="content-section">
-                <h2>4. Managing Cookies</h2>
-                <p>You have control over cookies and can:</p>
-                <ul>
-                    <li>Adjust your browser settings to block or delete cookies.</li>
-                    <li>Opt out of personalized ads through Google: <a href="https://adssettings.google.com" target="_blank">Ad Settings</a>.</li>
-                </ul>
-                <p>Note: Disabling cookies may affect how some features of this website work.</p>
-            </div>
-
-            <div class="content-section">
-                <h2>5. Changes to This Policy</h2>
-                <p>We may update this Cookie Policy from time to time. Any changes will be posted on this page with a new "Effective Date."</p>
-            </div>
-
-            <div class="content-section">
-                <h2>6. Contact Us</h2>
-                <p>If you have questions about this Cookie Policy, you can contact:</p>
-                <p>GraalGuide,<br>graalguide.contact.com</p>
+                <h2>About GraalGuide</h2>
+                <p>GraalGuide was created to give back to the community that has given me so much. The site features comprehensive guides, trading resources, achievement tracking, and other tools to help players navigate the world of Graal Era.</p>
+                <p>As someone who isn't a professional developer, I've focused on creating a clean, functional website that serves the community's needs. I'm always open to feedback and suggestions for how to improve the site.</p>
             </div>
         </div>
 
         <!-- Portuguese Content -->
         <div class="language-content" id="content-pt">
-            <div class="content-section">
-                <h2>1. O Que São Cookies?</h2>
-                <p>Cookies são pequenos arquivos de texto armazenados em seu dispositivo quando você visita um site. Eles ajudam os sites a lembrar suas preferências, melhorar a funcionalidade and analisar o uso do site.</p>
+            <div class="profile-section">
+                <div class="profile-image">A</div>
+                <h2 class="profile-name">azrxc</h2>
+                <p class="profile-title">Entusiasta do Graal e Contribuidor da Comunidade</p>
+                
+                <div class="profile-description-container">
+                    <p class="profile-description">
+                        Bem-vindo ao GraalGuide. Este site é um dos meus projetos pessoais, criado para servir como um recurso de fãs confiável onde os jogadores podem facilmente encontrar guias, regras e dicas sobre o Graal Era.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Jogo Graal desde meus anos do ensino fundamental, com mais de dez anos de experiência e mais de 10.000 horas de tempo de jogo. Naquela época, eu frequentemente tinha dificuldades com inglês na escola e geralmente tirava notas baixas nas provas. Mas através de jogar Graal e me comunicar com jogadores de todo o mundo, meu inglês começou a melhorar naturalmente. O jogo me deu não apenas entretenimento, mas também a chance de aprender, conectar e crescer.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Durante os lockdowns da COVID-19 na Malásia, o Graal se tornou uma parte ainda maior da minha vida. Enquanto o mundo parecia quieto, o jogo estava cheio de atividade. Passei incontáveis horas explorando, negociando e conversando, e foi durante esse período que conheci muitos amigos que eram gentis, solidários e divertidos. Alguns deles moram no mesmo país que eu, ainda assim nunca nos encontramos pessoalmente, mas ainda mantemos contato até hoje, o que mostra o quão fortes podem ser as conexões nesta comunidade.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Mesmo que eu não jogue mais com tanta frequência, o Graal moldou minha jornada de muitas maneiras, e eu quis retribuir algo à comunidade que me deu tanto. Este site pode ser simples, já que não sou um desenvolvedor profissional, mas estou comprometido em melhorá-lo e mantê-lo útil para os jogadores.
+                    </p>
+                    
+                    <p class="profile-description">
+                        Obrigado por visitar e apoiar este projeto.
+                    </p>
+                    
+                    <p class="signature">- azrxc</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@azrxc" class="social-link" title="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path>
+                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                        </svg>
+                    </a>
+                    <a href="mailto:graalguide.contact.com" class="social-link" title="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
             <div class="content-section">
-                <h2>2. Como Usamos Cookies</h2>
-                <p>Podemos usar cookies para os seguintes propósitos:</p>
-                <ul>
-                    <li><strong>Cookies essenciais:</strong> Necessários para o funcionamento do site (ex: navegação, carregamento de páginas).</li>
-                    <li><strong>Cookies de desempenho e análise:</strong> Para entender como os visitantes usam o site (ex: quais páginas são mais populares, como os usuários interagem).</li>
-                    <li><strong>Cookies de publicidade (se aplicável):</strong> Se exibirmos anúncios (como Google AdSense), fornecedores terceiros podem usar cookies para entregar anúncios personalizados com base no seu histórico de navegação.</li>
-                </ul>
+                <h2>Minha Jornada no Graal</h2>
+                <p>Minha jornada com o Graal começou no ensino fundamental e continuou por mais de uma década. O que começou como um simples jogo rapidamente se tornou uma parte significativa da minha vida, me ajudando a desenvolver habilidades linguísticas, fazer amigos internacionais e criar memórias duradouras.</p>
+                <p>Durante a pandemia, o Graal se tornou meu santuário - um lugar onde eu poderia me conectar com outras pessoas quando o mundo real parecia isolado. As amizades que formei durante esse período permanecem como algumas das conexões mais significativas que fiz através dos jogos.</p>
             </div>
 
             <div class="content-section">
-                <h2>3. Cookies de Terceiros</h2>
-                <p>Alguns cookies podem ser colocados por serviços de terceiros, como Google Analytics ou Google AdSense.</p>
-                <p>Esses serviços podem coletar informações sobre seu comportamento de navegação em diferentes sites para mostrar anúncios relevantes.</p>
-                <p>Você pode revisar as políticas de publicidade do Google aqui: <a href="https://policies.google.com/technologies/ads" target="_blank">Políticas de Privacidade e Termos do Google</a>.</p>
-            </div>
-
-            <div class="content-section">
-                <h2>4. Gerenciando Cookies</h2>
-                <p>Você tem controle sobre os cookies e pode:</p>
-                <ul>
-                    <li>Ajustar as configurações do seu navegador para bloquear ou excluir cookies.</li>
-                    <li>Cancelar a inscrição em anúncios personalizados através do Google: <a href="https://adssettings.google.com" target="_blank">Configurações de Anúncios</a>.</li>
-                </ul>
-                <p>Nota: Desativar cookies pode afetar o funcionamento de alguns recursos deste site.</p>
-            </div>
-
-            <div class="content-section">
-                <h2>5. Alterações nesta Política</h2>
-                <p>Podemos atualizar esta Política de Cookies periodicamente. Quaisquer alterações serão publicadas nesta página com uma nova "Data de Efetivação".</p>
-            </div>
-
-            <div class="content-section">
-                <h2>6. Entre em Contato Conosco</h2>
-                <p>Se você tiver dúvidas sobre esta Política de Cookies, pode contactar:</p>
-                <p>GraalGuide,<br>graalguide.contact.com</p>
+                <h2>Sobre o GraalGuide</h2>
+                <p>O GraalGuide foi criado para retribuir à comunidade que me deu tanto. O site apresenta guias abrangentes, recursos de negociação, rastreamento de conquistas e outras ferramentas para ajudar os jogadores a navegar no mundo do Graal Era.</p>
+                <p>Como alguém que não é um desenvolvedor profissional, concentrei-me em criar um site limpo e funcional que atenda às necessidades da comunidade. Estou sempre aberto a feedback e sugestões sobre como melhorar o site.</p>
             </div>
         </div>
     </div>
@@ -772,7 +895,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title" data-translate="about-title">About GraalGuide</h3>
+                    <h3 id="about-title-footer" data-translate="about-titlef">About GraalGuide</h3>
                     <p id="about-desc" data-translate="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
                     <p><em id="disclaimer" data-translate="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
                 </div>
@@ -781,23 +904,23 @@
                     <ul>
                         <li><a href="index.html" id="link1" data-translate="link1">Home</a></li>
                         <li><a href="upload.html" id="link2" data-translate="link2">Uploads</a></li>
-                        <li><a href="tradeguide.html" id="link3" data-translate="link3">Trading Guide</a></li>
+                        <li><a href="trade-guide.html" id="link3" data-translate="link3">Trading Guide</a></li>
                         <li><a href="secret-achievements.html" id="link4" data-translate="link4">Secret Achievements</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3 id="legal-title" data-translate="legal-title">Legal & Policies</h3>
                     <ul>
-                        <li><a href="privacypolicy.html" id="policy1" data-translate="policy1">Privacy Policy</a></li>
+                        <li><a href="privacy-policy.html" id="policy1" data-translate="policy1">Privacy Policy</a></li>
                         <li><a href="terms-of-service.html" id="policy2" data-translate="policy2">Terms of Service</a></li>
-                        <li><a href="cookiepolicy.html" id="policy3" data-translate="policy3">Cookie Policy</a></li>
-                        <li><a href="disclamer.html" id="policy4" data-translate="policy4">Disclaimer</a></li>
+                        <li><a href="cookie-policy.html" id="policy3" data-translate="policy3">Cookie Policy</a></li>
+                        <li><a href="disclaimer.html" id="policy4" data-translate="policy4">Disclaimer</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3 id="connect-title" data-translate="connect-title">Connect</h3>
                     <ul>
-                        <li><a href="aboutme.html" id="connect1" data-translate="connect1">About Me</a></li>
+                        <li><a href="about-me.html" id="connect1" data-translate="connect1">About Me</a></li>
                         <li><a href="https://www.youtube.com/@azrxc" id="connect2" data-translate="connect2">YouTube</a></li>
                         <li><a href="contact-us.html" id="connect3" data-translate="connect3">Contact Us</a></li>
                     </ul>
@@ -831,11 +954,11 @@
                 'nav-achievements': 'Secret Achievements',
                 
                 // Page Title
-                'cookie-title': 'Cookie Policy',
-                'cookie-subtitle': 'Effective Date: September 9, 2025',
+                'about-title': 'About Me',
+                'about-subtitle': 'Creator of GraalGuide',
                 
                 // Footer
-                'about-title': 'About GraalGuide',
+                'about-titlef': 'About GraalGuide',
                 'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
                 'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
                 
@@ -879,11 +1002,11 @@
                 'nav-achievements': 'Conquistas Secretas',
                 
                 // Page Title
-                'cookie-title': 'Política de Cookies',
-                'cookie-subtitle': 'Data de Efetivação: 9 de Setembro de 2025',
+                'about-title': 'Sobre Mim',
+                'about-subtitle': 'Criador do GraalGuide',
                 
                 // Footer
-                'about-title': 'Sobre o GraalGuide',
+                'about-titlef': 'Sobre o GraalGuide',
                 'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
                 'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
                 
@@ -926,8 +1049,8 @@
             });
             
             // Update page titles
-            document.getElementById('cookie-title').textContent = translations[lang]['cookie-title'];
-            document.getElementById('cookie-subtitle').textContent = translations[lang]['cookie-subtitle'];
+            document.getElementById('about-title').textContent = translations[lang]['about-title'];
+            document.getElementById('about-subtitle').textContent = translations[lang]['about-subtitle'];
             
             // Update language buttons
             const languageBtns = document.querySelectorAll('.language-btn');
