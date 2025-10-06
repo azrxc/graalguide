@@ -4,19 +4,13 @@
     <link rel="icon" type="image/png" href="image/a/graalguide.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Profit & Loss Tracker - GraalGuide: Manage Your Graal Era Trading Performance</title>
-    <meta name="description" content="Track your Graal Era trading performance with our Profit & Loss calculator. Monitor your earnings, identify trends, and improve your trading strategy.">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
-     crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-4927938315377514">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Upload Sets - GraalGuide Graal Era Custom Sets</title>
+    <meta name="description" content="Browse complete head and body combinations for your character.">
     <style>
         :root {
             --primary-color: #8a2be2; /* Purple accent */
             --secondary-color: #00bcd4; /* Teal accent */
             --accent-color: #ff5722; /* Orange accent */
-            --success-color: #2ecc71; /* Green for profit */
-            --danger-color: #e74c3c; /* Red for loss */
             --dark-bg: #121212;
             --darker-bg: #0a0a0a;
             --card-bg: #1e1e1e;
@@ -45,7 +39,7 @@
         body { 
             background-color: var(--dark-bg); 
             color: var(--text-color); 
-            line-height: 1.6; 
+            line-height: 1.6;
             font-size: var(--font-md);
         }
         
@@ -271,7 +265,7 @@
         }
         
         .page-header h1 {
-            font-size: var(--font-3xl);
+            font-size: var(--font-4xl);
             margin-bottom: 15px;
             font-weight: 800;
             position: relative;
@@ -285,212 +279,159 @@
             position: relative;
         }
 
-        /* Main Content */
-        .section { 
-            background: var(--card-bg); 
-            border-radius: 10px; 
-            padding: 25px; 
-            margin: 30px 0; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
-            border: 1px solid var(--border-color);
+        /* Upload Sets Gallery */
+        .gallery-content {
+            margin-bottom: 40px;
         }
         
-        .section h2 {
-            color: var(--text-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary-color);
-            font-weight: 700;
-            font-size: var(--font-xl);
-        }
-
-        /* Trade Log Section */
-        .trade-log {
-            margin-bottom: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--text-color);
-            font-size: var(--font-md);
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            background: var(--darker-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            font-size: var(--font-md);
-            color: var(--text-color);
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.3);
-        }
-        
-        /* Buttons */
-        .btn { 
-            display: inline-block; 
-            background: var(--primary-color); 
-            color: white; 
-            padding: 12px 24px; 
-            border: none;
-            border-radius: 6px; 
-            font-weight: 600; 
-            cursor: pointer;
-            margin: 8px 5px;
-            transition: all 0.3s ease;
-            font-size: var(--font-md);
-        }
-        
-        .btn:hover { 
-            background: #6a3093; 
-            transform: translateY(-2px); 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
-        }
-        
-        .btn-secondary { 
-            background: var(--secondary-color); 
-        }
-        
-        .btn-secondary:hover { 
-            background: #0097a7; 
-        }
-        
-        .btn-success { 
-            background: var(--success-color); 
-        }
-        
-        .btn-success:hover { 
-            background: #27ae60; 
-        }
-        
-        .btn-danger { 
-            background: var(--danger-color); 
-        }
-        
-        .btn-danger:hover { 
-            background: #c0392b; 
-        }
-
-        /* Trade List */
-        .trade-list {
-            margin-top: 30px;
-        }
-        
-        .trade-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.3s;
-        }
-        
-        .trade-item:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .trade-info {
-            flex: 1;
-        }
-        
-        .trade-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .profit {
-            color: var(--success-color);
-            font-weight: bold;
-        }
-        
-        .loss {
-            color: var(--danger-color);
-            font-weight: bold;
-        }
-
-        /* Summary Cards */
-        .summary-cards {
+        .sets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
         }
         
-        .summary-card {
-            background: var(--darker-bg);
-            padding: 25px;
+        .set-item {
+            background: var(--card-bg);
             border-radius: 10px;
+            overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
             border: 1px solid var(--border-color);
         }
         
-        .summary-card h3 {
+        .set-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .set-display {
+            width: 100%;
+            padding: 20px;
+            background: var(--dark-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .head-display {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+        
+        .head {
+            width: 32px;
+            height: 32px;
+            background-repeat: no-repeat;
+            image-rendering: pixelated;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            background-size: 32px 560px;
+        }
+        
+        .frame1 { background-position: 0 0; }
+        .frame2 { background-position: 0 -32px; }
+        .frame3 { background-position: 0 -64px; }
+        .frame4 { background-position: 0 -96px; }
+        
+        .body-img {
+            width: 128px;
+            height: 128px;
+            object-fit: cover;
+            object-position: top;
+            image-rendering: pixelated;
+            border-radius: 3px;
+        }
+        
+        .set-info {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .set-info h3 {
+            font-size: var(--font-md);
+            margin-bottom: 5px;
             color: var(--text-color);
-            margin-bottom: 15px;
-            font-weight: 600;
+        }
+        
+        .set-info p {
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            list-style: none;
+            gap: 8px;
+        }
+        
+        .pagination li {
+            margin: 0;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
             font-size: var(--font-md);
         }
         
-        .summary-card .value {
-            font-size: var(--font-2xl);
-            font-weight: bold;
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
         }
         
-        .summary-card.profit .value {
-            color: var(--success-color);
-        }
-        
-        .summary-card.loss .value {
-            color: var(--danger-color);
+        .page-nav {
+            background: var(--dark-bg);
         }
 
-        /* Guide Sections */
-        .guide-section {
-            margin: 30px 0;
+        /* Modal for enlarged view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
         }
         
-        .guide-section h3 {
-            color: var(--text-color);
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--primary-color);
-            font-weight: 600;
-            font-size: var(--font-lg);
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
         }
         
-        .guide-section ul {
-            padding-left: 20px;
-            margin-bottom: 20px;
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         
-        .guide-section li {
-            margin-bottom: 10px;
-            line-height: 1.6;
-            color: var(--text-muted);
-            font-size: var(--font-md);
-        }
-        
-        .profit-guide {
-            border-left: 4px solid var(--success-color);
-            padding-left: 15px;
-        }
-        
-        .loss-guide {
-            border-left: 4px solid var(--danger-color);
-            padding-left: 15px;
+        .close-modal:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
         }
 
         /* Footer */
@@ -607,6 +548,16 @@
             }
         }
         
+        @media (max-width: 992px) {
+            .sets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .page-header h1 {
+                font-size: var(--font-3xl);
+            }
+        }
+        
         @media (max-width: 768px) {
             :root {
                 --font-xs: 0.7rem;
@@ -678,7 +629,32 @@
                 display: block;
             }
             
-            .page-header { 
+            .sets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 20px;
+            }
+            
+            .set-display {
+                padding: 15px;
+            }
+            
+            .head {
+                width: 28px;
+                height: 28px;
+                background-size: 28px 490px;
+            }
+            
+            .frame1 { background-position: 0 0; }
+            .frame2 { background-position: 0 -28px; }
+            .frame3 { background-position: 0 -56px; }
+            .frame4 { background-position: 0 -84px; }
+            
+            .body-img {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .page-header {
                 padding: 40px 0;
             }
             
@@ -686,45 +662,17 @@
                 font-size: var(--font-2xl);
             }
             
-            .page-header p {
-                font-size: var(--font-md);
-            }
-            
-            .section {
-                padding: 20px;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                margin: 5px 0;
-                display: block;
-                width: 100%;
-                max-width: 280px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .trade-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .trade-actions {
-                margin-top: 10px;
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .summary-cards {
-                grid-template-columns: 1fr;
-            }
-            
             .footer-content { 
                 flex-direction: column; 
                 gap: 20px;
             }
+            
+            .pagination a {
+                padding: 8px 12px;
+                font-size: var(--font-sm);
+            }
         }
-        
+
         @media (max-width: 480px) {
             :root {
                 --font-xs: 0.65rem;
@@ -741,32 +689,60 @@
                 font-size: var(--font-xl);
             }
             
-            .page-header {
-                padding: 30px 0;
+            .sets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .head {
+                width: 24px;
+                height: 24px;
+                background-size: 24px 420px;
+            }
+            
+            .frame1 { background-position: 0 0; }
+            .frame2 { background-position: 0 -24px; }
+            .frame3 { background-position: 0 -48px; }
+            .frame4 { background-position: 0 -72px; }
+            
+            .body-img {
+                width: 90px;
+                height: 90px;
             }
             
             .page-header h1 {
                 font-size: var(--font-xl);
             }
             
-            .section {
-                padding: 15px;
+            .page-header p {
+                font-size: var(--font-md);
             }
             
-            .trade-actions {
-                flex-direction: column;
-                gap: 5px;
-            }
-            
-            .trade-actions .btn {
-                width: 100%;
+            .pagination {
+                flex-wrap: wrap;
             }
             
             footer {
                 padding: 30px 0 15px;
             }
         }
-
+        
+        /* No results styling */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            font-size: var(--font-lg);
+        }
+        
+        .no-results::before {
+            content: "😢";
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
         /* Prevent zoom on focus for iOS */
         @media screen and (max-width: 768px) {
             input, select, textarea {
@@ -774,6 +750,15 @@
             }
         }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-VVS6GWC596');
+    </script>
 </head>
 <body>
     <header>
@@ -791,6 +776,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
                                 <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
+                                <li><a href="upload-sets.html" data-translate="nav-sets">Upload Sets</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -850,138 +836,35 @@
                 </div>
             </div>
         </div>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VVS6GWC596');
-</script>
     </header>
 
     <div class="page-header">
         <div class="container">
-            <h1 id="page-title" data-translate="page-title">Profit & Loss Tracker</h1>
-            <p id="page-description" data-translate="page-description">Monitor your Graal Era trading performance, track profits and losses, and optimize your trading strategy.</p>
+            <h1 id="page-title" data-translate="page-title">Graal Era Upload Sets</h1>
+            <p id="page-description" data-translate="page-description">Browse complete head and body combinations for your character.</p>
         </div>
     </div>
 
     <div class="container">
-        <!-- Trade Log Section -->
-        <div class="section trade-log">
-            <h2 id="trade-log-title" data-translate="trade-log-title">📊 Trade Log</h2>
-            <p id="trade-log-note" data-translate="trade-log-note"><em>Note: Your trade log is saved locally and cannot be shared with others.</em></p>
-            
-            <div class="form-group">
-                <label for="itemName" id="item-name-label" data-translate="item-name-label">Item Name:</label>
-                <input type="text" id="itemName" placeholder="e.g., Rage Blade">
+        <div class="gallery-content">
+            <div class="sets-grid" id="sets-container">
+                <!-- Sets will be populated by JavaScript -->
             </div>
             
-            <div class="form-group">
-                <label for="buyPriceLog" id="buy-price-label" data-translate="buy-price-label">Buy Price (Trochus):</label>
-                <input type="number" id="buyPriceLog" placeholder="e.g., 120000">
-            </div>
-            
-            <div class="form-group">
-                <label for="sellPriceLog" id="sell-price-label" data-translate="sell-price-label">Sell Price (Trochus):</label>
-                <input type="number" id="sellPriceLog" placeholder="e.g., 150000">
-            </div>
-            
-            <button class="btn btn-success" id="add-trade-btn" onclick="addTrade()" data-translate="add-trade-btn">Add Trade</button>
-            <button class="btn btn-danger" id="clear-trades-btn" onclick="clearTrades()" data-translate="clear-trades-btn">Clear All Trades</button>
-            
-            <div class="trade-list">
-                <ul id="tradeList"></ul>
-            </div>
+            <ul class="pagination">
+                <li><a href="#" class="page-nav" data-page="prev">&laquo;</a></li>
+                <li><a href="#" class="active" data-page="1">1</a></li>
+                <li><a href="#" data-page="2">2</a></li>
+                <li><a href="#" data-page="3">3</a></li>
+                <li><a href="#" class="page-nav" data-page="next">&raquo;</a></li>
+            </ul>
         </div>
+    </div>
 
-        <!-- Summary Section -->
-        <div class="section">
-            <h2 id="summary-title" data-translate="summary-title">📈 Trading Summary</h2>
-            <div class="summary-cards">
-                <div class="summary-card">
-                    <h3 id="total-trades-label" data-translate="total-trades-label">Total Trades</h3>
-                    <div class="value" id="totalTrades">0</div>
-                </div>
-                <div class="summary-card profit">
-                    <h3 id="total-profit-label" data-translate="total-profit-label">Total Profit</h3>
-                    <div class="value" id="totalProfit">0 Trochus</div>
-                </div>
-                <div class="summary-card loss">
-                    <h3 id="total-loss-label" data-translate="total-loss-label">Total Loss</h3>
-                    <div class="value" id="totalLoss">0 Trochus</div>
-                </div>
-                <div class="summary-card">
-                    <h3 id="net-result-label" data-translate="net-result-label">Net Result</h3>
-                    <div class="value" id="netResult">0 Trochus</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Profit Guide Section -->
-        <div class="section guide-section">
-            <h2 id="profit-guide-title" data-translate="profit-guide-title">📈 Profit Guide</h2>
-            <div class="profit-guide">
-                <p id="profit-intro" data-translate="profit-intro">Profit is the extra Trochus you earn from a trade. It's the reward for making smart trading decisions. Here's how to maximize your profits:</p>
-                
-                <h3 id="buy-low-title" data-translate="buy-low-title">Buy Low, Sell High</h3>
-                <ul>
-                    <li id="buy-low-tip1" data-translate="buy-low-tip1">Look for undervalued items and buy them at a low price. For example, if you buy a melee for 10,000 Trochus and sell it for 15,000 Trochus, your profit is 5,000 Trochus.</li>
-                    <li id="buy-low-tip2" data-translate="buy-low-tip2">This strategy works best when you know the market trends and can predict when an item's price will rise.</li>
-                </ul>
-                
-                <h3 id="negotiate-title" data-translate="negotiate-title">Negotiate for Lower Prices</h3>
-                <ul>
-                    <li id="negotiate-tip1" data-translate="negotiate-tip1">Always try to negotiate when buying items. Even a small discount can increase your profit margin. For example, if you negotiate a melee down from 12,000 Trochus to 10,000 Trochus, you save 2,000 Trochus upfront.</li>
-                    <li id="negotiate-tip2" data-translate="negotiate-tip2">This extra savings can be reinvested into more trades, increasing your overall profits.</li>
-                </ul>
-                
-                <h3 id="set-price-title" data-translate="set-price-title">Set Higher Selling Prices</h3>
-                <ul>
-                    <li id="set-price-tip1" data-translate="set-price-tip1">When selling an item, set the price slightly higher than your target. This gives you room to negotiate without losing your desired profit.</li>
-                    <li id="set-price-tip2" data-translate="set-price-tip2">This strategy ensures you don't undersell your items.</li>
-                </ul>
-                
-                <h3 id="invest-title" data-translate="invest-title">Invest in High-Demand Items</h3>
-                <ul>
-                    <li id="invest-tip1" data-translate="invest-tip1">Items like ultras (1m Trochus+) are always in demand for basing/war. Investing in these items can lead to consistent profits.</li>
-                    <li id="invest-tip2" data-translate="invest-tip2">These items are less volatile and tend to hold their value, making them a safer investment.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Loss Guide Section -->
-        <div class="section guide-section">
-            <h2 id="loss-guide-title" data-translate="loss-guide-title">📉 Loss Guide</h2>
-            <div class="loss-guide">
-                <p id="loss-intro" data-translate="loss-intro">Loss occurs when you sell an item for less Trochus than you paid for it. Here's how to avoid losses:</p>
-                
-                <h3 id="research-title" data-translate="research-title">Research Item Values</h3>
-                <ul>
-                    <li id="research-tip1" data-translate="research-tip1">Always check the current market value of items before trading. For example, if a melee is typically worth 15,000 Trochus, don't buy it for 20,000 Trochus unless you're confident it will increase in value.</li>
-                </ul>
-                
-                <h3 id="limits-title" data-translate="limits-title">Set Limits</h3>
-                <ul>
-                    <li id="limits-tip1" data-translate="limits-tip1">Decide the maximum Trochus you're willing to spend on an item and stick to it.</li>
-                    <li id="limits-tip2" data-translate="limits-tip2">This prevents overspending and minimizes potential losses.</li>
-                </ul>
-                
-                <h3 id="cut-losses-title" data-translate="cut-losses-title">Cut Your Losses</h3>
-                <ul>
-                    <li id="cut-losses-tip1" data-translate="cut-losses-tip1">If an item's value is dropping, sell it quickly to minimize your loss.</li>
-                    <li id="cut-losses-tip2" data-translate="cut-losses-tip2">This strategy is especially important during market downturns.</li>
-                </ul>
-                
-                <h3 id="emotional-title" data-translate="emotional-title">Avoid Emotional Trading</h3>
-                <ul>
-                    <li id="emotional-tip1" data-translate="emotional-tip1">Don't let fear or greed dictate your trades. Stick to your strategy.</li>
-                    <li id="emotional-tip2" data-translate="emotional-tip2">Stay calm and make decisions based on logic, not emotions.</li>
-                </ul>
-            </div>
-        </div>
+    <!-- Modal for enlarged view -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="enlarged-img">
     </div>
 
     <footer>
@@ -1026,67 +909,41 @@
     </footer>
 
     <script>
-        // Language translations
+        // Upload Sets data
+        const setsData = [
+            { 
+                headImage: "image/heads/1.gif",
+                bodyImage: "image/bodies/1.png",
+                name: "Classic Set #1",
+                description: "A classic combination for your character"
+            },
+            { 
+                headImage: "image/heads/2.gif",
+                bodyImage: "image/bodies/2.png",
+                name: "Modern Set #1",
+                description: "Modern style head and body"
+            },
+            // Add more sets as needed
+        ];
+
+        // Configuration
+        const itemsPerPage = 12;
+        let currentPage = 1;
+        let filteredSets = [...setsData];
+        let currentLang = 'en';
+
+        // Language translation data
         const translations = {
             'en': {
-                // Page content
-                'page-title': 'Profit & Loss Tracker',
-                'page-description': 'Monitor your Graal Era trading performance, track profits and losses, and optimize your trading strategy.',
-                'trade-log-title': '📊 Trade Log',
-                'trade-log-note': 'Note: Your trade log is saved locally and cannot be shared with others.',
-                'item-name-label': 'Item Name:',
-                'buy-price-label': 'Buy Price (Trochus):',
-                'sell-price-label': 'Sell Price (Trochus):',
-                'add-trade-btn': 'Add Trade',
-                'clear-trades-btn': 'Clear All Trades',
-                'summary-title': '📈 Trading Summary',
-                'total-trades-label': 'Total Trades',
-                'total-profit-label': 'Total Profit',
-                'total-loss-label': 'Total Loss',
-                'net-result-label': 'Net Result',
-                'profit-guide-title': '📈 Profit Guide',
-                'profit-intro': 'Profit is the extra Trochus you earn from a trade. It\'s the reward for making smart trading decisions. Here\'s how to maximize your profits:',
-                'buy-low-title': 'Buy Low, Sell High',
-                'buy-low-tip1': 'Look for undervalued items and buy them at a low price. For example, if you buy a melee for 10,000 Trochus and sell it for 15,000 Trochus, your profit is 5,000 Trochus.',
-                'buy-low-tip2': 'This strategy works best when you know the market trends and can predict when an item\'s price will rise.',
-                'negotiate-title': 'Negotiate for Lower Prices',
-                'negotiate-tip1': 'Always try to negotiate when buying items. Even a small discount can increase your profit margin. For example, if you negotiate a melee down from 12,000 Trochus to 10,000 Trochus, you save 2,000 Trochus upfront.',
-                'negotiate-tip2': 'This extra savings can be reinvested into more trades, increasing your overall profits.',
-                'set-price-title': 'Set Higher Selling Prices',
-                'set-price-tip1': 'When selling an item, set the price slightly higher than your target. This gives you room to negotiate without losing your desired profit.',
-                'set-price-tip2': 'This strategy ensures you don\'t undersell your items.',
-                'invest-title': 'Invest in High-Demand Items',
-                'invest-tip1': 'Items like ultras (1m Trochus+) are always in demand for basing/war. Investing in these items can lead to consistent profits.',
-                'invest-tip2': 'These items are less volatile and tend to hold their value, making them a safer investment.',
-                'loss-guide-title': '📉 Loss Guide',
-                'loss-intro': 'Loss occurs when you sell an item for less Trochus than you paid for it. Here\'s how to avoid losses:',
-                'research-title': 'Research Item Values',
-                'research-tip1': 'Always check the current market value of items before trading. For example, if a melee is typically worth 15,000 Trochus, don\'t buy it for 20,000 Trochus unless you\'re confident it will increase in value.',
-                'limits-title': 'Set Limits',
-                'limits-tip1': 'Decide the maximum Trochus you\'re willing to spend on an item and stick to it.',
-                'limits-tip2': 'This prevents overspending and minimizes potential losses.',
-                'cut-losses-title': 'Cut Your Losses',
-                'cut-losses-tip1': 'If an item\'s value is dropping, sell it quickly to minimize your loss.',
-                'cut-losses-tip2': 'This strategy is especially important during market downturns.',
-                'emotional-title': 'Avoid Emotional Trading',
-                'emotional-tip1': 'Don\'t let fear or greed dictate your trades. Stick to your strategy.',
-                'emotional-tip2': 'Stay calm and make decisions based on logic, not emotions.',
-                
-                // Trade display text
-                'buy-text': 'Buy Price',
-                'sell-text': 'Sell Price',
-                'profit-text': 'Profit',
-                'loss-text': 'Loss',
-                'edit-btn': 'Edit',
-                'delete-btn': 'Delete',
-                'validation-alert': 'Please fill in all fields with valid data.',
-                'clear-confirmation': 'Are you sure you want to clear all trades? This action cannot be undone.',
+                'page-title': 'Graal Era Upload Sets',
+                'page-description': 'Browse complete head and body combinations for your character.',
                 
                 // Navigation
                 'nav-home': 'Home',
                 'nav-uploads': 'Uploads',
                 'nav-heads': 'Heads',
                 'nav-bodies': 'Bodies',
+                'nav-sets': 'Upload Sets',
                 'nav-guides': 'Guides - How to?',
                 'nav-upload-guide': 'Upload',
                 'nav-trade-guide': 'Trade',
@@ -1101,7 +958,7 @@
                 
                 // Footer
                 'about-title': 'About GraalGuide',
-                'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.',
+                'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
                 'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
                 'links-title': 'Quick Links',
                 'link1': 'Home',
@@ -1124,69 +981,20 @@
                 'language-pt': 'Português'
             },
             'pt': {
-                // Page content
-                'page-title': 'Rastreador de Lucros e Perdas',
-                'page-description': 'Monitore seu desempenho de negociação no Graal Era, acompanhe lucros e perdas and otimize sua estratégia de negociação.',
-                'trade-log-title': '📊 Registro de Negociações',
-                'trade-log-note': 'Nota: Seu registro de negociações é salvo localmente e não pode ser compartilhado com outros.',
-                'item-name-label': 'Nome do Item:',
-                'buy-price-label': 'Preço de Compra (Trochus):',
-                'sell-price-label': 'Preço de Venda (Trochus):',
-                'add-trade-btn': 'Adicionar Negociação',
-                'clear-trades-btn': 'Limpar Todas as Negociações',
-                'summary-title': '📈 Resumo de Negociação',
-                'total-trades-label': 'Total de Negociações',
-                'total-profit-label': 'Lucro Total',
-                'total-loss-label': 'Perda Total',
-                'net-result-label': 'Resultado Líquido',
-                'profit-guide-title': '📈 Guia de Lucro',
-                'profit-intro': 'Lucro é o Trochus extra que você ganha em uma negociação. É a recompensa por tomar decisões inteligentes de negociação. Veja como maximizar seus lucros:',
-                'buy-low-title': 'Compre Barato, Venda Caro',
-                'buy-low-tip1': 'Procure itens subvalorizados e compre-os a um preço baixo. Por exemplo, se você compra uma arma branca por 10.000 Trochus e a vende por 15.000 Trochus, seu lucro é de 5.000 Trochus.',
-                'buy-low-tip2': 'Esta estratégia funciona melhor quando você conhece as tendências do mercado e pode prever quando o preço de um item vai subir.',
-                'negotiate-title': 'Negocie por Preços Mais Baixos',
-                'negotiate-tip1': 'Sempre tente negociar ao comprar itens. Mesmo um pequeno desconto pode aumentar sua margem de lucro. Por exemplo, if you negotiate a melee down from 12.000 Trochus to 10.000 Trochus, you save 2.000 Trochus upfront.',
-                'negotiate-tip2': 'Esta economia extra pode ser reinvestida em mais negociações, aumentando seus lucros gerais.',
-                'set-price-title': 'Defina Preços de Venda Mais Altos',
-                'set-price-tip1': 'Ao vender um item, defina o preço ligeiramente acima do seu objetivo. Isso lhe dá margem para negociar sem perder o lucro desejado.',
-                'set-price-tip2': 'Esta estratégia garante que você não venda seus itens por menos do que valem.',
-                'invest-title': 'Invista em Itens de Alta Demanda',
-                'invest-tip1': 'Itens como ultras (1m Trochus+) estão sempre em demanda para basing/guerra. Investir nesses itens pode levar a lucros consistentes.',
-                'invest-tip2': 'Esses itens são menos voláteis e tendem a manter seu valor, tornando-os um investimento mais seguro.',
-                'loss-guide-title': '📉 Guia de Perdas',
-                'loss-intro': 'A perda ocorre quando você vende um item por menos Trochus do que pagou por ele. Veja como evitar perdas:',
-                'research-title': 'Pesquise os Valores dos Itens',
-                'research-tip1': 'Sempre verifique o valor atual de mercado dos itens antes de negociar. Por exemplo, se uma arma branca normalmente vale 15.000 Trochus, não a compre por 20.000 Trochus, a menos que esteja confiante de que valorizará.',
-                'limits-title': 'Defina Limites',
-                'limits-tip1': 'Decida o máximo de Trochus que você está disposto a gastar em um item e cumpra isso.',
-                'limits-tip2': 'Isso evita gastos excessivos e minimiza possíveis perdas.',
-                'cut-losses-title': 'Corte Suas Perdas',
-                'cut-losses-tip1': 'Se o valor de um item está caindo, venda-o rapidamente para minimizar sua perda.',
-                'cut-losses-tip2': 'Esta estratégia é especialmente importante durante quedas do mercado.',
-                'emotional-title': 'Evite Negociações Emocionais',
-                'emotional-tip1': 'Não deixe que o medo ou a ganância ditem suas negociações. Mantenha-se fiel à sua estratégia.',
-                'emotional-tip2': 'Mantenha a calma e tome decisões baseadas na lógica, não em emoções.',
-                
-                // Trade display text
-                'buy-text': 'Preço de Compra',
-                'sell-text': 'Preço de Venda',
-                'profit-text': 'Lucro',
-                'loss-text': 'Perda',
-                'edit-btn': 'Editar',
-                'delete-btn': 'Excluir',
-                'validation-alert': 'Por favor, preencha todos os campos com dados válidos.',
-                'clear-confirmation': 'Tem certeza de que deseja limpar todas as negociações? Esta ação não pode ser desfeita.',
+                'page-title': 'Conjuntos de Upload do Graal Era',
+                'page-description': 'Navegue por combinações completas de head e body para o seu personagem.',
                 
                 // Navigation
                 'nav-home': 'Início',
                 'nav-uploads': 'Uploads',
                 'nav-heads': 'Heads',
                 'nav-bodies': 'Bodies',
+                'nav-sets': 'Conjuntos',
                 'nav-guides': 'Guia - Como?',
                 'nav-upload-guide': 'Upload',
-                'nav-trade-guide': 'Troca',
-                'nav-gralats-guide': 'Obter Gralats',
-                'nav-events-guide': 'Obter Moedas de Evento',
+                'nav-trade-guide': 'Trocar',
+                'nav-gralats-guide': 'Conseguir Gralats',
+                'nav-events-guide': 'Conseguir Moedas de Evento',
                 'nav-trade': 'Tabela de Troca',
                 'nav-calculator': 'Calculadora de Vendáveis',
                 'nav-ratio': 'Histórico de Ratios',
@@ -1196,7 +1004,7 @@
                 
                 // Footer
                 'about-title': 'Sobre o GraalGuide',
-                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos ferramentas, guias e recursos para melhorar sua experiência de jogo.',
+                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
                 'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
                 'links-title': 'Links Rápidos',
                 'link1': 'Início',
@@ -1220,9 +1028,6 @@
             }
         };
 
-        // Set default language
-        let currentLang = 'en';
-
         // Function to change language
         function changeLanguage(lang) {
             currentLang = lang;
@@ -1230,12 +1035,8 @@
             // Update all elements with data-translate attribute
             document.querySelectorAll('[data-translate]').forEach(element => {
                 const key = element.getAttribute('data-translate');
-                if (translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
                 }
             });
             
@@ -1256,109 +1057,108 @@
             
             // Save language preference
             localStorage.setItem('preferredLanguage', lang);
-            
-            // Refresh trade display with new language
-            displayTrades();
         }
 
-        // Load saved trades from localStorage
-        let trades = JSON.parse(localStorage.getItem("trades")) || [];
-
-        // Display saved trades
-        function displayTrades() {
-            const tradeList = document.getElementById('tradeList');
-            tradeList.innerHTML = '';
+        // Function to render sets based on current page
+        function renderSets() {
+            const setsContainer = document.getElementById('sets-container');
+            setsContainer.innerHTML = '';
             
-            let totalProfit = 0;
-            let totalLoss = 0;
+            // Calculate which items to show
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const setsToShow = filteredSets.slice(startIndex, endIndex);
             
-            trades.forEach((trade, index) => {
-                const profit = trade.sellPrice - trade.buyPrice;
-                const profitClass = profit >= 0 ? 'profit' : 'loss';
-                const profitText = profit >= 0 ? 
-                    `${translations[currentLang]['profit-text'] || 'Profit'}: ${profit.toLocaleString()} Trochus` : 
-                    `${translations[currentLang]['loss-text'] || 'Loss'}: ${Math.abs(profit).toLocaleString()} Trochus`;
-                
-                if (profit >= 0) {
-                    totalProfit += profit;
-                } else {
-                    totalLoss += Math.abs(profit);
-                }
-                
-                tradeList.innerHTML += `
-                    <li class="trade-item">
-                        <div class="trade-info">
-                            <strong>${trade.itemName}</strong>:
-                            ${translations[currentLang]['buy-text'] || 'Buy Price'}: ${trade.buyPrice.toLocaleString()} Trochus,
-                            ${translations[currentLang]['sell-text'] || 'Sell Price'}: ${trade.sellPrice.toLocaleString()} Trochus,
-                            <span class="${profitClass}">
-                                ${profitText}
-                            </span>
-                        </div>
-                        <div class="trade-actions">
-                            <button class="btn" onclick="editTrade(${index})">${translations[currentLang]['edit-btn'] || 'Edit'}</button>
-                            <button class="btn btn-danger" onclick="deleteTrade(${index})">${translations[currentLang]['delete-btn'] || 'Delete'}</button>
-                        </div>
-                    </li>
-                `;
-            });
-            
-            // Update summary
-            document.getElementById('totalTrades').textContent = trades.length;
-            document.getElementById('totalProfit').textContent = `${totalProfit.toLocaleString()} Trochus`;
-            document.getElementById('totalLoss').textContent = `${totalLoss.toLocaleString()} Trochus`;
-            document.getElementById('netResult').textContent = `${(totalProfit - totalLoss).toLocaleString()} Trochus`;
-        }
-
-        // Add a new trade
-        function addTrade() {
-            const itemName = document.getElementById('itemName').value;
-            const buyPrice = parseFloat(document.getElementById('buyPriceLog').value);
-            const sellPrice = parseFloat(document.getElementById('sellPriceLog').value);
-
-            if (!itemName || isNaN(buyPrice) || isNaN(sellPrice)) {
-                alert(translations[currentLang]['validation-alert'] || "Please fill in all fields with valid data.");
+            if (setsToShow.length === 0) {
+                setsContainer.innerHTML = '<div class="no-results">No upload sets found.</div>';
                 return;
             }
-
-            trades.push({ itemName, buyPrice, sellPrice });
-            localStorage.setItem("trades", JSON.stringify(trades));
-            displayTrades();
-
-            // Clear inputs
-            document.getElementById('itemName').value = '';
-            document.getElementById('buyPriceLog').value = '';
-            document.getElementById('sellPriceLog').value = '';
+            
+            // Create HTML for each set
+            setsToShow.forEach(set => {
+                const setElement = document.createElement('div');
+                setElement.className = 'set-item';
+                
+                setElement.innerHTML = `
+                    <div class="set-display">
+                        <div class="head-display">
+                            <div class="head frame1" style="background-image:url('${set.headImage}')"></div>
+                            <div class="head frame2" style="background-image:url('${set.headImage}')"></div>
+                            <div class="head frame3" style="background-image:url('${set.headImage}')"></div>
+                            <div class="head frame4" style="background-image:url('${set.headImage}')"></div>
+                        </div>
+                        <img src="${set.bodyImage}" class="body-img">
+                    </div>
+                    <div class="set-info">
+                        <h3>${set.name}</h3>
+                        <p>${set.description}</p>
+                    </div>
+                `;
+                
+                // Add click event to show enlarged head image
+                setElement.addEventListener('click', function() {
+                    document.getElementById('enlarged-img').src = set.headImage;
+                    document.getElementById('image-modal').style.display = 'flex';
+                });
+                
+                setsContainer.appendChild(setElement);
+            });
+            
+            // Update pagination
+            updatePagination();
         }
 
-        // Edit a trade
-        function editTrade(index) {
-            const trade = trades[index];
-            document.getElementById('itemName').value = trade.itemName;
-            document.getElementById('buyPriceLog').value = trade.buyPrice;
-            document.getElementById('sellPriceLog').value = trade.sellPrice;
-
-            // Remove the trade from the list
-            trades.splice(index, 1);
-            localStorage.setItem("trades", JSON.stringify(trades));
-            displayTrades();
-        }
-
-        // Delete a trade
-        function deleteTrade(index) {
-            trades.splice(index, 1);
-            localStorage.setItem("trades", JSON.stringify(trades));
-            displayTrades();
-        }
-
-        // Clear all trades
-        function clearTrades() {
-            const confirmMessage = translations[currentLang]['clear-confirmation'] || "Are you sure you want to clear all trades? This action cannot be undone.";
-            if (confirm(confirmMessage)) {
-                trades = [];
-                localStorage.setItem("trades", JSON.stringify(trades));
-                displayTrades();
+        // Function to update pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredSets.length / itemsPerPage);
+            const paginationContainer = document.querySelector('.pagination');
+            
+            // Clear existing pagination except for prev/next buttons
+            const prevButton = paginationContainer.querySelector('[data-page="prev"]').parentNode;
+            const nextButton = paginationContainer.querySelector('[data-page="next"]').parentNode;
+            
+            paginationContainer.innerHTML = '';
+            paginationContainer.appendChild(prevButton);
+            
+            // Add page numbers
+            const maxVisiblePages = window.innerWidth < 768 ? 3 : 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
             }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = i;
+                a.dataset.page = i;
+                
+                if (i === currentPage) {
+                    a.classList.add('active');
+                }
+                
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPage = parseInt(this.dataset.page);
+                    renderSets();
+                    window.scrollTo({ top: document.getElementById('sets-container').offsetTop - 100, behavior: 'smooth' });
+                });
+                
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+            }
+            
+            paginationContainer.appendChild(nextButton);
+            
+            // Update button states
+            const prevBtn = document.querySelector('[data-page="prev"]');
+            const nextBtn = document.querySelector('[data-page="next"]');
+            
+            if (prevBtn) prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
+            if (nextBtn) nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
         }
 
         // Initialize the page
@@ -1366,21 +1166,6 @@
             // Check for saved language preference or default to English
             const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
             changeLanguage(savedLanguage);
-            
-            // Initial display of trades
-            displayTrades();
-            
-            // Language selection event listeners
-            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const lang = this.getAttribute('data-lang');
-                    changeLanguage(lang);
-                    
-                    // Close mobile language options after selection
-                    document.getElementById('mobile-language-options').style.display = 'none';
-                });
-            });
             
             // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -1425,14 +1210,51 @@
                 }
             });
             
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.dropdown') && !e.target.closest('.language-selector')) {
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.style.display = 'none';
-                    });
-                    document.querySelector('.language-options').style.display = 'none';
+            // Initial render
+            renderSets();
+            
+            // Pagination event listeners
+            document.querySelector('[data-page="prev"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderSets();
+                    window.scrollTo({ top: document.getElementById('sets-container').offsetTop - 100, behavior: 'smooth' });
                 }
+            });
+            
+            document.querySelector('[data-page="next"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                const totalPages = Math.ceil(filteredSets.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderSets();
+                    window.scrollTo({ top: document.getElementById('sets-container').offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+            
+            // Modal functionality
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('image-modal').style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('image-modal')) {
+                    document.getElementById('image-modal').style.display = 'none';
+                }
+            });
+            
+            // Language selection event listeners
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    
+                    // Close mobile language options after selection
+                    document.getElementById('mobile-language-options').style.display = 'none';
+                });
             });
             
             // Handle dropdown toggles on mobile
