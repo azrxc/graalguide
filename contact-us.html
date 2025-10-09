@@ -74,11 +74,18 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
+            position: relative;
         }
         
         .logo { 
             font-size: var(--font-2xl); 
             font-weight: 800; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo a {
+            color: white;
             display: flex;
             align-items: center;
         }
@@ -122,6 +129,18 @@
             width: 100%;
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
+        }
+
         /* Language Selector */
         .language-selector {
             margin-left: 20px;
@@ -139,6 +158,7 @@
             align-items: center;
             transition: all 0.3s ease;
             font-size: var(--font-sm);
+            height: 40px;
         }
         
         .language-btn:hover {
@@ -147,6 +167,8 @@
         
         .language-btn img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 8px;
         }
         
@@ -178,22 +200,13 @@
         
         .language-options a img {
             width: 20px;
+            height: 15px;
+            object-fit: cover;
             margin-right: 10px;
         }
         
         .language-selector:hover .language-options {
             display: block;
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            font-size: var(--font-2xl);
-            cursor: pointer;
-            padding: 5px 10px;
         }
 
         /* Dropdown Menu */
@@ -236,22 +249,39 @@
 
         /* Page Header */
         .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            padding: 60px 0;
+            color: white;
             text-align: center;
-            padding: 60px 0 30px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
         }
         
         .page-header h1 {
             font-size: var(--font-3xl);
             margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             font-weight: 800;
+            position: relative;
         }
         
         .page-header p {
-            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
             font-size: var(--font-lg);
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
         }
 
         /* Contact Methods */
@@ -269,17 +299,38 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             border: 1px solid var(--border-color);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         }
         
         .contact-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
         .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            display: block;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
         }
         
         .contact-card h3 {
@@ -291,6 +342,7 @@
         .contact-card p {
             color: var(--text-muted);
             margin-bottom: 20px;
+            line-height: 1.6;
         }
         
         .contact-link {
@@ -301,12 +353,25 @@
             border-radius: 30px;
             font-weight: 500;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
         
         .contact-link:hover {
             background: #7329c7;
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(115, 41, 199, 0.4);
+        }
+        
+        .contact-info {
+            background: rgba(138, 43, 226, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+            color: var(--primary-color);
+            border: 1px solid rgba(138, 43, 226, 0.2);
         }
 
         /* Content Sections */
@@ -410,20 +475,56 @@
             color: var(--text-muted); 
         }
 
+        /* Mobile Language Selector */
+        .mobile-language-selector {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+        }
+        
+        .mobile-language-selector .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .container {
                 padding: 0 20px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .page-header h1 {
-                font-size: var(--font-2xl);
-            }
-            
-            .page-header p {
-                font-size: var(--font-md);
             }
         }
         
@@ -441,19 +542,22 @@
             
             .header-content { 
                 flex-direction: row;
+                align-items: center;
             }
             
             nav {
                 display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 70px;
                 left: 0;
                 right: 0;
+                bottom: 0;
                 background: var(--darker-bg);
-                padding: 15px;
+                padding: 20px;
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
                 z-index: 999;
-                border-top: 1px solid var(--border-color);
+                overflow-y: auto;
+                transition: all 0.3s ease;
             }
             
             nav.active {
@@ -476,18 +580,43 @@
                 margin: 10px 0;
                 border: none;
                 background: var(--dark-bg);
+                display: none;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                display: block;
             }
             
             .mobile-menu-btn {
                 display: block;
             }
             
-            .page-header {
-                padding: 40px 0 20px;
+            .language-selector {
+                display: none;
+            }
+            
+            .mobile-language-selector {
+                display: block;
+            }
+            
+            .page-header { 
+                padding: 40px 0;
+            }
+            
+            .page-header h1 {
+                font-size: var(--font-2xl);
+            }
+            
+            .page-header p {
+                font-size: var(--font-md);
             }
             
             .contact-methods {
                 grid-template-columns: 1fr;
+            }
+            
+            .contact-card {
+                padding: 20px;
             }
             
             .content-section {
@@ -497,10 +626,6 @@
             .footer-content { 
                 flex-direction: column; 
                 gap: 20px;
-            }
-            
-            .language-selector {
-                margin: 10px 0 0;
             }
         }
         
@@ -521,11 +646,11 @@
             }
             
             .page-header {
-                padding: 30px 0 15px;
+                padding: 30px 0;
             }
             
             .contact-card {
-                padding: 20px;
+                padding: 15px;
             }
             
             .content-section {
@@ -537,6 +662,105 @@
             }
         }
 
+        /* Language Toggle */
+        .language-content {
+            display: none;
+        }
+        
+        .language-content.active {
+            display: block;
+        }
+        
+        /* Email Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .modal-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+        
+        .email-address {
+            background: rgba(138, 43, 226, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: var(--font-lg);
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            word-break: break-all;
+        }
+        
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: #7329c7;
+        }
+        
+        .copy-success {
+            color: var(--secondary-color);
+            text-align: center;
+            margin-top: 10px;
+            font-size: var(--font-sm);
+            display: none;
+        }
+
         /* Prevent zoom on focus for iOS */
         @media screen and (max-width: 768px) {
             input, select, textarea {
@@ -545,25 +769,25 @@
         }
     </style>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-VVS6GWC596');
-</script>
+      gtag('config', 'G-VVS6GWC596');
+    </script>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="index.html" style="color: inherit;">
+                    <a href="index.html">
                         <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                     </a>
                 </div>
-                <button class="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
                 <nav id="main-nav">
                     <ul>
                         <li><a href="index.html" data-translate="nav-home">Home</a></li>
@@ -595,19 +819,37 @@
                         </li>
                         <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
+                    
+                    <!-- Mobile Language Selector -->
+                    <div class="mobile-language-selector">
+                        <button class="language-btn" id="mobile-language-btn">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
+                            <span data-translate="language-en">English</span>
+                        </button>
+                        <div class="mobile-language-options" id="mobile-language-options">
+                            <a href="#" data-lang="en">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                <span data-translate="language-en">English</span>
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                <span data-translate="language-pt">Português</span>
+                            </a>
+                        </div>
+                    </div>
                 </nav>
                 <div class="language-selector">
                     <button class="language-btn" id="current-language">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                        <img src="https://flagcdn.com/w40/us.png" alt="English">
                         <span data-translate="language-en">English</span>
                     </button>
                     <div class="language-options">
                         <a href="#" data-lang="en">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
                             <span data-translate="language-en">English</span>
                         </a>
                         <a href="#" data-lang="pt">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                            <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                             <span data-translate="language-pt">Português</span>
                         </a>
                     </div>
@@ -616,31 +858,47 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="page-header">
+    <div class="page-header">
+        <div class="container">
             <h1 id="contact-title">Contact Us</h1>
             <p id="contact-subtitle">Get in touch with the GraalGuide team</p>
         </div>
+    </div>
 
+    <div class="container">
         <!-- English Content -->
         <div class="language-content active" id="content-en">
             <div class="contact-methods">
                 <div class="contact-card">
-                    <span class="contact-icon">📧</span>
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
                     <h3>Email</h3>
                     <p>Send me an email for any inquiries or suggestions</p>
-                    <a href="mailto:azrele2@gmail.com" class="contact-link">Send Email</a>
+                    <button class="contact-link" id="email-btn">Show Email Address</button>
                 </div>
                 
                 <div class="contact-card">
-                    <span class="contact-icon">💬</span>
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
                     <h3>Discord</h3>
                     <p>Reach out to me on Discord for quicker responses</p>
-                    <p class="contact-info">azrxc</p>
+                    <div class="contact-info">azrxc</div>
                 </div>
                 
                 <div class="contact-card">
-                    <span class="contact-icon">▶️</span>
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path>
+                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                        </svg>
+                    </div>
                     <h3>YouTube</h3>
                     <p>Check out my YouTube channel for Graal-related content</p>
                     <a href="https://www.youtube.com/@azrxc" target="_blank" class="contact-link">Visit Channel</a>
@@ -650,13 +908,13 @@
             <div class="content-section">
                 <h2>Notes Before Contacting</h2>
                 <p>Please keep in mind that GraalGuide is a fan-made site and I am not affiliated with GraalOnline or its developers.</p>
-                <p>I cannot help with account bans, technical problems, or in-game purchases — for those, please contact the official GraalOnline support team.</p>
+                <p>I cannot help with account bans, technical problems, or in-game purchases. For those, please contact the official GraalOnline support team.</p>
                 <p>For suggestions, corrections, or ideas to improve this site, feel free to message me anytime.</p>
             </div>
 
             <div class="content-section">
                 <h2>Response Time</h2>
-                <p>I usually try to reply within a few days, depending on my schedule as a student.</p>
+                <p>I usually try to reply within a few days, depending on my schedule.</p>
             </div>
         </div>
 
@@ -664,21 +922,35 @@
         <div class="language-content" id="content-pt">
             <div class="contact-methods">
                 <div class="contact-card">
-                    <span class="contact-icon">📧</span>
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
                     <h3>Email</h3>
                     <p>Envie-me um email para quaisquer perguntas ou sugestões</p>
-                    <a href="mailto:azrele2@gmail.com" class="contact-link">Enviar Email</a>
+                    <button class="contact-link" id="email-btn-pt">Mostrar Endereço de Email</button>
                 </div>
                 
                 <div class="contact-card">
-                    <span class="contact-icon">💬</span>
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
                     <h3>Discord</h3>
                     <p>Entre em contato comigo no Discord para respostas mais rápidas</p>
-                    <p class="contact-info">azrxc</p>
+                    <div class="contact-info">azrxc</div>
                 </div>
                 
                 <div class="contact-card">
-                    <span class="contact-icon">▶️</span>
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path>
+                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                        </svg>
+                    </div>
                     <h3>YouTube</h3>
                     <p>Confira meu canal do YouTube para conteúdo relacionado ao Graal</p>
                     <a href="https://www.youtube.com/@azrxc" target="_blank" class="contact-link">Visitar Canal</a>
@@ -688,14 +960,28 @@
             <div class="content-section">
                 <h2>Notas Antes de Entrar em Contato</h2>
                 <p>Lembre-se de que o GraalGuide é um site feito por fãs e não sou afiliado ao GraalOnline ou seus desenvolvedores.</p>
-                <p>Não posso ajudar com bans de conta, problemas técnicos ou compras no jogo — para isso, entre em contato com a equipe de suporte oficial do GraalOnline.</p>
+                <p>Não posso ajudar com bans de conta, problemas técnicos ou compras no jogo. Para isso, entre em contato com a equipe de suporte oficial do GraalOnline.</p>
                 <p>Para sugestões, correções ou ideias para melhorar este site, sinta-se à vontade para me enviar uma mensagem a qualquer momento.</p>
             </div>
 
             <div class="content-section">
                 <h2>Tempo de Resposta</h2>
-                <p>Normalmente tento responder em alguns dias, dependendo da minha agenda como estudante.</p>
+                <p>Eu geralmente tento responder dentro de alguns dias, dependendo da minha agenda.</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Email Modal -->
+    <div class="modal" id="email-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Email Address</h3>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <p id="modal-description">You can copy the email address below to contact me:</p>
+            <div class="email-address" id="email-display">graalguide.contact@gmail.com</div>
+            <button class="copy-btn" id="copy-btn">Copy to Clipboard</button>
+            <div class="copy-success" id="copy-success">Email address copied to clipboard!</div>
         </div>
     </div>
 
@@ -703,7 +989,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title" data-translate="about-title">About GraalGuide</h3>
+                    <h3 id="about-title-footer" data-translate="about-title">About GraalGuide</h3>
                     <p id="about-desc" data-translate="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
                     <p><em id="disclaimer" data-translate="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
                 </div>
@@ -789,7 +1075,14 @@
                 
                 // Language selector
                 'language-en': 'English',
-                'language-pt': 'Português'
+                'language-pt': 'Português',
+                
+                // Email Modal
+                'modal-title': 'Email Address',
+                'modal-description': 'You can copy the email address below to contact me:',
+                'copy-btn': 'Copy to Clipboard',
+                'copy-success': 'Email address copied to clipboard!',
+                'email-btn': 'Show Email Address'
             },
             'pt': {
                 // Navigation
@@ -837,7 +1130,14 @@
                 
                 // Language selector
                 'language-en': 'Inglês',
-                'language-pt': 'Português'
+                'language-pt': 'Português',
+                
+                // Email Modal
+                'modal-title': 'Endereço de Email',
+                'modal-description': 'Você pode copiar o endereço de email abaixo para entrar em contato comigo:',
+                'copy-btn': 'Copiar para a Área de Transferência',
+                'copy-success': 'Endereço de email copiado para a área de transferência!',
+                'email-btn': 'Mostrar Endereço de Email'
             }
         };
 
@@ -860,17 +1160,25 @@
             document.getElementById('contact-title').textContent = translations[lang]['contact-title'];
             document.getElementById('contact-subtitle').textContent = translations[lang]['contact-subtitle'];
             
-            // Update language button
-            const languageBtn = document.getElementById('current-language');
-            const flagImg = languageBtn.querySelector('img');
-            const langText = languageBtn.querySelector('span');
+            // Update language buttons
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                const flagImg = btn.querySelector('img');
+                const langText = btn.querySelector('span');
+                
+                if (lang === 'en') {
+                    flagImg.src = 'https://flagcdn.com/w40/us.png';
+                    langText.textContent = translations[lang]['language-en'];
+                } else if (lang === 'pt') {
+                    flagImg.src = 'https://flagcdn.com/w40/br.png';
+                    langText.textContent = translations[lang]['language-pt'];
+                }
+            });
             
-            if (lang === 'en') {
-                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
-                langText.textContent = 'English';
-            } else if (lang === 'pt') {
-                flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
-                langText.textContent = 'Português';
+            // Update email button text
+            document.getElementById('email-btn').textContent = translations[lang]['email-btn'];
+            if (document.getElementById('email-btn-pt')) {
+                document.getElementById('email-btn-pt').textContent = translations[lang]['email-btn'];
             }
             
             // Toggle language content visibility
@@ -881,29 +1189,109 @@
             localStorage.setItem('preferredLanguage', lang);
         }
 
-        // Initialize language
+        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            // Check for saved language preference
-            const savedLang = localStorage.getItem('preferredLanguage');
-            if (savedLang) {
-                changeLanguage(savedLang);
+            // Check for saved language preference or default to English
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLanguage);
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+                
+                // Close dropdowns when menu is toggled on mobile
+                if (window.innerWidth <= 768) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Mobile language selector toggle
+            const mobileLanguageBtn = document.getElementById('mobile-language-btn');
+            const mobileLanguageOptions = document.getElementById('mobile-language-options');
+            
+            if (mobileLanguageBtn) {
+                mobileLanguageBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
+                });
             }
             
-            // Set up language selector event listeners
-            document.querySelectorAll('.language-options a').forEach(option => {
-                option.addEventListener('click', function(e) {
+            // Language selection event listeners
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
+                link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const lang = this.getAttribute('data-lang');
                     changeLanguage(lang);
+                    
+                    // Close mobile language options after selection
+                    if (mobileLanguageOptions) {
+                        mobileLanguageOptions.style.display = 'none';
+                    }
                 });
             });
             
-            // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mainNav = document.getElementById('main-nav');
+            // Email modal functionality
+            const emailModal = document.getElementById('email-modal');
+            const emailBtn = document.getElementById('email-btn');
+            const emailBtnPt = document.getElementById('email-btn-pt');
+            const closeModal = document.getElementById('close-modal');
+            const copyBtn = document.getElementById('copy-btn');
+            const copySuccess = document.getElementById('copy-success');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
             
-            mobileMenuBtn.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
+            function showEmailModal() {
+                // Update modal text based on current language
+                modalTitle.textContent = translations[currentLang]['modal-title'];
+                modalDescription.textContent = translations[currentLang]['modal-description'];
+                copyBtn.textContent = translations[currentLang]['copy-btn'];
+                
+                emailModal.style.display = 'flex';
+            }
+            
+            function hideEmailModal() {
+                emailModal.style.display = 'none';
+                copySuccess.style.display = 'none';
+            }
+            
+            function copyEmailToClipboard() {
+                const email = 'graalguide.contact@gmail.com';
+                navigator.clipboard.writeText(email).then(() => {
+                    copySuccess.textContent = translations[currentLang]['copy-success'];
+                    copySuccess.style.display = 'block';
+                    
+                    // Hide success message after 3 seconds
+                    setTimeout(() => {
+                        copySuccess.style.display = 'none';
+                    }, 3000);
+                });
+            }
+            
+            if (emailBtn) {
+                emailBtn.addEventListener('click', showEmailModal);
+            }
+            
+            if (emailBtnPt) {
+                emailBtnPt.addEventListener('click', showEmailModal);
+            }
+            
+            closeModal.addEventListener('click', hideEmailModal);
+            copyBtn.addEventListener('click', copyEmailToClipboard);
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === emailModal) {
+                    hideEmailModal();
+                }
             });
             
             // Close menu when clicking outside
@@ -914,7 +1302,64 @@
                 if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                 }
+                
+                // Close mobile language options when clicking outside
+                if (mobileLanguageBtn && mobileLanguageOptions && 
+                    !mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
+                    mobileLanguageOptions.style.display = 'none';
+                }
             });
+            
+            // Handle dropdown toggles on mobile
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll('.dropdown').forEach(item => {
+                            if (item !== dropdown) {
+                                item.classList.remove('active');
+                                item.querySelector('.dropdown-menu').style.display = 'none';
+                            }
+                        });
+                        
+                        // Toggle this dropdown
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
+            
+            // Handle desktop dropdown hover
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+                    
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+                
+                // Desktop language selector
+                const languageSelector = document.querySelector('.language-selector');
+                if (languageSelector) {
+                    languageSelector.addEventListener('mouseenter', function() {
+                        this.querySelector('.language-options').style.display = 'block';
+                    });
+                    
+                    languageSelector.addEventListener('mouseleave', function() {
+                        this.querySelector('.language-options').style.display = 'none';
+                    });
+                }
+            }
         });
     </script>
 </body>
