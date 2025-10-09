@@ -406,10 +406,8 @@
         
         .star {
             color: #ccc;
-            cursor: pointer;
             font-size: var(--font-lg);
             margin-right: 3px;
-            transition: color 0.2s ease;
         }
         
         .star.active {
@@ -479,28 +477,6 @@
         
         .comments-container.active {
             max-height: 500px;
-        }
-        
-        .comment-form {
-            margin-bottom: 15px;
-        }
-        
-        .comment-input {
-            width: 100%;
-            padding: 10px;
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-color);
-            font-size: var(--font-sm);
-            margin-bottom: 10px;
-            resize: vertical;
-            min-height: 80px;
-        }
-        
-        .comment-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
         }
         
         .comments-list {
@@ -829,6 +805,26 @@
             margin-right: 10px;
         }
 
+        /* Google Form Link */
+        .google-form-link {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--darker-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .google-form-link a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        
+        .google-form-link a:hover {
+            color: var(--secondary-color);
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .container {
@@ -1012,173 +1008,6 @@
                 font-size: 16px !important;
             }
         }
-   /* Comments Section */
-        .comments-section {
-            margin-top: 20px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
-        }
-        
-        .comments-toggle {
-            background: transparent;
-            border: none;
-            color: var(--primary-color);
-            cursor: pointer;
-            font-size: var(--font-sm);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .comments-toggle:hover {
-            color: var(--secondary-color);
-        }
-        
-        .comments-toggle::after {
-            content: '▼';
-            margin-left: 5px;
-            font-size: var(--font-xs);
-            transition: transform 0.3s ease;
-        }
-        
-        .comments-toggle.active::after {
-            transform: rotate(180deg);
-        }
-        
-        .comments-container {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .comments-container.active {
-            max-height: 500px;
-        }
-        
-        .comment-form {
-            margin-bottom: 15px;
-        }
-        
-        .comment-input {
-            width: 100%;
-            padding: 10px;
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-color);
-            font-size: var(--font-sm);
-            margin-bottom: 10px;
-            resize: vertical;
-            min-height: 80px;
-        }
-        
-        .comment-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        
-        .comments-list {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        
-        .comment {
-            padding: 10px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: var(--font-sm);
-        }
-        
-        .comment:last-child {
-            border-bottom: none;
-        }
-        
-        .comment-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-        
-        .comment-user {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
-        .comment-rating {
-            color: #ffc107;
-        }
-        
-        .comment-date {
-            font-size: var(--font-xs);
-            color: var(--text-muted);
-        }
-        
-        .comment-text {
-            color: var(--text-color);
-            line-height: 1.4;
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .page-btn {
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 15px;
-            margin: 0 5px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            font-size: var(--font-sm);
-        }
-        
-        .page-btn:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .page-btn.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-        
-        .page-btn.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .page-btn.disabled:hover {
-            background: var(--input-bg);
-            color: var(--text-color);
-        }
-        
-        .page-info {
-            text-align: center;
-            margin-top: 10px;
-            color: var(--text-muted);
-            font-size: var(--font-sm);
-        }
-
-        /* Gun Image */
-        .gun-image {
-            width: 100%;
-            height: 180px;
-            object-fit: contain;
-            margin-bottom: 15px;
-            border-radius: 6px;
-            background-color: var(--input-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: var(--font-sm);
-            color: var(--text-muted);
-        }
     </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
@@ -1191,30 +1020,6 @@
 </head>
 <body>
     <header>
-        <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAh3Anoo9KDzVI2hhSyD6MY13C9TTQr-vg",
-    authDomain: "graal-guide.firebaseapp.com",
-    projectId: "graal-guide",
-    storageBucket: "graal-guide.firebasestorage.app",
-    messagingSenderId: "517152860809",
-    appId: "1:517152860809:web:8bcd4937b93683dc1bf458",
-    measurementId: "G-P69ZNFQJV7"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
         <div class="container">
             <div class="header-content">
                 <div class="logo">
@@ -1283,6 +1088,10 @@
     <div class="container">
         <div class="section">
             <h2>Gun Database</h2>
+            
+            <div class="google-form-link">
+                <p>Want to help rate these guns? <a href="https://forms.gle/your-google-form-link-here" target="_blank">Submit your ratings via our Google Form</a></p>
+            </div>
             
             <div class="search-container">
                 <input type="text" class="search-input" id="gun-search" placeholder="Search for guns...">
@@ -1388,24 +1197,18 @@
                     clip: "20",
                     price: "200,000 gralats",
                     stacked: "No",
-                    special: "Alot of skin variants",
+                    special: "-",
                     location: "Gun Point Shop"
                 },
-                rating: 0.0,
+                rating: 0,
                 votes: 0,
                 comments: [
                     {
-                        user: "GraalPro",
-                        text: "Great for close combat, but uses ammo quickly",
-                        rating: 4,
+                        user: "Test",
+                        text: "Test",
+                        rating: 0,
                         date: "2024-01-15"
                     },
-                    {
-                        user: "EraPlayer",
-                        text: "Best dual weapon in the game for PVP",
-                        rating: 5,
-                        date: "2024-02-03"
-                    }
                 ]
             },
             {
@@ -1437,148 +1240,6 @@
                     }
                 ]
             },
-            {
-                id: 3,
-                name: "Sparrow Rifle",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Sparrow+Rifle",
-                stats: {
-                    damage: "7",
-                    clip: "5",
-                    price: "15,000",
-                    stacked: "No",
-                    special: "Sniper scope, long range",
-                    location: "Snow Town Shop"
-                },
-                rating: 4.7,
-                votes: 87,
-                comments: [
-                    {
-                        user: "SniperElite",
-                        text: "Best sniper rifle for long range combat",
-                        rating: 5,
-                        date: "2024-01-25"
-                    }
-                ]
-            },
-            {
-                id: 4,
-                name: "Pirate Blaster",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Pirate+Blaster",
-                stats: {
-                    damage: "5",
-                    clip: "12",
-                    price: "8,000",
-                    stacked: "Yes",
-                    special: "Bounce shot, good for corners",
-                    location: "Pirate Shop"
-                },
-                rating: 3.9,
-                votes: 64,
-                comments: []
-            },
-            {
-                id: 5,
-                name: "Fire Staff",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Fire+Staff",
-                stats: {
-                    damage: "6",
-                    clip: "10",
-                    price: "12,000",
-                    stacked: "No",
-                    special: "Fire trail, area damage",
-                    location: "Magic Shop"
-                },
-                rating: 4.3,
-                votes: 112,
-                comments: [
-                    {
-                        user: "MagicUser",
-                        text: "Great for controlling areas in spar",
-                        rating: 4,
-                        date: "2024-02-05"
-                    }
-                ]
-            },
-            {
-                id: 6,
-                name: "Ice Wand",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Ice+Wand",
-                stats: {
-                    damage: "3",
-                    clip: "15",
-                    price: "9,500",
-                    stacked: "Yes",
-                    special: "Freeze effect, slows enemies",
-                    location: "Magic Shop"
-                },
-                rating: 4.0,
-                votes: 76,
-                comments: []
-            },
-            {
-                id: 7,
-                name: "Bomb Bow",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Bomb+Bow",
-                stats: {
-                    damage: "10",
-                    clip: "3",
-                    price: "20,000",
-                    stacked: "No",
-                    special: "Explosive arrows, area damage",
-                    location: "Archery Shop"
-                },
-                rating: 4.6,
-                votes: 53,
-                comments: []
-            },
-            {
-                id: 8,
-                name: "Laser Gun",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Laser+Gun",
-                stats: {
-                    damage: "5",
-                    clip: "20",
-                    price: "18,000",
-                    stacked: "Yes",
-                    special: "Piercing shot, goes through enemies",
-                    location: "Future Shop"
-                },
-                rating: 4.1,
-                votes: 89,
-                comments: []
-            },
-            {
-                id: 9,
-                name: "Golden Gun",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Golden+Gun",
-                stats: {
-                    damage: "9",
-                    clip: "6",
-                    price: "25,000",
-                    stacked: "No",
-                    special: "High damage, rare weapon",
-                    location: "Golden Shop"
-                },
-                rating: 4.8,
-                votes: 45,
-                comments: []
-            },
-            {
-                id: 10,
-                name: "Plasma Rifle",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Plasma+Rifle",
-                stats: {
-                    damage: "6",
-                    clip: "25",
-                    price: "22,000",
-                    stacked: "Yes",
-                    special: "Rapid fire, energy bullets",
-                    location: "Future Shop"
-                },
-                rating: 4.4,
-                votes: 78,
-                comments: []
-            }
         ];
 
         // Pagination settings
@@ -1605,6 +1266,11 @@
             document.getElementById('reset-compare').addEventListener('click', resetSelection);
             document.getElementById('close-comparison').addEventListener('click', closeComparison);
             document.getElementById('gun-search').addEventListener('input', filterGuns);
+            
+            // Mobile menu functionality
+            document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+                document.getElementById('main-nav').classList.toggle('active');
+            });
         });
 
         // Render gun list for current page
@@ -1654,17 +1320,6 @@
                             Comments (${gun.comments.length})
                         </button>
                         <div class="comments-container" id="comments-${gun.id}">
-                            <div class="comment-form">
-                                <textarea class="comment-input" id="comment-input-${gun.id}" placeholder="Add your comment..."></textarea>
-                                <div class="star-rating" id="comment-rating-${gun.id}">
-                                    <span class="star" data-rating="1">★</span>
-                                    <span class="star" data-rating="2">★</span>
-                                    <span class="star" data-rating="3">★</span>
-                                    <span class="star" data-rating="4">★</span>
-                                    <span class="star" data-rating="5">★</span>
-                                </div>
-                                <button class="btn btn-secondary" onclick="addComment(${gun.id})">Submit Comment</button>
-                            </div>
                             <div class="comments-list" id="comments-list-${gun.id}">
                                 ${gun.comments.map(comment => `
                                     <div class="comment">
@@ -1698,37 +1353,12 @@
                     }
                 });
                 
-                // Add event listeners for star ratings
-                const stars = gunCard.querySelectorAll('.star');
-                stars.forEach((star, index) => {
-                    star.addEventListener('click', function() {
-                        rateGun(gun.id, index + 1);
-                    });
-                });
-                
                 // Add event listener for comment toggle
                 const commentsToggle = gunCard.querySelector('.comments-toggle');
                 commentsToggle.addEventListener('click', function() {
                     const commentsContainer = document.getElementById(`comments-${gun.id}`);
                     commentsContainer.classList.toggle('active');
                     this.classList.toggle('active');
-                });
-                
-                // Add event listeners for comment star ratings
-                const commentStars = gunCard.querySelectorAll(`#comment-rating-${gun.id} .star`);
-                let commentRating = 0;
-                commentStars.forEach((star, index) => {
-                    star.addEventListener('click', function() {
-                        commentRating = index + 1;
-                        // Update star display
-                        commentStars.forEach((s, i) => {
-                            if (i < commentRating) {
-                                s.classList.add('active');
-                            } else {
-                                s.classList.remove('active');
-                            }
-                        });
-                    });
                 });
             });
         }
@@ -1750,100 +1380,6 @@
             }
             
             return starsHTML;
-        }
-
-        // Rate a gun
-        function rateGun(gunId, rating) {
-            const gun = guns.find(g => g.id === gunId);
-            if (gun) {
-                // Update rating (weighted average)
-                const newRating = ((gun.rating * gun.votes) + rating) / (gun.votes + 1);
-                gun.rating = Math.round(newRating * 10) / 10;
-                gun.votes += 1;
-                
-                // Update UI
-                const starContainer = document.getElementById(`rating-${gunId}`);
-                starContainer.innerHTML = createStarRating(gun.rating, gunId);
-                
-                // Update rating text
-                const ratingText = starContainer.nextElementSibling;
-                ratingText.textContent = `${gun.rating} / 5 (${gun.votes} votes)`;
-                
-                // Update leaderboard
-                renderLeaderboard();
-                
-                // Add event listeners to new stars
-                const stars = starContainer.querySelectorAll('.star');
-                stars.forEach((star, index) => {
-                    star.addEventListener('click', function() {
-                        rateGun(gunId, index + 1);
-                    });
-                });
-            }
-        }
-
-        // Add a comment to a gun
-        function addComment(gunId) {
-            const gun = guns.find(g => g.id === gunId);
-            if (gun) {
-                const commentInput = document.getElementById(`comment-input-${gunId}`);
-                const commentText = commentInput.value.trim();
-                
-                if (commentText === '') {
-                    alert('Please enter a comment.');
-                    return;
-                }
-                
-                // Get comment rating
-                let commentRating = 0;
-                const commentStars = document.querySelectorAll(`#comment-rating-${gunId} .star`);
-                commentStars.forEach((star, index) => {
-                    if (star.classList.contains('active')) {
-                        commentRating = index + 1;
-                    }
-                });
-                
-                if (commentRating === 0) {
-                    alert('Please select a rating for your comment.');
-                    return;
-                }
-                
-                // Add comment
-                const newComment = {
-                    user: "User" + Math.floor(Math.random() * 1000),
-                    text: commentText,
-                    rating: commentRating,
-                    date: new Date().toLocaleDateString()
-                };
-                
-                gun.comments.push(newComment);
-                
-                // Update comments list
-                const commentsList = document.getElementById(`comments-list-${gunId}`);
-                const commentElement = document.createElement('div');
-                commentElement.className = 'comment';
-                commentElement.innerHTML = `
-                    <div class="comment-header">
-                        <span class="comment-user">${newComment.user}</span>
-                        <span class="comment-rating">${'★'.repeat(newComment.rating)}${'☆'.repeat(5-newComment.rating)}</span>
-                        <span class="comment-date">${newComment.date}</span>
-                    </div>
-                    <div class="comment-text">${newComment.text}</div>
-                `;
-                commentsList.appendChild(commentElement);
-                
-                // Update comments count
-                const commentsToggle = document.querySelector(`[data-gun-id="${gunId}"]`);
-                commentsToggle.textContent = `Comments (${gun.comments.length})`;
-                
-                // Clear input
-                commentInput.value = '';
-                
-                // Reset comment stars
-                commentStars.forEach(star => {
-                    star.classList.remove('active');
-                });
-            }
         }
 
         // Filter guns based on search input

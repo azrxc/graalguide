@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="image/a/graalguide.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Upload Sets - GraalGuide Graal Era Custom Sets</title>
-    <meta name="description" content="Browse complete head and body combinations for your character.">
+    <meta name="description" content="Browse and download complete head and body combinations for your character.">
     <style>
         :root {
             --primary-color: #8a2be2; /* Purple accent */
@@ -286,7 +285,7 @@
         
         .sets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
         }
         
@@ -296,7 +295,6 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
-            cursor: pointer;
             border: 1px solid var(--border-color);
         }
         
@@ -320,6 +318,7 @@
             display: flex;
             gap: 5px;
             justify-content: center;
+            margin-bottom: 10px;
         }
         
         .head {
@@ -330,6 +329,13 @@
             border: 1px solid var(--border-color);
             border-radius: 3px;
             background-size: 32px 560px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .head:hover {
+            transform: scale(1.1);
+            border-color: var(--primary-color);
         }
         
         .frame1 { background-position: 0 0; }
@@ -344,6 +350,14 @@
             object-position: top;
             image-rendering: pixelated;
             border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .body-img:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
         }
         
         .set-info {
@@ -351,15 +365,40 @@
             border-top: 1px solid var(--border-color);
         }
         
-        .set-info h3 {
-            font-size: var(--font-md);
-            margin-bottom: 5px;
-            color: var(--text-color);
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
         
-        .set-info p {
+        .download-btn {
+            flex: 1;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
             font-size: var(--font-sm);
-            color: var(--text-muted);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .download-btn:hover {
+            background: #7a1fd2;
+            transform: translateY(-2px);
+        }
+        
+        .download-btn.head-btn {
+            background: var(--secondary-color);
+        }
+        
+        .download-btn.head-btn:hover {
+            background: #00a5bb;
         }
         
         .pagination {
@@ -417,6 +456,34 @@
             max-height: 90%;
             border-radius: 10px;
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-info {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+        
+        .modal-download {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: var(--font-md);
+            font-weight: 500;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-download:hover {
+            background: #7a1fd2;
+            transform: translateY(-2px);
         }
         
         .close-modal {
@@ -550,7 +617,7 @@
         
         @media (max-width: 992px) {
             .sets-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
             .page-header h1 {
@@ -630,7 +697,7 @@
             }
             
             .sets-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: 20px;
             }
             
@@ -671,6 +738,10 @@
                 padding: 8px 12px;
                 font-size: var(--font-sm);
             }
+            
+            .download-buttons {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 480px) {
@@ -690,7 +761,7 @@
             }
             
             .sets-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                 gap: 15px;
             }
             
@@ -841,7 +912,7 @@
     <div class="page-header">
         <div class="container">
             <h1 id="page-title" data-translate="page-title">Graal Era Upload Sets</h1>
-            <p id="page-description" data-translate="page-description">Browse complete head and body combinations for your character.</p>
+            <p id="page-description" data-translate="page-description">Browse and download complete head and body combinations for your character.</p>
         </div>
     </div>
 
@@ -865,6 +936,10 @@
     <div id="image-modal" class="modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="enlarged-img">
+        <div class="modal-info">
+            <p id="modal-text">Click the button below to download this image</p>
+            <button class="modal-download" id="modal-download">Download Image</button>
+        </div>
     </div>
 
     <footer>
@@ -912,31 +987,112 @@
         // Upload Sets data
         const setsData = [
             { 
-                headImage: "image/heads/1.gif",
-                bodyImage: "image/bodies/1.png",
-                name: "Classic Set #1",
-                description: "A classic combination for your character"
+                headImage: "image/heads/184.png",
+                bodyImage: "image/bodies/411.png",
             },
             { 
-                headImage: "image/heads/2.gif",
-                bodyImage: "image/bodies/2.png",
-                name: "Modern Set #1",
-                description: "Modern style head and body"
+                headImage: "image/heads/185.gif",
+                bodyImage: "image/bodies/412.png",
+            },
+            { 
+                headImage: "image/heads/186.png",
+                bodyImage: "image/bodies/413.png",
+            },
+            { 
+                headImage: "image/heads/201.png",
+                bodyImage: "image/bodies/414.png",
+            },
+            { 
+                headImage: "image/heads/210.gif",
+                bodyImage: "image/bodies/416.png",
+            },
+            { 
+                headImage: "image/heads/212.png",
+                bodyImage: "image/bodies/417.png",
+            },
+            { 
+                headImage: "image/heads/213.gif",
+                bodyImage: "image/bodies/418.png",
+            },
+            { 
+                headImage: "image/heads/214.gif",
+                bodyImage: "image/bodies/419.png",
+            },
+            { 
+                headImage: "image/heads/216.gif",
+                bodyImage: "image/bodies/420.png",
+            },
+            { 
+                headImage: "image/heads/217.png",
+                bodyImage: "image/bodies/421.png",
+            },
+            { 
+                headImage: "image/heads/218.gif",
+                bodyImage: "image/bodies/422.png",
+            },
+            { 
+                headImage: "image/heads/219.gif",
+                bodyImage: "image/bodies/423.png",
+            },
+            { 
+                headImage: "image/heads/231.gif",
+                bodyImage: "image/bodies/425.png",
+            },
+            { 
+                headImage: "image/heads/235.gif",
+                bodyImage: "image/bodies/426.png",
+            },
+            { 
+                headImage: "image/heads/236.png",
+                bodyImage: "image/bodies/427.png",
+            },
+            { 
+                headImage: "image/heads/237.gif",
+                bodyImage: "image/bodies/428.png",
+            },
+            { 
+                headImage: "image/heads/240.gif",
+                bodyImage: "image/bodies/429.png",
+            },
+            { 
+                headImage: "image/heads/241.gif",
+                bodyImage: "image/bodies/430.png",
+            },
+            { 
+                headImage: "image/heads/243.png",
+                bodyImage: "image/bodies/433.png",
+            },
+            { 
+                headImage: "image/heads/245.png",
+                bodyImage: "image/bodies/432.png",
+            },
+            { 
+                headImage: "image/heads/244.png",
+                bodyImage: "image/bodies/432.png",
+            },
+            { 
+                headImage: "image/heads/242.png",
+                bodyImage: "image/bodies/431.png",
             },
             // Add more sets as needed
         ];
 
         // Configuration
-        const itemsPerPage = 12;
+        const itemsPerPage = 15;
         let currentPage = 1;
         let filteredSets = [...setsData];
         let currentLang = 'en';
+        let currentDownloadUrl = '';
+        let currentDownloadName = '';
 
         // Language translation data
         const translations = {
             'en': {
                 'page-title': 'Graal Era Upload Sets',
-                'page-description': 'Browse complete head and body combinations for your character.',
+                'page-description': 'Browse and download complete head and body combinations for your character.',
+                'download-head': 'Download Head',
+                'download-body': 'Download Body',
+                'modal-text': 'Click the button below to download this image',
                 
                 // Navigation
                 'nav-home': 'Home',
@@ -982,7 +1138,10 @@
             },
             'pt': {
                 'page-title': 'Conjuntos de Upload do Graal Era',
-                'page-description': 'Navegue por combinações completas de head e body para o seu personagem.',
+                'page-description': 'Navegue e baixe combinações completas de head e body para o seu personagem.',
+                'download-head': 'Baixar Head',
+                'download-body': 'Baixar Body',
+                'modal-text': 'Clique no botão abaixo para baixar esta imagem',
                 
                 // Navigation
                 'nav-home': 'Início',
@@ -1059,6 +1218,17 @@
             localStorage.setItem('preferredLanguage', lang);
         }
 
+        // Function to download an image
+        function downloadImage(url, filename) {
+            // Create a temporary anchor element
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
         // Function to render sets based on current page
         function renderSets() {
             const setsContainer = document.getElementById('sets-container');
@@ -1075,33 +1245,86 @@
             }
             
             // Create HTML for each set
-            setsToShow.forEach(set => {
+            setsToShow.forEach((set, index) => {
                 const setElement = document.createElement('div');
                 setElement.className = 'set-item';
                 
                 setElement.innerHTML = `
                     <div class="set-display">
                         <div class="head-display">
-                            <div class="head frame1" style="background-image:url('${set.headImage}')"></div>
-                            <div class="head frame2" style="background-image:url('${set.headImage}')"></div>
-                            <div class="head frame3" style="background-image:url('${set.headImage}')"></div>
-                            <div class="head frame4" style="background-image:url('${set.headImage}')"></div>
+                            <div class="head frame1" style="background-image:url('${set.headImage}')" data-head="${set.headImage}" data-name="${set.name} - Head"></div>
+                            <div class="head frame2" style="background-image:url('${set.headImage}')" data-head="${set.headImage}" data-name="${set.name} - Head"></div>
+                            <div class="head frame3" style="background-image:url('${set.headImage}')" data-head="${set.headImage}" data-name="${set.name} - Head"></div>
+                            <div class="head frame4" style="background-image:url('${set.headImage}')" data-head="${set.headImage}" data-name="${set.name} - Head"></div>
                         </div>
-                        <img src="${set.bodyImage}" class="body-img">
+                        <img src="${set.bodyImage}" class="body-img" data-body="${set.bodyImage}" data-name="${set.name} - Body">
                     </div>
                     <div class="set-info">
-                        <h3>${set.name}</h3>
-                        <p>${set.description}</p>
+                        <div class="download-buttons">
+                            <button class="download-btn head-btn" data-head="${set.headImage}" data-name="${set.name} - Head">
+                                <span data-translate="download-head">Download Head</span>
+                            </button>
+                            <button class="download-btn" data-body="${set.bodyImage}" data-name="${set.name} - Body">
+                                <span data-translate="download-body">Download Body</span>
+                            </button>
+                        </div>
                     </div>
                 `;
                 
-                // Add click event to show enlarged head image
-                setElement.addEventListener('click', function() {
-                    document.getElementById('enlarged-img').src = set.headImage;
+                setsContainer.appendChild(setElement);
+            });
+            
+            // Add event listeners for head frames
+            document.querySelectorAll('.head').forEach(head => {
+                head.addEventListener('click', function() {
+                    const headUrl = this.getAttribute('data-head');
+                    const headName = this.getAttribute('data-name');
+                    
+                    document.getElementById('enlarged-img').src = headUrl;
+                    document.getElementById('modal-text').textContent = translations[currentLang]['modal-text'];
+                    
+                    // Set up download functionality
+                    currentDownloadUrl = headUrl;
+                    currentDownloadName = headName;
+                    
                     document.getElementById('image-modal').style.display = 'flex';
                 });
-                
-                setsContainer.appendChild(setElement);
+            });
+            
+            // Add event listeners for body images
+            document.querySelectorAll('.body-img').forEach(body => {
+                body.addEventListener('click', function() {
+                    const bodyUrl = this.getAttribute('data-body');
+                    const bodyName = this.getAttribute('data-name');
+                    
+                    document.getElementById('enlarged-img').src = bodyUrl;
+                    document.getElementById('modal-text').textContent = translations[currentLang]['modal-text'];
+                    
+                    // Set up download functionality
+                    currentDownloadUrl = bodyUrl;
+                    currentDownloadName = bodyName;
+                    
+                    document.getElementById('image-modal').style.display = 'flex';
+                });
+            });
+            
+            // Add event listeners for download buttons
+            document.querySelectorAll('.download-btn.head-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const headUrl = this.getAttribute('data-head');
+                    const headName = this.getAttribute('data-name');
+                    downloadImage(headUrl, headName);
+                });
+            });
+            
+            document.querySelectorAll('.download-btn:not(.head-btn)').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const bodyUrl = this.getAttribute('data-body');
+                    const bodyName = this.getAttribute('data-name');
+                    downloadImage(bodyUrl, bodyName);
+                });
             });
             
             // Update pagination
@@ -1236,6 +1459,13 @@
             // Modal functionality
             document.querySelector('.close-modal').addEventListener('click', function() {
                 document.getElementById('image-modal').style.display = 'none';
+            });
+            
+            // Modal download button
+            document.getElementById('modal-download').addEventListener('click', function() {
+                if (currentDownloadUrl) {
+                    downloadImage(currentDownloadUrl, currentDownloadName);
+                }
             });
             
             // Close modal when clicking outside
