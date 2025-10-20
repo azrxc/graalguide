@@ -31,6 +31,16 @@
             --font-3xl: 1.875rem;
             --font-4xl: 2.25rem;
         }
+
+        /* Light mode variables */
+        [data-theme="light"] {
+            --dark-bg: #f5f5f5;
+            --darker-bg: #e0e0e0;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --border-color: #dddddd;
+        }
         
         * { 
             margin: 0; 
@@ -44,6 +54,8 @@
             color: var(--text-color); 
             line-height: 1.6; 
             font-size: var(--font-md);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
         }
         
         a { 
@@ -72,6 +84,7 @@
             top: 0; 
             z-index: 1000; 
             border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
         .header-content { 
@@ -127,6 +140,58 @@
             width: 100%;
         }
 
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Updated Theme Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        [data-theme="light"] .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+        
+        .theme-toggle .moon-icon {
+            display: inline-block;
+        }
+        
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: inline-block;
+        }
+        
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
         /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
@@ -141,7 +206,6 @@
 
         /* Language Selector */
         .language-selector {
-            margin-left: 20px;
             position: relative;
         }
         
@@ -163,11 +227,16 @@
             background: rgba(255, 255, 255, 0.05);
         }
         
+        [data-theme="light"] .language-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
         .language-btn img {
             width: 20px;
             height: 15px;
             object-fit: cover;
             margin-right: 8px;
+            border-radius: 2px;
         }
         
         .language-options {
@@ -181,6 +250,11 @@
             width: 150px;
             z-index: 1000;
             margin-top: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .language-options.active {
+            display: block;
         }
         
         .language-options a {
@@ -196,15 +270,16 @@
             background: rgba(255, 255, 255, 0.05);
         }
         
+        [data-theme="light"] .language-options a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
         .language-options a img {
             width: 20px;
             height: 15px;
             object-fit: cover;
             margin-right: 10px;
-        }
-        
-        .language-selector:hover .language-options {
-            display: block;
+            border-radius: 2px;
         }
 
         /* Dropdown Menu */
@@ -241,6 +316,10 @@
             color: var(--primary-color) !important;
         }
         
+        [data-theme="light"] .dropdown-menu a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
         .dropdown:hover .dropdown-menu {
             display: block;
         }
@@ -253,6 +332,12 @@
             text-align: center; 
             color: white;
             position: relative;
+        }
+        
+        [data-theme="light"] .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                       url('image/a/tr.jpg') center/cover no-repeat;
+            color: #333;
         }
         
         .hero-content { 
@@ -349,9 +434,17 @@
             color: #2979ff; 
         }
         
+        [data-theme="light"] .tag-news {
+            background: rgba(41, 121, 255, 0.15); 
+        }
+        
         .tag-guide { 
             background: rgba(76, 175, 80, 0.2); 
             color: #4caf50; 
+        }
+        
+        [data-theme="light"] .tag-guide {
+            background: rgba(76, 175, 80, 0.15); 
         }
         
         .tag-achievement { 
@@ -359,14 +452,26 @@
             color: #e91e63; 
         }
         
+        [data-theme="light"] .tag-achievement {
+            background: rgba(233, 30, 99, 0.15); 
+        }
+        
         .tag-upload { 
             background: rgba(255, 152, 0, 0.2); 
             color: #ff9800; 
         }
         
+        [data-theme="light"] .tag-upload {
+            background: rgba(255, 152, 0, 0.15); 
+        }
+        
         .tag-trading { 
             background: rgba(140, 30, 39, 0.2); 
             color: #cd4141; 
+        }
+        
+        [data-theme="light"] .tag-trading {
+            background: rgba(140, 30, 39, 0.15); 
         }
         
         .article p, .article ul {
@@ -560,6 +665,10 @@
             padding-left: 5px;
         }
         
+        [data-theme="light"] .featured-list li:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
         .featured-list li:last-child { 
             border-bottom: none; 
         }
@@ -590,6 +699,7 @@
             padding: 50px 0 20px; 
             margin-top: 40px; 
             border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
         .footer-content { 
@@ -644,19 +754,32 @@
             color: var(--text-muted); 
         }
 
-        /* Mobile Language Selector */
-        .mobile-language-selector {
+        /* Mobile Actions Container - Side by Side */
+        .mobile-actions-container {
             display: none;
             padding: 15px;
             border-top: 1px solid var(--border-color);
             background: var(--darker-bg);
+            gap: 10px;
+            align-items: center;
         }
-        
-        .mobile-language-selector .language-btn {
+
+        .mobile-actions-container .language-selector {
+            flex: 1;
+            margin: 0;
+        }
+
+        .mobile-actions-container .language-btn {
             width: 100%;
             justify-content: center;
         }
-        
+
+        .mobile-actions-container .theme-toggle {
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        /* Mobile Language Options */
         .mobile-language-options {
             display: none;
             margin-top: 10px;
@@ -664,8 +787,13 @@
             border-radius: 4px;
             overflow: hidden;
             border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
+        .mobile-language-options.active {
+            display: block;
+        }
+
         .mobile-language-options a {
             display: flex;
             align-items: center;
@@ -674,20 +802,25 @@
             transition: all 0.3s ease;
             border-bottom: 1px solid var(--border-color);
         }
-        
+
         .mobile-language-options a:last-child {
             border-bottom: none;
         }
-        
+
         .mobile-language-options a:hover {
             background: rgba(255, 255, 255, 0.05);
         }
-        
+
+        [data-theme="light"] .mobile-language-options a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
         .mobile-language-options a img {
             width: 20px;
             height: 15px;
             object-fit: cover;
             margin-right: 10px;
+            border-radius: 2px;
         }
 
         /* Responsive */
@@ -704,6 +837,14 @@
             
             .articles { 
                 margin-right: 0; 
+            }
+            
+            .hero h1 {
+                font-size: var(--font-3xl);
+            }
+            
+            .hero p {
+                font-size: var(--font-md);
             }
         }
         
@@ -770,24 +911,30 @@
                 display: block;
             }
             
-            .language-selector {
+            .header-actions {
                 display: none;
             }
             
-            .mobile-language-selector {
-                display: block;
+            .mobile-actions-container {
+                display: flex;
             }
             
-            .hero {
+            .hero { 
                 padding: 60px 0;
             }
             
-            .hero h1 {
+            .hero h1 { 
                 font-size: var(--font-2xl);
             }
             
-            .hero p {
-                font-size: var(--font-md);
+            .btn {
+                padding: 10px 20px;
+                margin: 5px 0;
+                display: block;
+                width: 100%;
+                max-width: 280px;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .quiz-options {
@@ -803,8 +950,12 @@
                 flex-direction: column; 
                 gap: 20px;
             }
+            
+            .article-img {
+                height: 180px;
+            }
         }
-
+        
         @media (max-width: 480px) {
             :root {
                 --font-xs: 0.65rem;
@@ -821,6 +972,10 @@
                 font-size: var(--font-xl);
             }
             
+            .hero {
+                padding: 40px 0;
+            }
+            
             .hero h1 {
                 font-size: var(--font-xl);
             }
@@ -829,16 +984,62 @@
                 font-size: var(--font-md);
             }
             
+            .article-content {
+                padding: 15px;
+            }
+            
+            .sidebar-widget {
+                padding: 15px;
+            }
+            
+            .featured-list img {
+                width: 35px;
+                height: 35px;
+            }
+            
             footer {
                 padding: 30px 0 15px;
             }
+            
+            .mobile-actions-container {
+                gap: 8px;
+            }
+            
+            .mobile-actions-container .theme-toggle {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .mobile-actions-container .language-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                height: 36px;
+            }
         }
-        
+
         /* Prevent zoom on focus for iOS */
         @media screen and (max-width: 768px) {
             input, select, textarea {
                 font-size: 16px !important;
             }
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
         }
     </style>
     <!-- Google tag (gtag.js) -->
@@ -858,7 +1059,7 @@
                 <div class="logo">
                     <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                 </div>
-                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
                 <nav id="main-nav">
                     <ul>
                         <li><a href="index.html" data-translate="nav-home">Home</a></li>
@@ -868,6 +1069,11 @@
                                 <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
                                 <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
                                 <li><a href="upload-sets.html" data-translate="nav-sets">Upload Sets</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/ target="_blank" rel="noopener noreferrer">Upload Now (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Zone) ↗</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -891,39 +1097,67 @@
                         <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
                     
-                    <!-- Mobile Language Selector -->
-                    <div class="mobile-language-selector">
-                        <button class="language-btn" id="mobile-language-btn">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                    <!-- Mobile Actions Container - Side by Side -->
+                    <div class="mobile-actions-container">
+                        <!-- Mobile Language Selector -->
+                        <div class="language-selector">
+                            <button class="language-btn" id="mobile-language-btn">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                <span data-translate="language-en">English</span>
+                            </button>
+                            <div class="mobile-language-options" id="mobile-language-options">
+                                <a href="#" data-lang="en">
+                                    <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                    <span data-translate="language-en">English</span>
+                                </a>
+                                <a href="#" data-lang="pt">
+                                    <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                    <span data-translate="language-pt">Português</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Mobile Theme Toggle -->
+                        <button class="theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">
+                            <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                            </svg>
+                            <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </nav>
+                
+                <!-- Desktop Header Actions -->
+                <div class="header-actions">
+                    <!-- Language Selector -->
+                    <div class="language-selector">
+                        <button class="language-btn" id="desktop-language-btn">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
                             <span data-translate="language-en">English</span>
                         </button>
-                        <div class="mobile-language-options" id="mobile-language-options">
+                        <div class="language-options" id="desktop-language-options">
                             <a href="#" data-lang="en">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
                                 <span data-translate="language-en">English</span>
                             </a>
                             <a href="#" data-lang="pt">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                                <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                 <span data-translate="language-pt">Português</span>
                             </a>
                         </div>
                     </div>
-                </nav>
-                <div class="language-selector">
-                    <button class="language-btn" id="current-language">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                        <span data-translate="language-en">English</span>
+                    
+                    <!-- Desktop Theme Toggle -->
+                    <button class="theme-toggle" id="desktop-theme-toggle" aria-label="Toggle theme">
+                        <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                        </svg>
+                        <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
                     </button>
-                    <div class="language-options">
-                        <a href="#" data-lang="en">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                            <span data-translate="language-en">English</span>
-                        </a>
-                        <a href="#" data-lang="pt">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
-                            <span data-translate="language-pt">Português</span>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1094,7 +1328,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3 id="about-title-footer" data-translate="about-title-footer">About GraalGuide</h3>
-                    <p id="about-desc-footer" data-translate="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p id="about-desc-footer" data-translate="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
                     <p><em id="disclaimer-footer" data-translate="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
@@ -1131,6 +1365,15 @@
     </footer>
 
     <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
         // Quiz Questions and Answers
         const quizQuestions = [
             {
@@ -1192,11 +1435,14 @@
             displayQuiz();
         }
 
-        // Language translation data
+        // Language translations
         const translations = {
             'en': {
+                // Hero section
                 'hero-title': 'Master Graal Era Trading',
                 'hero-description': 'Learn expert strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert in Graal Era.',
+                
+                // Articles
                 'tag-trading': 'Trading',
                 'tag-guide': 'Guide',
                 'intro-title': 'Introduction to Graal Era Trading',
@@ -1251,14 +1497,14 @@
                 'tool-profit-link': 'Profit & Loss Tracker',
                 'tool-price-link': 'Price House',
                 'calculator-btn': 'Use Calculator',
-                'ad-title': 'Advertisement',
-                'ad-label': 'Advertisements',
+                
+                // Footer
                 'about-title-footer': 'About GraalGuide',
-                'about-desc-footer': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
+                'about-desc-footer': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.',
                 'disclaimer-footer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
                 'links-title-footer': 'Quick Links',
                 'link-home-footer': 'Home',
-                'link-uploads-footer': 'Uploads',
+                'link-upload-footer': 'Uploads',
                 'link-trade-footer': 'Trading Guide',
                 'link-secretachievements-footer': 'Secret Achievements',
                 'legal-title-footer': 'Legal & Policies',
@@ -1271,6 +1517,7 @@
                 'link-youtube-footer': 'YouTube',
                 'link-contact-footer': 'Contact Us',
                 'copyright-footer': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
+                
                 // Navigation
                 'nav-home': 'Home',
                 'nav-uploads': 'Uploads',
@@ -1287,13 +1534,17 @@
                 'nav-profit': 'Profit & Loss Tracker',
                 'nav-price': 'Price House',
                 'nav-achievements': 'Secret Achievements',
+                
                 // Language selector
                 'language-en': 'English',
                 'language-pt': 'Português'
             },
             'pt': {
+                // Hero section
                 'hero-title': 'Domine o Comércio do Graal Era',
                 'hero-description': 'Aprenda estratégias especializadas, evite erros comuns e use nosso tutorial interativo para se tornar um especialista em trading no Graal Era.',
+                
+                // Articles
                 'tag-trading': 'Trading',
                 'tag-guide': 'Guia',
                 'intro-title': 'Introdução ao Trading no Graal Era',
@@ -1348,16 +1599,16 @@
                 'tool-profit-link': 'Rastreador de Lucro & Perda',
                 'tool-price-link': 'Casa de Preços',
                 'calculator-btn': 'Usar Calculadora',
-                'ad-title': 'Publicidade',
-                'ad-label': 'Anúncios',
+                
+                // Footer
                 'about-title-footer': 'Sobre o GraalGuide',
                 'about-desc-footer': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
                 'disclaimer-footer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
                 'links-title-footer': 'Links Rápidos',
                 'link-home-footer': 'Início',
-                'link-uploads-footer': 'Uploads',
+                'link-upload-footer': 'Uploads',
                 'link-trade-footer': 'Guia de Troca',
-                'link-secretavhievements-footer': 'Conquistas Secretas',
+                'link-secretachievements-footer': 'Conquistas Secretas',
                 'legal-title-footer': 'Legal e Políticas',
                 'link-privacy-footer': 'Política de Privacidade',
                 'link-terms-footer': 'Termos de Serviço',
@@ -1368,6 +1619,7 @@
                 'link-youtube-footer': 'YouTube',
                 'link-contact-footer': 'Contate-Nos',
                 'copyright-footer': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
+                
                 // Navigation
                 'nav-home': 'Início',
                 'nav-uploads': 'Uploads',
@@ -1384,11 +1636,15 @@
                 'nav-profit': 'Rastrear Lucro & Perda',
                 'nav-price': 'Casa de Preços',
                 'nav-achievements': 'Conquistas Secretas',
+                
                 // Language selector
                 'language-en': 'Inglês',
                 'language-pt': 'Português'
             }
         };
+
+        // Set default language
+        let currentLang = 'en';
 
         // Function to change language
         function changeLanguage(lang) {
@@ -1397,12 +1653,8 @@
             // Update all elements with data-translate attribute
             document.querySelectorAll('[data-translate]').forEach(element => {
                 const key = element.getAttribute('data-translate');
-                if (translations[lang] && translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
                 }
             });
             
@@ -1413,10 +1665,10 @@
                 const langText = btn.querySelector('span');
                 
                 if (lang === 'en') {
-                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
+                    flagImg.src = 'https://flagcdn.com/w40/us.png';
                     langText.textContent = translations[lang]['language-en'];
                 } else if (lang === 'pt') {
-                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
+                    flagImg.src = 'https://flagcdn.com/w40/br.png';
                     langText.textContent = translations[lang]['language-pt'];
                 }
             });
@@ -1425,11 +1677,60 @@
             localStorage.setItem('preferredLanguage', lang);
         }
 
-        // Initialize the page
+        // Toggle language options
+        function toggleLanguageOptions(buttonId, optionsId) {
+            const button = document.getElementById(buttonId);
+            const options = document.getElementById(optionsId);
+            
+            if (button && options) {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    options.classList.toggle('active');
+                    
+                    // Close other language options
+                    const allOptions = document.querySelectorAll('.language-options, .mobile-language-options');
+                    allOptions.forEach(opt => {
+                        if (opt !== options) {
+                            opt.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        }
+
+        // Initialize language and theme
         document.addEventListener('DOMContentLoaded', function() {
-            // Check for saved language preference or default to English
-            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-            changeLanguage(savedLanguage);
+            // Check for saved theme preference or default to dark
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            // Add event listeners to theme toggle buttons
+            document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
+            document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
+            
+            // Check for saved language preference
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) {
+                changeLanguage(savedLang);
+            }
+            
+            // Set up language selector event listeners
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    
+                    // Close all language options
+                    document.querySelectorAll('.language-options, .mobile-language-options').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                });
+            });
+            
+            // Initialize language option toggles
+            toggleLanguageOptions('desktop-language-btn', 'desktop-language-options');
+            toggleLanguageOptions('mobile-language-btn', 'mobile-language-options');
             
             // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -1450,15 +1751,6 @@
                 }
             });
             
-            // Mobile language selector toggle
-            const mobileLanguageBtn = document.getElementById('mobile-language-btn');
-            const mobileLanguageOptions = document.getElementById('mobile-language-options');
-            
-            mobileLanguageBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
-            });
-            
             // Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 const isClickInsideNav = mainNav.contains(event.target);
@@ -1468,22 +1760,21 @@
                     mainNav.classList.remove('active');
                 }
                 
-                // Close mobile language options when clicking outside
-                if (!mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
-                    mobileLanguageOptions.style.display = 'none';
+                // Close language options when clicking outside
+                if (!event.target.closest('.language-selector')) {
+                    document.querySelectorAll('.language-options, .mobile-language-options').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
                 }
             });
             
-            // Language selection event listeners
-            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const lang = this.getAttribute('data-lang');
-                    changeLanguage(lang);
-                    
-                    // Close mobile language options after selection
-                    document.getElementById('mobile-language-options').style.display = 'none';
-                });
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown') && !e.target.closest('.language-selector')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                }
             });
             
             // Handle dropdown toggles on mobile
@@ -1522,16 +1813,6 @@
                     dropdown.addEventListener('mouseleave', function() {
                         this.querySelector('.dropdown-menu').style.display = 'none';
                     });
-                });
-                
-                // Desktop language selector
-                const languageSelector = document.querySelector('.language-selector');
-                languageSelector.addEventListener('mouseenter', function() {
-                    this.querySelector('.language-options').style.display = 'block';
-                });
-                
-                languageSelector.addEventListener('mouseleave', function() {
-                    this.querySelector('.language-options').style.display = 'none';
                 });
             }
             

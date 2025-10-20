@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
     <link rel="icon" type="image/png" href="image/a/graalguide.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "GraalGuide",
+        "url": "https://graalguide.com/",
+        "logo": "https://graalguide.com/image/a/graalguide.png"
+    }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Bodies Gallery - GraalGuide Graal Era Custom Bodies</title>
@@ -28,6 +37,16 @@
             --font-3xl: 1.875rem;
             --font-4xl: 2.25rem;
         }
+
+        /* Light mode variables */
+        [data-theme="light"] {
+            --dark-bg: #f5f5f5;
+            --darker-bg: #e0e0e0;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --border-color: #dddddd;
+        }
         
         * { 
             margin: 0; 
@@ -41,6 +60,8 @@
             color: var(--text-color); 
             line-height: 1.6;
             font-size: var(--font-md);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
         }
         
         a { 
@@ -69,6 +90,7 @@
             top: 0; 
             z-index: 1000; 
             border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
         .header-content { 
@@ -124,6 +146,58 @@
             width: 100%;
         }
 
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Updated Theme Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        [data-theme="light"] .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+        
+        .theme-toggle .moon-icon {
+            display: inline-block;
+        }
+        
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: inline-block;
+        }
+        
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
         /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
@@ -138,7 +212,6 @@
 
         /* Language Selector */
         .language-selector {
-            margin-left: 20px;
             position: relative;
         }
         
@@ -160,11 +233,16 @@
             background: rgba(255, 255, 255, 0.05);
         }
         
+        [data-theme="light"] .language-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
         .language-btn img {
             width: 20px;
             height: 15px;
             object-fit: cover;
             margin-right: 8px;
+            border-radius: 2px;
         }
         
         .language-options {
@@ -178,6 +256,11 @@
             width: 150px;
             z-index: 1000;
             margin-top: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .language-options.active {
+            display: block;
         }
         
         .language-options a {
@@ -193,15 +276,16 @@
             background: rgba(255, 255, 255, 0.05);
         }
         
+        [data-theme="light"] .language-options a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
         .language-options a img {
             width: 20px;
             height: 15px;
             object-fit: cover;
             margin-right: 10px;
-        }
-        
-        .language-selector:hover .language-options {
-            display: block;
+            border-radius: 2px;
         }
 
         /* Dropdown Menu */
@@ -236,6 +320,10 @@
         .dropdown-menu a:hover {
             background-color: rgba(255, 255, 255, 0.05);
             color: var(--primary-color) !important;
+        }
+        
+        [data-theme="light"] .dropdown-menu a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
         }
         
         .dropdown:hover .dropdown-menu {
@@ -277,6 +365,30 @@
             font-size: var(--font-lg);
             color: rgba(255, 255, 255, 0.9);
             position: relative;
+        }
+
+        /* Disclaimer Banner */
+        .disclaimer-banner {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: 0 auto 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            border-left: 4px solid #e65100;
+        }
+        
+        .disclaimer-banner p {
+            margin: 0;
+            font-size: var(--font-sm);
+            line-height: 1.5;
+        }
+        
+        .disclaimer-banner strong {
+            font-weight: 700;
         }
 
         /* Body Gallery Content */
@@ -336,6 +448,10 @@
         
         .filter-options label:hover {
             background: rgba(255, 255, 255, 0.05);
+        }
+        
+        [data-theme="light"] .filter-options label:hover {
+            background: rgba(0, 0, 0, 0.05);
         }
         
         .filter-options input {
@@ -491,6 +607,7 @@
             padding: 50px 0 20px; 
             margin-top: 40px; 
             border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
         .footer-content { 
@@ -545,6 +662,75 @@
             color: var(--text-muted); 
         }
 
+        /* Mobile Actions Container - Side by Side */
+        .mobile-actions-container {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+            gap: 10px;
+            align-items: center;
+        }
+
+        .mobile-actions-container .language-selector {
+            flex: 1;
+            margin: 0;
+        }
+
+        .mobile-actions-container .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .mobile-actions-container .theme-toggle {
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        /* Mobile Language Options */
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-language-options.active {
+            display: block;
+        }
+
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .mobile-language-options a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
         /* Mobile Filter Toggle */
         .mobile-filter-toggle {
             display: none;
@@ -558,52 +744,6 @@
             text-align: center;
             box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
             font-size: var(--font-md);
-        }
-
-        /* Mobile Language Selector */
-        .mobile-language-selector {
-            display: none;
-            padding: 15px;
-            border-top: 1px solid var(--border-color);
-            background: var(--darker-bg);
-        }
-        
-        .mobile-language-selector .language-btn {
-            width: 100%;
-            justify-content: center;
-        }
-        
-        .mobile-language-options {
-            display: none;
-            margin-top: 10px;
-            background: var(--card-bg);
-            border-radius: 4px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        
-        .mobile-language-options a {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .mobile-language-options a:last-child {
-            border-bottom: none;
-        }
-        
-        .mobile-language-options a:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .mobile-language-options a img {
-            width: 20px;
-            height: 15px;
-            object-fit: cover;
-            margin-right: 10px;
         }
 
         /* Responsive */
@@ -691,12 +831,12 @@
                 display: block;
             }
             
-            .language-selector {
+            .header-actions {
                 display: none;
             }
             
-            .mobile-language-selector {
-                display: block;
+            .mobile-actions-container {
+                display: flex;
             }
             
             .bodies-grid {
@@ -719,6 +859,11 @@
             
             .page-header h1 {
                 font-size: var(--font-2xl);
+            }
+            
+            .disclaimer-banner {
+                padding: 12px 15px;
+                margin: 0 20px 20px;
             }
             
             .footer-content { 
@@ -787,6 +932,11 @@
                 font-size: var(--font-md);
             }
             
+            .disclaimer-banner {
+                padding: 10px 12px;
+                margin: 0 15px 15px;
+            }
+            
             .pagination {
                 flex-wrap: wrap;
             }
@@ -794,8 +944,23 @@
             footer {
                 padding: 30px 0 15px;
             }
+            
+            .mobile-actions-container {
+                gap: 8px;
+            }
+            
+            .mobile-actions-container .theme-toggle {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .mobile-actions-container .language-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                height: 36px;
+            }
         }
-        
+
         /* No results styling */
         .no-results {
             grid-column: 1 / -1;
@@ -818,16 +983,25 @@
                 font-size: 16px !important;
             }
         }
-    </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-VVS6GWC596');
-</script>
+        /* Loading animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -836,7 +1010,7 @@
                 <div class="logo">
                     <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
                 </div>
-                <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
                 <nav id="main-nav">
                     <ul>
                         <li><a href="index.html" data-translate="nav-home">Home</a></li>
@@ -846,6 +1020,11 @@
                                 <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
                                 <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
                                 <li><a href="upload-sets.html" data-translate="nav-sets">Upload Sets</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/ target="_blank" rel="noopener noreferrer">Upload Now (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Zone) ↗</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -869,39 +1048,67 @@
                         <li><a href="secret-achievements.html" data-translate="nav-achievements">Secret Achievements</a></li>
                     </ul>
                     
-                    <!-- Mobile Language Selector -->
-                    <div class="mobile-language-selector">
-                        <button class="language-btn" id="mobile-language-btn">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                    <!-- Mobile Actions Container - Side by Side -->
+                    <div class="mobile-actions-container">
+                        <!-- Mobile Language Selector -->
+                        <div class="language-selector">
+                            <button class="language-btn" id="mobile-language-btn">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                <span data-translate="language-en">English</span>
+                            </button>
+                            <div class="mobile-language-options" id="mobile-language-options">
+                                <a href="#" data-lang="en">
+                                    <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                    <span data-translate="language-en">English</span>
+                                </a>
+                                <a href="#" data-lang="pt">
+                                    <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                    <span data-translate="language-pt">Português</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Mobile Theme Toggle -->
+                        <button class="theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">
+                            <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                            </svg>
+                            <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </nav>
+                
+                <!-- Desktop Header Actions -->
+                <div class="header-actions">
+                    <!-- Language Selector -->
+                    <div class="language-selector">
+                        <button class="language-btn" id="desktop-language-btn">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
                             <span data-translate="language-en">English</span>
                         </button>
-                        <div class="mobile-language-options" id="mobile-language-options">
+                        <div class="language-options" id="desktop-language-options">
                             <a href="#" data-lang="en">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
                                 <span data-translate="language-en">English</span>
                             </a>
                             <a href="#" data-lang="pt">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
+                                <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                 <span data-translate="language-pt">Português</span>
                             </a>
                         </div>
                     </div>
-                </nav>
-                <div class="language-selector">
-                    <button class="language-btn" id="current-language">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                        <span data-translate="language-en">English</span>
+                    
+                    <!-- Desktop Theme Toggle -->
+                    <button class="theme-toggle" id="desktop-theme-toggle" aria-label="Toggle theme">
+                        <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                        </svg>
+                        <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
                     </button>
-                    <div class="language-options">
-                        <a href="#" data-lang="en">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="English">
-                            <span data-translate="language-en">English</span>
-                        </a>
-                        <a href="#" data-lang="pt">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png" alt="Portuguese">
-                            <span data-translate="language-pt">Português</span>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -911,6 +1118,13 @@
         <div class="container">
             <h1 id="page-title" data-translate="page-title">Graal Era Bodies Gallery</h1>
             <p id="page-description" data-translate="page-description">Filter by category to find the perfect body for your character.</p>
+        </div>
+    </div>
+
+    <!-- Disclaimer Banner -->
+    <div class="container">
+        <div class="disclaimer-banner">
+            <p><strong>Disclaimer:</strong> All uploaded images are user-generated and publicly available within GraalOnline. GraalGuide does not claim ownership of any user-created content. If you are the creator and wish your upload removed, please contact us via <strong>graalguide.contact@gmail.com</strong></p>
         </div>
     </div>
 
@@ -965,7 +1179,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3 id="about-title" data-translate="about-title">About GraalGuide</h3>
-                    <p id="about-desc" data-translate="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.</p>
+                    <p id="about-desc" data-translate="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
                     <p><em id="disclaimer" data-translate="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
@@ -1002,6 +1216,193 @@
     </footer>
 
     <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Language translations
+        const translations = {
+            'en': {
+                // Page specific
+                'page-title': 'Graal Era Bodies Gallery',
+                'page-description': 'Filter by category to find the perfect body for your character.',
+                'filter-title': 'Filters',
+                'category-title': 'Category',
+                'category-all': 'All Categories',
+                'category-male': 'Male',
+                'category-female': 'Female',
+                'category-unisex': 'Unisex',
+                'category-hoodie': 'Hoodie',
+                'category-color': 'Color-Changeable',
+                'reset-filters': 'Reset All Filters',
+                'filter-toggle': 'Show Filters',
+                
+                // Navigation
+                'nav-home': 'Home',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guides - How to?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Trade',
+                'nav-gralats-guide': 'Get Gralats',
+                'nav-events-guide': 'Get Event Coins',
+                'nav-trade': 'Trade Table',
+                'nav-calculator': 'Sellables Calculator',
+                'nav-ratio': 'Ratio History',
+                'nav-profit': 'Profit & Loss Tracker',
+                'nav-price': 'Price House',
+                'nav-achievements': 'Secret Achievements',
+                
+                // Footer
+                'about-title': 'About GraalGuide',
+                'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.',
+                'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
+                'links-title': 'Quick Links',
+                'link1': 'Home',
+                'link2': 'Uploads',
+                'link3': 'Trading Guide',
+                'link4': 'Secret Achievements',
+                'legal-title': 'Legal & Policies',
+                'policy1': 'Privacy Policy',
+                'policy2': 'Terms of Service',
+                'policy3': 'Cookie Policy',
+                'policy4': 'Disclaimer',
+                'connect-title': 'Connect',
+                'connect1': 'About Me',
+                'connect2': 'YouTube',
+                'connect3': 'Contact Us',
+                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
+                
+                // Language selector
+                'language-en': 'English',
+                'language-pt': 'Português'
+            },
+            'pt': {
+                // Page specific
+                'page-title': 'Galeria de Bodies do Graal Era',
+                'page-description': 'Filtre por categoria para encontrar o body perfeito para o seu personagem.',
+                'filter-title': 'Filtros',
+                'category-title': 'Categoria',
+                'category-all': 'Todas as Categorias',
+                'category-male': 'Masculino',
+                'category-female': 'Feminino',
+                'category-unisex': 'Unissex',
+                'category-hoodie': 'Hoodie',
+                'category-color': 'Com Mudança de Cor',
+                'reset-filters': 'Redefinir Filtros',
+                'filter-toggle': 'Mostrar Filtros',
+                
+                // Navigation
+                'nav-home': 'Início',
+                'nav-uploads': 'Uploads',
+                'nav-heads': 'Heads',
+                'nav-bodies': 'Bodies',
+                'nav-guides': 'Guia - Como?',
+                'nav-upload-guide': 'Upload',
+                'nav-trade-guide': 'Troca',
+                'nav-gralats-guide': 'Conseguir Gralats',
+                'nav-events-guide': 'Conseguir Moedas de Evento',
+                'nav-trade': 'Tabela de Troca',
+                'nav-calculator': 'Calculadora de Vendáveis',
+                'nav-ratio': 'Histórico de Ratios',
+                'nav-profit': 'Rastrear Lucro & Perda',
+                'nav-price': 'Casa de Preços',
+                'nav-achievements': 'Conquistas Secretas',
+                
+                // Footer
+                'about-title': 'Sobre o GraalGuide',
+                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
+                'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
+                'links-title': 'Links Rápidos',
+                'link1': 'Início',
+                'link2': 'Uploads',
+                'link3': 'Guia de Troca',
+                'link4': 'Conquistas Secretas',
+                'legal-title': 'Legal e Políticas',
+                'policy1': 'Política de Privacidade',
+                'policy2': 'Termos de Serviço',
+                'policy3': 'Política de Cookies',
+                'policy4': 'Aviso Legal',
+                'connect-title': 'Conectar',
+                'connect1': 'Sobre Mim',
+                'connect2': 'YouTube',
+                'connect3': 'Contate-Nos',
+                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
+                
+                // Language selector
+                'language-en': 'Inglês',
+                'language-pt': 'Português'
+            }
+        };
+
+        // Set default language
+        let currentLang = 'en';
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update language buttons
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                const flagImg = btn.querySelector('img');
+                const langText = btn.querySelector('span');
+                
+                if (lang === 'en') {
+                    flagImg.src = 'https://flagcdn.com/w40/us.png';
+                    langText.textContent = translations[lang]['language-en'];
+                } else if (lang === 'pt') {
+                    flagImg.src = 'https://flagcdn.com/w40/br.png';
+                    langText.textContent = translations[lang]['language-pt'];
+                }
+            });
+            
+            // Update filter toggle text if filters are open
+            const galleryFilters = document.getElementById('gallery-filters');
+            const filterToggle = document.getElementById('filter-toggle');
+            if (galleryFilters.classList.contains('active')) {
+                filterToggle.textContent = translations[lang]['filter-toggle'].replace('Show', 'Hide');
+            }
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Toggle language options
+        function toggleLanguageOptions(buttonId, optionsId) {
+            const button = document.getElementById(buttonId);
+            const options = document.getElementById(optionsId);
+            
+            if (button && options) {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    options.classList.toggle('active');
+                    
+                    // Close other language options
+                    const allOptions = document.querySelectorAll('.language-options, .mobile-language-options');
+                    allOptions.forEach(opt => {
+                        if (opt !== options) {
+                            opt.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        }
+
         // Body data with category tags
         const bodiesData = [
             { 
@@ -2656,159 +3057,6 @@
         let currentPage = 1;
         let currentCategoryFilters = ["all"];
         let filteredBodies = [...bodiesData];
-        let currentLang = 'en';
-
-        // Language translation data
-        const translations = {
-            'en': {
-                'page-title': 'Graal Era Bodies Gallery',
-                'page-description': 'Filter by category to find the perfect body for your character.',
-                'filter-title': 'Filters',
-                'category-title': 'Category',
-                'category-all': 'All Categories',
-                'category-male': 'Male',
-                'category-female': 'Female',
-                'category-unisex': 'Unisex',
-                'category-hoodie': 'Hoodie',
-                'category-color': 'Color-Changeable',
-                'reset-filters': 'Reset All Filters',
-                'filter-toggle': 'Show Filters',
-                
-                // Navigation
-                'nav-home': 'Home',
-                'nav-uploads': 'Uploads',
-                'nav-heads': 'Heads',
-                'nav-bodies': 'Bodies',
-                'nav-guides': 'Guides - How to?',
-                'nav-upload-guide': 'Upload',
-                'nav-trade-guide': 'Trade',
-                'nav-gralats-guide': 'Get Gralats',
-                'nav-events-guide': 'Get Event Coins',
-                'nav-trade': 'Trade Table',
-                'nav-calculator': 'Sellables Calculator',
-                'nav-ratio': 'Ratio History',
-                'nav-profit': 'Profit & Loss Tracker',
-                'nav-price': 'Price House',
-                'nav-achievements': 'Secret Achievements',
-                
-                // Footer
-                'about-title': 'About GraalGuide',
-                'about-desc': 'GraalGuide is the premier fan-made resource for Graal Era players. We provide news, guides, and resources to help you get the most out of your game.',
-                'disclaimer': 'GraalGuide is not affiliated with GraalOnline or Toonslab.',
-                'links-title': 'Quick Links',
-                'link1': 'Home',
-                'link2': 'Uploads',
-                'link3': 'Trading Guide',
-                'link4': 'Secret Achievements',
-                'legal-title': 'Legal & Policies',
-                'policy1': 'Privacy Policy',
-                'policy2': 'Terms of Service',
-                'policy3': 'Cookie Policy',
-                'policy4': 'Disclaimer',
-                'connect-title': 'Connect',
-                'connect1': 'About Me',
-                'connect2': 'YouTube',
-                'connect3': 'Contact Us',
-                'copyright': '© 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.',
-                
-                // Language selector
-                'language-en': 'English',
-                'language-pt': 'Português'
-            },
-            'pt': {
-                'page-title': 'Galeria de Bodies do Graal Era',
-                'page-description': 'Filtre por categoria para encontrar o body perfeito para o seu personagem.',
-                'filter-title': 'Filtros',
-                'category-title': 'Categoria',
-                'category-all': 'Todas as Categorias',
-                'category-male': 'Masculino',
-                'category-female': 'Feminino',
-                'category-unisex': 'Unissex',
-                'category-hoodie': 'Hoodie',
-                'category-color': 'Com Mudança de Cor',
-                'reset-filters': 'Redefinir Filtros',
-                'filter-toggle': 'Mostrar Filtros',
-                
-                // Navigation
-                'nav-home': 'Início',
-                'nav-uploads': 'Uploads',
-                'nav-heads': 'Heads',
-                'nav-bodies': 'Bodies',
-                'nav-guides': 'Guia - Como?',
-                'nav-upload-guide': 'Upload',
-                'nav-trade-guide': 'Troca',
-                'nav-gralats-guide': 'Conseguir Gralats',
-                'nav-events-guide': 'Conseguir Moedas de Evento',
-                'nav-trade': 'Tabela de Troca',
-                'nav-calculator': 'Calculadora de Vendáveis',
-                'nav-ratio': 'Histórico de Ratios',
-                'nav-profit': 'Rastrear Lucro & Perda',
-                'nav-price': 'Casa de Preços',
-                'nav-achievements': 'Conquistas Secretas',
-                
-                // Footer
-                'about-title': 'Sobre o GraalGuide',
-                'about-desc': 'GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos notícias, guias e recursos para ajudá-lo a aproveitar ao máximo o seu jogo.',
-                'disclaimer': 'GraalGuide não é afiliado ao GraalOnline ou Toonslab.',
-                'links-title': 'Links Rápidos',
-                'link1': 'Início',
-                'link2': 'Uploads',
-                'link3': 'Guia de Troca',
-                'link4': 'Conquistas Secretas',
-                'legal-title': 'Legal e Políticas',
-                'policy1': 'Política de Privacidade',
-                'policy2': 'Termos de Serviço',
-                'policy3': 'Política de Cookies',
-                'policy4': 'Aviso Legal',
-                'connect-title': 'Conectar',
-                'connect1': 'Sobre Mim',
-                'connect2': 'YouTube',
-                'connect3': 'Contate-Nos',
-                'copyright': '© 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.',
-                
-                // Language selector
-                'language-en': 'Inglês',
-                'language-pt': 'Português'
-            }
-        };
-
-        // Function to change language
-        function changeLanguage(lang) {
-            currentLang = lang;
-            
-            // Update all elements with data-translate attribute
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translations[lang] && translations[lang][key]) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-            
-            // Update language buttons
-            const languageBtns = document.querySelectorAll('.language-btn');
-            languageBtns.forEach(btn => {
-                const flagImg = btn.querySelector('img');
-                const langText = btn.querySelector('span');
-                
-                if (lang === 'en') {
-                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png';
-                    langText.textContent = translations[lang]['language-en'];
-                } else if (lang === 'pt') {
-                    flagImg.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Flag_of_Brazil_%283-2%29.svg/320px-Flag_of_Brazil_%283-2%29.svg.png';
-                    langText.textContent = translations[lang]['language-pt'];
-                }
-            });
-            
-            // Update filter toggle text if filters are open
-            const galleryFilters = document.getElementById('gallery-filters');
-            const filterToggle = document.getElementById('filter-toggle');
-            if (galleryFilters.classList.contains('active')) {
-                filterToggle.textContent = translations[lang]['filter-toggle'].replace('Show', 'Hide');
-            }
-            
-            // Save language preference
-            localStorage.setItem('preferredLanguage', lang);
-        }
 
         // Function to render bodies based on current page and filters
         function renderBodies() {
@@ -2913,9 +3161,37 @@
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            // Check for saved language preference or default to English
-            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-            changeLanguage(savedLanguage);
+            // Check for saved theme preference or default to dark
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            // Add event listeners to theme toggle buttons
+            document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
+            document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
+            
+            // Check for saved language preference
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) {
+                changeLanguage(savedLang);
+            }
+            
+            // Set up language selector event listeners
+            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    
+                    // Close all language options
+                    document.querySelectorAll('.language-options, .mobile-language-options').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                });
+            });
+            
+            // Initialize language option toggles
+            toggleLanguageOptions('desktop-language-btn', 'desktop-language-options');
+            toggleLanguageOptions('mobile-language-btn', 'mobile-language-options');
             
             // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -2936,15 +3212,6 @@
                 }
             });
             
-            // Mobile language selector toggle
-            const mobileLanguageBtn = document.getElementById('mobile-language-btn');
-            const mobileLanguageOptions = document.getElementById('mobile-language-options');
-            
-            mobileLanguageBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
-            });
-            
             // Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 const isClickInsideNav = mainNav.contains(event.target);
@@ -2954,9 +3221,20 @@
                     mainNav.classList.remove('active');
                 }
                 
-                // Close mobile language options when clicking outside
-                if (!mobileLanguageBtn.contains(event.target) && !mobileLanguageOptions.contains(event.target)) {
-                    mobileLanguageOptions.style.display = 'none';
+                // Close language options when clicking outside
+                if (!event.target.closest('.language-selector')) {
+                    document.querySelectorAll('.language-options, .mobile-language-options').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown') && !e.target.closest('.language-selector')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
                 }
             });
             
@@ -3044,18 +3322,6 @@
                 }
             });
             
-            // Language selection event listeners
-            document.querySelectorAll('.language-options a, .mobile-language-options a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const lang = this.getAttribute('data-lang');
-                    changeLanguage(lang);
-                    
-                    // Close mobile language options after selection
-                    document.getElementById('mobile-language-options').style.display = 'none';
-                });
-            });
-            
             // Handle dropdown toggles on mobile
             if (window.innerWidth <= 768) {
                 document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
@@ -3093,17 +3359,13 @@
                         this.querySelector('.dropdown-menu').style.display = 'none';
                     });
                 });
-                
-                // Desktop language selector
-                const languageSelector = document.querySelector('.language-selector');
-                languageSelector.addEventListener('mouseenter', function() {
-                    this.querySelector('.language-options').style.display = 'block';
-                });
-                
-                languageSelector.addEventListener('mouseleave', function() {
-                    this.querySelector('.language-options').style.display = 'none';
-                });
             }
+            
+            // Google Analytics
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-VVS6GWC596');
         });
     </script>
 </body>
