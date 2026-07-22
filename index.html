@@ -495,6 +495,10 @@
             border-color: var(--primary-color);
         }
 
+        .showcase-thumb.rotating {
+            opacity: 0;
+        }
+
         .showcase-cta {
             text-align: center;
         }
@@ -557,13 +561,37 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
-        .article-img { 
-            width: 100%; 
-            height: 200px; 
-            object-fit: cover; 
+        .article-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
             filter: grayscale(20%) contrast(110%);
         }
-        
+
+        .notice-collage {
+            width: 100%;
+            height: 200px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 2px;
+            overflow: hidden;
+            background: var(--dark-bg);
+        }
+
+        .notice-collage div {
+            background-size: cover;
+            background-position: top center;
+            image-rendering: pixelated;
+            filter: grayscale(10%) contrast(105%);
+        }
+
+        @media (max-width: 480px) {
+            .notice-collage {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+            }
+        }
+
         .article-content { 
             padding: 20px; 
         }
@@ -996,7 +1024,7 @@
                 gap: 20px;
             }
             
-            .article-img {
+            .article-img, .notice-collage {
                 height: 180px;
             }
         }
@@ -1244,23 +1272,23 @@
                 <p>A small taste of what's inside the collection — every one of them downloadable and ready to upload.</p>
             </div>
 
-            <div class="showcase-grid">
-                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/271.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/183.png')"></a>
-                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/411.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/242.png')"></a>
-                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/421.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/210.gif')"></a>
-                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/429.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/243.png')"></a>
-                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/217.png')"></a>
-                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/418.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/236.png')"></a>
-                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/430.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/244.png')"></a>
-                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/427.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/216.gif')"></a>
-                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/425.png" alt="Custom Graal Era body" loading="lazy"></a>
+            <div class="showcase-grid" id="showcaseGrid">
+                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/271.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/183.png')"></a>
+                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/411.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/242.png')"></a>
+                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/421.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/210.gif')"></a>
+                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/429.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/243.png')"></a>
+                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/217.png')"></a>
+                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/418.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/236.png')"></a>
+                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/430.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/244.png')"></a>
+                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/427.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/216.gif')"></a>
+                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/425.png" alt="Custom Graal Era body" loading="lazy"></a>
             </div>
 
             <div class="showcase-cta">
@@ -1274,7 +1302,14 @@
         <div class="main-content">
             <div class="articles">
                 <article class="article">
-                    <img src="image/a/notice.svg" alt="Graal Era Uploads" class="article-img">
+                    <div class="notice-collage" aria-label="A collage of custom Graal Era heads and bodies">
+                        <div style="background-image:url('image/bodies/271.png')"></div>
+                        <div style="background-image:url('image/heads/183.png')"></div>
+                        <div style="background-image:url('image/bodies/411.png')"></div>
+                        <div style="background-image:url('image/heads/242.png')"></div>
+                        <div style="background-image:url('image/bodies/429.png')"></div>
+                        <div style="background-image:url('image/heads/236.png')"></div>
+                    </div>
                     <div class="article-content">
                         <span class="tag tag-news" data-translate="tag-news">Updates Notice</span>
                         <h2 id="article1-title" data-translate="article1-title">📢 Graal Guide: 21,000+ New Uploads Added!</h2>
@@ -1624,12 +1659,58 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
             }
         }
 
+        // Netflix-style rotating showcase: keep swapping random tiles with fresh uploads
+        let showcaseBodiesPool = [];
+        let showcaseHeadsPool = [];
+
+        function loadShowcasePool() {
+            Promise.all([
+                fetch('data/bodies-community.json').then(r => r.json()).catch(() => []),
+                fetch('data/heads-community.json').then(r => r.json()).catch(() => [])
+            ]).then(([bodies, heads]) => {
+                showcaseBodiesPool = bodies;
+                showcaseHeadsPool = heads;
+                if (showcaseBodiesPool.length || showcaseHeadsPool.length) {
+                    startShowcaseRotation();
+                }
+            });
+        }
+
+        function startShowcaseRotation() {
+            const tiles = document.querySelectorAll('#showcaseGrid .showcase-thumb');
+            if (tiles.length === 0) return;
+
+            setInterval(() => {
+                const tileIndex = Math.floor(Math.random() * tiles.length);
+                const tile = tiles[tileIndex];
+                const type = tile.dataset.type;
+                const pool = type === 'body' ? showcaseBodiesPool : showcaseHeadsPool;
+                if (!pool || pool.length === 0) return;
+
+                const item = pool[Math.floor(Math.random() * pool.length)];
+
+                tile.classList.add('rotating');
+                setTimeout(() => {
+                    const img = tile.querySelector('img');
+                    if (img) {
+                        img.src = item.image;
+                    } else {
+                        tile.style.backgroundImage = `url('${item.image}')`;
+                    }
+                    tile.classList.remove('rotating');
+                }, 300);
+            }, 2200);
+        }
+
         // Initialize language and theme
         document.addEventListener('DOMContentLoaded', function() {
             // Check for saved theme preference or default to dark
             const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
-            
+
+            // Start the rotating upload showcase
+            loadShowcasePool();
+
             // Add event listeners to theme toggle buttons
             document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
             document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);

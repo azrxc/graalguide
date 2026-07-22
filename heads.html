@@ -595,6 +595,54 @@
             background: var(--dark-bg);
         }
 
+        /* Jump to page */
+        .jump-to-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .jump-to-page #pageOfLabel {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+        }
+
+        .jump-to-page input[type="number"] {
+            width: 70px;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: var(--font-md);
+            text-align: center;
+        }
+
+        .jump-to-page input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .jump-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: var(--font-sm);
+            transition: all 0.2s ease;
+        }
+
+        .jump-btn:hover {
+            background: #7329c7;
+            transform: translateY(-2px);
+        }
+
         /* Modal for enlarged view */
         .modal {
             display: none;
@@ -1264,6 +1312,11 @@
                     <li><a href="#" data-page="3">3</a></li>
                     <li><a href="#" class="page-nav" data-page="next">&raquo;</a></li>
                 </ul>
+                <form class="jump-to-page" id="jumpToPageForm">
+                    <span id="pageOfLabel">Page 1 of 1</span>
+                    <input type="number" id="jumpToPageInput" min="1" value="1" aria-label="Jump to page">
+                    <button type="submit" class="jump-btn">Go</button>
+                </form>
             </div>
         </div>
     </div>
@@ -2764,7 +2817,15 @@
         function updatePagination() {
             const totalPages = Math.ceil(filteredHeads.length / itemsPerPage);
             const paginationContainer = document.querySelector('.pagination');
-            
+
+            const pageOfLabel = document.getElementById('pageOfLabel');
+            const jumpInput = document.getElementById('jumpToPageInput');
+            if (pageOfLabel) pageOfLabel.textContent = `Page ${currentPage} of ${totalPages || 1}`;
+            if (jumpInput) {
+                jumpInput.max = Math.max(totalPages, 1);
+                jumpInput.value = currentPage;
+            }
+
             // Clear existing pagination except for prev/next buttons
             const prevButton = paginationContainer.querySelector('[data-page="prev"]').parentNode;
             const nextButton = paginationContainer.querySelector('[data-page="next"]').parentNode;
@@ -2817,7 +2878,20 @@
             // Check for saved theme preference or default to dark
             const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
-            
+
+            // Jump-to-page form
+            const jumpForm = document.getElementById('jumpToPageForm');
+            if (jumpForm) {
+                jumpForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const totalPages = Math.ceil(filteredHeads.length / itemsPerPage);
+                    let target = parseInt(document.getElementById('jumpToPageInput').value);
+                    if (isNaN(target)) return;
+                    target = Math.min(Math.max(target, 1), Math.max(totalPages, 1));
+                    window.location.href = buildPageURL(target);
+                });
+            }
+
             // Add event listeners to theme toggle buttons
             document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
             document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);

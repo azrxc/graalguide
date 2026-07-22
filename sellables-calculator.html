@@ -615,6 +615,88 @@
             transform: translateY(-2px);
         }
 
+        .load-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: var(--font-sm);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 8px;
+        }
+
+        .load-btn:hover {
+            background: #0097a7;
+            transform: translateY(-2px);
+        }
+
+        .entry-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .entry-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .entry-timestamp {
+            font-size: var(--font-xs);
+            color: var(--text-muted);
+        }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .toast {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 14px 24px;
+            border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--primary-color);
+            font-size: var(--font-md);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .toast {
+                white-space: normal;
+                text-align: center;
+                font-size: var(--font-sm);
+            }
+
+            #savedDataList li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
         /* Info Section */
         .info-section {
             background: var(--darker-bg);
@@ -1227,7 +1309,8 @@
                 <button class="btn" onclick="toggleGuidance()" id="price-guide-btn" data-translate="price-guide-btn">Price Guide</button>
                 <button class="btn btn-secondary" onclick="resetCalculator()" id="reset-btn" data-translate="reset-btn">Reset</button>
                 <button class="btn btn-accent" onclick="saveData()" id="save-btn" data-translate="save-btn">Save Data</button>
-                <button class="btn" onclick="loadData()" id="load-btn" data-translate="load-btn">Load Data</button>
+                <button class="btn" onclick="scrollToSavedData()" id="load-btn" data-translate="load-btn">View Saved Data</button>
+                <button class="btn btn-secondary" onclick="copySummary()" id="copy-btn" data-translate="copy-btn">Copy Summary</button>
             </div>
             
             <!-- Guidance Box -->
@@ -1363,6 +1446,8 @@
         </div>
     </footer>
 
+    <div class="toast-container" id="toastContainer"></div>
+
     <script>
         // Theme toggle functionality
         function toggleTheme() {
@@ -1393,7 +1478,8 @@
                 'price-guide-btn': 'Price Guide',
                 'reset-btn': 'Reset',
                 'save-btn': 'Save Data',
-                'load-btn': 'Load Data',
+                'load-btn': 'View Saved Data',
+                'copy-btn': 'Copy Summary',
                 'price-guide-title': 'Sellables Price Guide',
                 'category-label': 'Category',
                 'price-label': 'Price',
@@ -1480,7 +1566,8 @@
                 'price-guide-btn': 'Guia de Preços',
                 'reset-btn': 'Reiniciar',
                 'save-btn': 'Salvar Dados',
-                'load-btn': 'Carregar Dados',
+                'load-btn': 'Ver Dados Salvos',
+                'copy-btn': 'Copiar Resumo',
                 'price-guide-title': 'Guia de Preços de Vendáveis',
                 'category-label': 'Categoria',
                 'price-label': 'Preço',
@@ -1606,11 +1693,29 @@
             }
         }
 
+        const ALL_INPUT_IDS = ["s3", "s5", "s6", "s7", "m5", "m7", "m8", "m10", "mu5", "t4", "t5", "t6", "b3", "b4", "b5"];
+
+        // Show a small non-blocking notification instead of alert()
+        function showToast(message) {
+            const container = document.getElementById("toastContainer");
+            const toast = document.createElement("div");
+            toast.className = "toast";
+            toast.textContent = message;
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => toast.classList.add("show"));
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
         // Function to evaluate mathematical expressions in input fields
         function evaluateExpression(id) {
             const input = document.getElementById(id);
             let value = input.value.trim();
-            
+
             // If the input contains mathematical operators, evaluate it
             if (/[\+\-\*\/]/.test(value)) {
                 try {
@@ -1624,7 +1729,7 @@
                     console.error('Error evaluating expression:', e);
                 }
             }
-            
+
             // Recalculate totals
             calculate();
         }
@@ -1634,7 +1739,7 @@
             let prices = { 3: ["s3", "b3"], 4: ["t4", "b4"], 5: ["s5", "m5", "mu5", "t5", "b5"], 6: ["s6", "t6"], 7: ["s7", "m7"], 8: ["m8"], 10: ["m10"] };
             let totalSellables = 0;
             let totalGralats = 0;
-            
+
             for (let price in prices) {
                 let subTotal = 0;
                 prices[price].forEach(id => {
@@ -1644,16 +1749,43 @@
                 totalSellables += subTotal;
                 totalGralats += subTotal * parseInt(price);
             }
-            
-            document.getElementById("totalSellables").textContent = totalSellables;
-            document.getElementById("totalGralats").textContent = totalGralats;
-            
+
+            document.getElementById("totalSellables").textContent = totalSellables.toLocaleString();
+            document.getElementById("totalGralats").textContent = totalGralats.toLocaleString();
+
             let ratio = parseFloat(document.getElementById("ratio").value) || 4.0;
             if (ratio >= 3.0 && ratio <= 7.0) {
-                document.getElementById("totalTrochus").textContent = (totalGralats / ratio).toFixed(2);
+                document.getElementById("totalTrochus").textContent = (totalGralats / ratio).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             } else {
                 document.getElementById("totalTrochus").textContent = "Invalid Ratio";
             }
+
+            saveDraft();
+        }
+
+        // Auto-save the current working inputs so a refresh doesn't lose progress
+        function saveDraft() {
+            let draft = { ratio: document.getElementById("ratio").value, inputs: {} };
+            ALL_INPUT_IDS.forEach(id => {
+                draft.inputs[id] = document.getElementById(id).value;
+            });
+            localStorage.setItem("calculatorDraft", JSON.stringify(draft));
+        }
+
+        // Restore the last working session on page load
+        function restoreDraft() {
+            let draft = JSON.parse(localStorage.getItem("calculatorDraft"));
+            if (!draft) return;
+
+            ALL_INPUT_IDS.forEach(id => {
+                if (draft.inputs[id]) {
+                    document.getElementById(id).value = draft.inputs[id];
+                }
+            });
+            if (draft.ratio) {
+                document.getElementById("ratio").value = draft.ratio;
+            }
+            calculate();
         }
 
         // Toggle guidance box
@@ -1678,6 +1810,7 @@
             document.getElementById("totalSellables").textContent = "0";
             document.getElementById("totalGralats").textContent = "0";
             document.getElementById("totalTrochus").textContent = "0";
+            localStorage.removeItem("calculatorDraft");
         }
 
         // Save data
@@ -1687,24 +1820,12 @@
                 gralats: document.getElementById("totalGralats").textContent,
                 trochus: document.getElementById("totalTrochus").textContent,
                 ratio: document.getElementById("ratio").value,
-                inputs: {
-                    s3: document.getElementById("s3").value,
-                    s5: document.getElementById("s5").value,
-                    s6: document.getElementById("s6").value,
-                    s7: document.getElementById("s7").value,
-                    m5: document.getElementById("m5").value,
-                    m7: document.getElementById("m7").value,
-                    m8: document.getElementById("m8").value,
-                    m10: document.getElementById("m10").value,
-                    mu5: document.getElementById("mu5").value,
-                    t4: document.getElementById("t4").value,
-                    t5: document.getElementById("t5").value,
-                    t6: document.getElementById("t6").value,
-                    b3: document.getElementById("b3").value,
-                    b4: document.getElementById("b4").value,
-                    b5: document.getElementById("b5").value
-                }
+                timestamp: new Date().toLocaleString(),
+                inputs: {}
             };
+            ALL_INPUT_IDS.forEach(id => {
+                data.inputs[id] = document.getElementById(id).value;
+            });
 
             // Save to localStorage
             let savedData = JSON.parse(localStorage.getItem("savedData")) || [];
@@ -1713,40 +1834,46 @@
 
             // Update saved data list
             displaySavedData();
-            
-            alert("Data saved successfully!");
+
+            showToast("Data saved!");
         }
 
-        // Load saved data
-        function loadData() {
+        // Load a specific saved entry directly (no prompt dialog)
+        function loadEntry(index) {
             let savedData = JSON.parse(localStorage.getItem("savedData")) || [];
-            if (savedData.length === 0) {
-                alert("No saved data found!");
-                return;
-            }
-
-            let index = prompt("Enter the index of the entry you want to load (1 to " + savedData.length + "):");
-            index = parseInt(index) - 1;
-
-            if (isNaN(index) || index < 0 || index >= savedData.length) {
-                alert("Invalid index!");
-                return;
-            }
-
             let entry = savedData[index];
+            if (!entry) return;
 
-            // Fill inputs
             for (let id in entry.inputs) {
                 document.getElementById(id).value = entry.inputs[id];
             }
-
-            // Set ratio
             document.getElementById("ratio").value = entry.ratio;
 
-            // Recalculate totals
             calculate();
-            
-            alert("Data loaded successfully!");
+            showToast("Data loaded!");
+            document.querySelector(".section").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        // Scroll down to the saved data section
+        function scrollToSavedData() {
+            document.querySelector(".saved-data").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        // Copy a shareable summary of the current totals to the clipboard
+        function copySummary() {
+            const sellables = document.getElementById("totalSellables").textContent;
+            const gralats = document.getElementById("totalGralats").textContent;
+            const ratio = document.getElementById("ratio").value;
+            const trochus = document.getElementById("totalTrochus").textContent;
+            const summary = `Graal Era Trade Summary\nSellables: ${sellables}\nGralats: ${gralats}\nRatio: ${ratio}\nTrochus: ${trochus}\n(via graalguide.com)`;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(summary)
+                    .then(() => showToast("Summary copied to clipboard!"))
+                    .catch(() => showToast("Couldn't copy - try again"));
+            } else {
+                showToast("Clipboard not supported on this browser");
+            }
         }
 
         // Display saved data
@@ -1762,15 +1889,39 @@
 
             savedData.forEach((data, index) => {
                 let li = document.createElement("li");
-                li.textContent = `Entry ${index + 1}: ${data.sellables} items, ${data.gralats} gralats, ${data.trochus} trochus`;
-                
-                // Add delete button
+
+                let info = document.createElement("div");
+                info.className = "entry-info";
+
+                let mainLine = document.createElement("span");
+                mainLine.textContent = `Entry ${index + 1}: ${data.sellables} items, ${data.gralats} gralats, ${data.trochus} trochus`;
+                info.appendChild(mainLine);
+
+                if (data.timestamp) {
+                    let timeLine = document.createElement("span");
+                    timeLine.className = "entry-timestamp";
+                    timeLine.textContent = data.timestamp;
+                    info.appendChild(timeLine);
+                }
+
+                let actions = document.createElement("div");
+                actions.className = "entry-actions";
+
+                let loadBtn = document.createElement("button");
+                loadBtn.className = "load-btn";
+                loadBtn.textContent = "Load";
+                loadBtn.onclick = () => loadEntry(index);
+
                 let deleteBtn = document.createElement("button");
                 deleteBtn.className = "delete-btn";
                 deleteBtn.textContent = "Delete";
                 deleteBtn.onclick = () => deleteEntry(index);
-                
-                li.appendChild(deleteBtn);
+
+                actions.appendChild(loadBtn);
+                actions.appendChild(deleteBtn);
+
+                li.appendChild(info);
+                li.appendChild(actions);
                 savedDataList.appendChild(li);
             });
         }
@@ -1817,20 +1968,12 @@
             toggleLanguageOptions('desktop-language-btn', 'desktop-language-options');
             toggleLanguageOptions('mobile-language-btn', 'mobile-language-options');
             
+            // Restore any in-progress work from before a refresh
+            restoreDraft();
+
             // Initial display of saved data
             displaySavedData();
-            
-            // Add input event listeners to all input fields
-            document.querySelectorAll('input[type="text"]').forEach(input => {
-                input.addEventListener('input', function() {
-                    if (this.id !== 'ratio') {
-                        evaluateExpression(this.id);
-                    } else {
-                        calculate();
-                    }
-                });
-            });
-            
+
             // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mainNav = document.getElementById('main-nav');
