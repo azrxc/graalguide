@@ -876,13 +876,27 @@
             .heads-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             }
-            
+
             .page-header h1 {
                 font-size: var(--font-3xl);
             }
+
+            /* Mobile filter toggle */
+            .mobile-filter-toggle {
+                display: block;
+            }
+
+            .gallery-filters {
+                display: none;
+                padding: 20px;
+            }
+
+            .gallery-filters.active {
+                display: block;
+            }
         }
-        
-        @media (max-width: 768px) {
+
+        @media (max-width: 1100px) {
             :root {
                 --font-xs: 0.7rem;
                 --font-sm: 0.8rem;
@@ -986,31 +1000,14 @@
                 margin: 0 20px 20px;
             }
             
-            .footer-content { 
-                flex-direction: column; 
+            .footer-content {
+                flex-direction: column;
                 gap: 20px;
             }
-            
-            /* Mobile filter toggle */
-            .mobile-filter-toggle {
-                display: block;
-            }
-            
-            .gallery-filters {
-                display: none;
-            }
-            
-            .gallery-filters.active {
-                display: block;
-            }
-            
+
             .pagination a {
                 padding: 8px 12px;
                 font-size: var(--font-sm);
-            }
-            
-            .gallery-filters {
-                padding: 20px;
             }
         }
 
@@ -2735,7 +2732,18 @@
 
         // Configuration
         const itemsPerPage = 40;
-        const urlParams = new URLSearchParams(window.location.search);
+        const HEADS_STATE_KEY = 'headsLastState';
+
+        // On a bare visit (no query string at all, e.g. clicked "Heads" from the nav),
+        // resume wherever the visitor last left off instead of always resetting to page 1.
+        let urlParams = new URLSearchParams(window.location.search);
+        if (!window.location.search) {
+            const savedState = localStorage.getItem(HEADS_STATE_KEY);
+            if (savedState) {
+                urlParams = new URLSearchParams(savedState);
+                history.replaceState(null, '', 'heads.html?' + savedState);
+            }
+        }
         let currentPage = parseInt(urlParams.get('page')) || 1;
         let currentColorFilter = urlParams.get('color') || "all";
         let currentGenderFilters = urlParams.get('gender') ? urlParams.get('gender').split(',') : ["all"];
@@ -2752,6 +2760,19 @@
                 params.set('color', currentColorFilter);
             }
             return 'heads.html?' + params.toString();
+        }
+
+        // Remember the current page/filters so the next bare visit can resume here
+        function saveHeadsState() {
+            const params = new URLSearchParams();
+            params.set('page', currentPage);
+            if (!currentGenderFilters.includes('all')) {
+                params.set('gender', currentGenderFilters.join(','));
+            }
+            if (currentColorFilter !== 'all') {
+                params.set('color', currentColorFilter);
+            }
+            localStorage.setItem(HEADS_STATE_KEY, params.toString());
         }
 
         // Function to render heads based on current page and filters
@@ -2986,6 +3007,7 @@
 
             // Initial render
             renderHeads();
+            saveHeadsState();
 
             // Load community-uploaded heads (large external dataset) and merge in
             fetch('data/heads-community.json')
@@ -3004,10 +3026,11 @@
                     currentColorFilter = this.dataset.color;
                     currentPage = 1;
                     history.replaceState(null, '', buildPageURL(1));
+                    saveHeadsState();
                     renderHeads();
                 });
             });
-            
+
             // Gender filter event listeners
             document.querySelectorAll('input[name="gender"]').forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
@@ -3033,6 +3056,7 @@
 
                     currentPage = 1;
                     history.replaceState(null, '', buildPageURL(1));
+                    saveHeadsState();
                     renderHeads();
                 });
             });
@@ -3049,6 +3073,7 @@
 
                 currentPage = 1;
                 history.replaceState(null, '', buildPageURL(1));
+                saveHeadsState();
                 renderHeads();
             });
             

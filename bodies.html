@@ -838,17 +838,31 @@
                 flex-direction: column; 
             }
             
-            .gallery-filters { 
-                margin-right: 0; 
-                margin-bottom: 20px; 
+            .gallery-filters {
+                margin-right: 0;
+                margin-bottom: 20px;
             }
-            
+
             .page-header h1 {
                 font-size: var(--font-3xl);
             }
+
+            /* Mobile filter toggle */
+            .mobile-filter-toggle {
+                display: block;
+            }
+
+            .gallery-filters {
+                display: none;
+                padding: 20px;
+            }
+
+            .gallery-filters.active {
+                display: block;
+            }
         }
-        
-        @media (max-width: 768px) {
+
+        @media (max-width: 1100px) {
             :root {
                 --font-xs: 0.7rem;
                 --font-sm: 0.8rem;
@@ -946,31 +960,14 @@
                 margin: 0 20px 20px;
             }
             
-            .footer-content { 
-                flex-direction: column; 
+            .footer-content {
+                flex-direction: column;
                 gap: 20px;
             }
-            
-            /* Mobile filter toggle */
-            .mobile-filter-toggle {
-                display: block;
-            }
-            
-            .gallery-filters {
-                display: none;
-            }
-            
-            .gallery-filters.active {
-                display: block;
-            }
-            
+
             .pagination a {
                 padding: 8px 12px;
                 font-size: var(--font-sm);
-            }
-            
-            .gallery-filters {
-                padding: 20px;
             }
         }
 
@@ -3238,7 +3235,18 @@
 
         // Configuration
         const itemsPerPage = 80;
-        const urlParams = new URLSearchParams(window.location.search);
+        const BODIES_STATE_KEY = 'bodiesLastState';
+
+        // On a bare visit (no query string at all, e.g. clicked "Bodies" from the nav),
+        // resume wherever the visitor last left off instead of always resetting to page 1.
+        let urlParams = new URLSearchParams(window.location.search);
+        if (!window.location.search) {
+            const savedState = localStorage.getItem(BODIES_STATE_KEY);
+            if (savedState) {
+                urlParams = new URLSearchParams(savedState);
+                history.replaceState(null, '', 'bodies.html?' + savedState);
+            }
+        }
         let currentPage = parseInt(urlParams.get('page')) || 1;
         let currentCategoryFilters = urlParams.get('category') ? urlParams.get('category').split(',') : ["all"];
         let filteredBodies = [...bodiesData];
@@ -3251,6 +3259,16 @@
                 params.set('category', currentCategoryFilters.join(','));
             }
             return 'bodies.html?' + params.toString();
+        }
+
+        // Remember the current page/filters so the next bare visit can resume here
+        function saveBodiesState() {
+            const params = new URLSearchParams();
+            params.set('page', currentPage);
+            if (!currentCategoryFilters.includes('all')) {
+                params.set('category', currentCategoryFilters.join(','));
+            }
+            localStorage.setItem(BODIES_STATE_KEY, params.toString());
         }
 
         // Function to render bodies based on current page and filters
@@ -3474,6 +3492,7 @@
 
             // Initial render
             renderBodies();
+            saveBodiesState();
 
             // Load community-uploaded bodies (large external dataset) and merge in
             fetch('data/bodies-community.json')
@@ -3509,10 +3528,11 @@
 
                     currentPage = 1;
                     history.replaceState(null, '', buildPageURL(1));
+                    saveBodiesState();
                     renderBodies();
                 });
             });
-            
+
             // Reset filters button
             document.getElementById('reset-filters').addEventListener('click', function() {
                 document.querySelectorAll('input[name="category"]').forEach(cb => cb.checked = false);
@@ -3521,9 +3541,10 @@
 
                 currentPage = 1;
                 history.replaceState(null, '', buildPageURL(1));
+                saveBodiesState();
                 renderBodies();
             });
-            
+
             // Prev/next hrefs are set dynamically in updatePagination() - real navigation, no click interception needed
 
 
