@@ -1099,7 +1099,7 @@
                 mainNav.classList.toggle('active');
                 
                 // Close dropdowns when menu is toggled on mobile
-                if (window.innerWidth <= 768) {
+                if (window.innerWidth <= 1100) {
                     document.querySelectorAll('.dropdown-menu').forEach(menu => {
                         menu.style.display = 'none';
                     });
@@ -1151,7 +1151,7 @@
             });
             
             // Handle dropdown toggles on mobile
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 1100) {
                 document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
                     dropdownToggle.addEventListener('click', function(e) {
                         e.preventDefault();
@@ -1177,7 +1177,7 @@
             }
             
             // Handle desktop dropdown hover
-            if (window.innerWidth > 768) {
+            if (window.innerWidth > 1100) {
                 document.querySelectorAll('.dropdown').forEach(dropdown => {
                     dropdown.addEventListener('mouseenter', function() {
                         this.querySelector('.dropdown-menu').style.display = 'block';
