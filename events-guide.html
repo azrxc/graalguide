@@ -1471,8 +1471,14 @@
                 `;
             } else {
                 quizContainer.innerHTML = "";
+                const pct = Math.round((score / quizQuestions.length) * 100);
+                const message = pct === 100 ? "Perfect score! You really know your events." :
+                    pct >= 60 ? "Nice work! You've got a solid grasp on events." :
+                    "Give the guide another read and try again!";
                 quizResult.innerHTML = `
                     <p>Quiz Complete! Your score is ${score} out of ${quizQuestions.length}.</p>
+                    <p>${message}</p>
+                    <button class="btn" onclick="retakeQuiz()">Retake Quiz</button>
                 `;
             }
         }
@@ -1484,6 +1490,14 @@
                 score++;
             }
             currentQuestion++;
+            displayQuiz();
+        }
+
+        // Retake Quiz
+        function retakeQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById("quizResult").innerHTML = "";
             displayQuiz();
         }
 

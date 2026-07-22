@@ -1456,6 +1456,19 @@
                     </div>
                 </article>
 
+                <!-- Interactive Tutorial -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="tutorial-title">Interactive Rules Tutorial</h2>
+                        <div class="interactive-tutorial" id="interactiveTutorial">
+                            <h3 id="quiz-title">Test Your Upload Knowledge!</h3>
+                            <p id="quiz-desc">Answer the following questions to test your understanding of the upload rules above.</p>
+                            <div id="quizContainer"></div>
+                            <div id="quizResult" class="quiz-result"></div>
+                        </div>
+                    </div>
+                </article>
+
                 <!-- Upload Tips -->
                 <article class="article">
                     <div class="article-content">
@@ -1641,9 +1654,88 @@
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
+
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+        }
+
+        // Quiz Questions and Answers
+        const quizQuestions = [
+            {
+                question: "Are hats and glasses allowed on custom heads?",
+                answer: false
+            },
+            {
+                question: "Must custom bodies be non-animated (static only)?",
+                answer: true
+            },
+            {
+                question: "Can a shield be disguised as a hat, head, or body?",
+                answer: false
+            },
+            {
+                question: "Will pure black (#000000) or pure white (#FFFFFF) appear transparent in your upload?",
+                answer: true
+            },
+            {
+                question: "Do you get your Gralats back if your upload gets rejected?",
+                answer: true
+            },
+            {
+                question: "Does uploading a head cost 20,000 Gralats?",
+                answer: true
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        // Display Quiz Questions
+        function displayQuiz() {
+            const quizContainer = document.getElementById("quizContainer");
+            const quizResult = document.getElementById("quizResult");
+
+            if (currentQuestion < quizQuestions.length) {
+                const question = quizQuestions[currentQuestion];
+                quizContainer.innerHTML = `
+                    <div class="quiz-question">
+                        <p>${question.question}</p>
+                        <div class="quiz-options">
+                            <button class="btn" onclick="checkAnswer(true)">Yes</button>
+                            <button class="btn btn-secondary" onclick="checkAnswer(false)">No</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                quizContainer.innerHTML = "";
+                const pct = Math.round((score / quizQuestions.length) * 100);
+                const message = pct === 100 ? "Perfect score! You really know the upload rules." :
+                    pct >= 60 ? "Nice work! You've got a solid grasp on the rules." :
+                    "Give the guide another read and try again!";
+                quizResult.innerHTML = `
+                    <p>Quiz Complete! Your score is ${score} out of ${quizQuestions.length}.</p>
+                    <p>${message}</p>
+                    <button class="btn" onclick="retakeQuiz()">Retake Quiz</button>
+                `;
+            }
+        }
+
+        // Check Answer
+        function checkAnswer(userAnswer) {
+            const question = quizQuestions[currentQuestion];
+            if (userAnswer === question.answer) {
+                score++;
+            }
+            currentQuestion++;
+            displayQuiz();
+        }
+
+        // Retake Quiz
+        function retakeQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById("quizResult").innerHTML = "";
+            displayQuiz();
         }
 
         // Language translation data
@@ -2186,6 +2278,9 @@
                     });
                 });
             }
+
+            // Start Quiz
+            displayQuiz();
         });
     </script>
 </body>

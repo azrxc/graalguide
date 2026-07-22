@@ -602,6 +602,36 @@
             transform: scale(1.1);
         }
 
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            color: white !important;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: var(--font-md);
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.5);
+            z-index: 2001;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 6px 25px rgba(138, 43, 226, 0.6);
+            color: white !important;
+        }
+
+        @media (max-width: 480px) {
+            .download-btn {
+                bottom: 20px;
+                padding: 12px 24px;
+                font-size: var(--font-sm);
+            }
+        }
+
         /* Footer */
         footer { 
             background: var(--darker-bg); 
@@ -1185,6 +1215,7 @@
     <div id="image-modal" class="modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="enlarged-img">
+        <a id="download-btn" class="download-btn" download>&#8681; Download</a>
     </div>
 
     <footer>
@@ -3154,9 +3185,20 @@
 
         // Configuration
         const itemsPerPage = 80;
-        let currentPage = 1;
-        let currentCategoryFilters = ["all"];
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentPage = parseInt(urlParams.get('page')) || 1;
+        let currentCategoryFilters = urlParams.get('category') ? urlParams.get('category').split(',') : ["all"];
         let filteredBodies = [...bodiesData];
+
+        // Build a real, crawlable URL for a given page, preserving active filters
+        function buildPageURL(pageNum) {
+            const params = new URLSearchParams();
+            params.set('page', pageNum);
+            if (!currentCategoryFilters.includes('all')) {
+                params.set('category', currentCategoryFilters.join(','));
+            }
+            return 'bodies.html?' + params.toString();
+        }
 
         // Function to render bodies based on current page and filters
         function renderBodies() {
@@ -3189,13 +3231,16 @@
                 
                 bodyElement.innerHTML = `
                     <div class="body-display">
-                        <img src="${body.image}" class="body-img">
+                        <img src="${body.image}" class="body-img" loading="lazy" decoding="async">
                     </div>
                 `;
                 
                 // Add click event to show enlarged image
                 bodyElement.addEventListener('click', function() {
                     document.getElementById('enlarged-img').src = body.image;
+                    const downloadBtn = document.getElementById('download-btn');
+                    downloadBtn.href = body.image;
+                    downloadBtn.download = body.image.split('/').pop();
                     document.getElementById('image-modal').style.display = 'flex';
                 });
                 
@@ -3230,33 +3275,32 @@
             for (let i = startPage; i <= endPage; i++) {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
-                a.href = '#';
+                a.href = buildPageURL(i);
                 a.textContent = i;
                 a.dataset.page = i;
-                
+
                 if (i === currentPage) {
                     a.classList.add('active');
                 }
-                
-                a.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    currentPage = parseInt(this.dataset.page);
-                    renderBodies();
-                    window.scrollTo({ top: document.getElementById('bodies-container').offsetTop - 100, behavior: 'smooth' });
-                });
-                
+
                 li.appendChild(a);
                 paginationContainer.appendChild(li);
             }
-            
+
             paginationContainer.appendChild(nextButton);
-            
-            // Update button states
+
+            // Update button states - real links, so a fresh pageview (and ad impression) fires on navigation
             const prevBtn = document.querySelector('[data-page="prev"]');
             const nextBtn = document.querySelector('[data-page="next"]');
-            
-            if (prevBtn) prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
-            if (nextBtn) nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+
+            if (prevBtn) {
+                prevBtn.href = buildPageURL(Math.max(1, currentPage - 1));
+                prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
+            }
+            if (nextBtn) {
+                nextBtn.href = buildPageURL(Math.min(Math.max(totalPages, 1), currentPage + 1));
+                nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+            }
         }
 
         // Initialize the page
@@ -3349,9 +3393,23 @@
                     translations[currentLang]['filter-toggle'];
             });
             
+            // Sync filter checkboxes to whatever the URL specified on load
+            document.querySelectorAll('input[name="category"]').forEach(cb => {
+                cb.checked = currentCategoryFilters.includes(cb.value);
+            });
+
             // Initial render
             renderBodies();
-            
+
+            // Load community-uploaded bodies (large external dataset) and merge in
+            fetch('data/bodies-community.json')
+                .then(response => response.json())
+                .then(communityBodies => {
+                    bodiesData.push(...communityBodies);
+                    renderBodies();
+                })
+                .catch(error => console.error('Could not load community bodies:', error));
+
             // Category filter event listeners
             document.querySelectorAll('input[name="category"]').forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
@@ -3374,8 +3432,9 @@
                             currentCategoryFilters = ["all"];
                         }
                     }
-                    
+
                     currentPage = 1;
+                    history.replaceState(null, '', buildPageURL(1));
                     renderBodies();
                 });
             });
@@ -3385,31 +3444,15 @@
                 document.querySelectorAll('input[name="category"]').forEach(cb => cb.checked = false);
                 document.querySelector('input[name="category"][value="all"]').checked = true;
                 currentCategoryFilters = ["all"];
-                
+
                 currentPage = 1;
+                history.replaceState(null, '', buildPageURL(1));
                 renderBodies();
             });
             
-            // Pagination event listeners
-            document.querySelector('[data-page="prev"]').addEventListener('click', function(e) {
-                e.preventDefault();
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderBodies();
-                    window.scrollTo({ top: document.getElementById('bodies-container').offsetTop - 100, behavior: 'smooth' });
-                }
-            });
-            
-            document.querySelector('[data-page="next"]').addEventListener('click', function(e) {
-                e.preventDefault();
-                const totalPages = Math.ceil(filteredBodies.length / itemsPerPage);
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderBodies();
-                    window.scrollTo({ top: document.getElementById('bodies-container').offsetTop - 100, behavior: 'smooth' });
-                }
-            });
-            
+            // Prev/next hrefs are set dynamically in updatePagination() - real navigation, no click interception needed
+
+
             // Modal functionality
             document.querySelector('.close-modal').addEventListener('click', function() {
                 document.getElementById('image-modal').style.display = 'none';

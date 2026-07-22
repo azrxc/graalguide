@@ -407,9 +407,128 @@
             box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
         }
         
-        .btn-accent:hover { 
-            background: #e64a19; 
+        .btn-accent:hover {
+            background: #e64a19;
             box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+        }
+
+        /* Showcase: stats + gallery preview mosaic */
+        .showcase {
+            padding: 50px 0 60px;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .stat-item .stat-number {
+            font-size: var(--font-4xl);
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .stat-item .stat-label {
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .showcase-heading {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .showcase-heading h2 {
+            font-size: var(--font-2xl);
+            font-weight: 800;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .showcase-heading p {
+            color: var(--text-muted);
+            font-size: var(--font-md);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .showcase-thumb {
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.25s ease;
+            display: block;
+            background-size: cover;
+            background-position: top center;
+        }
+
+        .showcase-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            image-rendering: pixelated;
+        }
+
+        .showcase-thumb:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+            border-color: var(--primary-color);
+        }
+
+        .showcase-cta {
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .showcase-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .showcase-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+
+            .stats-bar {
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .showcase {
+                padding: 35px 0 40px;
+            }
+
+            .showcase-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .stats-bar {
+                gap: 15px 30px;
+            }
         }
 
         /* Main Content */
@@ -1099,6 +1218,58 @@
         </div>
     </section>
 
+    <section class="showcase">
+        <div class="container">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">12,534</div>
+                    <div class="stat-label">Heads</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8,684</div>
+                    <div class="stat-label">Bodies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">21,218</div>
+                    <div class="stat-label">Total Uploads</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Free to Download</div>
+                </div>
+            </div>
+
+            <div class="showcase-heading">
+                <h2>Thousands of Custom Heads & Bodies</h2>
+                <p>A small taste of what's inside the collection — every one of them downloadable and ready to upload.</p>
+            </div>
+
+            <div class="showcase-grid">
+                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/271.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/183.png')"></a>
+                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/411.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/242.png')"></a>
+                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/421.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/210.gif')"></a>
+                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/429.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/243.png')"></a>
+                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/217.png')"></a>
+                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/418.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/236.png')"></a>
+                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/430.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/244.png')"></a>
+                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/427.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html" class="showcase-thumb" style="background-image:url('image/heads/216.gif')"></a>
+                <a href="bodies.html" class="showcase-thumb"><img src="image/bodies/425.png" alt="Custom Graal Era body" loading="lazy"></a>
+            </div>
+
+            <div class="showcase-cta">
+                <a href="bodies.html" class="btn">Browse All Bodies</a>
+                <a href="heads.html" class="btn btn-secondary">Browse All Heads</a>
+            </div>
+        </div>
+    </section>
+
     <div class="container">
         <div class="main-content">
             <div class="articles">
@@ -1106,10 +1277,10 @@
                     <img src="image/a/notice.svg" alt="Graal Era Uploads" class="article-img">
                     <div class="article-content">
                         <span class="tag tag-news" data-translate="tag-news">Updates Notice</span>
-                        <h2 id="article1-title" data-translate="article1-title">📢 Graal Guide: Notice v0.1.1</h2>
-                        <div class="article-meta" id="article1-date" data-translate="article1-date">Updated on October 9, 2025</div>
+                        <h2 id="article1-title" data-translate="article1-title">📢 Graal Guide: 21,000+ New Uploads Added!</h2>
+                        <div class="article-meta" id="article1-date" data-translate="article1-date">Updated on July 23, 2026</div>
                        <p data-translate="article1-desc">
-It's been 14 days since launch, and we've already got something new for you! We've added more uploads and introduced a new "Upload Sets" menu to make browsing themed sets even easier. We'll keep improving with more content and updates along the way. For feedback: https://forms.gle/y53ZN3Qish8zm34RA'
+Big update! We've added over 21,000 new heads and bodies to the collection, browse, filter, and download any of them instantly. Pagination is faster, every upload now has a one-click Download button so you can grab it and upload it straight into the game, and our guide pages now include interactive quizzes to test what you've learned. We'll keep improving with more content and updates along the way. For feedback: https://forms.gle/y53ZN3Qish8zm34RA
 </p>
                     </div>
                 </article>
@@ -1254,9 +1425,9 @@ It's been 14 days since launch, and we've already got something new for you! We'
                 
                 // Articles
                 'tag-news': 'Updates Notice',
-                'article1-title': '📢 Graal Guide: Notice v0.1.1',
-                'article1-date': 'Updated on October 9, 2025',
-                'article1-desc': 'It\'s been 14 days since launch, and we\'ve already got something new for you! We\'ve added more uploads and introduced a new "Upload Sets" menu to make browsing themed sets even easier. We\'ll keep improving with more content and updates along the way. For feedback: https://forms.gle/y53ZN3Qish8zm34RA',
+                'article1-title': '📢 Graal Guide: 21,000+ New Uploads Added!',
+                'article1-date': 'Updated on July 23, 2026',
+                'article1-desc': 'Big update! We\'ve added over 21,000 new heads and bodies to the collection, browse, filter, and download any of them instantly. Pagination is faster, every upload now has a one-click Download button so you can grab it and upload it straight into the game, and our guide pages now include interactive quizzes to test what you\'ve learned. We\'ll keep improving with more content and updates along the way. For feedback: https://forms.gle/y53ZN3Qish8zm34RA',
                 
                 'tag-trading': 'Trading',
                 'tag-guide': 'Guide',
@@ -1338,9 +1509,9 @@ It's been 14 days since launch, and we've already got something new for you! We'
                 
                 // Articles
                 'tag-news': 'Aviso de Atualizações',
-                'article1-title': '📢 Graal Guide: Aviso v0.1.1',
-                'article1-date': 'Atualizado em 9 de Outubro de 2025',
-                'article1-desc': 'Já se passaram 14 dias desde o lançamento e já temos novidades para você! Adicionamos mais uploads e introduzimos um novo menu "Conjuntos de Uploads" para facilitar a navegação por conjuntos temáticos. Continuaremos melhorando com mais conteúdo e atualizações ao longo do tempo. Para enviar feedback: https://forms.gle/y53ZN3Qish8zm34RA',
+                'article1-title': '📢 Graal Guide: Mais de 21.000 Novos Uploads!',
+                'article1-date': 'Atualizado em 23 de Julho de 2026',
+                'article1-desc': 'Grande atualização! Adicionamos mais de 21.000 novas heads e bodies à coleção — navegue, filtre e baixe qualquer uma delas instantaneamente. A paginação está mais rápida, cada upload agora tem um botão de Download com um clique para você baixar e enviar direto no jogo, e nossas páginas de guia agora incluem quizzes interativos para testar o que você aprendeu. Continuaremos melhorando com mais conteúdo e atualizações ao longo do tempo. Para enviar feedback: https://forms.gle/y53ZN3Qish8zm34RA',
                 
                 'tag-trading': 'Troca',
                 'tag-guide': 'Guia',

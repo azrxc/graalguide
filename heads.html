@@ -632,6 +632,36 @@
             transform: scale(1.1);
         }
 
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            color: white !important;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: var(--font-md);
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.5);
+            z-index: 2001;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 6px 25px rgba(138, 43, 226, 0.6);
+            color: white !important;
+        }
+
+        @media (max-width: 480px) {
+            .download-btn {
+                bottom: 20px;
+                padding: 12px 24px;
+                font-size: var(--font-sm);
+            }
+        }
+
         /* Footer */
         footer { 
             background: var(--darker-bg); 
@@ -1242,6 +1272,7 @@
     <div id="image-modal" class="modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="enlarged-img">
+        <a id="download-btn" class="download-btn" download>&#8681; Download</a>
     </div>
 
     <footer>
@@ -2651,10 +2682,24 @@
 
         // Configuration
         const itemsPerPage = 40;
-        let currentPage = 1;
-        let currentColorFilter = "all";
-        let currentGenderFilters = ["all"];
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentPage = parseInt(urlParams.get('page')) || 1;
+        let currentColorFilter = urlParams.get('color') || "all";
+        let currentGenderFilters = urlParams.get('gender') ? urlParams.get('gender').split(',') : ["all"];
         let filteredHeads = [...headsData];
+
+        // Build a real, crawlable URL for a given page, preserving active filters
+        function buildPageURL(pageNum) {
+            const params = new URLSearchParams();
+            params.set('page', pageNum);
+            if (!currentGenderFilters.includes('all')) {
+                params.set('gender', currentGenderFilters.join(','));
+            }
+            if (currentColorFilter !== 'all') {
+                params.set('color', currentColorFilter);
+            }
+            return 'heads.html?' + params.toString();
+        }
 
         // Function to render heads based on current page and filters
         function renderHeads() {
@@ -2702,6 +2747,9 @@
                 // Add click event to show enlarged image
                 headElement.addEventListener('click', function() {
                     document.getElementById('enlarged-img').src = head.image;
+                    const downloadBtn = document.getElementById('download-btn');
+                    downloadBtn.href = head.image;
+                    downloadBtn.download = head.image.split('/').pop();
                     document.getElementById('image-modal').style.display = 'flex';
                 });
                 
@@ -2736,33 +2784,32 @@
             for (let i = startPage; i <= endPage; i++) {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
-                a.href = '#';
+                a.href = buildPageURL(i);
                 a.textContent = i;
                 a.dataset.page = i;
-                
+
                 if (i === currentPage) {
                     a.classList.add('active');
                 }
-                
-                a.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    currentPage = parseInt(this.dataset.page);
-                    renderHeads();
-                    window.scrollTo({ top: document.getElementById('heads-container').offsetTop - 100, behavior: 'smooth' });
-                });
-                
+
                 li.appendChild(a);
                 paginationContainer.appendChild(li);
             }
-            
+
             paginationContainer.appendChild(nextButton);
-            
-            // Update button states
+
+            // Update button states - real links, so a fresh pageview (and ad impression) fires on navigation
             const prevBtn = document.querySelector('[data-page="prev"]');
             const nextBtn = document.querySelector('[data-page="next"]');
-            
-            if (prevBtn) prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
-            if (nextBtn) nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+
+            if (prevBtn) {
+                prevBtn.href = buildPageURL(Math.max(1, currentPage - 1));
+                prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
+            }
+            if (nextBtn) {
+                nextBtn.href = buildPageURL(Math.min(Math.max(totalPages, 1), currentPage + 1));
+                nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+            }
         }
 
         // Initialize the page
@@ -2855,9 +2902,26 @@
                     translations[currentLang]['filter-toggle'];
             });
             
+            // Sync filter UI to whatever the URL specified on load
+            document.querySelectorAll('input[name="gender"]').forEach(cb => {
+                cb.checked = currentGenderFilters.includes(cb.value);
+            });
+            document.querySelectorAll('.color-filter').forEach(f => {
+                f.classList.toggle('active', f.dataset.color === currentColorFilter);
+            });
+
             // Initial render
             renderHeads();
-            
+
+            // Load community-uploaded heads (large external dataset) and merge in
+            fetch('data/heads-community.json')
+                .then(response => response.json())
+                .then(communityHeads => {
+                    headsData.push(...communityHeads);
+                    renderHeads();
+                })
+                .catch(error => console.error('Could not load community heads:', error));
+
             // Color filter event listeners
             document.querySelectorAll('.color-filter').forEach(filter => {
                 filter.addEventListener('click', function() {
@@ -2865,6 +2929,7 @@
                     this.classList.add('active');
                     currentColorFilter = this.dataset.color;
                     currentPage = 1;
+                    history.replaceState(null, '', buildPageURL(1));
                     renderHeads();
                 });
             });
@@ -2891,12 +2956,13 @@
                             currentGenderFilters = ["all"];
                         }
                     }
-                    
+
                     currentPage = 1;
+                    history.replaceState(null, '', buildPageURL(1));
                     renderHeads();
                 });
             });
-            
+
             // Reset filters button
             document.getElementById('reset-filters').addEventListener('click', function() {
                 document.querySelectorAll('.color-filter').forEach(f => f.classList.remove('active'));
@@ -2906,31 +2972,15 @@
                 document.querySelectorAll('input[name="gender"]').forEach(cb => cb.checked = false);
                 document.querySelector('input[name="gender"][value="all"]').checked = true;
                 currentGenderFilters = ["all"];
-                
+
                 currentPage = 1;
+                history.replaceState(null, '', buildPageURL(1));
                 renderHeads();
             });
             
-            // Pagination event listeners
-            document.querySelector('[data-page="prev"]').addEventListener('click', function(e) {
-                e.preventDefault();
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderHeads();
-                    window.scrollTo({ top: document.getElementById('heads-container').offsetTop - 100, behavior: 'smooth' });
-                }
-            });
-            
-            document.querySelector('[data-page="next"]').addEventListener('click', function(e) {
-                e.preventDefault();
-                const totalPages = Math.ceil(filteredHeads.length / itemsPerPage);
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderHeads();
-                    window.scrollTo({ top: document.getElementById('heads-container').offsetTop - 100, behavior: 'smooth' });
-                }
-            });
-            
+            // Prev/next hrefs are set dynamically in updatePagination() - real navigation, no click interception needed
+
+
             // Modal functionality
             document.querySelector('.close-modal').addEventListener('click', function() {
                 document.getElementById('image-modal').style.display = 'none';
