@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-    <link rel="icon" type="image/png" href="image/a/graalguide.png">
+    <link rel="icon" type="image/png" href="../image/a/graalguide.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Privacy Policy - GraalGuide</title>
-    <link rel="alternate" hreflang="en" href="https://graalguide.com/privacy-policy.html">
-    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/privacy-policy.html">
-    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/privacy-policy.html">
-    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/privacy-policy.html">
+    <title>Contate-Nos - GraalGuide</title>
+    <link rel="alternate" hreflang="en" href="https://graalguide.com/contact-us.html">
+    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/contact-us.html">
+    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/contact-us.html">
+    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/contact-us.html">
     <style>
         :root {
             --primary-color: #8a2be2; /* Purple accent */
@@ -42,7 +42,7 @@
         body { 
             background-color: var(--dark-bg); 
             color: var(--text-color); 
-            line-height: 1.6; 
+            line-height: 1.6;
             font-size: var(--font-md);
         }
         
@@ -295,6 +295,96 @@
             position: relative;
         }
 
+        /* Contact Methods */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .contact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: var(--font-lg);
+        }
+        
+        .contact-card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .contact-link {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .contact-link:hover {
+            background: #7329c7;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(115, 41, 199, 0.4);
+        }
+        
+        .contact-info {
+            background: rgba(138, 43, 226, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+            color: var(--primary-color);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
         /* Content Sections */
         .content-section {
             background: var(--card-bg);
@@ -324,6 +414,7 @@
             margin-bottom: 15px;
             color: var(--text-muted);
             font-size: var(--font-md);
+            line-height: 1.8;
         }
         
         .content-section ul {
@@ -531,6 +622,14 @@
                 font-size: var(--font-md);
             }
             
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-card {
+                padding: 20px;
+            }
+            
             .content-section {
                 padding: 20px;
             }
@@ -561,8 +660,8 @@
                 padding: 30px 0;
             }
             
-            .page-header h1 {
-                font-size: var(--font-xl);
+            .contact-card {
+                padding: 15px;
             }
             
             .content-section {
@@ -583,6 +682,96 @@
             display: block;
         }
         
+        /* Email Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .modal-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+        
+        .email-address {
+            background: rgba(138, 43, 226, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: var(--font-lg);
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 500;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            word-break: break-all;
+        }
+        
+        .copy-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: #7329c7;
+        }
+        
+        .copy-success {
+            color: var(--secondary-color);
+            text-align: center;
+            margin-top: 10px;
+            font-size: var(--font-sm);
+            display: none;
+        }
+
         /* Prevent zoom on focus for iOS */
         @media screen and (max-width: 768px) {
             input, select, textarea {
@@ -590,6 +779,15 @@
             }
         }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-VVS6GWC596');
+    </script>
 </head>
 <body>
     <header>
@@ -597,67 +795,67 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                        <img src="../image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
                     </a>
                 </div>
                 <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Início</a></li>
                         <li class="dropdown">
                             <a href="#">Uploads</a>
                             <ul class="dropdown-menu">
                                 <li><a href="heads.html">Heads</a></li>
                                 <li><a href="bodies.html">Bodies</a></li>
                                 <li><a href="hats.html">Hats</a></li>
-                                <li><a href="upload-sets.html">Upload Sets</a></li>
+                                <li><a href="upload-sets.html">Conjuntos de Upload</a></li>
                                 <li><a href="templates.html">Templates</a></li>
-                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
-                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Era) ↗</a></li>
-                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Classic) ↗</a></li>
-                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Ol' West) ↗</a></li>
-                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Zone) ↗</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (por DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Zone) ↗</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Guides - How to?</a>
+                            <a href="#">Guias - Como?</a>
                             <ul class="dropdown-menu">
                                 <li><a href="upload.html">Upload</a></li>
-                                <li><a href="trade-guide.html">Trade</a></li>
-                                <li><a href="job-guide.html">Get Gralats</a></li>
-                                <li><a href="events-guide.html">Get Event Coins</a></li>
+                                <li><a href="trade-guide.html">Trocar</a></li>
+                                <li><a href="job-guide.html">Conseguir Gralats</a></li>
+                                <li><a href="events-guide.html">Conseguir Moedas de Evento</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Trade Table</a>
+                            <a href="#">Tabela de Troca</a>
                             <ul class="dropdown-menu">
-                                  <li><a href="sellables-calculator.html">Sellables Calculator</a></li>
-                                <li><a href="advanced-calculator.html">Advanced Calculator</a></li>
-                                <li><a href="ratio-history.html">Ratio History</a></li>
-                                <li><a href="profit-loss.html">Profit & Loss Tracker</a></li>
-                                <li><a href="price-house.html">Price House</a></li>
+                                  <li><a href="sellables-calculator.html">Calculadora de Vendáveis</a></li>
+                                <li><a href="advanced-calculator.html">Calculadora Avançada</a></li>
+                                <li><a href="ratio-history.html">Histórico de Ratios</a></li>
+                                <li><a href="profit-loss.html">Rastrear Lucro & Perda</a></li>
+                                <li><a href="price-house.html">Casa de Preços</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
-                        <li><a href="guns.html">Gun Ratings</a></li>
+                        <li><a href="secret-achievements.html">Conquistas Secretas</a></li>
+                        <li><a href="guns.html">Avaliação de Armas</a></li>
                     </ul>
-                    
+
                     <!-- Mobile Language Selector -->
                     <div class="mobile-language-selector">
                         <button class="language-btn" id="mobile-language-btn">
-                            <img src="https://flagcdn.com/w40/us.png" alt="English">
-                            <span>English</span>
+                            <img src="https://flagcdn.com/w40/br.png" alt="Português">
+                            <span>Português</span>
                         </button>
                         <div class="mobile-language-options" id="mobile-language-options">
-                            <a href="privacy-policy.html">
+                            <a href="../contact-us.html">
                                 <img src="https://flagcdn.com/w40/us.png" alt="English">
                                 <span>English</span>
                             </a>
-                            <a href="pt/privacy-policy.html">
+                            <a href="contact-us.html">
                                 <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                 <span>Português</span>
                             </a>
-                            <a href="id/privacy-policy.html">
+                            <a href="../id/contact-us.html">
                                 <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                 <span>Indonesia</span>
                             </a>
@@ -666,19 +864,19 @@
                 </nav>
                 <div class="language-selector">
                     <button class="language-btn" id="current-language">
-                        <img src="https://flagcdn.com/w40/us.png" alt="English">
-                        <span>English</span>
+                        <img src="https://flagcdn.com/w40/br.png" alt="Português">
+                        <span>Português</span>
                     </button>
                     <div class="language-options">
-                        <a href="privacy-policy.html">
+                        <a href="../contact-us.html">
                             <img src="https://flagcdn.com/w40/us.png" alt="English">
                             <span>English</span>
                         </a>
-                        <a href="pt/privacy-policy.html">
+                        <a href="contact-us.html">
                             <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                             <span>Português</span>
                         </a>
-                        <a href="id/privacy-policy.html">
+                        <a href="../id/contact-us.html">
                             <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                             <span>Indonesia</span>
                         </a>
@@ -686,139 +884,117 @@
                 </div>
             </div>
         </div>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VVS6GWC596');
-</script>
     </header>
 
     <div class="page-header">
         <div class="container">
-            <h1 id="policy-title">Privacy Policy</h1>
-            <p id="policy-subtitle">Last updated: September 9, 2025</p>
+            <h1 id="contact-title">Contate-Nos</h1>
+            <p id="contact-subtitle">Entre em contato com a equipe do GraalGuide</p>
         </div>
     </div>
 
     <div class="container">
-        <!-- English Content -->
-        <div class="language-content active" id="content-en">
-            <div class="content-section">
-                <h2>1. Information We Collect</h2>
-                
-                <h3>Personal information you provide</h3>
-                <p>When you contact us (via email or contact form), or sign up for newsletters (if applicable), we may collect your name and email address.</p>
-                
-                <h3>Non-personal / usage data</h3>
-                <p>We automatically collect certain data about how you use the site, such as:</p>
-                <ul>
-                    <li>Your IP address</li>
-                    <li>Browser type & version</li>
-                    <li>Which pages you visit and how long you stay</li>
-                    <li>Referring URL (which page you came from)</li>
-                </ul>
-                
-                <h3>Cookies</h3>
-                <p>We may use cookies or similar tools to store information on your device or record your preferences. You can disable cookies in your browser settings, but that might reduce some functionalities.</p>
+        <div class="contact-methods">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </div>
+                <h3>Email</h3>
+                <p>Envie-me um email para quaisquer perguntas ou sugestões</p>
+                <button class="contact-link" id="email-btn">Mostrar Endereço de Email</button>
             </div>
 
-            <div class="content-section">
-                <h2>2. How We Use Your Information</h2>
-                <ul>
-                    <li>To respond to your messages or feedback.</li>
-                    <li>To improve the site: content, navigation, performance.</li>
-                    <li>To monitor site usage, errors, and analytics (e.g. how many visitors, page views).</li>
-                    <li>If there are features that require email/newsletter, we may use your email only for sending you that content (with opt-out possible if applicable).</li>
-                </ul>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
+                <h3>Discord</h3>
+                <p>Entre em contato comigo no Discord para respostas mais rápidas</p>
+                <div class="contact-info">azrxc</div>
             </div>
 
-            <div class="content-section">
-                <h2>3. Sharing & Disclosure</h2>
-                <p>We do not sell or share personal information with third parties for marketing.</p>
-                <p>We might use third-party services/tools (e.g. analytics, hosting), which may have access to non-personal data.</p>
-                <p>If required by law, your data may be disclosed (e.g. legal requests).</p>
-            </div>
-
-            <div class="content-section">
-                <h2>4. Security</h2>
-                <p>We take reasonable steps to protect your information from unauthorized access, alteration, disclosure, or destruction. However, no method of online transmission or storage is 100% secure, so absolute security cannot be guaranteed.</p>
-            </div>
-
-            <div class="content-section">
-                <h2>5. Your Rights</h2>
-                <ul>
-                    <li>You can request access to any personal data we have about you.</li>
-                    <li>You can ask us to correct or update your data.</li>
-                    <li>If applicable, you can opt-out of marketing or newsletters.</li>
-                    <li>If you want us to delete your data, you can contact us and we'll try to accommodate (unless we're legally required to keep it).</li>
-                </ul>
-            </div>
-
-            <div class="content-section">
-                <h2>6. Children's Privacy</h2>
-                <p>Our site is intended for general audiences. We do not knowingly collect personal information from children under 13 without parental consent. If you believe we have collected such data, please contact us and we will delete it.</p>
-            </div>
-
-            <div class="content-section">
-                <h2>7. External Links</h2>
-                <p>Our site may contain links to external websites. We are not responsible for the privacy practices of other sites. We encourage you to read their privacy policies when leaving GraalGuide.</p>
-            </div>
-
-            <div class="content-section">
-                <h2>8. Changes to This Policy</h2>
-                <p>We may update this Privacy Policy from time to time. When we do, we will change the "Effective Date" at the top. We encourage you to check back periodically to see any changes.</p>
-            </div>
-
-            <div class="content-section">
-                <h2>9. Contact Us</h2>
-                <p>If you have any questions about this Privacy Policy, or requests concerning your personal data, you can contact:</p>
-                <p>GraalGuide,<br>graalguide.contact@gmail.com</p>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path>
+                        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
+                    </svg>
+                </div>
+                <h3>YouTube</h3>
+                <p>Confira meu canal do YouTube para conteúdo relacionado ao Graal</p>
+                <a href="https://www.youtube.com/@azrxc" target="_blank" class="contact-link">Visitar Canal</a>
             </div>
         </div>
 
+        <div class="content-section">
+            <h2>Notas Antes de Entrar em Contato</h2>
+            <p>Lembre-se de que o GraalGuide é um site feito por fãs e não sou afiliado ao GraalOnline ou seus desenvolvedores.</p>
+            <p>Não posso ajudar com bans de conta, problemas técnicos ou compras no jogo. Para isso, entre em contato com a equipe de suporte oficial do GraalOnline.</p>
+            <p>Para sugestões, correções ou ideias para melhorar este site, sinta-se à vontade para me enviar uma mensagem a qualquer momento.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Tempo de Resposta</h2>
+            <p>Eu geralmente tento responder dentro de alguns dias, dependendo da minha agenda.</p>
+        </div>
+    </div>
+
+    <!-- Email Modal -->
+    <div class="modal" id="email-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Endereço de Email</h3>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <p id="modal-description">Você pode copiar o endereço de email abaixo para entrar em contato comigo:</p>
+            <div class="email-address" id="email-display">graalguide.contact@gmail.com</div>
+            <button class="copy-btn" id="copy-btn">Copiar para a Área de Transferência</button>
+            <div class="copy-success" id="copy-success">Endereço de email copiado para a área de transferência!</div>
+        </div>
     </div>
 
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title">About GraalGuide</h3>
-                    <p id="about-desc">GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
-                    <p><em id="disclaimer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                    <h3 id="about-title-footer">Sobre o GraalGuide</h3>
+                    <p id="about-desc">GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos ferramentas, guias e recursos para melhorar sua experiência de jogo.</p>
+                    <p><em id="disclaimer">GraalGuide não é afiliado ao GraalOnline ou Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3 id="links-title">Quick Links</h3>
+                    <h3 id="links-title">Links Rápidos</h3>
                     <ul>
-                        <li><a href="index.html" id="link1">Home</a></li>
+                        <li><a href="index.html" id="link1">Início</a></li>
                         <li><a href="upload.html" id="link2">Uploads</a></li>
-                        <li><a href="trade-guide.html" id="link3">Trading Guide</a></li>
-                        <li><a href="secret-achievements.html" id="link4">Secret Achievements</a></li>
+                        <li><a href="trade-guide.html" id="link3">Guia de Troca</a></li>
+                        <li><a href="secret-achievements.html" id="link4">Conquistas Secretas</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="legal-title">Legal & Policies</h3>
+                    <h3 id="legal-title">Legal e Políticas</h3>
                     <ul>
-                        <li><a href="privacy-policy.html" id="policy1">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" id="policy2">Terms of Service</a></li>
-                        <li><a href="cookie-policy.html" id="policy3">Cookie Policy</a></li>
-                        <li><a href="disclaimer.html" id="policy4">Disclaimer</a></li>
+                        <li><a href="privacy-policy.html" id="policy1">Política de Privacidade</a></li>
+                        <li><a href="terms-of-service.html" id="policy2">Termos de Serviço</a></li>
+                        <li><a href="cookie-policy.html" id="policy3">Política de Cookies</a></li>
+                        <li><a href="disclaimer.html" id="policy4">Aviso Legal</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="connect-title">Connect</h3>
+                    <h3 id="connect-title">Conectar</h3>
                     <ul>
-                        <li><a href="about-me.html" id="connect1">About Me</a></li>
+                        <li><a href="about-me.html" id="connect1">Sobre Mim</a></li>
                         <li><a href="https://www.youtube.com/@azrxc" id="connect2">YouTube</a></li>
-                        <li><a href="contact-us.html" id="connect3">Contact Us</a></li>
+                        <li><a href="contact-us.html" id="connect3">Contate-Nos</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p>&copy; 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.</p>
             </div>
         </div>
     </footer>
@@ -856,6 +1032,51 @@
                     mobileLanguageOptions.style.display = mobileLanguageOptions.style.display === 'block' ? 'none' : 'block';
                 });
             }
+            
+            // Email modal functionality
+            const emailModal = document.getElementById('email-modal');
+            const emailBtn = document.getElementById('email-btn');
+            const closeModal = document.getElementById('close-modal');
+            const copyBtn = document.getElementById('copy-btn');
+            const copySuccess = document.getElementById('copy-success');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            
+            function showEmailModal() {
+                emailModal.style.display = 'flex';
+            }
+            
+            function hideEmailModal() {
+                emailModal.style.display = 'none';
+                copySuccess.style.display = 'none';
+            }
+            
+            function copyEmailToClipboard() {
+                const email = 'graalguide.contact@gmail.com';
+                navigator.clipboard.writeText(email).then(() => {
+                    copySuccess.textContent = 'Endereço de email copiado para a área de transferência!';
+                    copySuccess.style.display = 'block';
+                    
+                    // Hide success message after 3 seconds
+                    setTimeout(() => {
+                        copySuccess.style.display = 'none';
+                    }, 3000);
+                });
+            }
+            
+            if (emailBtn) {
+                emailBtn.addEventListener('click', showEmailModal);
+            }
+            
+            closeModal.addEventListener('click', hideEmailModal);
+            copyBtn.addEventListener('click', copyEmailToClipboard);
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === emailModal) {
+                    hideEmailModal();
+                }
+            });
             
             // Close menu when clicking outside
             document.addEventListener('click', function(event) {

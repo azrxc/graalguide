@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <link rel="icon" type="image/png" href="image/a/graalguide.png">
+    <link rel="icon" type="image/png" href="../image/a/graalguide.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Advanced Sellables Calculator - GraalGuide: Full Math Expressions for Graal Era Item Values</title>
-    <meta name="description" content="Calculate the value of your Graal Era sellable items with support for full math expressions (+, -, *, /). Convert between Gralats and Trochus with custom ratios.">
-    <link rel="alternate" hreflang="en" href="https://graalguide.com/advanced-calculator.html">
-    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/advanced-calculator.html">
-    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/advanced-calculator.html">
-    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/advanced-calculator.html">
+    <title>Kalkulator Sellables - GraalGuide: Hitung Nilai Item Graal Era Kamu</title>
+    <meta name="description" content="Hitung nilai item sellable Graal Era kamu dengan kalkulator interaktif kami. Konversi antara Gralats dan Trochus dengan rasio khusus.">
+    <link rel="alternate" hreflang="en" href="https://graalguide.com/sellables-calculator.html">
+    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/sellables-calculator.html">
+    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/sellables-calculator.html">
+    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/sellables-calculator.html">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
@@ -416,76 +416,6 @@
             color: var(--text-color);
         }
 
-        /* Calculator Controls */
-        .calculator-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-        
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--darker-bg);
-            padding: 8px 15px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .toggle-label {
-            font-size: var(--font-sm);
-            color: var(--text-muted);
-        }
-        
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 40px;
-            height: 20px;
-        }
-        
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--input-border);
-            transition: .3s;
-            border-radius: 20px;
-        }
-        
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 2px;
-            bottom: 2px;
-            background-color: white;
-            transition: .3s;
-            border-radius: 50%;
-        }
-        
-        input:checked + .slider {
-            background-color: var(--primary-color);
-        }
-        
-        input:checked + .slider:before {
-            transform: translateX(20px);
-        }
-        
         /* Table Styles */
         .table-container {
             overflow-x: auto;
@@ -523,13 +453,6 @@
             background: rgba(0, 0, 0, 0.02);
         }
         
-        .input-with-button {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            justify-content: center;
-        }
-        
         input[type="text"] {
             width: 90px;
             text-align: center;
@@ -552,37 +475,6 @@
         
         input[type="text"]::placeholder {
             color: var(--text-muted);
-        }
-        
-        .calculate-btn {
-            background: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 6px 10px;
-            cursor: pointer;
-            font-size: var(--font-sm);
-            transition: all 0.3s ease;
-            height: 36px;
-            min-width: 36px;
-            display: none;
-        }
-        
-        .calculate-btn:hover {
-            background: #0097a7;
-        }
-        
-        .number-display {
-            font-size: var(--font-xs);
-            color: var(--text-muted);
-            text-align: center;
-            min-height: 16px;
-            margin-top: 4px;
-        }
-        
-        /* Show calculate buttons only when enabled */
-        .calculate-buttons-enabled .calculate-btn {
-            display: inline-block;
         }
 
         /* Totals Container */
@@ -738,6 +630,88 @@
         .delete-btn:hover {
             background: #d84315;
             transform: translateY(-2px);
+        }
+
+        .load-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: var(--font-sm);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 8px;
+        }
+
+        .load-btn:hover {
+            background: #0097a7;
+            transform: translateY(-2px);
+        }
+
+        .entry-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .entry-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .entry-timestamp {
+            font-size: var(--font-xs);
+            color: var(--text-muted);
+        }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .toast {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 14px 24px;
+            border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--primary-color);
+            font-size: var(--font-md);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .toast {
+                white-space: normal;
+                text-align: center;
+                font-size: var(--font-sm);
+            }
+
+            #savedDataList li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
         }
 
         /* Info Section */
@@ -1025,20 +999,6 @@
             th, td {
                 padding: 10px;
             }
-            
-            .calculate-btn {
-                display: inline-block;
-            }
-            
-            .calculator-controls {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .toggle-container {
-                width: 100%;
-                justify-content: center;
-            }
         }
         
         @media (max-width: 480px) {
@@ -1156,75 +1116,75 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                        <img src="../image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
                     </a>
                 </div>
                 <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Beranda</a></li>
                         <li class="dropdown">
-                            <a href="#">Uploads</a>
+                            <a href="#">Upload</a>
                             <ul class="dropdown-menu">
                                 <li><a href="heads.html">Heads</a></li>
                                 <li><a href="bodies.html">Bodies</a></li>
                                 <li><a href="hats.html">Hats</a></li>
-                                <li><a href="upload-sets.html">Upload Sets</a></li>
+                                <li><a href="upload-sets.html">Set Upload</a></li>
                                 <li><a href="templates.html">Templates</a></li>
-                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
-                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Era) ↗</a></li>
-                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Classic) ↗</a></li>
-                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Ol' West) ↗</a></li>
-                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Zone) ↗</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (oleh DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Zone) ↗</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Guides - How to?</a>
+                            <a href="#">Panduan - Bagaimana?</a>
                             <ul class="dropdown-menu">
                                 <li><a href="upload.html">Upload</a></li>
-                                <li><a href="trade-guide.html">Trade</a></li>
-                                <li><a href="job-guide.html">Get Gralats</a></li>
-                                <li><a href="events-guide.html">Get Event Coins</a></li>
+                                <li><a href="trade-guide.html">Perdagangan</a></li>
+                                <li><a href="job-guide.html">Dapatkan Gralats</a></li>
+                                <li><a href="events-guide.html">Dapatkan Koin Event</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Trade Table</a>
+                            <a href="#">Tabel Perdagangan</a>
                             <ul class="dropdown-menu">
-                                <li><a href="sellables-calculator.html">Sellables Calculator</a></li>
-                                <li><a href="advanced-calculator.html">Advanced Calculator</a></li>
-                                <li><a href="ratio-history.html">Ratio History</a></li>
-                                <li><a href="profit-loss.html">Profit & Loss Tracker</a></li>
-                                <li><a href="price-house.html">Price House</a></li>
+                                  <li><a href="sellables-calculator.html">Kalkulator Sellables</a></li>
+                                <li><a href="advanced-calculator.html">Kalkulator Lanjutan</a></li>
+                                <li><a href="ratio-history.html">Riwayat Rasio</a></li>
+                                <li><a href="profit-loss.html">Pelacak Untung & Rugi</a></li>
+                                <li><a href="price-house.html">Daftar Harga</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
-                        <li><a href="guns.html">Gun Ratings</a></li>
+                        <li><a href="secret-achievements.html">Pencapaian Rahasia</a></li>
+                        <li><a href="guns.html">Rating Senjata</a></li>
                     </ul>
-                    
+
                     <!-- Mobile Actions Container - Side by Side -->
                     <div class="mobile-actions-container">
                         <!-- Mobile Language Selector -->
                         <div class="language-selector">
                             <button class="language-btn" id="mobile-language-btn">
-                                <img src="https://flagcdn.com/w40/us.png" alt="English">
-                                <span>English</span>
+                                <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
+                                <span>Indonesia</span>
                             </button>
                             <div class="mobile-language-options" id="mobile-language-options">
-                                <a href="advanced-calculator.html">
+                                <a href="../sellables-calculator.html">
                                     <img src="https://flagcdn.com/w40/us.png" alt="English">
                                     <span>English</span>
                                 </a>
-                                <a href="pt/advanced-calculator.html">
+                                <a href="../pt/sellables-calculator.html">
                                     <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                     <span>Português</span>
                                 </a>
-                                <a href="id/advanced-calculator.html">
+                                <a href="sellables-calculator.html">
                                     <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                     <span>Indonesia</span>
                                 </a>
                             </div>
                         </div>
-                        
+
                         <!-- Mobile Theme Toggle -->
                         <button class="theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">
                             <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -1242,19 +1202,19 @@
                     <!-- Language Selector -->
                     <div class="language-selector">
                         <button class="language-btn" id="desktop-language-btn">
-                            <img src="https://flagcdn.com/w40/us.png" alt="English">
-                            <span>English</span>
+                            <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
+                            <span>Indonesia</span>
                         </button>
                         <div class="language-options" id="desktop-language-options">
-                            <a href="advanced-calculator.html">
+                            <a href="../sellables-calculator.html">
                                 <img src="https://flagcdn.com/w40/us.png" alt="English">
                                 <span>English</span>
                             </a>
-                            <a href="pt/advanced-calculator.html">
+                            <a href="../pt/sellables-calculator.html">
                                 <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                 <span>Português</span>
                             </a>
-                            <a href="id/advanced-calculator.html">
+                            <a href="sellables-calculator.html">
                                 <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                 <span>Indonesia</span>
                             </a>
@@ -1277,34 +1237,23 @@
 
     <div class="page-header">
         <div class="container">
-            <h1 id="page-title">Advanced Sellables Calculator</h1>
-            <p id="page-description">Calculate the value of your Graal Era items with full math expressions (+, -, *, /) and convert between Gralats and Trochus with custom ratios.</p>
+            <h1 id="page-title">Kalkulator Sellables</h1>
+            <p id="page-description">Hitung nilai item Graal Era kamu dan konversi antara Gralats dan Trochus dengan rasio khusus.</p>
         </div>
     </div>
 
     <div class="container">
         <div class="section">
-            <h2 id="calculator-title">Sellables to Trochus Calculator</h2>
-            
+            <h2 id="calculator-title">Kalkulator Sellables ke Trochus</h2>
+
             <div class="math-hint" id="math-hint">
-                <strong>Pro Tip:</strong> Enter math expressions like <code>1000+500</code> or <code>50*20</code> then press <code>Enter</code> or <code>Tab</code> to calculate! Use the = button on mobile for easier calculation.
+                <strong>Tip:</strong> Masukkan angka biasa untuk setiap item. Perlu menghitung ekspresi matematika (seperti 10+5 atau 50*20)? Cek Kalkulator Lanjutan di menu Tabel Perdagangan.
             </div>
-            
-            <!-- Calculator Controls -->
-            <div class="calculator-controls">
-                <div class="toggle-container">
-                    <span class="toggle-label">Show = Buttons</span>
-                    <label class="switch">
-                        <input type="checkbox" id="calculateButtonsToggle">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
-            
+
             <div class="table-container">
                 <table>
                     <tr>
-                        <th>Sellables</th>
+                        <th>Barang Sellable</th>
                         <th>$3</th>
                         <th>$4</th>
                         <th>$5</th>
@@ -1314,140 +1263,50 @@
                         <th>$10</th>
                     </tr>
                     <tr>
-                        <td id="shells-label">Shells</td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="s3" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('s3')">=</button>
-                            </div>
-                            <div class="number-display" id="s3-display">0</div>
-                        </td>
+                        <td id="shells-label">Kerang</td>
+                        <td><input type="text" id="s3" oninput="evaluateExpression('s3')" placeholder="0"></td>
                         <td></td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="s5" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('s5')">=</button>
-                            </div>
-                            <div class="number-display" id="s5-display">0</div>
-                        </td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="s6" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('s6')">=</button>
-                            </div>
-                            <div class="number-display" id="s6-display">0</div>
-                        </td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="s7" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('s7')">=</button>
-                            </div>
-                            <div class="number-display" id="s7-display">0</div>
-                        </td>
+                        <td><input type="text" id="s5" oninput="evaluateExpression('s5')" placeholder="0"></td>
+                        <td><input type="text" id="s6" oninput="evaluateExpression('s6')" placeholder="0"></td>
+                        <td><input type="text" id="s7" oninput="evaluateExpression('s7')" placeholder="0"></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td id="minerals-label">Minerals</td>
+                        <td id="minerals-label">Mineral</td>
                         <td></td>
                         <td></td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="m5" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('m5')">=</button>
-                            </div>
-                            <div class="number-display" id="m5-display">0</div>
-                        </td>
+                        <td><input type="text" id="m5" oninput="evaluateExpression('m5')" placeholder="0"></td>
                         <td></td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="m7" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('m7')">=</button>
-                            </div>
-                            <div class="number-display" id="m7-display">0</div>
-                        </td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="m8" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('m8')">=</button>
-                            </div>
-                            <div class="number-display" id="m8-display">0</div>
-                        </td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="m10" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('m10')">=</button>
-                            </div>
-                            <div class="number-display" id="m10-display">0</div>
-                        </td>
+                        <td><input type="text" id="m7" oninput="evaluateExpression('m7')" placeholder="0"></td>
+                        <td><input type="text" id="m8" oninput="evaluateExpression('m8')" placeholder="0"></td>
+                        <td><input type="text" id="m10" oninput="evaluateExpression('m10')" placeholder="0"></td>
                     </tr>
                     <tr>
-                        <td id="mushrooms-label">Mushrooms</td>
+                        <td id="mushrooms-label">Jamur</td>
                         <td></td>
                         <td></td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="mu5" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('mu5')">=</button>
-                            </div>
-                            <div class="number-display" id="mu5-display">0</div>
-                        </td>
+                        <td><input type="text" id="mu5" oninput="evaluateExpression('mu5')" placeholder="0"></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td id="trash-label">Trash</td>
+                        <td id="trash-label">Sampah</td>
                         <td></td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="t4" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('t4')">=</button>
-                            </div>
-                            <div class="number-display" id="t4-display">0</div>
-                        </td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="t5" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('t5')">=</button>
-                            </div>
-                            <div class="number-display" id="t5-display">0</div>
-                        </td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="t6" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('t6')">=</button>
-                            </div>
-                            <div class="number-display" id="t6-display">0</div>
-                        </td>
+                        <td><input type="text" id="t4" oninput="evaluateExpression('t4')" placeholder="0"></td>
+                        <td><input type="text" id="t5" oninput="evaluateExpression('t5')" placeholder="0"></td>
+                        <td><input type="text" id="t6" oninput="evaluateExpression('t6')" placeholder="0"></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td id="body-parts-label">Body Parts</td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="b3" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('b3')">=</button>
-                            </div>
-                            <div class="number-display" id="b3-display">0</div>
-                        </td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="b4" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('b4')">=</button>
-                            </div>
-                            <div class="number-display" id="b4-display">0</div>
-                        </td>
-                        <td>
-                            <div class="input-with-button">
-                                <input type="text" id="b5" placeholder="0">
-                                <button class="calculate-btn" onclick="calculateInput('b5')">=</button>
-                            </div>
-                            <div class="number-display" id="b5-display">0</div>
-                        </td>
+                        <td id="body-parts-label">Bagian Tubuh</td>
+                        <td><input type="text" id="b3" oninput="evaluateExpression('b3')" placeholder="0"></td>
+                        <td><input type="text" id="b4" oninput="evaluateExpression('b4')" placeholder="0"></td>
+                        <td><input type="text" id="b5" oninput="evaluateExpression('b5')" placeholder="0"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -1458,7 +1317,7 @@
             
             <div class="totals-container">
                 <div class="total-box">
-                    <h3 id="total-sellables-label">Total Sellables</h3>
+                    <h3 id="total-sellables-label">Total Sellable</h3>
                     <span id="totalSellables">0</span>
                 </div>
                 <div class="total-box">
@@ -1466,37 +1325,35 @@
                     <span id="totalGralats">0</span>
                 </div>
                 <div class="total-box">
-                    <h3 id="ratio-label">Ratio</h3>
-                    <div class="input-with-button">
-                        <input type="text" id="ratio" value="4.0">
-                        <button class="calculate-btn" onclick="calculateInput('ratio')">=</button>
-                    </div>
+                    <h3 id="ratio-label">Rasio</h3>
+                    <input type="text" id="ratio" value="4.0" oninput="evaluateExpression('ratio')">
                 </div>
                 <div class="total-box">
                     <h3 id="total-trochus-label">Total Trochus</h3>
                     <span id="totalTrochus">0</span>
                 </div>
             </div>
-            
+
             <div style="text-align: center; margin: 30px 0;">
-                <button class="btn" onclick="toggleGuidance()" id="price-guide-btn">Price Guide</button>
-                <button class="btn btn-secondary" onclick="resetCalculator()" id="reset-btn">Reset</button>
-                <button class="btn btn-accent" onclick="saveData()" id="save-btn">Save Data</button>
-                <button class="btn" onclick="loadData()" id="load-btn">Load Data</button>
+                <button class="btn" onclick="toggleGuidance()" id="price-guide-btn">Panduan Harga</button>
+                <button class="btn btn-secondary" onclick="resetCalculator()" id="reset-btn">Atur Ulang</button>
+                <button class="btn btn-accent" onclick="saveData()" id="save-btn">Simpan Data</button>
+                <button class="btn" onclick="scrollToSavedData()" id="load-btn">Lihat Data Tersimpan</button>
+                <button class="btn btn-secondary" onclick="copySummary()" id="copy-btn">Salin Ringkasan</button>
             </div>
-            
+
             <!-- Guidance Box -->
             <div class="guidance-box" id="guidanceBox">
-                <h3 id="price-guide-title">Sellables Price Guide</h3>
+                <h3 id="price-guide-title">Panduan Harga Sellables</h3>
                 <div style="overflow-x: auto;">
                 <table style="min-width: 500px;">
                     <tr>
-                        <th id="category-label">Category</th>
-                        <th id="price-label">Price</th>
-                        <th id="items-label">Items</th>
+                        <th id="category-label">Kategori</th>
+                        <th id="price-label">Harga</th>
+                        <th id="items-label">Item</th>
                     </tr>
                     <tr>
-                        <td rowspan="4" id="shells-category">Shells</td>
+                        <td rowspan="4" id="shells-category">Kerang</td>
                         <td>$3</td>
                         <td id="shells-3">Tro, Aero</td>
                     </tr>
@@ -1513,7 +1370,7 @@
                         <td id="shells-7">Starfish</td>
                     </tr>
                     <tr>
-                        <td rowspan="4" id="minerals-category">Minerals</td>
+                        <td rowspan="4" id="minerals-category">Mineral</td>
                         <td>$5</td>
                         <td id="minerals-5">Other Minerals</td>
                     </tr>
@@ -1530,12 +1387,12 @@
                         <td id="minerals-10">Gold, Diamond</td>
                     </tr>
                     <tr>
-                        <td id="mushrooms-category">Mushrooms</td>
+                        <td id="mushrooms-category">Jamur</td>
                         <td>$5</td>
                         <td id="mushrooms-5">Mush</td>
                     </tr>
                     <tr>
-                        <td rowspan="3" id="trash-category">Trash</td>
+                        <td rowspan="3" id="trash-category">Sampah</td>
                         <td>$4</td>
                         <td id="trash-4">Papers</td>
                     </tr>
@@ -1548,7 +1405,7 @@
                         <td id="trash-6">Tire</td>
                     </tr>
                     <tr>
-                        <td rowspan="3" id="body-parts-category">Body Parts</td>
+                        <td rowspan="3" id="body-parts-category">Bagian Tubuh</td>
                         <td>$3</td>
                         <td id="body-parts-3">Bone, Foot, Hand</td>
                     </tr>
@@ -1566,22 +1423,15 @@
 
             <!-- Saved Data Section -->
             <div class="saved-data">
-                <h3 id="saved-data-title">Saved Data</h3>
+                <h3 id="saved-data-title">Data Tersimpan</h3>
                 <ul id="savedDataList"></ul>
             </div>
-            
+
             <!-- Info Section -->
             <div class="info-section">
-                <h3 id="about-calculator-title">About This Calculator</h3>
-                <p id="about-calculator-desc">This is the full-featured version of the Sellables Calculator: every input field supports complete math expressions, not just addition and subtraction, so you can type things like 50*20 or (1000+500)/2 directly into a field and it calculates for you. If you just need plain number entry, the regular Sellables Calculator is simpler.</p>
-                <ul id="usage-tips-list" style="margin: 15px 0 15px 20px; color: var(--text-color); line-height: 1.8;">
-                    <li>Type any expression straight into a field: +, -, *, /, and parentheses all work, e.g. <code>50*20</code> or <code>(1000+500)/2</code>.</li>
-                    <li>Press <strong>Enter</strong> or <strong>Tab</strong> after typing to calculate automatically.</li>
-                    <li>On mobile, turn on <strong>Show = Buttons</strong> above the table for a tap-to-calculate button instead of using the keyboard's Enter key.</li>
-                    <li>Check the <strong>Price Guide</strong> button any time you're unsure what an item currently sells for.</li>
-                    <li>Use <strong>Save Data</strong> to keep a snapshot of your current totals that you can reload later.</li>
-                </ul>
-                <p id="mission-statement">Our mission is to provide a seamless experience for players to track their progress and manage resources effectively.</p>
+                <h3 id="about-calculator-title">Tentang Kalkulator Ini</h3>
+                <p id="about-calculator-desc">Alat ini membantu kamu menghitung nilai item sellable kamu dalam Gralats dan mengonversinya menjadi Trochus berdasarkan rasio yang bisa disesuaikan. Baik kamu pedagang berpengalaman atau baru mulai, kalkulator ini mempermudah pengelolaan ekonomi dalam gamemu.</p>
+                <p id="mission-statement">Misi kami adalah memberikan pengalaman yang lancar bagi pemain untuk melacak progres dan mengelola sumber daya secara efektif.</p>
             </div>
         </div>
     </div>
@@ -1590,42 +1440,44 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title-footer">About GraalGuide</h3>
-                    <p id="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
-                    <p><em id="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                    <h3 id="about-title-footer">Tentang GraalGuide</h3>
+                    <p id="about-desc-footer">GraalGuide adalah sumber daya buatan penggemar terbaik untuk pemain Graal Era. Kami menyediakan alat, panduan, dan sumber daya untuk meningkatkan pengalaman bermainmu.</p>
+                    <p><em id="disclaimer-footer">GraalGuide tidak berafiliasi dengan GraalOnline atau Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3 id="links-title-footer">Quick Links</h3>
+                    <h3 id="links-title-footer">Tautan Cepat</h3>
                     <ul>
-                        <li><a href="index.html" id="link-home-footer">Home</a></li>
-                        <li><a href="upload.html" id="link-achievements-footer">Uploads</a></li>
-                        <li><a href="trade-guide.html" id="link-events-footer">Trading Guide</a></li>
-                        <li><a href="secret-achievements.html" id="link-gralats-footer">Secret Achievements</a></li>
+                        <li><a href="index.html" id="link-home-footer">Beranda</a></li>
+                        <li><a href="upload.html" id="link-achievements-footer">Upload</a></li>
+                        <li><a href="trade-guide.html" id="link-events-footer">Panduan Perdagangan</a></li>
+                        <li><a href="secret-achievements.html" id="link-gralats-footer">Pencapaian Rahasia</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="legal-title-footer">Legal & Policies</h3>
+                    <h3 id="legal-title-footer">Legal & Kebijakan</h3>
                     <ul>
-                        <li><a href="privacy-policy.html" id="link-privacy-footer">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" id="link-terms-footer">Terms of Service</a></li>
-                        <li><a href="cookie-policy.html" id="link-cookie-footer">Cookie Policy</a></li>
-                        <li><a href="disclaimer.html" id="link-disclaimer-footer">Disclaimer</a></li>
+                        <li><a href="privacy-policy.html" id="link-privacy-footer">Kebijakan Privasi</a></li>
+                        <li><a href="terms-of-service.html" id="link-terms-footer">Ketentuan Layanan</a></li>
+                        <li><a href="cookie-policy.html" id="link-cookie-footer">Kebijakan Cookie</a></li>
+                        <li><a href="disclaimer.html" id="link-disclaimer-footer">Sangkalan</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="connect-title-footer">Connect</h3>
+                    <h3 id="connect-title-footer">Terhubung</h3>
                     <ul>
-                        <li><a href="about-me.html" id="link-discord-footer">About Me</a></li>
+                        <li><a href="about-me.html" id="link-discord-footer">Tentang Saya</a></li>
                         <li><a href="https://www.youtube.com/@azrxc" id="link-youtube-footer">YouTube</a></li>
-                        <li><a href="contact-us.html" id="link-contact-footer">Contact Us</a></li>
+                        <li><a href="contact-us.html" id="link-contact-footer">Hubungi Kami</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright">&copy; 2025 GraalGuide.com. Seluruh hak cipta dilindungi. Semua merek dagang adalah milik pemiliknya masing-masing.</p>
             </div>
         </div>
     </footer>
+
+    <div class="toast-container" id="toastContainer"></div>
 
     <script>
         // Theme toggle functionality
@@ -1636,7 +1488,6 @@
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         }
-
 
         // Toggle language options
         function toggleLanguageOptions(buttonId, optionsId) {
@@ -1659,145 +1510,82 @@
             }
         }
 
-        // Function to validate input - only allow numbers and math operators
-        function validateInput(event) {
-            const key = event.key;
-            const allowedKeys = ['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'Home', 'End', 'ArrowLeft', 'ArrowRight'];
-            const allowedOperators = ['+', '-', '*', '/', '.'];
-            
-            // Allow control keys
-            if (allowedKeys.includes(key)) {
-                return true;
-            }
-            
-            // Allow numbers
-            if (key >= '0' && key <= '9') {
-                return true;
-            }
-            
-            // Allow math operators
-            if (allowedOperators.includes(key)) {
-                return true;
-            }
-            
-            // Prevent any other input
-            event.preventDefault();
-            return false;
+        const ALL_INPUT_IDS = ["s3", "s5", "s6", "s7", "m5", "m7", "m8", "m10", "mu5", "t4", "t5", "t6", "b3", "b4", "b5"];
+
+        // Show a small non-blocking notification instead of alert()
+        function showToast(message) {
+            const container = document.getElementById("toastContainer");
+            const toast = document.createElement("div");
+            toast.className = "toast";
+            toast.textContent = message;
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => toast.classList.add("show"));
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
         }
 
-        // Function to calculate input when user presses Enter, Tab, or clicks =
-        function calculateInput(id) {
-            const input = document.getElementById(id);
-            let value = input.value.trim();
-            
-            // If the input contains mathematical operators, evaluate it
-            if (/[\+\-\*\/]/.test(value)) {
-                try {
-                    // Use Function constructor for safe evaluation
-                    const result = Function('return ' + value)();
-                    if (!isNaN(result) && isFinite(result)) {
-                        // Format the result with commas for large numbers
-                        const formattedResult = formatNumber(result);
-                        input.value = formattedResult;
-                        updateDisplay(id, result);
-                        
-                        // Show success feedback
-                        input.style.borderColor = 'var(--success-color)';
-                        setTimeout(() => {
-                            input.style.borderColor = 'var(--input-border)';
-                        }, 1000);
-                    }
-                } catch (e) {
-                    // If evaluation fails, show error
-                    console.error('Error evaluating expression:', e);
-                    input.style.borderColor = 'var(--accent-color)';
-                    setTimeout(() => {
-                        input.style.borderColor = 'var(--input-border)';
-                    }, 1000);
-                }
-            } else {
-                // Just format the number if it's a plain number
-                const numValue = parseFloat(value.replace(/,/g, '')) || 0;
-                updateDisplay(id, numValue);
-            }
-            
-            // Recalculate totals
+        // Plain number entry only - no math expression evaluation here.
+        // The Advanced Calculator handles math expressions (+, -, *, /) instead.
+        function evaluateExpression(id) {
             calculate();
         }
-        
-        // Function to handle keydown events (Enter and Tab)
-        function handleKeyDown(event, id) {
-            if (event.key === 'Enter' || event.key === 'Tab') {
-                calculateInput(id);
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-                }
-            }
-        }
-        
-        // Function to format numbers with commas for large numbers
-        function formatNumber(num) {
-            if (isNaN(num) || !isFinite(num)) return "0";
-            
-            // Handle decimal numbers
-            if (num % 1 !== 0) {
-                return num.toLocaleString('en-US', {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 2
-                });
-            }
-            
-            // Format whole numbers with commas
-            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-        
-        // Function to update the display below each input
-        function updateDisplay(id, value) {
-            const displayElement = document.getElementById(id + '-display');
-            if (displayElement) {
-                displayElement.textContent = formatNumber(value);
-            }
-        }
-        
-        // Modified calculate function to handle formatted numbers
+
+        // Calculate function
         function calculate() {
             let prices = { 3: ["s3", "b3"], 4: ["t4", "b4"], 5: ["s5", "m5", "mu5", "t5", "b5"], 6: ["s6", "t6"], 7: ["s7", "m7"], 8: ["m8"], 10: ["m10"] };
             let totalSellables = 0;
             let totalGralats = 0;
-            
+
             for (let price in prices) {
                 let subTotal = 0;
                 prices[price].forEach(id => {
-                    let value = parseFloat(document.getElementById(id).value.replace(/,/g, '')) || 0;
+                    let value = parseFloat(document.getElementById(id).value) || 0;
                     subTotal += value;
                 });
                 totalSellables += subTotal;
                 totalGralats += subTotal * parseInt(price);
             }
-            
-            document.getElementById("totalSellables").textContent = formatNumber(totalSellables);
-            document.getElementById("totalGralats").textContent = formatNumber(totalGralats);
-            
-            let ratio = parseFloat(document.getElementById("ratio").value.replace(/,/g, '')) || 4.0;
+
+            document.getElementById("totalSellables").textContent = totalSellables.toLocaleString();
+            document.getElementById("totalGralats").textContent = totalGralats.toLocaleString();
+
+            let ratio = parseFloat(document.getElementById("ratio").value) || 4.0;
             if (ratio >= 3.0 && ratio <= 7.0) {
-                document.getElementById("totalTrochus").textContent = formatNumber((totalGralats / ratio).toFixed(2));
+                document.getElementById("totalTrochus").textContent = (totalGralats / ratio).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             } else {
-                document.getElementById("totalTrochus").textContent = "Invalid Ratio";
+                document.getElementById("totalTrochus").textContent = "Rasio Tidak Valid";
             }
+
+            saveDraft();
         }
-        
-        // Toggle calculate buttons visibility
-        function toggleCalculateButtons() {
-            const toggle = document.getElementById('calculateButtonsToggle');
-            const calculatorSection = document.querySelector('.section');
-            
-            if (toggle.checked) {
-                calculatorSection.classList.add('calculate-buttons-enabled');
-                localStorage.setItem('calculateButtonsEnabled', 'true');
-            } else {
-                calculatorSection.classList.remove('calculate-buttons-enabled');
-                localStorage.setItem('calculateButtonsEnabled', 'false');
+
+        // Auto-save the current working inputs so a refresh doesn't lose progress
+        function saveDraft() {
+            let draft = { ratio: document.getElementById("ratio").value, inputs: {} };
+            ALL_INPUT_IDS.forEach(id => {
+                draft.inputs[id] = document.getElementById(id).value;
+            });
+            localStorage.setItem("calculatorDraft", JSON.stringify(draft));
+        }
+
+        // Restore the last working session on page load
+        function restoreDraft() {
+            let draft = JSON.parse(localStorage.getItem("calculatorDraft"));
+            if (!draft) return;
+
+            ALL_INPUT_IDS.forEach(id => {
+                if (draft.inputs[id]) {
+                    document.getElementById(id).value = draft.inputs[id];
+                }
+            });
+            if (draft.ratio) {
+                document.getElementById("ratio").value = draft.ratio;
             }
+            calculate();
         }
 
         // Toggle guidance box
@@ -1815,15 +1603,14 @@
             document.querySelectorAll("input[type='text']").forEach(input => {
                 if (input.id !== "ratio") {
                     input.value = "";
-                    updateDisplay(input.id, 0);
                 } else {
                     input.value = "4.0";
-                    updateDisplay(input.id, 4.0);
                 }
             });
             document.getElementById("totalSellables").textContent = "0";
             document.getElementById("totalGralats").textContent = "0";
             document.getElementById("totalTrochus").textContent = "0";
+            localStorage.removeItem("calculatorDraft");
         }
 
         // Save data
@@ -1833,24 +1620,12 @@
                 gralats: document.getElementById("totalGralats").textContent,
                 trochus: document.getElementById("totalTrochus").textContent,
                 ratio: document.getElementById("ratio").value,
-                inputs: {
-                    s3: document.getElementById("s3").value,
-                    s5: document.getElementById("s5").value,
-                    s6: document.getElementById("s6").value,
-                    s7: document.getElementById("s7").value,
-                    m5: document.getElementById("m5").value,
-                    m7: document.getElementById("m7").value,
-                    m8: document.getElementById("m8").value,
-                    m10: document.getElementById("m10").value,
-                    mu5: document.getElementById("mu5").value,
-                    t4: document.getElementById("t4").value,
-                    t5: document.getElementById("t5").value,
-                    t6: document.getElementById("t6").value,
-                    b3: document.getElementById("b3").value,
-                    b4: document.getElementById("b4").value,
-                    b5: document.getElementById("b5").value
-                }
+                timestamp: new Date().toLocaleString(),
+                inputs: {}
             };
+            ALL_INPUT_IDS.forEach(id => {
+                data.inputs[id] = document.getElementById(id).value;
+            });
 
             // Save to localStorage
             let savedData = JSON.parse(localStorage.getItem("savedData")) || [];
@@ -1859,42 +1634,46 @@
 
             // Update saved data list
             displaySavedData();
-            
-            alert("Data saved successfully!");
+
+            showToast("Data disimpan!");
         }
 
-        // Load saved data
-        function loadData() {
+        // Load a specific saved entry directly (no prompt dialog)
+        function loadEntry(index) {
             let savedData = JSON.parse(localStorage.getItem("savedData")) || [];
-            if (savedData.length === 0) {
-                alert("No saved data found!");
-                return;
-            }
-
-            let index = prompt("Enter the index of the entry you want to load (1 to " + savedData.length + "):");
-            index = parseInt(index) - 1;
-
-            if (isNaN(index) || index < 0 || index >= savedData.length) {
-                alert("Invalid index!");
-                return;
-            }
-
             let entry = savedData[index];
+            if (!entry) return;
 
-            // Fill inputs
             for (let id in entry.inputs) {
                 document.getElementById(id).value = entry.inputs[id];
-                updateDisplay(id, parseFloat(entry.inputs[id].replace(/,/g, '')) || 0);
             }
-
-            // Set ratio
             document.getElementById("ratio").value = entry.ratio;
-            updateDisplay('ratio', parseFloat(entry.ratio.replace(/,/g, '')) || 4.0);
 
-            // Recalculate totals
             calculate();
-            
-            alert("Data loaded successfully!");
+            showToast("Data dimuat!");
+            document.querySelector(".section").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        // Scroll down to the saved data section
+        function scrollToSavedData() {
+            document.querySelector(".saved-data").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        // Copy a shareable summary of the current totals to the clipboard
+        function copySummary() {
+            const sellables = document.getElementById("totalSellables").textContent;
+            const gralats = document.getElementById("totalGralats").textContent;
+            const ratio = document.getElementById("ratio").value;
+            const trochus = document.getElementById("totalTrochus").textContent;
+            const summary = `Ringkasan Perdagangan Graal Era\nSellables: ${sellables}\nGralats: ${gralats}\nRasio: ${ratio}\nTrochus: ${trochus}\n(via graalguide.com)`;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(summary)
+                    .then(() => showToast("Ringkasan disalin ke clipboard!"))
+                    .catch(() => showToast("Gagal menyalin - coba lagi"));
+            } else {
+                showToast("Clipboard tidak didukung di browser ini");
+            }
         }
 
         // Display saved data
@@ -1904,21 +1683,45 @@
             savedDataList.innerHTML = "";
 
             if (savedData.length === 0) {
-                savedDataList.innerHTML = "<li>No saved data yet</li>";
+                savedDataList.innerHTML = "<li>Belum ada data tersimpan</li>";
                 return;
             }
 
             savedData.forEach((data, index) => {
                 let li = document.createElement("li");
-                li.textContent = `Entry ${index + 1}: ${data.sellables} items, ${data.gralats} gralats, ${data.trochus} trochus`;
-                
-                // Add delete button
+
+                let info = document.createElement("div");
+                info.className = "entry-info";
+
+                let mainLine = document.createElement("span");
+                mainLine.textContent = `Entri ${index + 1}: ${data.sellables} item, ${data.gralats} gralats, ${data.trochus} trochus`;
+                info.appendChild(mainLine);
+
+                if (data.timestamp) {
+                    let timeLine = document.createElement("span");
+                    timeLine.className = "entry-timestamp";
+                    timeLine.textContent = data.timestamp;
+                    info.appendChild(timeLine);
+                }
+
+                let actions = document.createElement("div");
+                actions.className = "entry-actions";
+
+                let loadBtn = document.createElement("button");
+                loadBtn.className = "load-btn";
+                loadBtn.textContent = "Muat";
+                loadBtn.onclick = () => loadEntry(index);
+
                 let deleteBtn = document.createElement("button");
                 deleteBtn.className = "delete-btn";
-                deleteBtn.textContent = "Delete";
+                deleteBtn.textContent = "Hapus";
                 deleteBtn.onclick = () => deleteEntry(index);
-                
-                li.appendChild(deleteBtn);
+
+                actions.appendChild(loadBtn);
+                actions.appendChild(deleteBtn);
+
+                li.appendChild(info);
+                li.appendChild(actions);
                 savedDataList.appendChild(li);
             });
         }
@@ -1941,47 +1744,17 @@
             document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
             document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
             
-            // Initialize language option toggles (dropdown open/close only - the options themselves are now real links to each language's own page)
+            // Initialize language option toggles (dropdown open/close only - the
+            // options themselves are now real links to each language's own page)
             toggleLanguageOptions('desktop-language-btn', 'desktop-language-options');
             toggleLanguageOptions('mobile-language-btn', 'mobile-language-options');
             
-            // Initialize calculator display elements
-            document.querySelectorAll('input[type="text"]').forEach(input => {
-                if (input.id !== 'ratio') {
-                    updateDisplay(input.id, 0);
-                } else {
-                    updateDisplay(input.id, 4.0);
-                }
-                
-                // Add input validation
-                input.addEventListener('keydown', validateInput);
-                
-                // Add keydown event listeners for Enter and Tab
-                input.addEventListener('keydown', function(e) {
-                    handleKeyDown(e, this.id);
-                });
-            });
-            
-            // Initialize calculate buttons toggle
-            const toggle = document.getElementById('calculateButtonsToggle');
-            const buttonsEnabled = localStorage.getItem('calculateButtonsEnabled');
-            
-            if (buttonsEnabled === 'true' || window.innerWidth <= 1100) {
-                toggle.checked = true;
-                document.querySelector('.section').classList.add('calculate-buttons-enabled');
-            }
-            
-            toggle.addEventListener('change', toggleCalculateButtons);
-            
-            // Auto-enable buttons on mobile
-            if (window.innerWidth <= 1100) {
-                toggle.checked = true;
-                document.querySelector('.section').classList.add('calculate-buttons-enabled');
-            }
-            
+            // Restore any in-progress work from before a refresh
+            restoreDraft();
+
             // Initial display of saved data
             displaySavedData();
-            
+
             // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mainNav = document.getElementById('main-nav');

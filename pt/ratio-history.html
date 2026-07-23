@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-    <link rel="icon" type="image/png" href="image/a/graalguide.png">
+    <link rel="icon" type="image/png" href="../image/a/graalguide.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Trading Guide - GraalGuide: Master Graal Era Trading</title>
-    <meta name="description" content="Master trading in Graal Era with our comprehensive guide. Learn strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert.">
-    <link rel="alternate" hreflang="en" href="https://graalguide.com/trade-guide.html">
-    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/trade-guide.html">
-    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/trade-guide.html">
-    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/trade-guide.html">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
-     crossorigin="anonymous"></script>
+    <title>Histórico de Ratios - GraalGuide: Acompanhe as Taxas de Câmbio de Trochus para Gralat do Graal Era</title>
+    <meta name="description" content="Acompanhe o histórico das taxas de câmbio de Trochus para Gralat no Graal Era. Entenda as tendências de mercado e tome decisões de negociação informadas com nossos gráficos de histórico de ratios.">
+    <link rel="alternate" hreflang="en" href="https://graalguide.com/ratio-history.html">
+    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/ratio-history.html">
+    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/ratio-history.html">
+    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/ratio-history.html">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary-color: #8a2be2; /* Purple accent */
-            --secondary-color: #00bcd4; /* Teal accent */
-            --accent-color: #ff5722; /* Orange accent */
+            --primary-color: #8a2be2;
+            --secondary-color: #00bcd4;
+            --accent-color: #ff5722;
             --dark-bg: #121212;
             --darker-bg: #0a0a0a;
             --card-bg: #1e1e1e;
@@ -164,7 +164,7 @@
             gap: 10px;
         }
 
-        /* Updated Theme Toggle */
+        /* Theme Toggle */
         .theme-toggle {
             background: transparent;
             border: 1px solid var(--border-color);
@@ -341,372 +341,186 @@
             display: block;
         }
 
-        /* Hero Section */
-        .hero { 
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                       url('image/a/tr.jpg') center/cover no-repeat;
-            padding: 100px 0; 
-            text-align: center; 
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            padding: 60px 0;
             color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
+        }
+        
+        .page-header h1 {
+            font-size: var(--font-3xl);
+            margin-bottom: 15px;
+            font-weight: 800;
             position: relative;
         }
         
-        [data-theme="light"] .hero {
-            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                       url('image/a/tr.jpg') center/cover no-repeat;
-            color: #333;
-        }
-        
-        .hero-content { 
-            position: relative; 
-            z-index: 2; 
-        }
-        
-        .hero h1 { 
-            font-size: var(--font-4xl); 
-            margin-bottom: 20px; 
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p { 
-            font-size: var(--font-lg); 
-            max-width: 700px; 
-            margin: 0 auto 30px; 
-            color: var(--text-muted);
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: var(--font-lg);
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
         }
 
         /* Main Content */
-        .main-content { 
-            display: flex; 
-            margin: 40px 0; 
-            gap: 30px;
-        }
-        
-        .articles { 
-            flex: 2; 
-        }
-        
-        .article { 
+        .section { 
             background: var(--card-bg); 
             border-radius: 10px; 
-            overflow: hidden; 
-            margin-bottom: 30px; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-        
-        .article:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .article-img { 
-            width: 100%; 
-            height: 200px; 
-            object-fit: cover; 
-            filter: grayscale(20%) contrast(110%);
-        }
-        
-        .article-content { 
             padding: 25px; 
+            margin: 30px 0; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
-        .article h2 { 
-            margin-bottom: 15px; 
-            color: var(--text-color); 
+        .section h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
             font-weight: 700;
             font-size: var(--font-xl);
         }
-        
-        .article-meta { 
-            color: var(--text-muted); 
-            font-size: var(--font-sm); 
-            margin-bottom: 15px; 
-            display: flex; 
-            align-items: center; 
-        }
-        
-        .article-meta svg { 
-            margin-right: 5px; 
-        }
-        
-        .tag { 
-            display: inline-block; 
-            background: var(--dark-bg); 
-            color: var(--text-color); 
-            padding: 5px 12px; 
-            border-radius: 20px; 
-            font-size: var(--font-xs); 
-            margin-right: 10px; 
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-        
-        .tag-news { 
-            background: rgba(41, 121, 255, 0.2); 
-            color: #2979ff; 
-        }
-        
-        [data-theme="light"] .tag-news {
-            background: rgba(41, 121, 255, 0.15); 
-        }
-        
-        .tag-guide { 
-            background: rgba(76, 175, 80, 0.2); 
-            color: #4caf50; 
-        }
-        
-        [data-theme="light"] .tag-guide {
-            background: rgba(76, 175, 80, 0.15); 
-        }
-        
-        .tag-achievement { 
-            background: rgba(233, 30, 99, 0.2); 
-            color: #e91e63; 
-        }
-        
-        [data-theme="light"] .tag-achievement {
-            background: rgba(233, 30, 99, 0.15); 
-        }
-        
-        .tag-upload { 
-            background: rgba(255, 152, 0, 0.2); 
-            color: #ff9800; 
-        }
-        
-        [data-theme="light"] .tag-upload {
-            background: rgba(255, 152, 0, 0.15); 
-        }
-        
-        .tag-trading { 
-            background: rgba(140, 30, 39, 0.2); 
-            color: #cd4141; 
-        }
-        
-        [data-theme="light"] .tag-trading {
-            background: rgba(140, 30, 39, 0.15); 
-        }
-        
-        .article p, .article ul {
-            margin-bottom: 15px;
-            color: var(--text-muted);
-            font-size: var(--font-md);
-        }
-        
-        .article ul li {
-            margin-left: 20px;
-            margin-bottom: 5px;
+
+        /* Current Month */
+        .current-month {
+            text-align: center;
+            font-size: var(--font-xl);
+            color: var(--text-color);
+            margin: 20px 0;
+            font-weight: bold;
         }
 
-        /* Tip Boxes */
-        .tip { 
-            background: var(--card-bg); 
+        /* Chart Container */
+        .chart-container {
+            margin: 20px auto;
+            max-width: 800px;
+            background: var(--darker-bg);
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .tip h3 { 
-            margin-top: 0; 
-            color: var(--text-color); 
-            font-weight: 600;
-            font-size: var(--font-lg);
-        }
-        
-        .tip p { 
-            margin: 10px 0; 
-            color: var(--text-muted);
-            font-size: var(--font-md);
-        }
-        
-        .tip ul {
-            margin-left: 20px;
-        }
-        
-        .tip ul li {
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-size: var(--font-md);
-        }
-
-        /* Interactive Tutorial */
-        .interactive-tutorial {
-            background: var(--card-bg);
-            padding: 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
             border: 1px solid var(--border-color);
+            height: 400px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
-        
-        .interactive-tutorial h3 {
-            margin-top: 0;
-            color: var(--text-color);
-            font-weight: 700;
-            font-size: var(--font-lg);
-        }
-        
-        .quiz-question {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: var(--dark-bg);
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .quiz-question p {
-            font-weight: 600;
+
+        /* Community Pulse */
+        .pulse-note {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
             margin-bottom: 15px;
+        }
+
+        .pulse-summary {
+            font-size: var(--font-lg);
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .pulse-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .pulse-form input[type="number"] {
+            width: 120px;
+            padding: 10px 12px;
+            background: var(--input-bg, var(--darker-bg));
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             color: var(--text-color);
             font-size: var(--font-md);
         }
-        
-        .quiz-options {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
+
+        .pulse-form input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
-        
-        .btn { 
-            display: inline-block; 
-            background: var(--primary-color); 
-            color: white; 
-            padding: 12px 25px; 
+
+        .pulse-submit-btn {
+            background: var(--primary-color);
+            color: white;
             border: none;
-            border-radius: 30px; 
-            font-weight: 600; 
-            text-transform: uppercase;
-            font-size: var(--font-sm);
-            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+            font-size: var(--font-sm);
+            transition: all 0.2s ease;
+        }
+
+        .pulse-submit-btn:hover {
+            background: #7329c7;
+            transform: translateY(-2px);
+        }
+
+        .pulse-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .pulse-status {
+            font-size: var(--font-xs);
+            color: var(--text-muted);
+        }
+
+        /* Guide Book Section */
+        .guide-book {
+            margin: 30px 0;
         }
         
-        .btn:hover { 
-            background: #7329c7; 
-            transform: translateY(-3px); 
-            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4); 
-        }
-        
-        .btn-secondary { 
-            background: var(--secondary-color); 
-            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
-        }
-        
-        .btn-secondary:hover { 
-            background: #0097a7; 
-            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
-        }
-        
-        .quiz-result {
+        .guide-book h3 {
+            color: var(--text-color);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
             font-size: var(--font-lg);
-            font-weight: 700;
+        }
+        
+        .guide-book h4 {
             color: var(--text-color);
             margin-top: 20px;
-            text-align: center;
-            padding: 20px;
-            background: rgba(138, 43, 226, 0.1);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        /* Sidebar */
-        .sidebar { 
-            flex: 1; 
-        }
-        
-        .sidebar-widget { 
-            background: var(--card-bg); 
-            border-radius: 10px; 
-            padding: 25px; 
-            margin-bottom: 30px; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--border-color);
-        }
-        
-        .sidebar-widget h3 { 
-            margin-bottom: 20px; 
-            padding-bottom: 10px; 
-            border-bottom: 2px solid var(--primary-color); 
-            color: var(--text-color); 
-            font-weight: 700;
-            font-size: var(--font-lg);
-        }
-        
-        .ad-container { 
-            background: var(--dark-bg); 
-            padding: 20px; 
-            border-radius: 8px; 
-            text-align: center; 
-            margin: 20px 0; 
-            border: 1px dashed var(--border-color); 
-            min-height: 150px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-direction: column;
-        }
-        
-        .ad-label { 
-            display: block; 
-            text-align: center; 
-            font-size: var(--font-xs); 
-            color: var(--text-muted); 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin-bottom: 10px; 
-        }
-        
-        .featured-list { 
-            list-style: none; 
-        }
-        
-        .featured-list li { 
-            padding: 12px 0; 
-            border-bottom: 1px solid var(--border-color); 
-            display: flex; 
-            align-items: center; 
-            transition: all 0.3s ease;
-        }
-        
-        .featured-list li:hover {
-            background: rgba(255, 255, 255, 0.02);
-            padding-left: 5px;
-        }
-        
-        [data-theme="light"] .featured-list li:hover {
-            background: rgba(0, 0, 0, 0.02);
-        }
-        
-        .featured-list li:last-child { 
-            border-bottom: none; 
-        }
-        
-        .featured-list img { 
-            width: 40px; 
-            height: 40px; 
-            object-fit: cover; 
-            border-radius: 5px; 
-            margin-right: 10px; 
-            border: 1px solid var(--border-color); 
-        }
-        
-        .featured-list a {
-            color: var(--text-color);
-            transition: all 0.3s ease;
+            margin-bottom: 10px;
             font-size: var(--font-md);
         }
         
-        .featured-list a:hover {
-            color: var(--primary-color);
+        .guide-book p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            font-size: var(--font-md);
+        }
+        
+        .guide-book ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .guide-book li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            font-size: var(--font-md);
         }
 
         /* Footer */
@@ -847,24 +661,6 @@
             }
         }
         
-        @media (max-width: 992px) {
-            .main-content { 
-                flex-direction: column; 
-            }
-            
-            .articles { 
-                margin-right: 0; 
-            }
-            
-            .hero h1 {
-                font-size: var(--font-3xl);
-            }
-            
-            .hero p {
-                font-size: var(--font-md);
-            }
-        }
-        
         @media (max-width: 1100px) {
             :root {
                 --font-xs: 0.7rem;
@@ -936,40 +732,34 @@
                 display: flex;
             }
             
-            .hero { 
-                padding: 60px 0;
+            .page-header { 
+                padding: 40px 0;
             }
             
-            .hero h1 { 
+            .page-header h1 {
                 font-size: var(--font-2xl);
             }
             
-            .btn {
-                padding: 10px 20px;
-                margin: 5px 0;
-                display: block;
-                width: 100%;
-                max-width: 280px;
-                margin-left: auto;
-                margin-right: auto;
+            .page-header p {
+                font-size: var(--font-md);
             }
             
-            .quiz-options {
-                flex-direction: column;
-                align-items: center;
+            .section {
+                padding: 20px;
             }
             
-            .quiz-options button {
-                width: 100%;
+            .current-month {
+                font-size: var(--font-lg);
+            }
+            
+            .chart-container {
+                padding: 15px;
+                height: 300px;
             }
             
             .footer-content { 
                 flex-direction: column; 
                 gap: 20px;
-            }
-            
-            .article-img {
-                height: 180px;
             }
         }
         
@@ -989,29 +779,25 @@
                 font-size: var(--font-xl);
             }
             
-            .hero {
-                padding: 40px 0;
+            .page-header {
+                padding: 30px 0;
             }
             
-            .hero h1 {
+            .page-header h1 {
                 font-size: var(--font-xl);
             }
             
-            .hero p {
+            .section {
+                padding: 15px;
+            }
+            
+            .current-month {
                 font-size: var(--font-md);
             }
             
-            .article-content {
-                padding: 15px;
-            }
-            
-            .sidebar-widget {
-                padding: 15px;
-            }
-            
-            .featured-list img {
-                width: 35px;
-                height: 35px;
+            .chart-container {
+                padding: 10px;
+                height: 250px;
             }
             
             footer {
@@ -1033,41 +819,15 @@
                 height: 36px;
             }
         }
-
-        /* Prevent zoom on focus for iOS */
-        @media screen and (max-width: 768px) {
-            input, select, textarea {
-                font-size: 16px !important;
-            }
-        }
-
-        /* Loading animation */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Focus styles for accessibility */
-        button:focus-visible,
-        a:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
     </style>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VVS6GWC596');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VVS6GWC596');
+    </script>
 </head>
 <body>
     <header>
@@ -1075,75 +835,75 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                        <img src="../image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
                     </a>
                 </div>
                 <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Início</a></li>
                         <li class="dropdown">
                             <a href="#">Uploads</a>
                             <ul class="dropdown-menu">
                                 <li><a href="heads.html">Heads</a></li>
                                 <li><a href="bodies.html">Bodies</a></li>
                                 <li><a href="hats.html">Hats</a></li>
-                                <li><a href="upload-sets.html">Upload Sets</a></li>
+                                <li><a href="upload-sets.html">Conjuntos de Upload</a></li>
                                 <li><a href="templates.html">Templates</a></li>
-                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
-                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Era) ↗</a></li>
-                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Classic) ↗</a></li>
-                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Ol' West) ↗</a></li>
-                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Zone) ↗</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (por DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Zone) ↗</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Guides - How to?</a>
+                            <a href="#">Guias - Como?</a>
                             <ul class="dropdown-menu">
                                 <li><a href="upload.html">Upload</a></li>
-                                <li><a href="trade-guide.html">Trade</a></li>
-                                <li><a href="job-guide.html">Get Gralats</a></li>
-                                <li><a href="events-guide.html">Get Event Coins</a></li>
+                                <li><a href="trade-guide.html">Trocar</a></li>
+                                <li><a href="job-guide.html">Conseguir Gralats</a></li>
+                                <li><a href="events-guide.html">Conseguir Moedas de Evento</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Trade Table</a>
+                            <a href="#">Tabela de Troca</a>
                             <ul class="dropdown-menu">
-                                  <li><a href="sellables-calculator.html">Sellables Calculator</a></li>
-                                <li><a href="advanced-calculator.html">Advanced Calculator</a></li>
-                                <li><a href="ratio-history.html">Ratio History</a></li>
-                                <li><a href="profit-loss.html">Profit & Loss Tracker</a></li>
-                                <li><a href="price-house.html">Price House</a></li>
+                                  <li><a href="sellables-calculator.html">Calculadora de Vendáveis</a></li>
+                                <li><a href="advanced-calculator.html">Calculadora Avançada</a></li>
+                                <li><a href="ratio-history.html">Histórico de Ratios</a></li>
+                                <li><a href="profit-loss.html">Rastrear Lucro & Perda</a></li>
+                                <li><a href="price-house.html">Casa de Preços</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
-                        <li><a href="guns.html">Gun Ratings</a></li>
+                        <li><a href="secret-achievements.html">Conquistas Secretas</a></li>
+                        <li><a href="guns.html">Avaliação de Armas</a></li>
                     </ul>
-                    
+
                     <!-- Mobile Actions Container - Side by Side -->
                     <div class="mobile-actions-container">
                         <!-- Mobile Language Selector -->
                         <div class="language-selector">
                             <button class="language-btn" id="mobile-language-btn">
-                                <img src="https://flagcdn.com/w40/us.png" alt="English">
-                                <span>English</span>
+                                <img src="https://flagcdn.com/w40/br.png" alt="Português">
+                                <span>Português</span>
                             </button>
                             <div class="mobile-language-options" id="mobile-language-options">
-                                <a href="trade-guide.html">
+                                <a href="../ratio-history.html">
                                     <img src="https://flagcdn.com/w40/us.png" alt="English">
                                     <span>English</span>
                                 </a>
-                                <a href="pt/trade-guide.html">
+                                <a href="ratio-history.html">
                                     <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                     <span>Português</span>
                                 </a>
-                                <a href="id/trade-guide.html">
+                                <a href="../id/ratio-history.html">
                                     <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                     <span>Indonesia</span>
                                 </a>
                             </div>
                         </div>
-                        
+
                         <!-- Mobile Theme Toggle -->
                         <button class="theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">
                             <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -1161,19 +921,19 @@
                     <!-- Language Selector -->
                     <div class="language-selector">
                         <button class="language-btn" id="desktop-language-btn">
-                            <img src="https://flagcdn.com/w40/us.png" alt="English">
-                            <span>English</span>
+                            <img src="https://flagcdn.com/w40/br.png" alt="Português">
+                            <span>Português</span>
                         </button>
                         <div class="language-options" id="desktop-language-options">
-                            <a href="trade-guide.html">
+                            <a href="../ratio-history.html">
                                 <img src="https://flagcdn.com/w40/us.png" alt="English">
                                 <span>English</span>
                             </a>
-                            <a href="pt/trade-guide.html">
+                            <a href="ratio-history.html">
                                 <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                 <span>Português</span>
                             </a>
-                            <a href="id/trade-guide.html">
+                            <a href="../id/ratio-history.html">
                                 <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                 <span>Indonesia</span>
                             </a>
@@ -1194,163 +954,109 @@
         </div>
     </header>
 
-    <section class="hero">
+    <div class="page-header">
         <div class="container">
-            <div class="hero-content">
-                <h1 id="hero-title">Master Graal Era Trading</h1>
-                <p id="hero-description">Learn expert strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert in Graal Era.</p>
-            </div>
+            <h1 id="page-title">Histórico de Ratios</h1>
+            <p id="page-description">Acompanhe o histórico das taxas de câmbio de Trochus para Gralat e entenda as tendências de mercado no Graal Era.</p>
         </div>
-    </section>
+    </div>
 
     <div class="container">
-        <div class="main-content">
-            <div class="articles">
-                <!-- Introduction -->
-                <article class="article">
-                    <div class="article-content">
-                        <span class="tag tag-trading">Trading</span>
-                        <span class="tag tag-guide">Guide</span>
-                        <h2 id="intro-title">Introduction to Graal Era Trading</h2>
-                        <div class="article-meta" id="intro-date">Updated on January 1, 2026</div>
-                        <p id="intro-text">Trading is a key part of Era's economy. By buying and selling items, you can earn Gralats, Trochus, and other valuable resources. This tutorial will teach you the basics, advanced strategies, and tools to succeed.</p>
-                    </div>
-                </article>
+        <!-- Current Month -->
+        <div class="current-month" id="currentMonth"></div>
 
-                <!-- Basics of Trading -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="basics-title">Basics of Trading</h2>
-                        <div class="tip">
-                            <h3 id="what-is-trading">What is Trading?</h3>
-                            <p id="what-is-trading-text">Trading involves exchanging items, Gralats, or Trochus with other players. It's a great way to get the items you need while earning profits.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="key-terms-title">Key Terms</h3>
-                            <ul>
-                                <li><strong id="term-gralats">Gralats</strong>: <span id="term-gralats-desc">The main currency in Era.</span></li>
-                                <li><strong id="term-trochus">Trochus</strong>: <span id="term-trochus-desc">A secondary currency used for trading.</span></li>
-                                <li><strong id="term-sellables">Sellables</strong>: <span id="term-sellables-desc">Items that can be sold for Gralats or Trochus.</span></li>
-                                <li><strong id="term-ratio">Ratio</strong>: <span id="term-ratio-desc">The exchange rate between Trochus and Gralats (e.g., 1 Trochus : $4 Gralats).</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Interactive Tutorial -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="tutorial-title">Interactive Trading Tutorial</h2>
-                        <div class="interactive-tutorial" id="interactiveTutorial">
-                            <h3 id="quiz-title">Test Your Trading Knowledge!</h3>
-                            <p id="quiz-desc">Answer the following questions to test your understanding of Trading.</p>
-                            <div id="quizContainer"></div>
-                            <div id="quizResult" class="quiz-result"></div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Guide for Successful Trading -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="success-title">Guide for Successful Trading</h2>
-                        <div class="tip">
-                            <h3 id="strategy-buy-low">Buy Low, Sell High</h3>
-                            <p id="strategy-buy-low-text">Purchase items when they're cheap (e.g., during events) and sell them when prices rise.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-diversify">Diversify Your Portfolio</h3>
-                            <p id="strategy-diversify-text">Trade a variety of items to reduce risk. Don't put all your Trochus into one type of item.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-patience">Patience is Key</h3>
-                            <p id="strategy-patience-text">Wait for the right opportunity. Don't rush into bad deals.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Advanced Strategies -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="advanced-title">Advanced Trading Strategies</h2>
-                        <div class="tip">
-                            <h3 id="strategy-flipping">Flipping Items</h3>
-                            <p id="strategy-flipping-text">Buy undervalued items and sell them for a profit. Research prices to find good deals.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-event">Event Trading</h3>
-                            <p id="strategy-event-text">During events, buy rare items and sell them later when they become more valuable.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-bulk">Bulk Trading</h3>
-                            <p id="strategy-bulk-text">Trade in large quantities to negotiate better deals with other players.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Common Mistakes to Avoid -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="mistakes-title">Common Trading Mistakes to Avoid</h2>
-                        <div class="tip">
-                            <h3 id="mistake-overpaying">Overpaying</h3>
-                            <p id="mistake-overpaying-text">Always check the value of items before trading. Use tools like the <a href="sellables-calculator.html" id="calculator-link">Sellables Calculator</a>.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="mistake-ratios">Ignoring Ratios</h3>
-                            <p id="mistake-ratios-text">Understanding ratios is crucial for fair trades. Don't accept deals that don't make sense.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="mistake-scams">Scams</h3>
-                            <p id="mistake-scams-text">Be cautious of fake offers or misleading trades. Always double-check before confirming.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Tools and Resources -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="tools-title">Trading Tools and Resources</h2>
-                        <div class="tip">
-                            <h3 id="tool-calculator">Sellables Calculator</h3>
-                            <p id="tool-calculator-text">Use the <a href="sellables-calculator.html" id="calculator-link2">Sellables Calculator</a> to determine the value of your items and make informed trades.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="tool-community">Community Forums</h3>
-                            <p id="tool-community-text">Join forums or Discord servers to discuss trading strategies and stay updated on market trends.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Conclusion -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="conclusion-title">Conclusion</h2>
-                        <p id="conclusion-text">Trading in Era can be highly rewarding if you follow these strategies. Practice, experiment, and always stay informed. Happy trading!</p>
-                    </div>
-                </article>
+        <!-- Ratio History Graph -->
+        <div class="section">
+            <h2 id="ratio-history-title">Histórico do Ratio de Trochus para Gralat</h2>
+            <div class="chart-container">
+                <canvas id="ratioHistoryChart"></canvas>
             </div>
+        </div>
 
-            <div class="sidebar">
-                <div class="sidebar-widget">
-                    <h3 id="tools-title-sidebar">Trading Tools</h3>
-                    <ul class="featured-list">
-                        <li>
-                            <a href="sellables-calculator.html" id="tool-calculator-link">Sellables Calculator</a>
-                        </li>
-                        <li>
-                            <a href="ratio-history.html" id="tool-ratio-link">Ratio History</a>
-                        </li>
-                        <li>
-                            <a href="profit-loss.html" id="tool-profit-link">Profit & Loss Tracker</a>
-                        </li>
-                        <li>
-                            <a href="price-house.html" id="tool-price-link">Price House</a>
-                        </li>
+        <!-- Community Pulse -->
+        <div class="section">
+            <h2>📊 Pulso da Comunidade</h2>
+            <p class="pulse-note">Veja qual ratio outros jogadores estão vendo agora. Enviado pela comunidade e não verificado — o gráfico acima é o dado oficialmente rastreado pelo GraalGuide.</p>
+            <div class="pulse-summary" id="pulseSummary">Carregando os envios de hoje...</div>
+            <div class="pulse-form">
+                <input type="number" id="pulseRatioInput" step="0.1" min="1" max="10" placeholder="ex.: 3.7">
+                <button class="pulse-submit-btn" id="pulseSubmitBtn" type="button">Enviar Ratio de Hoje</button>
+                <span class="pulse-status" id="pulseStatus"></span>
+            </div>
+        </div>
+
+        <!-- Guide Book Section -->
+        <div class="section guide-book">
+            <h2 id="guide-title">📘 Guia do Ratio de Trochus para Gralat</h2>
+            <p id="guide-intro">
+                Bem-vindo ao guia definitivo para entender o ratio de Trochus para Gralat! Seja você um jogador novo ou um comerciante experiente, este guia vai te ajudar a entender como o ratio funciona e quais fatores o influenciam. Vamos lá!
+            </p>
+
+            <h4 id="what-is-ratio">O Que é o Ratio?</h4>
+            <p id="ratio-explanation">
+                O ratio representa quantos Gralats você pode trocar por 1 Trochus. Por exemplo, um ratio de 1:3.5 significa que 1 Trochus vale 3.5 Gralats. Esse ratio muda ao longo do tempo com base em vários fatores da economia do jogo.
+            </p>
+
+            <h4 id="affects-ratio">O Que Afeta o Ratio?</h4>
+            <p id="factors-intro">
+                O ratio é influenciado pelo equilíbrio entre a oferta de Trochus e a demanda por Gralats. Aqui está um detalhamento dos principais fatores:
+            </p>
+            <ul id="factors-list">
+                <li>
+                    <strong id="player-activity">Atividade dos Jogadores</strong>:
+                    <ul>
+                        <li id="player-activity-1">Se muitos jogadores estão farmando Trochus/Vendáveis, a oferta aumenta, o que pode baixar o ratio.</li>
+                        <li id="player-activity-2">Se menos jogadores estão farmando Trochus/Vendáveis, a oferta diminui, o que pode aumentar o ratio.</li>
                     </ul>
-                    <a href="sellables-calculator.html" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="calculator-btn">Use Calculator</a>
-                </div>  
-            </div>
+                </li>
+                <li>
+                    <strong id="game-events">Eventos do Jogo</strong>:
+                    <ul>
+                        <li id="game-events-1">Eventos que facilitam o farm de Trochus/Vendáveis (jobs em dobro) podem aumentar a oferta e baixar o ratio.</li>
+                        <li id="game-events-2">Eventos que exigem que os jogadores gastem mais Gralats (itens/leilões por tempo limitado) podem aumentar a demanda por Gralats e elevar o ratio.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong id="market-trends">Tendências de Mercado</strong>:
+                    <ul>
+                        <li id="market-trends-1">Se os jogadores começarem a acumular Trochus/Vendáveis, a oferta diminui, o que pode elevar o ratio.</li>
+                        <li id="market-trends-2">Se os jogadores negociarem Trochus em grande quantidade, a oferta aumenta, o que pode baixar o ratio.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong id="inflation">Inflação ou Deflação</strong>:
+                    <ul>
+                        <li id="inflation-1">Se houver excesso de oferta de Gralats (exploits/macros de farm), seu valor diminui, o que pode elevar o ratio.</li>
+                        <li id="inflation-2">Se os Gralats ficarem mais escassos (aumento de gastos), seu valor aumenta, o que pode baixar o ratio.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong id="external-factors">Fatores Externos</strong>:
+                    <ul>
+                        <li id="external-1">Eventos do mundo real (feriados/calendário escolar) podem afetar a atividade dos jogadores e influenciar o ratio.</li>
+                        <li id="external-2">Tendências da comunidade (jogadores decidindo coletivamente farmar ou evitar farmar Trochus/Vendáveis) também podem impactar o ratio.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4 id="how-to-use">Como Usar Esta Informação</h4>
+            <p id="usage-intro">
+                Entender esses fatores pode te ajudar a tomar decisões de negociação melhores. Por exemplo:
+            </p>
+            <ul id="usage-examples">
+                <li id="example-1">Se você perceber que o ratio está baixo (1:$4-5+), pode ser um bom momento para trocar Trochus por Gralats.</li>
+                <li id="example-2">Se você espera que o ratio suba (1:$3-4), pode valer a pena guardar seus Trochus/Vendáveis para um negócio melhor depois.</li>
+            </ul>
+
+            <h4 id="final-tips">Dicas Finais</h4>
+            <p id="tip-1">
+                - Fique de olho no Gráfico de Histórico de Ratio para acompanhar as tendências ao longo do tempo.<br>
+                - Mantenha-se ativo na comunidade para saber sobre eventos ou mudanças futuras.<br>
+                - Sempre pense à frente e planeje suas negociações com base no clima econômico atual.
+            </p>
+            <p id="closing">
+                Boas negociações, e que seu estoque de Gralats cresça! 🎮
+            </p>
         </div>
     </div>
 
@@ -1358,39 +1064,39 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title-footer">About GraalGuide</h3>
-                    <p id="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
-                    <p><em id="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                    <h3 id="about-title">Sobre o GraalGuide</h3>
+                    <p id="about-desc">GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos ferramentas, guias e recursos para melhorar sua experiência de jogo.</p>
+                    <p><em id="disclaimer">GraalGuide não é afiliado ao GraalOnline ou Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3 id="links-title-footer">Quick Links</h3>
+                    <h3 id="links-title">Links Rápidos</h3>
                     <ul>
-                        <li><a href="index.html" id="link-home-footer">Home</a></li>
-                        <li><a href="upload.html" id="link-achievements-footer">Uploads</a></li>
-                        <li><a href="trade-guide.html" id="link-events-footer">Trading Guide</a></li>
-                        <li><a href="secret-achievements.html" id="link-gralats-footer">Secret Achievement</a></li>
+                        <li><a href="index.html" id="link1">Início</a></li>
+                        <li><a href="upload.html" id="link2">Uploads</a></li>
+                        <li><a href="trade-guide.html" id="link3">Guia de Troca</a></li>
+                        <li><a href="secret-achievements.html" id="link4">Conquistas Secretas</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="legal-title-footer">Legal & Policies</h3>
+                    <h3 id="legal-title">Legal e Políticas</h3>
                     <ul>
-                        <li><a href="privacy-policy.html" id="link-privacy-footer">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" id="link-terms-footer">Terms of Service</a></li>
-                        <li><a href="cookie-policy.html" id="link-cookie-footer">Cookie Policy</a></li>
-                        <li><a href="disclaimer.html" id="link-disclaimer-footer">Disclaimer</a></li>
+                        <li><a href="privacy-policy.html" id="policy1">Política de Privacidade</a></li>
+                        <li><a href="terms-of-service.html" id="policy2">Termos de Serviço</a></li>
+                        <li><a href="cookie-policy.html" id="policy3">Política de Cookies</a></li>
+                        <li><a href="disclaimer.html" id="policy4">Aviso Legal</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="connect-title-footer">Connect</h3>
+                    <h3 id="connect-title">Conectar</h3>
                     <ul>
-                        <li><a href="about-me.html" id="link-discord-footer">About Me</a></li>
-                        <li><a href="https://www.youtube.com/@azrxc" id="link-youtube-footer">YouTube</a></li>
-                        <li><a href="contact-us.html" id="link-contact-footer">Contact Us</a></li>
+                        <li><a href="about-me.html" id="connect1">Sobre Mim</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc" id="connect2">YouTube</a></li>
+                        <li><a href="contact-us.html" id="connect3">Contate-Nos</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright-footer">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright">&copy; 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.</p>
             </div>
         </div>
     </footer>
@@ -1403,81 +1109,11 @@
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-        }
-
-        // Quiz Questions and Answers
-        const quizQuestions = [
-            {
-                question: "Is it a good idea to buy items during events when they're cheap?",
-                answer: true
-            },
-            {
-                question: "Should you always accept the first trade offer you receive?",
-                answer: false
-            },
-            {
-                question: "Is it important to check the ratio before trading?",
-                answer: true
-            },
-            {
-                question: "Should you trade all your Trochus for one rare item?",
-                answer: false
-            },
-            {
-                question: "Is patience important when trading?",
-                answer: true
+            
+            // Update chart colors when theme changes
+            if (window.ratioChart) {
+                updateChartColors();
             }
-        ];
-
-        let currentQuestion = 0;
-        let score = 0;
-
-        // Display Quiz Questions
-        function displayQuiz() {
-            const quizContainer = document.getElementById("quizContainer");
-            const quizResult = document.getElementById("quizResult");
-
-            if (currentQuestion < quizQuestions.length) {
-                const question = quizQuestions[currentQuestion];
-                quizContainer.innerHTML = `
-                    <div class="quiz-question">
-                        <p>${question.question}</p>
-                        <div class="quiz-options">
-                            <button class="btn" onclick="checkAnswer(true)">Yes</button>
-                            <button class="btn btn-secondary" onclick="checkAnswer(false)">No</button>
-                        </div>
-                    </div>
-                `;
-            } else {
-                quizContainer.innerHTML = "";
-                const pct = Math.round((score / quizQuestions.length) * 100);
-                const message = pct === 100 ? "Perfect score! You really know your trades." :
-                    pct >= 60 ? "Nice work! You've got a solid grasp on trading." :
-                    "Give the guide another read and try again!";
-                quizResult.innerHTML = `
-                    <p>Quiz Complete! Your score is ${score} out of ${quizQuestions.length}.</p>
-                    <p>${message}</p>
-                    <button class="btn" onclick="retakeQuiz()">Retake Quiz</button>
-                `;
-            }
-        }
-
-        // Check Answer
-        function checkAnswer(userAnswer) {
-            const question = quizQuestions[currentQuestion];
-            if (userAnswer === question.answer) {
-                score++;
-            }
-            currentQuestion++;
-            displayQuiz();
-        }
-
-        // Retake Quiz
-        function retakeQuiz() {
-            currentQuestion = 0;
-            score = 0;
-            document.getElementById("quizResult").innerHTML = "";
-            displayQuiz();
         }
 
 
@@ -1502,7 +1138,136 @@
             }
         }
 
-        // Initialize language and theme
+        // Initialize data
+        let historicalData = JSON.parse(localStorage.getItem("historicalData")) || [
+            { month: "2025-01", ratio: 3.3 },
+            { month: "2025-02", ratio: 3.5 },
+            { month: "2025-03", ratio: 3.4 },
+            { month: "2025-04", ratio: 3.5 },
+            { month: "2025-05", ratio: 3.7 },
+            { month: "2025-06", ratio: 3.6 },
+            { month: "2025-07", ratio: 3.7 },
+            { month: "2025-08", ratio: 3.6 },
+            { month: "2025-09", ratio: 3.6 },
+            { month: "2025-10", ratio: 3.5 },
+            { month: "2025-11", ratio: 3.3 },
+            { month: "2025-12", ratio: 3.2 },
+            { month: "2026-01", ratio: 3.5 },
+            { month: "2026-02", ratio: 3.7 },
+            { month: "2026-03", ratio: 3.7 }
+
+        ];
+
+        // Get current month in YYYY-MM format
+        function getCurrentMonth() {
+            let date = new Date();
+            return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        }
+
+        // Get current theme colors
+        function getChartColors() {
+            const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
+            return {
+                textColor: isLightMode ? '#333333' : '#e0e0e0',
+                gridColor: isLightMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)',
+                pointBorderColor: isLightMode ? '#ffffff' : '#ffffff'
+            };
+        }
+
+        // Update chart colors based on theme
+        function updateChartColors() {
+            const colors = getChartColors();
+            
+            if (window.ratioChart) {
+                window.ratioChart.options.scales.x.ticks.color = colors.textColor;
+                window.ratioChart.options.scales.y.ticks.color = colors.textColor;
+                window.ratioChart.options.scales.x.grid.color = colors.gridColor;
+                window.ratioChart.options.scales.y.grid.color = colors.gridColor;
+                window.ratioChart.options.scales.x.title.color = colors.textColor;
+                window.ratioChart.options.scales.y.title.color = colors.textColor;
+                window.ratioChart.options.plugins.legend.labels.color = colors.textColor;
+                window.ratioChart.options.plugins.title.color = colors.textColor;
+                
+                window.ratioChart.data.datasets[0].pointBorderColor = colors.pointBorderColor;
+                
+                window.ratioChart.update();
+            }
+        }
+
+        // Render historical ratio chart
+        function renderChart() {
+            const ctx = document.getElementById('ratioHistoryChart').getContext('2d');
+            const colors = getChartColors();
+            
+            window.ratioChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: historicalData.map(entry => entry.month),
+                    datasets: [{
+                        label: '1 Trochus : $X Gralats',
+                        data: historicalData.map(entry => entry.ratio),
+                        borderColor: '#8a2be2',
+                        backgroundColor: 'rgba(138, 43, 226, 0.1)',
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#8a2be2',
+                        pointBorderColor: colors.pointBorderColor,
+                        pointBorderWidth: 2,
+                        fill: true
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 3.0,
+                            max: 4.0,
+                            grid: {
+                                color: colors.gridColor,
+                            },
+                            ticks: {
+                                color: colors.textColor
+                            },
+                            title: {
+                                display: true,
+                                text: 'Gralats per Trochus',
+                                color: colors.textColor
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: colors.gridColor,
+                            },
+                            ticks: {
+                                color: colors.textColor
+                            },
+                            title: {
+                                display: true,
+                                text: 'Month',
+                                color: colors.textColor
+                            }
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: colors.textColor
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Historical Trochus to Gralat Exchange Rates',
+                            color: colors.textColor
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             // Check for saved theme preference or default to dark
             const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -1512,8 +1277,15 @@
             document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
             document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
             
-            // Initialize language option toggles (dropdown open/close only - the
-            // options themselves are now real links to each language's own page)
+            // Update current month display
+            document.getElementById('currentMonth').textContent = 'Mês Atual: ' + getCurrentMonth();
+
+            // Initial render
+            renderChart();
+
+            // Initialize language option toggles (dropdown open/close only - the options themselves are now real links to each language's own page)
+
+            // Initialize language option toggles
             toggleLanguageOptions('desktop-language-btn', 'desktop-language-options');
             toggleLanguageOptions('mobile-language-btn', 'mobile-language-options');
             
@@ -1600,9 +1372,100 @@
                     });
                 });
             }
-            
-            // Start Quiz
-            displayQuiz();
+        });
+    </script>
+
+    <!-- Community Pulse: crowdsourced "what ratio are you seeing today" widget.
+         Kept fully separate from the chart above, which stays GraalGuide's own
+         curated data - this never writes into historicalData. -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+        import {
+            getFirestore, collection, addDoc, query, where, getDocs, serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAh3Anoo9KDzVI2hhSyD6MY13C9TTQr-vg",
+            authDomain: "graal-guide.firebaseapp.com",
+            projectId: "graal-guide",
+            storageBucket: "graal-guide.firebasestorage.app",
+            messagingSenderId: "517152860809",
+            appId: "1:517152860809:web:8bcd4937b93683dc1bf458",
+            measurementId: "G-P69ZNFQJV7"
+        };
+        const firebaseApp = initializeApp(firebaseConfig);
+        const db = getFirestore(firebaseApp);
+
+        function todayKey() {
+            return new Date().toISOString().slice(0, 10); // YYYY-MM-DD, UTC
+        }
+
+        async function loadPulseSummary() {
+            const summaryEl = document.getElementById('pulseSummary');
+            try {
+                const q = query(collection(db, 'ratioSubmissions'), where('date', '==', todayKey()));
+                const snap = await getDocs(q);
+                if (snap.empty) {
+                    summaryEl.textContent = 'Ninguém enviou hoje ainda - seja o primeiro!';
+                    return;
+                }
+                const ratios = snap.docs.map(d => d.data().ratio).filter(r => typeof r === 'number');
+                const average = ratios.reduce((sum, r) => sum + r, 0) / ratios.length;
+                summaryEl.textContent = `Média da comunidade hoje: ${average.toFixed(2)} (de ${ratios.length} envio${ratios.length === 1 ? '' : 's'})`;
+            } catch (err) {
+                summaryEl.textContent = 'Não foi possível carregar os envios de hoje agora.';
+                console.error('Pulse summary fetch failed:', err);
+            }
+        }
+
+        async function submitPulse() {
+            const input = document.getElementById('pulseRatioInput');
+            const status = document.getElementById('pulseStatus');
+            const submitBtn = document.getElementById('pulseSubmitBtn');
+
+            if (localStorage.getItem('pulseSubmittedDate') === todayKey()) {
+                status.textContent = 'Você já enviou hoje - obrigado!';
+                return;
+            }
+
+            const ratio = parseFloat(input.value);
+            if (isNaN(ratio) || ratio < 1 || ratio > 10) {
+                status.textContent = 'Digite um ratio entre 1 e 10.';
+                return;
+            }
+
+            submitBtn.disabled = true;
+            try {
+                await addDoc(collection(db, 'ratioSubmissions'), {
+                    ratio: ratio,
+                    date: todayKey(),
+                    createdAt: serverTimestamp()
+                });
+                localStorage.setItem('pulseSubmittedDate', todayKey());
+                status.textContent = 'Obrigado por enviar!';
+                input.value = '';
+                await loadPulseSummary();
+            } catch (err) {
+                status.textContent = 'Não foi possível enviar agora, tente novamente.';
+                console.error('Pulse submit failed:', err);
+            } finally {
+                submitBtn.disabled = false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPulseSummary();
+
+            const submitBtn = document.getElementById('pulseSubmitBtn');
+            const input = document.getElementById('pulseRatioInput');
+            if (localStorage.getItem('pulseSubmittedDate') === todayKey()) {
+                document.getElementById('pulseStatus').textContent = 'Você já enviou hoje - obrigado!';
+            }
+
+            submitBtn.addEventListener('click', submitPulse);
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') submitPulse();
+            });
         });
     </script>
 </body>

@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <link rel="icon" type="image/png" href="image/a/graalguide.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Trading Guide - GraalGuide: Master Graal Era Trading</title>
-    <meta name="description" content="Master trading in Graal Era with our comprehensive guide. Learn strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert.">
-    <link rel="alternate" hreflang="en" href="https://graalguide.com/trade-guide.html">
-    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/trade-guide.html">
-    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/trade-guide.html">
-    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/trade-guide.html">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
      crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-4927938315377514">
+    <link rel="icon" type="image/png" href="../image/a/graalguide.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "GraalGuide",
+        "url": "https://graalguide.com/",
+        "logo": "https://graalguide.com/image/a/graalguide.png"
+    }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Set Upload - GraalGuide Set Kustom Graal Era</title>
+    <meta name="description" content="Jelajahi dan unduh kombinasi head dan body lengkap untuk karaktermu.">
+    <link rel="alternate" hreflang="en" href="https://graalguide.com/upload-sets.html">
+    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/upload-sets.html">
+    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/upload-sets.html">
+    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/upload-sets.html">
     <style>
         :root {
             --primary-color: #8a2be2; /* Purple accent */
@@ -56,7 +64,7 @@
         body { 
             background-color: var(--dark-bg); 
             color: var(--text-color); 
-            line-height: 1.6; 
+            line-height: 1.6;
             font-size: var(--font-md);
             transition: background-color 0.3s ease, color 0.3s ease;
             min-height: 100vh;
@@ -341,372 +349,288 @@
             display: block;
         }
 
-        /* Hero Section */
-        .hero { 
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                       url('image/a/tr.jpg') center/cover no-repeat;
-            padding: 100px 0; 
-            text-align: center; 
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            padding: 60px 0;
             color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
+        }
+        
+        .page-header h1 {
+            font-size: var(--font-4xl);
+            margin-bottom: 15px;
+            font-weight: 800;
             position: relative;
         }
         
-        [data-theme="light"] .hero {
-            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                       url('image/a/tr.jpg') center/cover no-repeat;
-            color: #333;
-        }
-        
-        .hero-content { 
-            position: relative; 
-            z-index: 2; 
-        }
-        
-        .hero h1 { 
-            font-size: var(--font-4xl); 
-            margin-bottom: 20px; 
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p { 
-            font-size: var(--font-lg); 
-            max-width: 700px; 
-            margin: 0 auto 30px; 
-            color: var(--text-muted);
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: var(--font-lg);
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
         }
 
-        /* Main Content */
-        .main-content { 
-            display: flex; 
-            margin: 40px 0; 
-            gap: 30px;
+        /* Disclaimer Banner */
+        .disclaimer-banner {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: 0 auto 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            border-left: 4px solid #e65100;
         }
         
-        .articles { 
-            flex: 2; 
+        .disclaimer-banner p {
+            margin: 0;
+            font-size: var(--font-sm);
+            line-height: 1.5;
         }
         
-        .article { 
-            background: var(--card-bg); 
-            border-radius: 10px; 
-            overflow: hidden; 
-            margin-bottom: 30px; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+        .disclaimer-banner strong {
+            font-weight: 700;
+        }
+
+        /* Upload Sets Gallery */
+        .gallery-content {
+            margin-bottom: 40px;
+        }
+        
+        .sets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .set-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             border: 1px solid var(--border-color);
         }
         
-        .article:hover { 
-            transform: translateY(-5px); 
+        .set-item:hover {
+            transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
-        .article-img { 
-            width: 100%; 
-            height: 200px; 
-            object-fit: cover; 
-            filter: grayscale(20%) contrast(110%);
-        }
-        
-        .article-content { 
-            padding: 25px; 
-        }
-        
-        .article h2 { 
-            margin-bottom: 15px; 
-            color: var(--text-color); 
-            font-weight: 700;
-            font-size: var(--font-xl);
-        }
-        
-        .article-meta { 
-            color: var(--text-muted); 
-            font-size: var(--font-sm); 
-            margin-bottom: 15px; 
-            display: flex; 
-            align-items: center; 
-        }
-        
-        .article-meta svg { 
-            margin-right: 5px; 
-        }
-        
-        .tag { 
-            display: inline-block; 
-            background: var(--dark-bg); 
-            color: var(--text-color); 
-            padding: 5px 12px; 
-            border-radius: 20px; 
-            font-size: var(--font-xs); 
-            margin-right: 10px; 
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-        
-        .tag-news { 
-            background: rgba(41, 121, 255, 0.2); 
-            color: #2979ff; 
-        }
-        
-        [data-theme="light"] .tag-news {
-            background: rgba(41, 121, 255, 0.15); 
-        }
-        
-        .tag-guide { 
-            background: rgba(76, 175, 80, 0.2); 
-            color: #4caf50; 
-        }
-        
-        [data-theme="light"] .tag-guide {
-            background: rgba(76, 175, 80, 0.15); 
-        }
-        
-        .tag-achievement { 
-            background: rgba(233, 30, 99, 0.2); 
-            color: #e91e63; 
-        }
-        
-        [data-theme="light"] .tag-achievement {
-            background: rgba(233, 30, 99, 0.15); 
-        }
-        
-        .tag-upload { 
-            background: rgba(255, 152, 0, 0.2); 
-            color: #ff9800; 
-        }
-        
-        [data-theme="light"] .tag-upload {
-            background: rgba(255, 152, 0, 0.15); 
-        }
-        
-        .tag-trading { 
-            background: rgba(140, 30, 39, 0.2); 
-            color: #cd4141; 
-        }
-        
-        [data-theme="light"] .tag-trading {
-            background: rgba(140, 30, 39, 0.15); 
-        }
-        
-        .article p, .article ul {
-            margin-bottom: 15px;
-            color: var(--text-muted);
-            font-size: var(--font-md);
-        }
-        
-        .article ul li {
-            margin-left: 20px;
-            margin-bottom: 5px;
-        }
-
-        /* Tip Boxes */
-        .tip { 
-            background: var(--card-bg); 
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .tip h3 { 
-            margin-top: 0; 
-            color: var(--text-color); 
-            font-weight: 600;
-            font-size: var(--font-lg);
-        }
-        
-        .tip p { 
-            margin: 10px 0; 
-            color: var(--text-muted);
-            font-size: var(--font-md);
-        }
-        
-        .tip ul {
-            margin-left: 20px;
-        }
-        
-        .tip ul li {
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-size: var(--font-md);
-        }
-
-        /* Interactive Tutorial */
-        .interactive-tutorial {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .interactive-tutorial h3 {
-            margin-top: 0;
-            color: var(--text-color);
-            font-weight: 700;
-            font-size: var(--font-lg);
-        }
-        
-        .quiz-question {
-            margin-bottom: 20px;
+        .set-display {
+            width: 100%;
             padding: 20px;
             background: var(--dark-bg);
-            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .head-display {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .head {
+            width: 32px;
+            height: 32px;
+            background-repeat: no-repeat;
+            image-rendering: pixelated;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            background-size: 32px 560px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .head:hover {
+            transform: scale(1.1);
+            border-color: var(--primary-color);
+        }
+        
+        .frame1 { background-position: 0 0; }
+        .frame2 { background-position: 0 -32px; }
+        .frame3 { background-position: 0 -64px; }
+        .frame4 { background-position: 0 -96px; }
+        
+        .body-img {
+            width: 128px;
+            height: 128px;
+            object-fit: cover;
+            object-position: top;
+            image-rendering: pixelated;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
             border: 1px solid var(--border-color);
         }
         
-        .quiz-question p {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--text-color);
-            font-size: var(--font-md);
+        .body-img:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
         }
         
-        .quiz-options {
+        .set-info {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .download-buttons {
             display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
         }
         
-        .btn { 
-            display: inline-block; 
-            background: var(--primary-color); 
-            color: white; 
-            padding: 12px 25px; 
+        .download-btn {
+            flex: 1;
+            background: var(--primary-color);
+            color: white;
             border: none;
-            border-radius: 30px; 
-            font-weight: 600; 
-            text-transform: uppercase;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
             font-size: var(--font-sm);
-            margin: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .download-btn:hover {
+            background: #7a1fd2;
+            transform: translateY(-2px);
+        }
+        
+        .download-btn.head-btn {
+            background: var(--secondary-color);
+        }
+        
+        .download-btn.head-btn:hover {
+            background: #00a5bb;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            list-style: none;
+            gap: 8px;
+        }
+        
+        .pagination li {
+            margin: 0;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
-        }
-        
-        .btn:hover { 
-            background: #7329c7; 
-            transform: translateY(-3px); 
-            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4); 
-        }
-        
-        .btn-secondary { 
-            background: var(--secondary-color); 
-            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
-        }
-        
-        .btn-secondary:hover { 
-            background: #0097a7; 
-            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
-        }
-        
-        .quiz-result {
-            font-size: var(--font-lg);
-            font-weight: 700;
-            color: var(--text-color);
-            margin-top: 20px;
-            text-align: center;
-            padding: 20px;
-            background: rgba(138, 43, 226, 0.1);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        /* Sidebar */
-        .sidebar { 
-            flex: 1; 
-        }
-        
-        .sidebar-widget { 
-            background: var(--card-bg); 
-            border-radius: 10px; 
-            padding: 25px; 
-            margin-bottom: 30px; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--border-color);
-        }
-        
-        .sidebar-widget h3 { 
-            margin-bottom: 20px; 
-            padding-bottom: 10px; 
-            border-bottom: 2px solid var(--primary-color); 
-            color: var(--text-color); 
-            font-weight: 700;
-            font-size: var(--font-lg);
-        }
-        
-        .ad-container { 
-            background: var(--dark-bg); 
-            padding: 20px; 
-            border-radius: 8px; 
-            text-align: center; 
-            margin: 20px 0; 
-            border: 1px dashed var(--border-color); 
-            min-height: 150px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-direction: column;
-        }
-        
-        .ad-label { 
-            display: block; 
-            text-align: center; 
-            font-size: var(--font-xs); 
-            color: var(--text-muted); 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin-bottom: 10px; 
-        }
-        
-        .featured-list { 
-            list-style: none; 
-        }
-        
-        .featured-list li { 
-            padding: 12px 0; 
-            border-bottom: 1px solid var(--border-color); 
-            display: flex; 
-            align-items: center; 
-            transition: all 0.3s ease;
-        }
-        
-        .featured-list li:hover {
-            background: rgba(255, 255, 255, 0.02);
-            padding-left: 5px;
-        }
-        
-        [data-theme="light"] .featured-list li:hover {
-            background: rgba(0, 0, 0, 0.02);
-        }
-        
-        .featured-list li:last-child { 
-            border-bottom: none; 
-        }
-        
-        .featured-list img { 
-            width: 40px; 
-            height: 40px; 
-            object-fit: cover; 
-            border-radius: 5px; 
-            margin-right: 10px; 
-            border: 1px solid var(--border-color); 
-        }
-        
-        .featured-list a {
-            color: var(--text-color);
-            transition: all 0.3s ease;
+            font-weight: 500;
             font-size: var(--font-md);
         }
         
-        .featured-list a:hover {
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+        }
+        
+        .page-nav {
+            background: var(--dark-bg);
+        }
+
+        /* Modal for enlarged view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-info {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+        
+        .modal-download {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: var(--font-md);
+            font-weight: 500;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-download:hover {
+            background: #7a1fd2;
+            transform: translateY(-2px);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
             color: var(--primary-color);
+            transform: scale(1.1);
         }
 
         /* Footer */
@@ -848,20 +772,12 @@
         }
         
         @media (max-width: 992px) {
-            .main-content { 
-                flex-direction: column; 
+            .sets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
-            .articles { 
-                margin-right: 0; 
-            }
-            
-            .hero h1 {
+            .page-header h1 {
                 font-size: var(--font-3xl);
-            }
-            
-            .hero p {
-                font-size: var(--font-md);
             }
         }
         
@@ -936,31 +852,42 @@
                 display: flex;
             }
             
-            .hero { 
-                padding: 60px 0;
+            .sets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
             }
             
-            .hero h1 { 
+            .set-display {
+                padding: 15px;
+            }
+            
+            .head {
+                width: 28px;
+                height: 28px;
+                background-size: 28px 490px;
+            }
+            
+            .frame1 { background-position: 0 0; }
+            .frame2 { background-position: 0 -28px; }
+            .frame3 { background-position: 0 -56px; }
+            .frame4 { background-position: 0 -84px; }
+            
+            .body-img {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .page-header {
+                padding: 40px 0;
+            }
+            
+            .page-header h1 {
                 font-size: var(--font-2xl);
             }
             
-            .btn {
-                padding: 10px 20px;
-                margin: 5px 0;
-                display: block;
-                width: 100%;
-                max-width: 280px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .quiz-options {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .quiz-options button {
-                width: 100%;
+            .disclaimer-banner {
+                padding: 12px 15px;
+                margin: 0 20px 20px;
             }
             
             .footer-content { 
@@ -968,11 +895,16 @@
                 gap: 20px;
             }
             
-            .article-img {
-                height: 180px;
+            .pagination a {
+                padding: 8px 12px;
+                font-size: var(--font-sm);
+            }
+            
+            .download-buttons {
+                flex-direction: column;
             }
         }
-        
+
         @media (max-width: 480px) {
             :root {
                 --font-xs: 0.65rem;
@@ -989,29 +921,42 @@
                 font-size: var(--font-xl);
             }
             
-            .hero {
-                padding: 40px 0;
+            .sets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
             }
             
-            .hero h1 {
+            .head {
+                width: 24px;
+                height: 24px;
+                background-size: 24px 420px;
+            }
+            
+            .frame1 { background-position: 0 0; }
+            .frame2 { background-position: 0 -24px; }
+            .frame3 { background-position: 0 -48px; }
+            .frame4 { background-position: 0 -72px; }
+            
+            .body-img {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .page-header h1 {
                 font-size: var(--font-xl);
             }
             
-            .hero p {
+            .page-header p {
                 font-size: var(--font-md);
             }
             
-            .article-content {
-                padding: 15px;
+            .disclaimer-banner {
+                padding: 10px 12px;
+                margin: 0 15px 15px;
             }
             
-            .sidebar-widget {
-                padding: 15px;
-            }
-            
-            .featured-list img {
-                width: 35px;
-                height: 35px;
+            .pagination {
+                flex-wrap: wrap;
             }
             
             footer {
@@ -1034,6 +979,22 @@
             }
         }
 
+        /* No results styling */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            font-size: var(--font-lg);
+        }
+        
+        .no-results::before {
+            content: "😢";
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
         /* Prevent zoom on focus for iOS */
         @media screen and (max-width: 768px) {
             input, select, textarea {
@@ -1059,15 +1020,6 @@
             outline-offset: 2px;
         }
     </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VVS6GWC596');
-</script>
 </head>
 <body>
     <header>
@@ -1075,49 +1027,49 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                        <img src="../image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
                     </a>
                 </div>
                 <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Beranda</a></li>
                         <li class="dropdown">
                             <a href="#">Uploads</a>
                             <ul class="dropdown-menu">
                                 <li><a href="heads.html">Heads</a></li>
                                 <li><a href="bodies.html">Bodies</a></li>
                                 <li><a href="hats.html">Hats</a></li>
-                                <li><a href="upload-sets.html">Upload Sets</a></li>
+                                <li><a href="upload-sets.html">Set Upload</a></li>
                                 <li><a href="templates.html">Templates</a></li>
-                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
-                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Era) ↗</a></li>
-                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Classic) ↗</a></li>
-                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Ol' West) ↗</a></li>
-                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Zone) ↗</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (oleh DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Zone) ↗</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Guides - How to?</a>
+                            <a href="#">Panduan - Bagaimana?</a>
                             <ul class="dropdown-menu">
                                 <li><a href="upload.html">Upload</a></li>
-                                <li><a href="trade-guide.html">Trade</a></li>
-                                <li><a href="job-guide.html">Get Gralats</a></li>
-                                <li><a href="events-guide.html">Get Event Coins</a></li>
+                                <li><a href="trade-guide.html">Perdagangan</a></li>
+                                <li><a href="job-guide.html">Dapatkan Gralats</a></li>
+                                <li><a href="events-guide.html">Dapatkan Koin Event</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Trade Table</a>
+                            <a href="#">Tabel Perdagangan</a>
                             <ul class="dropdown-menu">
-                                  <li><a href="sellables-calculator.html">Sellables Calculator</a></li>
-                                <li><a href="advanced-calculator.html">Advanced Calculator</a></li>
-                                <li><a href="ratio-history.html">Ratio History</a></li>
-                                <li><a href="profit-loss.html">Profit & Loss Tracker</a></li>
-                                <li><a href="price-house.html">Price House</a></li>
+                                  <li><a href="sellables-calculator.html">Kalkulator Sellables</a></li>
+                                <li><a href="advanced-calculator.html">Kalkulator Lanjutan</a></li>
+                                <li><a href="ratio-history.html">Riwayat Rasio</a></li>
+                                <li><a href="profit-loss.html">Pelacak Untung & Rugi</a></li>
+                                <li><a href="price-house.html">Daftar Harga</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
-                        <li><a href="guns.html">Gun Ratings</a></li>
+                        <li><a href="secret-achievements.html">Pencapaian Rahasia</a></li>
+                        <li><a href="guns.html">Rating Senjata</a></li>
                     </ul>
                     
                     <!-- Mobile Actions Container - Side by Side -->
@@ -1125,19 +1077,19 @@
                         <!-- Mobile Language Selector -->
                         <div class="language-selector">
                             <button class="language-btn" id="mobile-language-btn">
-                                <img src="https://flagcdn.com/w40/us.png" alt="English">
-                                <span>English</span>
+                                <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
+                                <span>Indonesia</span>
                             </button>
                             <div class="mobile-language-options" id="mobile-language-options">
-                                <a href="trade-guide.html">
+                                <a href="../upload-sets.html">
                                     <img src="https://flagcdn.com/w40/us.png" alt="English">
                                     <span>English</span>
                                 </a>
-                                <a href="pt/trade-guide.html">
+                                <a href="../pt/upload-sets.html">
                                     <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                     <span>Português</span>
                                 </a>
-                                <a href="id/trade-guide.html">
+                                <a href="upload-sets.html">
                                     <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                     <span>Indonesia</span>
                                 </a>
@@ -1161,19 +1113,19 @@
                     <!-- Language Selector -->
                     <div class="language-selector">
                         <button class="language-btn" id="desktop-language-btn">
-                            <img src="https://flagcdn.com/w40/us.png" alt="English">
-                            <span>English</span>
+                            <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
+                            <span>Indonesia</span>
                         </button>
                         <div class="language-options" id="desktop-language-options">
-                            <a href="trade-guide.html">
+                            <a href="../upload-sets.html">
                                 <img src="https://flagcdn.com/w40/us.png" alt="English">
                                 <span>English</span>
                             </a>
-                            <a href="pt/trade-guide.html">
+                            <a href="../pt/upload-sets.html">
                                 <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                 <span>Português</span>
                             </a>
-                            <a href="id/trade-guide.html">
+                            <a href="upload-sets.html">
                                 <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                 <span>Indonesia</span>
                             </a>
@@ -1194,163 +1146,43 @@
         </div>
     </header>
 
-    <section class="hero">
+    <div class="page-header">
         <div class="container">
-            <div class="hero-content">
-                <h1 id="hero-title">Master Graal Era Trading</h1>
-                <p id="hero-description">Learn expert strategies, avoid common mistakes, and use our interactive tutorial to become a trading expert in Graal Era.</p>
-            </div>
+            <h1 id="page-title">Set Upload Graal Era</h1>
+            <p id="page-description">Jelajahi dan unduh kombinasi head dan body lengkap untuk karaktermu.</p>
         </div>
-    </section>
+    </div>
+
+    <!-- Disclaimer Banner -->
+    <div class="container">
+        <div class="disclaimer-banner">
+            <p><strong>Sangkalan:</strong> Semua gambar yang diunggah dibuat oleh pengguna dan tersedia untuk umum di dalam GraalOnline. GraalGuide tidak mengklaim kepemilikan atas konten buatan pengguna apa pun. Jika kamu adalah pembuatnya dan ingin uploadmu dihapus, silakan hubungi kami melalui <strong>graalguide.contact@gmail.com</strong></p>
+        </div>
+    </div>
 
     <div class="container">
-        <div class="main-content">
-            <div class="articles">
-                <!-- Introduction -->
-                <article class="article">
-                    <div class="article-content">
-                        <span class="tag tag-trading">Trading</span>
-                        <span class="tag tag-guide">Guide</span>
-                        <h2 id="intro-title">Introduction to Graal Era Trading</h2>
-                        <div class="article-meta" id="intro-date">Updated on January 1, 2026</div>
-                        <p id="intro-text">Trading is a key part of Era's economy. By buying and selling items, you can earn Gralats, Trochus, and other valuable resources. This tutorial will teach you the basics, advanced strategies, and tools to succeed.</p>
-                    </div>
-                </article>
-
-                <!-- Basics of Trading -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="basics-title">Basics of Trading</h2>
-                        <div class="tip">
-                            <h3 id="what-is-trading">What is Trading?</h3>
-                            <p id="what-is-trading-text">Trading involves exchanging items, Gralats, or Trochus with other players. It's a great way to get the items you need while earning profits.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="key-terms-title">Key Terms</h3>
-                            <ul>
-                                <li><strong id="term-gralats">Gralats</strong>: <span id="term-gralats-desc">The main currency in Era.</span></li>
-                                <li><strong id="term-trochus">Trochus</strong>: <span id="term-trochus-desc">A secondary currency used for trading.</span></li>
-                                <li><strong id="term-sellables">Sellables</strong>: <span id="term-sellables-desc">Items that can be sold for Gralats or Trochus.</span></li>
-                                <li><strong id="term-ratio">Ratio</strong>: <span id="term-ratio-desc">The exchange rate between Trochus and Gralats (e.g., 1 Trochus : $4 Gralats).</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Interactive Tutorial -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="tutorial-title">Interactive Trading Tutorial</h2>
-                        <div class="interactive-tutorial" id="interactiveTutorial">
-                            <h3 id="quiz-title">Test Your Trading Knowledge!</h3>
-                            <p id="quiz-desc">Answer the following questions to test your understanding of Trading.</p>
-                            <div id="quizContainer"></div>
-                            <div id="quizResult" class="quiz-result"></div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Guide for Successful Trading -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="success-title">Guide for Successful Trading</h2>
-                        <div class="tip">
-                            <h3 id="strategy-buy-low">Buy Low, Sell High</h3>
-                            <p id="strategy-buy-low-text">Purchase items when they're cheap (e.g., during events) and sell them when prices rise.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-diversify">Diversify Your Portfolio</h3>
-                            <p id="strategy-diversify-text">Trade a variety of items to reduce risk. Don't put all your Trochus into one type of item.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-patience">Patience is Key</h3>
-                            <p id="strategy-patience-text">Wait for the right opportunity. Don't rush into bad deals.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Advanced Strategies -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="advanced-title">Advanced Trading Strategies</h2>
-                        <div class="tip">
-                            <h3 id="strategy-flipping">Flipping Items</h3>
-                            <p id="strategy-flipping-text">Buy undervalued items and sell them for a profit. Research prices to find good deals.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-event">Event Trading</h3>
-                            <p id="strategy-event-text">During events, buy rare items and sell them later when they become more valuable.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="strategy-bulk">Bulk Trading</h3>
-                            <p id="strategy-bulk-text">Trade in large quantities to negotiate better deals with other players.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Common Mistakes to Avoid -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="mistakes-title">Common Trading Mistakes to Avoid</h2>
-                        <div class="tip">
-                            <h3 id="mistake-overpaying">Overpaying</h3>
-                            <p id="mistake-overpaying-text">Always check the value of items before trading. Use tools like the <a href="sellables-calculator.html" id="calculator-link">Sellables Calculator</a>.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="mistake-ratios">Ignoring Ratios</h3>
-                            <p id="mistake-ratios-text">Understanding ratios is crucial for fair trades. Don't accept deals that don't make sense.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="mistake-scams">Scams</h3>
-                            <p id="mistake-scams-text">Be cautious of fake offers or misleading trades. Always double-check before confirming.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Tools and Resources -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="tools-title">Trading Tools and Resources</h2>
-                        <div class="tip">
-                            <h3 id="tool-calculator">Sellables Calculator</h3>
-                            <p id="tool-calculator-text">Use the <a href="sellables-calculator.html" id="calculator-link2">Sellables Calculator</a> to determine the value of your items and make informed trades.</p>
-                        </div>
-                        <div class="tip">
-                            <h3 id="tool-community">Community Forums</h3>
-                            <p id="tool-community-text">Join forums or Discord servers to discuss trading strategies and stay updated on market trends.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Conclusion -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="conclusion-title">Conclusion</h2>
-                        <p id="conclusion-text">Trading in Era can be highly rewarding if you follow these strategies. Practice, experiment, and always stay informed. Happy trading!</p>
-                    </div>
-                </article>
+        <div class="gallery-content">
+            <div class="sets-grid" id="sets-container">
+                <!-- Sets will be populated by JavaScript -->
             </div>
+            
+            <ul class="pagination">
+                <li><a href="#" class="page-nav" data-page="prev">&laquo;</a></li>
+                <li><a href="#" class="active" data-page="1">1</a></li>
+                <li><a href="#" data-page="2">2</a></li>
+                <li><a href="#" data-page="3">3</a></li>
+                <li><a href="#" class="page-nav" data-page="next">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
 
-            <div class="sidebar">
-                <div class="sidebar-widget">
-                    <h3 id="tools-title-sidebar">Trading Tools</h3>
-                    <ul class="featured-list">
-                        <li>
-                            <a href="sellables-calculator.html" id="tool-calculator-link">Sellables Calculator</a>
-                        </li>
-                        <li>
-                            <a href="ratio-history.html" id="tool-ratio-link">Ratio History</a>
-                        </li>
-                        <li>
-                            <a href="profit-loss.html" id="tool-profit-link">Profit & Loss Tracker</a>
-                        </li>
-                        <li>
-                            <a href="price-house.html" id="tool-price-link">Price House</a>
-                        </li>
-                    </ul>
-                    <a href="sellables-calculator.html" class="btn" style="width: 100%; text-align: center; margin-top: 10px;" id="calculator-btn">Use Calculator</a>
-                </div>  
-            </div>
+    <!-- Modal for enlarged view -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="enlarged-img">
+        <div class="modal-info">
+            <p id="modal-text">Klik tombol di bawah untuk mengunduh gambar ini</p>
+            <button class="modal-download" id="modal-download">Unduh Gambar</button>
         </div>
     </div>
 
@@ -1358,39 +1190,39 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title-footer">About GraalGuide</h3>
-                    <p id="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
-                    <p><em id="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                    <h3 id="about-title">Tentang GraalGuide</h3>
+                    <p id="about-desc">GraalGuide adalah sumber daya buatan penggemar terbaik untuk pemain Graal Era. Kami menyediakan alat, panduan, dan sumber daya untuk meningkatkan pengalaman bermainmu.</p>
+                    <p><em id="disclaimer">GraalGuide tidak berafiliasi dengan GraalOnline atau Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3 id="links-title-footer">Quick Links</h3>
+                    <h3 id="links-title">Tautan Cepat</h3>
                     <ul>
-                        <li><a href="index.html" id="link-home-footer">Home</a></li>
-                        <li><a href="upload.html" id="link-achievements-footer">Uploads</a></li>
-                        <li><a href="trade-guide.html" id="link-events-footer">Trading Guide</a></li>
-                        <li><a href="secret-achievements.html" id="link-gralats-footer">Secret Achievement</a></li>
+                        <li><a href="index.html" id="link1">Beranda</a></li>
+                        <li><a href="upload.html" id="link2">Uploads</a></li>
+                        <li><a href="trade-guide.html" id="link3">Panduan Perdagangan</a></li>
+                        <li><a href="secret-achievements.html" id="link4">Pencapaian Rahasia</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="legal-title-footer">Legal & Policies</h3>
+                    <h3 id="legal-title">Legal & Kebijakan</h3>
                     <ul>
-                        <li><a href="privacy-policy.html" id="link-privacy-footer">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" id="link-terms-footer">Terms of Service</a></li>
-                        <li><a href="cookie-policy.html" id="link-cookie-footer">Cookie Policy</a></li>
-                        <li><a href="disclaimer.html" id="link-disclaimer-footer">Disclaimer</a></li>
+                        <li><a href="privacy-policy.html" id="policy1">Kebijakan Privasi</a></li>
+                        <li><a href="terms-of-service.html" id="policy2">Ketentuan Layanan</a></li>
+                        <li><a href="cookie-policy.html" id="policy3">Kebijakan Cookie</a></li>
+                        <li><a href="disclaimer.html" id="policy4">Sangkalan</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="connect-title-footer">Connect</h3>
+                    <h3 id="connect-title">Terhubung</h3>
                     <ul>
-                        <li><a href="about-me.html" id="link-discord-footer">About Me</a></li>
-                        <li><a href="https://www.youtube.com/@azrxc" id="link-youtube-footer">YouTube</a></li>
-                        <li><a href="contact-us.html" id="link-contact-footer">Contact Us</a></li>
+                        <li><a href="about-me.html" id="connect1">Tentang Saya</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc" id="connect2">YouTube</a></li>
+                        <li><a href="contact-us.html" id="connect3">Hubungi Kami</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright-footer">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright">&copy; 2025 GraalGuide.com. Seluruh hak cipta dilindungi. Semua merek dagang adalah milik pemiliknya masing-masing.</p>
             </div>
         </div>
     </footer>
@@ -1405,81 +1237,8 @@
             localStorage.setItem('theme', newTheme);
         }
 
-        // Quiz Questions and Answers
-        const quizQuestions = [
-            {
-                question: "Is it a good idea to buy items during events when they're cheap?",
-                answer: true
-            },
-            {
-                question: "Should you always accept the first trade offer you receive?",
-                answer: false
-            },
-            {
-                question: "Is it important to check the ratio before trading?",
-                answer: true
-            },
-            {
-                question: "Should you trade all your Trochus for one rare item?",
-                answer: false
-            },
-            {
-                question: "Is patience important when trading?",
-                answer: true
-            }
-        ];
-
-        let currentQuestion = 0;
-        let score = 0;
-
-        // Display Quiz Questions
-        function displayQuiz() {
-            const quizContainer = document.getElementById("quizContainer");
-            const quizResult = document.getElementById("quizResult");
-
-            if (currentQuestion < quizQuestions.length) {
-                const question = quizQuestions[currentQuestion];
-                quizContainer.innerHTML = `
-                    <div class="quiz-question">
-                        <p>${question.question}</p>
-                        <div class="quiz-options">
-                            <button class="btn" onclick="checkAnswer(true)">Yes</button>
-                            <button class="btn btn-secondary" onclick="checkAnswer(false)">No</button>
-                        </div>
-                    </div>
-                `;
-            } else {
-                quizContainer.innerHTML = "";
-                const pct = Math.round((score / quizQuestions.length) * 100);
-                const message = pct === 100 ? "Perfect score! You really know your trades." :
-                    pct >= 60 ? "Nice work! You've got a solid grasp on trading." :
-                    "Give the guide another read and try again!";
-                quizResult.innerHTML = `
-                    <p>Quiz Complete! Your score is ${score} out of ${quizQuestions.length}.</p>
-                    <p>${message}</p>
-                    <button class="btn" onclick="retakeQuiz()">Retake Quiz</button>
-                `;
-            }
-        }
-
-        // Check Answer
-        function checkAnswer(userAnswer) {
-            const question = quizQuestions[currentQuestion];
-            if (userAnswer === question.answer) {
-                score++;
-            }
-            currentQuestion++;
-            displayQuiz();
-        }
-
-        // Retake Quiz
-        function retakeQuiz() {
-            currentQuestion = 0;
-            score = 0;
-            document.getElementById("quizResult").innerHTML = "";
-            displayQuiz();
-        }
-
+        // Set default language
+        let currentLang = 'en';
 
         // Toggle language options
         function toggleLanguageOptions(buttonId, optionsId) {
@@ -1502,7 +1261,273 @@
             }
         }
 
-        // Initialize language and theme
+        // Upload Sets data
+        const setsData = [
+            { 
+                headImage: "../image/heads/184.png",
+                bodyImage: "../image/bodies/411.png",
+            },
+            { 
+                headImage: "../image/heads/185.gif",
+                bodyImage: "../image/bodies/412.png",
+            },
+            { 
+                headImage: "../image/heads/186.png",
+                bodyImage: "../image/bodies/413.png",
+            },
+            { 
+                headImage: "../image/heads/201.png",
+                bodyImage: "../image/bodies/414.png",
+            },
+            { 
+                headImage: "../image/heads/210.gif",
+                bodyImage: "../image/bodies/416.png",
+            },
+            { 
+                headImage: "../image/heads/212.png",
+                bodyImage: "../image/bodies/417.png",
+            },
+            { 
+                headImage: "../image/heads/213.gif",
+                bodyImage: "../image/bodies/418.png",
+            },
+            { 
+                headImage: "../image/heads/214.gif",
+                bodyImage: "../image/bodies/419.png",
+            },
+            { 
+                headImage: "../image/heads/216.gif",
+                bodyImage: "../image/bodies/420.png",
+            },
+            { 
+                headImage: "../image/heads/217.png",
+                bodyImage: "../image/bodies/421.png",
+            },
+            { 
+                headImage: "../image/heads/218.gif",
+                bodyImage: "../image/bodies/422.png",
+            },
+            { 
+                headImage: "../image/heads/219.gif",
+                bodyImage: "../image/bodies/423.png",
+            },
+            { 
+                headImage: "../image/heads/231.gif",
+                bodyImage: "../image/bodies/425.png",
+            },
+            { 
+                headImage: "../image/heads/235.gif",
+                bodyImage: "../image/bodies/426.png",
+            },
+            { 
+                headImage: "../image/heads/236.png",
+                bodyImage: "../image/bodies/427.png",
+            },
+            { 
+                headImage: "../image/heads/237.gif",
+                bodyImage: "../image/bodies/428.png",
+            },
+            { 
+                headImage: "../image/heads/240.gif",
+                bodyImage: "../image/bodies/429.png",
+            },
+            { 
+                headImage: "../image/heads/241.gif",
+                bodyImage: "../image/bodies/430.png",
+            },
+            { 
+                headImage: "../image/heads/243.png",
+                bodyImage: "../image/bodies/433.png",
+            },
+            { 
+                headImage: "../image/heads/245.png",
+                bodyImage: "../image/bodies/432.png",
+            },
+            { 
+                headImage: "../image/heads/244.png",
+                bodyImage: "../image/bodies/432.png",
+            },
+            { 
+                headImage: "../image/heads/242.png",
+                bodyImage: "../image/bodies/431.png",
+            },
+            // Add more sets as needed
+        ];
+
+        // Configuration
+        const itemsPerPage = 15;
+        let currentPage = 1;
+        let filteredSets = [...setsData];
+        let currentDownloadUrl = '';
+        let currentDownloadName = '';
+
+        // Function to download an image
+        function downloadImage(url, filename) {
+            // Create a temporary anchor element
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Function to render sets based on current page
+        function renderSets() {
+            const setsContainer = document.getElementById('sets-container');
+            setsContainer.innerHTML = '';
+            
+            // Calculate which items to show
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const setsToShow = filteredSets.slice(startIndex, endIndex);
+            
+            if (setsToShow.length === 0) {
+                setsContainer.innerHTML = '<div class="no-results">No upload sets found.</div>';
+                return;
+            }
+            
+            // Create HTML for each set
+            setsToShow.forEach((set, index) => {
+                const setElement = document.createElement('div');
+                setElement.className = 'set-item';
+                
+                setElement.innerHTML = `
+                    <div class="set-display">
+                        <div class="head-display">
+                            <div class="head frame1" style="background-image:url('${set.headImage}')" data-head="${set.headImage}" data-name="Set ${startIndex + index + 1} - Head"></div>
+                            <div class="head frame2" style="background-image:url('${set.headImage}')" data-head="${set.headImage}" data-name="Set ${startIndex + index + 1} - Head"></div>
+                            <div class="head frame3" style="background-image:url('${set.headImage}')" data-head="${set.headImage}" data-name="Set ${startIndex + index + 1} - Head"></div>
+                            <div class="head frame4" style="background-image:url('${set.headImage}')" data-head="${set.headImage}" data-name="Set ${startIndex + index + 1} - Head"></div>
+                        </div>
+                        <img src="${set.bodyImage}" class="body-img" data-body="${set.bodyImage}" data-name="Set ${startIndex + index + 1} - Body">
+                    </div>
+                    <div class="set-info">
+                        <div class="download-buttons">
+                            <button class="download-btn head-btn" data-head="${set.headImage}" data-name="Set ${startIndex + index + 1} - Head">
+                                <span>Download Head</span>
+                            </button>
+                            <button class="download-btn" data-body="${set.bodyImage}" data-name="Set ${startIndex + index + 1} - Body">
+                                <span>Download Body</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                setsContainer.appendChild(setElement);
+            });
+            
+            // Add event listeners for head frames
+            document.querySelectorAll('.head').forEach(head => {
+                head.addEventListener('click', function() {
+                    const headUrl = this.getAttribute('data-head');
+                    const headName = this.getAttribute('data-name');
+                    
+                    document.getElementById('enlarged-img').src = headUrl;
+                    document.getElementById('modal-text').textContent = 'Click the button below to download this image';
+                    
+                    // Set up download functionality
+                    currentDownloadUrl = headUrl;
+                    currentDownloadName = headName;
+                    
+                    document.getElementById('image-modal').style.display = 'flex';
+                });
+            });
+            
+            // Add event listeners for body images
+            document.querySelectorAll('.body-img').forEach(body => {
+                body.addEventListener('click', function() {
+                    const bodyUrl = this.getAttribute('data-body');
+                    const bodyName = this.getAttribute('data-name');
+                    
+                    document.getElementById('enlarged-img').src = bodyUrl;
+                    document.getElementById('modal-text').textContent = 'Click the button below to download this image';
+                    
+                    // Set up download functionality
+                    currentDownloadUrl = bodyUrl;
+                    currentDownloadName = bodyName;
+                    
+                    document.getElementById('image-modal').style.display = 'flex';
+                });
+            });
+            
+            // Add event listeners for download buttons
+            document.querySelectorAll('.download-btn.head-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const headUrl = this.getAttribute('data-head');
+                    const headName = this.getAttribute('data-name');
+                    downloadImage(headUrl, headName);
+                });
+            });
+            
+            document.querySelectorAll('.download-btn:not(.head-btn)').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const bodyUrl = this.getAttribute('data-body');
+                    const bodyName = this.getAttribute('data-name');
+                    downloadImage(bodyUrl, bodyName);
+                });
+            });
+            
+            // Update pagination
+            updatePagination();
+        }
+
+        // Function to update pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredSets.length / itemsPerPage);
+            const paginationContainer = document.querySelector('.pagination');
+            
+            // Clear existing pagination except for prev/next buttons
+            const prevButton = paginationContainer.querySelector('[data-page="prev"]').parentNode;
+            const nextButton = paginationContainer.querySelector('[data-page="next"]').parentNode;
+            
+            paginationContainer.innerHTML = '';
+            paginationContainer.appendChild(prevButton);
+            
+            // Add page numbers
+            const maxVisiblePages = window.innerWidth < 768 ? 3 : 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = i;
+                a.dataset.page = i;
+                
+                if (i === currentPage) {
+                    a.classList.add('active');
+                }
+                
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPage = parseInt(this.dataset.page);
+                    renderSets();
+                    window.scrollTo({ top: document.getElementById('sets-container').offsetTop - 100, behavior: 'smooth' });
+                });
+                
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+            }
+            
+            paginationContainer.appendChild(nextButton);
+            
+            // Update button states
+            const prevBtn = document.querySelector('[data-page="prev"]');
+            const nextBtn = document.querySelector('[data-page="next"]');
+            
+            if (prevBtn) prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
+            if (nextBtn) nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+        }
+
+        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             // Check for saved theme preference or default to dark
             const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -1562,6 +1587,48 @@
                 }
             });
             
+            // Initial render
+            renderSets();
+            
+            // Pagination event listeners
+            document.querySelector('[data-page="prev"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderSets();
+                    window.scrollTo({ top: document.getElementById('sets-container').offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+            
+            document.querySelector('[data-page="next"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                const totalPages = Math.ceil(filteredSets.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderSets();
+                    window.scrollTo({ top: document.getElementById('sets-container').offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+            
+            // Modal functionality
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('image-modal').style.display = 'none';
+            });
+            
+            // Modal download button
+            document.getElementById('modal-download').addEventListener('click', function() {
+                if (currentDownloadUrl) {
+                    downloadImage(currentDownloadUrl, currentDownloadName);
+                }
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('image-modal')) {
+                    document.getElementById('image-modal').style.display = 'none';
+                }
+            });
+            
             // Handle dropdown toggles on mobile
             if (window.innerWidth <= 1100) {
                 document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
@@ -1601,8 +1668,11 @@
                 });
             }
             
-            // Start Quiz
-            displayQuiz();
+            // Google Analytics
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-VVS6GWC596');
         });
     </script>
 </body>
