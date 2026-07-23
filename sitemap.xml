@@ -1,127 +1,631 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xhtml="http://www.w3.org/1999/xhtml"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
-  <loc>https://www.graalguide.com/</loc>
-  <lastmod>2025-10-22T08:38:01+00:00</lastmod>
-  <priority>1.00</priority>
+  <loc>https://graalguide.com/index.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/index.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/index.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/index.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/index.html"/>
+  <lastmod>2026-07-23T16:52:05+08:00</lastmod>
+  <priority>1.0</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/index.html</loc>
-  <lastmod>2025-10-22T08:38:01+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/pt/index.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/index.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/index.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/index.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/index.html"/>
+  <lastmod>2026-07-23T16:16:50+08:00</lastmod>
+  <priority>1.0</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/heads.html</loc>
-  <lastmod>2025-10-22T08:38:01+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/id/index.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/index.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/index.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/index.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/index.html"/>
+  <lastmod>2026-07-23T16:16:50+08:00</lastmod>
+  <priority>1.0</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/bodies.html</loc>
-  <lastmod>2025-10-22T08:38:02+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/heads.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/heads.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/heads.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/heads.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/heads.html"/>
+  <lastmod>2026-07-24T07:28:25+08:00</lastmod>
+  <priority>0.9</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/upload-sets.html</loc>
-  <lastmod>2025-10-22T08:38:02+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/pt/heads.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/heads.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/heads.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/heads.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/heads.html"/>
+  <lastmod>2026-07-24T07:35:40+08:00</lastmod>
+  <priority>0.9</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/templates.html</loc>
-  <lastmod>2025-10-22T08:38:02+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/id/heads.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/heads.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/heads.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/heads.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/heads.html"/>
+  <lastmod>2026-07-24T07:35:40+08:00</lastmod>
+  <priority>0.9</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/upload.html</loc>
-  <lastmod>2025-10-22T08:38:02+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/bodies.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/bodies.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/bodies.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/bodies.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/bodies.html"/>
+  <lastmod>2026-07-24T07:28:25+08:00</lastmod>
+  <priority>0.9</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/trade-guide.html</loc>
-  <lastmod>2025-10-22T08:38:03+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/pt/bodies.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/bodies.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/bodies.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/bodies.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/bodies.html"/>
+  <lastmod>2026-07-24T07:35:40+08:00</lastmod>
+  <priority>0.9</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/job-guide.html</loc>
-  <lastmod>2025-10-22T08:38:03+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/id/bodies.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/bodies.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/bodies.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/bodies.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/bodies.html"/>
+  <lastmod>2026-07-24T07:35:40+08:00</lastmod>
+  <priority>0.9</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/events-guide.html</loc>
-  <lastmod>2025-10-22T08:38:03+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/hats.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/hats.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/hats.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/hats.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/hats.html"/>
+  <lastmod>2026-07-24T07:28:25+08:00</lastmod>
+  <priority>0.9</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/sellables-calculator.html</loc>
-  <lastmod>2025-10-22T08:38:03+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/pt/hats.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/hats.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/hats.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/hats.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/hats.html"/>
+  <lastmod>2026-07-24T07:35:40+08:00</lastmod>
+  <priority>0.9</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/ratio-history.html</loc>
-  <lastmod>2025-10-22T08:38:03+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/id/hats.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/hats.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/hats.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/hats.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/hats.html"/>
+  <lastmod>2026-07-24T07:35:40+08:00</lastmod>
+  <priority>0.9</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/profit-loss.html</loc>
-  <lastmod>2025-10-22T08:38:04+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/upload.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/upload.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/upload.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/upload.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/upload.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/price-house.html</loc>
-  <lastmod>2025-10-22T08:38:04+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/pt/upload.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/upload.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/upload.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/upload.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/upload.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/secret-achievements.html</loc>
-  <lastmod>2025-10-22T08:38:04+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/id/upload.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/upload.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/upload.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/upload.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/upload.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/privacy-policy.html</loc>
-  <lastmod>2025-10-22T08:38:04+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/upload-sets.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/upload-sets.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/upload-sets.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/upload-sets.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/upload-sets.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/terms-of-service.html</loc>
-  <lastmod>2025-10-22T08:38:05+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/pt/upload-sets.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/upload-sets.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/upload-sets.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/upload-sets.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/upload-sets.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/cookie-policy.html</loc>
-  <lastmod>2025-10-22T08:38:05+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/id/upload-sets.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/upload-sets.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/upload-sets.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/upload-sets.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/upload-sets.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/disclaimer.html</loc>
-  <lastmod>2025-10-22T08:38:05+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/templates.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/templates.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/templates.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/templates.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/templates.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/about-me.html</loc>
-  <lastmod>2025-10-22T08:38:05+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/pt/templates.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/templates.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/templates.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/templates.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/templates.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/contact-us.html</loc>
-  <lastmod>2025-10-22T08:38:05+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/id/templates.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/templates.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/templates.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/templates.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/templates.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/guns.html</loc>
-  <lastmod>2026-07-23T00:00:00+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/trade-guide.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/trade-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/trade-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/trade-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/trade-guide.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://www.graalguide.com/hats.html</loc>
-  <lastmod>2026-07-23T00:00:00+00:00</lastmod>
-  <priority>0.80</priority>
+  <loc>https://graalguide.com/pt/trade-guide.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/trade-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/trade-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/trade-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/trade-guide.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.8</priority>
 </url>
-
+<url>
+  <loc>https://graalguide.com/id/trade-guide.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/trade-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/trade-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/trade-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/trade-guide.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/job-guide.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/job-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/job-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/job-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/job-guide.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/job-guide.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/job-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/job-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/job-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/job-guide.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/job-guide.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/job-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/job-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/job-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/job-guide.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/events-guide.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/events-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/events-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/events-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/events-guide.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/events-guide.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/events-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/events-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/events-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/events-guide.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/events-guide.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/events-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/events-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/events-guide.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/events-guide.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/guns.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/guns.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/guns.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/guns.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/guns.html"/>
+  <lastmod>2026-07-24T06:52:26+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/guns.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/guns.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/guns.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/guns.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/guns.html"/>
+  <lastmod>2026-07-24T06:52:26+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/guns.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/guns.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/guns.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/guns.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/guns.html"/>
+  <lastmod>2026-07-24T06:52:26+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/secret-achievements.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/secret-achievements.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/secret-achievements.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/secret-achievements.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/secret-achievements.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/secret-achievements.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/secret-achievements.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/secret-achievements.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/secret-achievements.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/secret-achievements.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/secret-achievements.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/secret-achievements.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/secret-achievements.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/secret-achievements.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/secret-achievements.html"/>
+  <lastmod>2026-07-23T22:36:17+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/sellables-calculator.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/sellables-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/sellables-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/sellables-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/sellables-calculator.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/sellables-calculator.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/sellables-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/sellables-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/sellables-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/sellables-calculator.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/sellables-calculator.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/sellables-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/sellables-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/sellables-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/sellables-calculator.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/advanced-calculator.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/advanced-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/advanced-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/advanced-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/advanced-calculator.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/advanced-calculator.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/advanced-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/advanced-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/advanced-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/advanced-calculator.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/advanced-calculator.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/advanced-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/advanced-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/advanced-calculator.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/advanced-calculator.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/ratio-history.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/ratio-history.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/ratio-history.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/ratio-history.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/ratio-history.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/ratio-history.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/ratio-history.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/ratio-history.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/ratio-history.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/ratio-history.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/ratio-history.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/ratio-history.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/ratio-history.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/ratio-history.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/ratio-history.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/profit-loss.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/profit-loss.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/profit-loss.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/profit-loss.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/profit-loss.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/profit-loss.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/profit-loss.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/profit-loss.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/profit-loss.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/profit-loss.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/profit-loss.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/profit-loss.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/profit-loss.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/profit-loss.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/profit-loss.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/price-house.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/price-house.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/price-house.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/price-house.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/price-house.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/price-house.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/price-house.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/price-house.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/price-house.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/price-house.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/price-house.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/price-house.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/price-house.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/price-house.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/price-house.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/about-me.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/about-me.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/about-me.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/about-me.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/about-me.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/about-me.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/about-me.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/about-me.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/about-me.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/about-me.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/about-me.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/about-me.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/about-me.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/about-me.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/about-me.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/contact-us.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/contact-us.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/contact-us.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/contact-us.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/contact-us.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/contact-us.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/contact-us.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/contact-us.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/contact-us.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/contact-us.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/contact-us.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/contact-us.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/contact-us.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/contact-us.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/contact-us.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/privacy-policy.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/privacy-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/privacy-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/privacy-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/privacy-policy.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/privacy-policy.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/privacy-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/privacy-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/privacy-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/privacy-policy.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/privacy-policy.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/privacy-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/privacy-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/privacy-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/privacy-policy.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/terms-of-service.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/terms-of-service.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/terms-of-service.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/terms-of-service.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/terms-of-service.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/terms-of-service.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/terms-of-service.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/terms-of-service.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/terms-of-service.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/terms-of-service.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/terms-of-service.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/terms-of-service.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/terms-of-service.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/terms-of-service.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/terms-of-service.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/cookie-policy.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/cookie-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/cookie-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/cookie-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/cookie-policy.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/cookie-policy.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/cookie-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/cookie-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/cookie-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/cookie-policy.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/cookie-policy.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/cookie-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/cookie-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/cookie-policy.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/cookie-policy.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/disclaimer.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/disclaimer.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/disclaimer.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/disclaimer.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/disclaimer.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/disclaimer.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/disclaimer.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/disclaimer.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/disclaimer.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/disclaimer.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/disclaimer.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/disclaimer.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/disclaimer.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/disclaimer.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/disclaimer.html"/>
+  <lastmod>2026-07-23T22:10:11+08:00</lastmod>
+  <priority>0.3</priority>
+</url>
 
 </urlset>

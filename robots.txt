@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /test.html
+
+Sitemap: https://graalguide.com/sitemap.xml
