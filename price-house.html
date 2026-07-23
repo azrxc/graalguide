@@ -551,7 +551,65 @@
         .price-trend-stable {
             color: #FFC107;
         }
-        
+
+        /* Community price column */
+        .community-price-cell {
+            min-width: 130px;
+        }
+
+        .community-price-display {
+            font-size: var(--font-sm);
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .community-price-display.empty {
+            color: var(--text-muted);
+        }
+
+        .report-price-btn {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: var(--font-xs);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .report-price-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .community-price-form {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            margin-top: 4px;
+        }
+
+        .community-price-form input {
+            width: 90px;
+            padding: 5px 8px;
+            background: var(--input-bg, var(--darker-bg));
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-color);
+            font-size: var(--font-xs);
+        }
+
+        .community-price-form button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: var(--font-xs);
+            cursor: pointer;
+        }
+
         /* Improved Reset Button */
         .reset-btn {
             display: block;
@@ -1102,7 +1160,7 @@
     <div class="page-header">
         <div class="container">
             <h1 id="page-title" data-translate="page-title">Graal Era Price House</h1>
-            <p id="page-description" data-translate="page-description">Find current market values for all tradeable items in Graal Era. Prices are updated regularly based on community trading data.</p>
+            <p id="page-description" data-translate="page-description">Find market values for tradeable items in Graal Era. Price ranges are curated by GraalGuide; check the Community column on each item for live player-reported prices.</p>
         </div>
     </div>
 
@@ -1156,6 +1214,7 @@
                             <th>Price Range</th>
                             <th>Trend</th>
                             <th>Last Updated</th>
+                            <th>Community</th>
                         </tr>
                     </thead>
                     <tbody id="items-container">
@@ -1548,7 +1607,7 @@
         const translations = {
             'en': {
                 'page-title': 'Graal Era Price House',
-                'page-description': 'Find current market values for all tradeable items in Graal Era. Prices are updated regularly based on community trading data.',
+                'page-description': 'Find market values for tradeable items in Graal Era. Price ranges are curated by GraalGuide; check the Community column on each item for live player-reported prices.',
                 'filter-title': 'Filters',
                 'item-type-title': 'Item Type',
                 'item-all': 'All Items',
@@ -1610,7 +1669,7 @@
             },
             'pt': {
                 'page-title': 'Casa de Preços do Graal Era',
-                'page-description': 'Encontre os valores atuais de mercado para todos os itens negociáveis no Graal Era. Os preços são atualizados regularmente com base em dados de trocas da comunidade.',
+                'page-description': 'Encontre os valores de mercado dos itens negociáveis no Graal Era. As faixas de preço são selecionadas pelo GraalGuide; veja a coluna Comunidade em cada item para preços reportados por jogadores em tempo real.',
                 'filter-title': 'Filtros',
                 'item-type-title': 'Tipo de Item',
                 'item-all': 'Todos os Itens',
@@ -1783,6 +1842,8 @@
                     trendSymbol = '→ Stable';
                 }
                 
+                row.dataset.itemName = item.name;
+
                 row.innerHTML = `
                     <td>
                         <div class="item-name">
@@ -1793,13 +1854,25 @@
                     <td class="price-value">${item.price}</td>
                     <td class="${trendClass}">${trendSymbol}</td>
                     <td>${item.updated}</td>
+                    <td class="community-price-cell">
+                        <div class="community-price-display" id="community-${itemSlug(item.name)}">—</div>
+                        <button type="button" class="report-price-btn" data-item="${item.name}">Report price</button>
+                    </td>
                 `;
-                
+
                 itemsContainer.appendChild(row);
             });
-            
+
             // Update pagination info
             updatePaginationInfo();
+
+            // Wire up + populate the community price column for the rows just rendered
+            if (window.initCommunityPrices) window.initCommunityPrices();
+        }
+
+        // Turn an item name into a safe id fragment (e.g. "Winter Staff" -> "winter-staff")
+        function itemSlug(name) {
+            return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
         }
 
         // Function to update pagination info
@@ -2105,6 +2178,145 @@
                 });
             }
         });
+    </script>
+
+    <!-- Community price reporting: per-item crowdsourced "what are you seeing"
+         prices, kept separate from itemsData above (which stays owner-curated). -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+        import {
+            getFirestore, collection, addDoc, query, orderBy, limit, getDocs, serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAh3Anoo9KDzVI2hhSyD6MY13C9TTQr-vg",
+            authDomain: "graal-guide.firebaseapp.com",
+            projectId: "graal-guide",
+            storageBucket: "graal-guide.firebasestorage.app",
+            messagingSenderId: "517152860809",
+            appId: "1:517152860809:web:8bcd4937b93683dc1bf458",
+            measurementId: "G-P69ZNFQJV7"
+        };
+        const firebaseApp = initializeApp(firebaseConfig);
+        const db = getFirestore(firebaseApp);
+
+        function itemSlug(name) {
+            return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        }
+
+        // Most recent 300 submissions across all items, fetched once and grouped
+        // client-side - far cheaper than one query per item.
+        let latestByItem = null;
+
+        async function fetchLatestSubmissions() {
+            if (latestByItem) return latestByItem;
+            latestByItem = {};
+            try {
+                const q = query(collection(db, 'priceSubmissions'), orderBy('createdAt', 'desc'), limit(300));
+                const snap = await getDocs(q);
+                snap.docs.forEach(doc => {
+                    const data = doc.data();
+                    if (!latestByItem[data.itemName]) {
+                        latestByItem[data.itemName] = data;
+                    }
+                });
+            } catch (err) {
+                console.error('Could not load community prices:', err);
+            }
+            return latestByItem;
+        }
+
+        function timeAgo(timestamp) {
+            if (!timestamp || !timestamp.toDate) return '';
+            const ms = Date.now() - timestamp.toDate().getTime();
+            const hours = Math.floor(ms / 3600000);
+            if (hours < 1) return 'just now';
+            if (hours < 24) return `${hours}h ago`;
+            const days = Math.floor(hours / 24);
+            return `${days}d ago`;
+        }
+
+        async function populateCommunityPrices() {
+            const byItem = await fetchLatestSubmissions();
+            document.querySelectorAll('.community-price-display').forEach(el => {
+                const slug = el.id.replace('community-', '');
+                const match = Object.entries(byItem).find(([name]) => itemSlug(name) === slug);
+                if (match) {
+                    const [, data] = match;
+                    el.textContent = `${data.price} (${timeAgo(data.createdAt)})`;
+                    el.classList.remove('empty');
+                } else {
+                    el.textContent = 'No reports yet';
+                    el.classList.add('empty');
+                }
+            });
+        }
+
+        function attachReportButtons() {
+            document.querySelectorAll('.report-price-btn').forEach(btn => {
+                if (btn.dataset.wired) return;
+                btn.dataset.wired = 'true';
+
+                btn.addEventListener('click', function() {
+                    const itemName = this.dataset.item;
+                    const cell = this.closest('.community-price-cell');
+                    if (cell.querySelector('.community-price-form')) return;
+
+                    const form = document.createElement('div');
+                    form.className = 'community-price-form';
+                    form.innerHTML = `
+                        <input type="text" placeholder="e.g. 65,000" maxlength="30">
+                        <button type="button">Send</button>
+                    `;
+                    this.replaceWith(form);
+
+                    const input = form.querySelector('input');
+                    const sendBtn = form.querySelector('button');
+                    input.focus();
+
+                    const submit = async () => {
+                        const value = input.value.trim();
+                        if (!value) return;
+
+                        const cooldownKey = 'lastPriceReportAt';
+                        const lastAt = Number(localStorage.getItem(cooldownKey) || 0);
+                        if (Date.now() - lastAt < 15000) {
+                            form.innerHTML = '<span style="color: var(--text-muted); font-size: var(--font-xs);">Please wait a few seconds before reporting again.</span>';
+                            return;
+                        }
+
+                        sendBtn.disabled = true;
+                        try {
+                            await addDoc(collection(db, 'priceSubmissions'), {
+                                itemName: itemName,
+                                price: value.slice(0, 30),
+                                createdAt: serverTimestamp()
+                            });
+                            localStorage.setItem(cooldownKey, String(Date.now()));
+                            latestByItem = null; // force refresh next time
+                            const display = document.getElementById(`community-${itemSlug(itemName)}`);
+                            if (display) {
+                                display.textContent = `${value} (just now)`;
+                                display.classList.remove('empty');
+                            }
+                            form.remove();
+                        } catch (err) {
+                            console.error('Price report failed:', err);
+                            form.innerHTML = '<span style="color: var(--text-muted); font-size: var(--font-xs);">Could not submit, try again.</span>';
+                        }
+                    };
+
+                    sendBtn.addEventListener('click', submit);
+                    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+                });
+            });
+        }
+
+        // Called by renderItems() in the main script every time the table redraws
+        window.initCommunityPrices = function() {
+            attachReportButtons();
+            populateCommunityPrices();
+        };
     </script>
 </body>
 </html>
