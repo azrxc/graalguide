@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-    <link rel="icon" type="image/png" href="image/a/graalguide.png">
+    <link rel="icon" type="image/png" href="../image/a/graalguide.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Work Guide - GraalGuide: Master Graal Era Jobs</title>
-    <meta name="description" content="Master all jobs in Graal Era with our comprehensive guide. Learn how to maximize your Gralat earnings from Mining, Pizza Making, Digging, and more.">
-    <link rel="alternate" hreflang="en" href="https://graalguide.com/job-guide.html">
-    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/job-guide.html">
-    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/job-guide.html">
-    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/job-guide.html">
+    <title>Guia de Upload - GraalGuide: Domine os Uploads do Graal Era</title>
+    <meta name="description" content="Domine os uploads no Graal Era com nosso guia completo. Aprenda regras, templates e melhores práticas para heads, bodies, escudos e fotos de gangue.">
+    <link rel="alternate" hreflang="en" href="https://graalguide.com/upload.html">
+    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/upload.html">
+    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/upload.html">
+    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/upload.html">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
@@ -18,7 +18,6 @@
             --primary-color: #8a2be2; /* Purple accent */
             --secondary-color: #00bcd4; /* Teal accent */
             --accent-color: #ff5722; /* Orange accent */
-            --success-color: #4CAF50; /* Green for earnings */
             --dark-bg: #121212;
             --darker-bg: #0a0a0a;
             --card-bg: #1e1e1e;
@@ -344,7 +343,7 @@
         /* Hero Section */
         .hero { 
             background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                       url('image/a/gt.jpg') center/cover no-repeat;
+                       url('../image/a/upl.jpg') center/cover no-repeat;
             padding: 100px 0; 
             text-align: center; 
             color: white;
@@ -353,7 +352,7 @@
         
         [data-theme="light"] .hero {
             background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                       url('image/a/gt.jpg') center/cover no-repeat;
+                       url('../image/a/upl.jpg') center/cover no-repeat;
             color: #333;
         }
         
@@ -445,7 +444,16 @@
             margin-bottom: 10px;
             font-weight: 500;
         }
-
+        
+        .tag-news { 
+            background: rgba(41, 121, 255, 0.2); 
+            color: #2979ff; 
+        }
+        
+        [data-theme="light"] .tag-news {
+            background: rgba(41, 121, 255, 0.15); 
+        }
+        
         .tag-guide { 
             background: rgba(76, 175, 80, 0.2); 
             color: #4caf50; 
@@ -455,15 +463,33 @@
             background: rgba(76, 175, 80, 0.15); 
         }
         
-        .tag-jobs { 
-            background: rgba(0, 255, 255, 0.2); 
-            color: #00d5ff; 
+        .tag-achievement { 
+            background: rgba(233, 30, 99, 0.2); 
+            color: #e91e63; 
         }
         
-        [data-theme="light"] .tag-jobs {
-            background: rgba(0, 255, 255, 0.15); 
+        [data-theme="light"] .tag-achievement {
+            background: rgba(233, 30, 99, 0.15); 
         }
-          
+        
+        .tag-upload { 
+            background: rgba(255, 152, 0, 0.2); 
+            color: #ff9800; 
+        }
+        
+        [data-theme="light"] .tag-upload {
+            background: rgba(255, 152, 0, 0.15); 
+        }
+        
+        .tag-trading { 
+            background: rgba(156, 39, 176, 0.2); 
+            color: #9c27b0; 
+        }
+        
+        [data-theme="light"] .tag-trading {
+            background: rgba(156, 39, 176, 0.15); 
+        }
+        
         .article p, .article ul {
             margin-bottom: 15px;
             color: var(--text-muted);
@@ -476,7 +502,7 @@
         }
 
         /* Tip Boxes */
-        .tip, .earnings { 
+        .tip, .warning, .success { 
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
@@ -489,12 +515,17 @@
             border-left-color: var(--primary-color);
         }
         
-        .earnings { 
-            background: rgba(76, 175, 80, 0.1);
-            border-left-color: var(--success-color);
+        .warning { 
+            background: rgba(244, 67, 54, 0.1); 
+            border-left-color: #f44336;
         }
         
-        .tip h3, .earnings h4 { 
+        .success { 
+            background: rgba(76, 175, 80, 0.1); 
+            border-left-color: #4caf50;
+        }
+        
+        .tip h3, .warning h3, .success h3 { 
             margin-top: 0; 
             font-weight: 600;
             font-size: var(--font-lg);
@@ -504,60 +535,62 @@
             color: var(--text-color); 
         }
         
-        .earnings h4 { 
-            color: var(--success-color); 
+        .warning h3 { 
+            color: #f44336; 
         }
         
-        .tip p, .earnings p { 
+        .success h3 { 
+            color: #4caf50; 
+        }
+        
+        .tip p, .warning p, .success p { 
             margin: 10px 0; 
             color: var(--text-muted);
             font-size: var(--font-md);
         }
         
-        .tip ul {
+        .tip ul, .warning ul, .success ul {
             margin-left: 20px;
         }
         
-        .tip ul li {
+        .tip ul li, .warning ul li, .success ul li {
             margin-bottom: 8px;
             color: var(--text-muted);
             font-size: var(--font-md);
         }
 
-        /* Job Comparison Table */
-        .job-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--darker-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
             margin: 20px 0;
+        }
+        
+        .gallery-item {
+            background: var(--dark-bg);
+            border-radius: 8px;
+            overflow: hidden;
             border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
         
-        .job-table th, .job-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        .job-table th {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: 600;
+        .gallery-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
         }
         
-        .job-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .job-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        [data-theme="light"] .job-table tr:hover {
-            background-color: rgba(0, 0, 0, 0.05);
+        .gallery-caption {
+            padding: 10px;
+            text-align: center;
+            font-size: var(--font-sm);
+            color: var(--text-muted);
         }
 
         /* Interactive Tutorial */
@@ -569,14 +602,14 @@
             margin-bottom: 30px;
             border: 1px solid var(--border-color);
         }
-
+        
         .interactive-tutorial h3 {
             margin-top: 0;
             color: var(--text-color);
             font-weight: 700;
             font-size: var(--font-lg);
         }
-
+        
         .quiz-question {
             margin-bottom: 20px;
             padding: 20px;
@@ -584,29 +617,29 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
         }
-
+        
         .quiz-question p {
             font-weight: 600;
             margin-bottom: 15px;
             color: var(--text-color);
             font-size: var(--font-md);
         }
-
+        
         .quiz-options {
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
+        
+        .btn { 
+            display: inline-block; 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 12px 25px; 
             border: none;
-            border-radius: 30px;
-            font-weight: 600;
+            border-radius: 30px; 
+            font-weight: 600; 
             text-transform: uppercase;
             font-size: var(--font-sm);
             margin: 5px;
@@ -614,23 +647,23 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
         }
-
-        .btn:hover {
-            background: #7329c7;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+        
+        .btn:hover { 
+            background: #7329c7; 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4); 
         }
-
-        .btn-secondary {
-            background: var(--secondary-color);
+        
+        .btn-secondary { 
+            background: var(--secondary-color); 
             box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
         }
-
-        .btn-secondary:hover {
-            background: #0097a7;
+        
+        .btn-secondary:hover { 
+            background: #0097a7; 
             box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
         }
-
+        
         .quiz-result {
             font-size: var(--font-lg);
             font-weight: 700;
@@ -641,17 +674,6 @@
             background: rgba(138, 43, 226, 0.1);
             border-radius: 10px;
             border: 1px solid var(--border-color);
-        }
-
-        @media (max-width: 768px) {
-            .quiz-options {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .quiz-options button {
-                width: 100%;
-            }
         }
 
         /* Sidebar */
@@ -891,6 +913,14 @@
             .articles { 
                 margin-right: 0; 
             }
+            
+            .image-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            
+            .hero h1 {
+                font-size: var(--font-3xl);
+            }
         }
         
         @media (max-width: 1100px) {
@@ -976,12 +1006,18 @@
                 font-size: var(--font-md);
             }
             
-            .job-table {
-                font-size: 0.9rem;
+            .image-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
             }
             
-            .job-table th, .job-table td {
-                padding: 10px;
+            .quiz-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quiz-options button {
+                width: 100%;
             }
             
             .footer-content { 
@@ -1004,6 +1040,15 @@
             
             .logo {
                 font-size: var(--font-xl);
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+            
+            .gallery-img {
+                height: 120px;
             }
             
             .hero h1 {
@@ -1053,15 +1098,6 @@
             outline-offset: 2px;
         }
     </style>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-VVS6GWC596');
-    </script>
 </head>
 <body>
     <header>
@@ -1069,49 +1105,49 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                        <img src="../image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
                     </a>
                 </div>
                 <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Início</a></li>
                         <li class="dropdown">
                             <a href="#">Uploads</a>
                             <ul class="dropdown-menu">
                                 <li><a href="heads.html">Heads</a></li>
                                 <li><a href="bodies.html">Bodies</a></li>
                                 <li><a href="hats.html">Hats</a></li>
-                                <li><a href="upload-sets.html">Upload Sets</a></li>
+                                <li><a href="upload-sets.html">Conjuntos de Upload</a></li>
                                 <li><a href="templates.html">Templates</a></li>
-                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
-                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Era) ↗</a></li>
-                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Classic) ↗</a></li>
-                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Ol' West) ↗</a></li>
-                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Zone) ↗</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (por DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Fazer Upload (Zone) ↗</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Guides - How to?</a>
+                            <a href="#">Guias - Como?</a>
                             <ul class="dropdown-menu">
                                 <li><a href="upload.html">Upload</a></li>
-                                <li><a href="trade-guide.html">Trade</a></li>
-                                <li><a href="workguide.html">Get Gralats</a></li>
-                                <li><a href="events-guide.html">Get Event Coins</a></li>
+                                <li><a href="trade-guide.html">Trocar</a></li>
+                                <li><a href="job-guide.html">Conseguir Gralats</a></li>
+                                <li><a href="events-guide.html">Conseguir Moedas de Evento</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Trade Table</a>
+                            <a href="#">Tabela de Troca</a>
                             <ul class="dropdown-menu">
-                                  <li><a href="sellables-calculator.html">Sellables Calculator</a></li>
-                                <li><a href="advanced-calculator.html">Advanced Calculator</a></li>
-                                <li><a href="ratio-history.html">Ratio History</a></li>
-                                <li><a href="profit-loss.html">Profit & Loss Tracker</a></li>
-                                <li><a href="price-house.html">Price House</a></li>
+                                  <li><a href="sellables-calculator.html">Calculadora de Vendáveis</a></li>
+                                <li><a href="advanced-calculator.html">Calculadora Avançada</a></li>
+                                <li><a href="ratio-history.html">Histórico de Ratios</a></li>
+                                <li><a href="profit-loss.html">Rastrear Lucro & Perda</a></li>
+                                <li><a href="price-house.html">Casa de Preços</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
-                        <li><a href="guns.html">Gun Ratings</a></li>
+                        <li><a href="secret-achievements.html">Conquistas Secretas</a></li>
+                        <li><a href="guns.html">Avaliação de Armas</a></li>
                     </ul>
                     
                     <!-- Mobile Actions Container - Side by Side -->
@@ -1119,19 +1155,19 @@
                         <!-- Mobile Language Selector -->
                         <div class="language-selector">
                             <button class="language-btn" id="mobile-language-btn">
-                                <img src="https://flagcdn.com/w40/us.png" alt="English">
-                                <span>English</span>
+                                <img src="https://flagcdn.com/w40/br.png" alt="Português">
+                                <span>Português</span>
                             </button>
                             <div class="mobile-language-options" id="mobile-language-options">
-                                <a href="job-guide.html">
+                                <a href="../upload.html">
                                     <img src="https://flagcdn.com/w40/us.png" alt="English">
                                     <span>English</span>
                                 </a>
-                                <a href="pt/job-guide.html">
+                                <a href="upload.html">
                                     <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                     <span>Português</span>
                                 </a>
-                                <a href="id/job-guide.html">
+                                <a href="../id/upload.html">
                                     <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                     <span>Indonesia</span>
                                 </a>
@@ -1155,19 +1191,19 @@
                     <!-- Language Selector -->
                     <div class="language-selector">
                         <button class="language-btn" id="desktop-language-btn">
-                            <img src="https://flagcdn.com/w40/us.png" alt="English">
-                            <span>English</span>
+                            <img src="https://flagcdn.com/w40/br.png" alt="Português">
+                            <span>Português</span>
                         </button>
                         <div class="language-options" id="desktop-language-options">
-                            <a href="job-guide.html">
+                            <a href="../upload.html">
                                 <img src="https://flagcdn.com/w40/us.png" alt="English">
                                 <span>English</span>
                             </a>
-                            <a href="pt/job-guide.html">
+                            <a href="upload.html">
                                 <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                 <span>Português</span>
                             </a>
-                            <a href="id/job-guide.html">
+                            <a href="../id/upload.html">
                                 <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                 <span>Indonesia</span>
                             </a>
@@ -1186,13 +1222,22 @@
                 </div>
             </div>
         </div>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-VVS6GWC596');
+        </script>
     </header>
 
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 id="hero-title">Master Graal Era Jobs</h1>
-                <p id="hero-description">Learn strategies, tools, and tips for Mining, Pizza Making, Digging, and more.</p>
+                <h1 id="hero-title">Domine os Uploads do Graal Era</h1>
+                <p id="hero-description">Aprenda as regras, templates e melhores práticas para enviar heads, bodies, escudos e fotos de gangue personalizados para o Graal Era.</p>
             </div>
         </div>
     </section>
@@ -1203,250 +1248,239 @@
                 <!-- Introduction -->
                 <article class="article">
                     <div class="article-content">
-                        <span class="tag tag-jobs">Jobs</span>
+                        <span class="tag tag-upload">Upload</span>
                         <span class="tag tag-guide">Guide</span>
-                        <h2 id="intro-title">Introduction to Graal Era Jobs</h2>
-                        <div class="article-meta" id="intro-date">Updated on January 1, 2026</div>
-                        <p id="intro-text">Jobs are essential for earning Gralats in Graal Era. This comprehensive guide covers all seven major jobs, their requirements, earnings potential, and expert tips to maximize your profits.</p>
-                    </div>
-                </article>
-
-                <!-- Mining -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="mining-title">1. Mining</h2>
-                        <p id="mining-desc">Mining is one of the most stable, long-term money makers in Era.</p>
+                        <h2 id="intro-title">Introdução ao Guia de Upload</h2>
+                        <div class="article-meta" id="intro-date">Atualizado em 1 de janeiro de 2026</div>
+                        <p id="intro-text">Esta página explica tudo o que você precisa saber antes de enviar heads, bodies, escudos ou fotos de gangue personalizados para o GraalOnline Era. Uploads são uma das formas mais divertidas de se expressar, mas existem regras rígidas que devem ser seguidas.</p>
                         
-                        <div class="tip">
-                            <h3 id="mining-requirements">What you need:</h3>
-                            <ul>
-                                <li id="mining-tool">A <strong>drill</strong> (cost ≈ 140 Gralats)</li>
-                                <li id="mining-battery">Battery replacements (≈ 80 Gralats) once drill battery dies</li>
-                            </ul>
+                        <div class="warning">
+                            <h3 id="warning-title">Aviso Importante</h3>
+                            <p id="warning-text">Enviar arquivos que quebram as regras fará com que seu upload seja rejeitado, ou pior, sua conta pode ser punida se você enviar uploads em spam.</p>
                         </div>
                         
-                        <div class="tip">
-                            <h3 id="mining-how">How it works:</h3>
-                            <p id="mining-how-text">Mine rocks to gradually level up. At higher levels, rocks spawn faster, increasing your earning potential.</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="mining-earnings">Earnings:</h4>
-                            <p id="mining-earnings-text">At low level (level 0): <strong>≈ 500 Gralats/hour</strong></p>
-                            <p id="mining-earnings-note">Earnings increase at higher levels due to faster rock spawn rates</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="mining-tips">Tips:</h3>
-                            <ul>
-                                <li id="mining-tip-1">Rotate between several mining spots</li>
-                                <li id="mining-tip-2">Don't buy more than one drill - it's unnecessary</li>
-                                <li id="mining-tip-3">Use mining to also get EC/achievements at key levels</li>
-                            </ul>
+                        <div class="success">
+                            <h3 id="official-site-title">Site Oficial de Upload</h3>
+                            <p id="official-site-text"><strong>eraupload.graalonline.com</strong></p>
                         </div>
                     </div>
                 </article>
 
-                <!-- Pizza Making -->
+                <!-- Upload Costs -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="pizza-title">2. Pizza Making (Speedy Pizza)</h2>
-                        <p id="pizza-desc">Fast, active job; good early money and rewards.</p>
+                        <h2 id="costs-title">Custos de Upload (Gralats)</h2>
+                        <ul>
+                            <li id="cost-head"><strong>Head:</strong> 20.000 Gralats</li>
+                            <li id="cost-body"><strong>Body:</strong> 10.000 Gralats</li>
+                            <li id="cost-shield"><strong>Código de Escudo:</strong> 2.500 Gralats</li>
+                            <li id="cost-gang"><strong>Foto de Gangue:</strong> Grátis (com posse de gangue)</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- General Rules -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="general-rules-title">Regras Gerais (Heads e Bodies)</h2>
                         
                         <div class="tip">
-                            <h3 id="pizza-requirements">What you need:</h3>
+                            <h3 id="shape-title">Forma e Estrutura</h3>
+                            <p id="shape-text">Todos os customs devem seguir o tamanho e a estrutura do template padrão:</p>
                             <ul>
-                                <li id="pizza-tool"><strong>Pizza Peel</strong> tool (cost ≈ 40 Gralats)</li>
+                                <li id="shape-1">Formato normal de head/body humano</li>
+                                <li id="shape-2">Dois braços, duas pernas</li>
+                                <li id="shape-3">Proporções humanas (nada de monstros, partes gigantes ou corpos de animais)</li>
+                                <li id="shape-4">Os traços faciais podem ser simplificados desde que a forma geral pareça humana</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="pizza-how">How it works:</h3>
-                            <p id="pizza-how-text">Go to Speedy Pizza shop. Pick up box, sauce, cheese, toppings, bake in oven.</p>
-                            <p id="pizza-locations">Locations: Blackholst, Sea Side (Beach), Southridge, Veteran Pizzeria (unlock at ≈3,000 pizzas)</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="pizza-earnings">Earnings:</h4>
-                            <p id="pizza-earnings-text">Each pizza: <strong>7-22 Gralats</strong> (depending on ingredients)</p>
-                            <p id="pizza-earnings-note">Estimated 3,000-20,000 Gralats/day with consistent work</p>
+                            <h3 id="copyright-title">Direitos Autorais</h3>
+                            <p id="copyright-text">Só envie o que você criou ou tem permissão para usar:</p>
+                            <ul>
+                                <li id="copyright-1">Nada de personagens com direitos autorais de anime/jogos/TV/filmes</li>
+                                <li id="copyright-2">Nada de memes, logos ou marcas (Nike, Adidas, Batman, etc.)</li>
+                            </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="pizza-tips">Tips:</h3>
-                            <ul>
-                                <li id="pizza-tip-1">Go during off-peak hours for oven</li>
-                                <li id="pizza-tip-2">Use Veteran shop if unlocked (less crowded, faster)</li>
-                                <li id="pizza-tip-3">Don't empty your oven</li>
-                            </ul>
+                            <h3 id="shading-title">Sombreamento Obrigatório</h3>
+                            <p id="shading-text">Heads/bodies de cor chapada sem sombreamento serão rejeitados.</p>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="offensive-title">Conteúdo Ofensivo</h3>
+                            <p id="offensive-text">Absolutamente nada de racismo, gore, política, nudez ou conteúdo relacionado a drogas.</p>
                         </div>
                     </div>
                 </article>
 
-                <!-- Digging -->
+                <!-- Heads Section -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="digging-title">3. Digging / Shell Digging</h2>
-                        <p id="digging-desc">Digging shells or shells + sand is a mid-tier job; decent profit if you keep working.</p>
+                        <h2 id="heads-title">Regras Específicas para Heads</h2>
                         
                         <div class="tip">
-                            <h3 id="digging-requirements">What you need:</h3>
+                            <h3 id="accessories-title">Acessórios</h3>
+                            <p id="accessories-text">Bandanas pequenas, brincos, piercings, chupetas ou laços simples são permitidos.</p>
+                            <p id="accessories-not-allowed"><strong>Não permitido:</strong> Chapéus e óculos não são permitidos.</p>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="staff-heads-title">Heads de Staff</h3>
+                            <p id="staff-heads-text">Editar/reenviar heads exclusivas de staff é proibido.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="frames-title">Frames</h3>
+                            <p id="frames-text">Devem estar limpos. Sem frames cortados, pixels perdidos ou animação quebrada.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="allowed-animations-title">Animações de Head Permitidas</h3>
                             <ul>
-                                <li id="digging-tool">A <strong>shovel</strong> (≈50 Gralats)</li>
+                                <li id="animation-1">Movimento sutil de boca (sorriso, bocejo)</li>
+                                <li id="animation-2">Lágrimas pequenas, piscadas sutis, leve movimento de orelha</li>
+                                <li id="animation-3">Efeito simples de cabelo ao vento</li>
+                                <li id="animation-4">Brincos pequenos brilhantes</li>
                             </ul>
                         </div>
                         
-                        <div class="tip">
-                            <h3 id="digging-how">How it works:</h3>
-                            <p id="digging-how-text">Equip shovel, interact with sand spots. Shells/crab shells drop occasionally; crabs may appear and deal damage.</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="digging-earnings">Earnings:</h4>
-                            <p id="digging-earnings-text">Crab shell: <strong>≈6 Gralats</strong>; other shells vary</p>
-                            <p id="digging-earnings-note">Realistic earnings lower than mining (high level)/pizza due to time between digs but good if you want to save for Trochus</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="digging-tips">Tips:</h3>
+                        <div class="warning">
+                            <h3 id="disallowed-animations-title">Animações de Head Proibidas</h3>
                             <ul>
-                                <li id="digging-tip-1">Keep health topped up (crabs damage) by making another account with healing melee to heal you 24 hours.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Car Missions -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="missions-title">4. Car Missions (Delivery)</h2>
-                        <p id="missions-desc">High travel, decent payout if you know the map.</p>
-                        
-                        <div class="tip">
-                            <h3 id="missions-requirements">What you need:</h3>
-                            <ul>
-                                <li id="missions-tool">Access to mission via car mission NPCs</li>
-                                <li id="missions-vehicle">Own a car; map knowledge helps</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="missions-how">How it works:</h3>
-                            <p id="missions-how-text">Pick up mission, drive to destinations, deliver passengers. Time & risk involved (you can't get damage if the passenger are with you in the car).</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="missions-earnings">Earnings:</h4>
-                            <p id="missions-earnings-text">Moderate — better than slow jobs but more risk/time</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="missions-tips">Tips:</h3>
-                            <ul>
-                                <li id="missions-tip-1">Car mission around VIP shop is the easiest</li>
-                                <li id="missions-tip-2">Know how to not get damage when you are trying to get a mission from the NPC in PK area</li>
+                                <li id="disallowed-1">Efeitos chamativos/glitch</li>
+                                <li id="disallowed-2">Fumaça, fogo ou efeitos de partículas</li>
+                                <li id="disallowed-3">Cabelo que muda de cor entre frames</li>
+                                <li id="disallowed-4">Animações fora da área do rosto (além da linha do cabelo ou testa)</li>
                             </ul>
                         </div>
                     </div>
                 </article>
 
-                <!-- Mushroom Picking -->
+                <!-- Bodies Section -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="mushroom-title">5. Mushroom Picking</h2>
-                        <p id="mushroom-desc">Often underrated — good steady income if you have the tool.</p>
+                        <h2 id="bodies-title">Regras Específicas para Bodies</h2>
                         
                         <div class="tip">
-                            <h3 id="mushroom-requirements">What you need:</h3>
+                            <h3 id="static-title">Apenas Estático</h3>
+                            <p id="static-text">Bodies não podem ser animados.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="weapons-title">Sem Armas Anexadas</h3>
+                            <p id="weapons-text">Adereços pequenos (copos, colares, mochilas, asas, capas) são permitidos, mas não armas completas.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="proportions-title">Proporções</h3>
+                            <p id="proportions-text">Nada de bodies sexualizados demais ou formas extremas.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="death-frame-title">Frame de Morte</h3>
+                            <p id="death-frame-text">Deve ser um corpo caído simples. Poça de sangue é permitida, mas nada de cobertores, adereços ou sacos de corpo.</p>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="not-allowed-title">Not Allowed</h3>
+                            <p id="not-allowed-text">Laptops, itens gigantes, chapéus/cachecóis desenhados diretamente nos bodies.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Shields Section -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="shields-title">Regras de Escudos</h2>
+                        
+                        <div class="tip">
+                            <h3 id="size-title">Tamanho</h3>
+                            <p id="size-text">Não deve cobrir mais de 50% do seu personagem.</p>
                             <ul>
-                                <li id="mushroom-tool"><strong>Mushroom Knife</strong> (≈250 Gralats) from mushroom shop</li>
+                                <li id="size-1">Largura máx.: < 512 px</li>
+                                <li id="size-2">Altura máx.: < 128 px</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="mushroom-how">How it works:</h3>
-                            <p id="mushroom-how-text">Find mushroom patches; use knife to pick mushrooms (fill progress to 100%) then sell.</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="mushroom-earnings">Earnings:</h4>
-                            <p id="mushroom-earnings-text">Mushrooms sell for <strong>≈5 Gralats each</strong></p>
-                            <p id="mushroom-earnings-note">Earnings fluctuate based on pickup speed & competition</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="mushroom-tips">Tips:</h3>
+                            <h3 id="allowed-shields-title">Allowed</h3>
                             <ul>
-                                <li id="mushroom-tip-1">Go when fewer players are around patches</li>
-                                <li id="mushroom-tip-2">Attack the mushroom patches and another player at the same time (if they are trying to steal your mushroom) to increase your earning rate</li>
-                                <li id="mushroom-tip-3">Get OP mushroom knife that can poison or confuse effect your competitors</li>
+                                <li id="allowed-1">Logos, símbolos, designs de clã</li>
+                                <li id="allowed-2">Animações pequenas e sutis (sem piscar)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="not-allowed-shields-title">Not Allowed</h3>
+                            <ul>
+                                <li id="not-allowed-1">Escudos disfarçados de chapéus/heads/bodies</li>
+                                <li id="not-allowed-2">Imagens realistas de pessoas</li>
+                                <li id="not-allowed-3">Escudos/imagens de código de status grandes demais</li>
                             </ul>
                         </div>
                     </div>
                 </article>
 
-                <!-- Trash Picking -->
+                <!-- Gang Pictures Section -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="trash-title">6. Trash Picking</h2>
-                        <p id="trash-desc">Easiest job to start; very low barrier.</p>
+                        <h2 id="gang-title">Regras de Fotos de Gangue</h2>
                         
                         <div class="tip">
-                            <h3 id="trash-requirements">What you need:</h3>
+                            <h3 id="allowed-gang-title">Allowed</h3>
                             <ul>
-                                <li id="trash-tool"><strong>Trash pick</strong> (free at Recycling Depot)</li>
+                                <li id="allowed-gang-1">Paisagens, natureza, designs simples, arte de clã</li>
+                                <li id="allowed-gang-2">Paisagens/animais da vida real (mas não pessoas reais)</li>
                             </ul>
                         </div>
                         
-                        <div class="tip">
-                            <h3 id="trash-how">How it works:</h3>
-                            <p id="trash-how-text">Walk around streets & open areas outside buildings, pick up trash objects (paper, bottles, etc.).</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="trash-earnings">Earnings:</h4>
-                            <p id="trash-earnings-text">Trash items pay <strong>4-6 Gralats per piece</strong></p>
-                            <p id="trash-earnings-note">Overall earnings low – best as filler or beginner job</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="trash-tips">Tips:</h3>
+                        <div class="warning">
+                            <h3 id="not-allowed-gang-title">Not Allowed</h3>
                             <ul>
-                                <li id="trash-tip-1">Cover more ground; picking many small items adds up</li>
-                                <li id="trash-tip-2">Combine with walking or exploration to multitask</li>
+                                <li id="not-allowed-gang-1">Imagens vulgares, racistas, políticas ou relacionadas a drogas</li>
+                                <li id="not-allowed-gang-2">GIFs</li>
+                                <li id="not-allowed-gang-3">Tags de redes sociais ou propaganda</li>
                             </ul>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="enforcement-title">Aplicação das Regras</h3>
+                            <p id="enforcement-text">Uploads inapropriados podem resultar em advertências, remoção da gangue ou ban permanente.</p>
                         </div>
                     </div>
                 </article>
 
-                <!-- Fishing -->
+                <!-- Extra Rules -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="fishing-title">7. Fishing</h2>
-                        <p id="fishing-desc">A relaxing job, high paced, less risky.</p>
+                        <h2 id="extra-rules-title">Regras Extras (Todos os Uploads)</h2>
                         
                         <div class="tip">
-                            <h3 id="fishing-requirements">What you need:</h3>
-                            <ul>
-                                <li id="fishing-tool">Fishing rod tool</li>
-                            </ul>
+                            <h3 id="transparency-title">Transparência</h3>
+                            <p id="transparency-text">Evite usar preto puro #000000 ou branco puro #FFFFFF — eles aparecerão como transparentes.</p>
+                        </div>
+                        
+                        <div class="warning">
+                            <h3 id="single-color-title">Uploads de Cor Única</h3>
+                            <p id="single-color-text">Heads/bodies totalmente pretos ou de cor única não serão aceitos.</p>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="fishing-how">How it works:</h3>
-                            <p id="fishing-how-text">Go to water areas, use rod, catch fish. Possibly lure under water or wait for fish to bite.</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="fishing-earnings">Earnings:</h4>
-                            <p id="fishing-earnings-note">Considered high income but fish can't be traded</p>
+                            <h3 id="frames-required-title">Frames Faltando</h3>
+                            <p id="frames-required-text">Todos os frames devem estar presentes.</p>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="fishing-tips">Tips:</h3>
-                            <ul>
-                                <li id="fishing-tip-1">Keep fishing to level up</li>
-                            </ul>
+                            <h3 id="consistency-title">Consistência</h3>
+                            <p id="consistency-text">As cores não podem mudar entre frames (ex.: azul → rosa).</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="outline-title">Contorno</h3>
+                            <p id="outline-text">Deve ser de uma única cor sólida.</p>
                         </div>
                     </div>
                 </article>
@@ -1454,69 +1488,150 @@
                 <!-- Interactive Tutorial -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="tutorial-title">Interactive Job Tutorial</h2>
+                        <h2 id="tutorial-title">Tutorial Interativo de Regras</h2>
                         <div class="interactive-tutorial" id="interactiveTutorial">
-                            <h3 id="quiz-title">Test Your Job Knowledge!</h3>
-                            <p id="quiz-desc">Answer the following questions to test your understanding of the jobs above.</p>
+                            <h3 id="quiz-title">Teste Seu Conhecimento de Upload!</h3>
+                            <p id="quiz-desc">Responda às perguntas a seguir para testar seu entendimento das regras de upload acima.</p>
                             <div id="quizContainer"></div>
                             <div id="quizResult" class="quiz-result"></div>
                         </div>
                     </div>
                 </article>
 
+                <!-- Upload Tips -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="tips-title">Dicas de Upload e Melhores Práticas</h2>
+                        
+                        <div class="success">
+                            <h3 id="templates-title">✅ Sempre use templates</h3>
+                            <p id="templates-text">Você pode baixar templates gratuitos do GraalOnline para heads, bodies e escudos. Templates ajudam a garantir o tamanho correto e evitar rejeição.</p>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="test-title">✅ Teste antes de enviar</h3>
+                            <p id="test-text">Muitos editores (GIMP, Photoshop, Pixlr, IbisPaint) permitem visualizar transparência e animação de GIF/PNG. Verifique pixels perdidos ou frames faltando.</p>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="format-title">✅ Salve no formato correto</h3>
+                            <ul>
+                                <li id="format-1">Heads e bodies: GIF (animado) ou PNG (estático)</li>
+                                <li id="format-2">Escudos e fotos de gangue: PNG</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="backups-title">✅ Envie Durante Eventos</h3>
+                            <p id="backups-text">Eventos como Black Friday, Halloween e Natal geralmente oferecem grandes promoções com descontos de 20-50%! Evite vender uploads durante os descontos.</p>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="creative-title">✅ Seja criativo, mas seguro</h3>
+                            <p id="creative-text">Customs existem para a diversão. Estilos únicos, sombreamento e arte original sempre têm mais chance de aceitação.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Step-by-Step Guide -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="steps-title">Guia de Upload Passo a Passo</h2>
+                        
+                        <ol>
+                            <li id="step-1">Visite o site oficial: <strong>https://eraupload.graalonline.com/</strong></li>
+                            <li id="step-2">Entre com sua conta do GraalOnline Era</li>
+                            <li id="step-3">Escolha o tipo de upload (Head, Body, Escudo, Foto de Gangue)</li>
+                            <li id="step-4">Selecione seu arquivo e visualize</li>
+                            <li id="step-5">Pague a taxa de upload (20k para head, 10k para body, 2.5k para escudo)</li>
+                            <li id="step-6">Aguarde a aprovação. Isso pode levar algum tempo (menos de 24 horas)</li>
+                            <li id="step-7">Se aprovado, você poderá decidir enviar selecionando "Sim" ou "Não" para continuar o upload.</li>
+                        </ol>
+                    </div>
+                </article>
+
+                <!-- FAQ Section -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="faq-title">FAQ (De Jogador para Jogador)</h2>
+                        
+                        <div class="tip">
+                            <h3 id="faq-2-title">P: Recebo meus Gralats de volta se meu upload for rejeitado?</h3>
+                            <p id="faq-2-text">R: Sim. Seu dinheiro não será descontado se o upload for rejeitado.</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="faq-3-title">P: Quanto tempo leva para ser aprovado?</h3>
+                            <p id="faq-3-text">R: Geralmente menos de 20 minutos, dependendo da atividade da staff. Se demorar mais de 2 horas, significa que nenhum admin está aprovando uploads no momento. Apenas saia do jogo e volte em algumas horas. O upload será aprovado, então você pode abrir o jogo e verá um aviso perguntando se deseja continuar com o upload ou não. Se clicar em sim, seu dinheiro será descontado e você terá cerca de 2 horas para pedir reembolso total. Se pedir reembolso, você ganhará um token de upload em vez de gralats.</p>
+                        </div>
+                        
+                        <div class="success">
+                            <h3 id="final-tip-title">🔥 Dica</h3>
+                            <p id="final-tip-text">Para aumentar suas chances de aceitação, mantenha seu design limpo, bem sombreado, no template e original.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Templates Gallery -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="templates-gallery-title">Templates de Upload</h2>
+                        <p id="templates-gallery-text">Baixe estes templates para garantir que seus uploads atendam às especificações exigidas:</p>
+                        
+                        <div class="image-gallery">
+                            <div class="gallery-item">
+                                <img src="../image/graal-template/head.png" alt="Head Template" class="gallery-img">
+                                <div class="gallery-caption" id="caption-head">Template de Head</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="../image/graal-template/body.png" alt="Body Template" class="gallery-img">
+                                <div class="gallery-caption" id="caption-body">Template de Body</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="../image/graal-template/shield.png" alt="Shield Template" class="gallery-img">
+                                <div class="gallery-caption" id="caption-shield">Template de Escudo</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
 
             <div class="sidebar">
                 <div class="sidebar-widget">
-                    <h3 id="job-comparison-title">Job Comparison</h3>
-                    <div style="overflow-x: auto;">
-                    <table class="job-table">
-                        <thead>
-                            <tr>
-                                <th>Job</th>
-                                <th>Earnings/Hour</th>
-                                <th>Difficulty</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Mining</td>
-                                <td>500-1000+</td>
-                                <td>Medium</td>
-                            </tr>
-                            <tr>
-                                <td>Pizza Making</td>
-                                <td>600-1200</td>
-                                <td>Medium</td>
-                            </tr>
-                            <tr>
-                                <td>Digging</td>
-                                <td>300-600</td>
-                                <td>Easy</td>
-                            </tr>
-                            <tr>
-                                <td>Car Missions</td>
-                                <td>400-800</td>
-                                <td>Hard</td>
-                            </tr>
-                            <tr>
-                                <td>Mushroom Picking</td>
-                                <td>350-700</td>
-                                <td>Easy</td>
-                            </tr>
-                            <tr>
-                                <td>Trash Picking</td>
-                                <td>200-400</td>
-                                <td>Very Easy</td>
-                            </tr>
-                            <tr>
-                                <td>Fishing</td>
-                                <td>400-900</td>
-                                <td>Easy</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
+                    <h3 id="guides-title">Galeria de Uploads</h3>
+                    <ul class="featured-list">
+                        <li><a href="heads.html">Coleção de Uploads de Heads</a></li>
+                        <li><a href="bodies.html">Coleção de Uploads de Bodies</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="resources-title">Baixar Templates</h3>
+                    <ul class="featured-list">
+                        <li>
+                            <img src="../image/graal-template/head.png" alt="Head Template" class="gallery-img">
+                            <a href="../image/graal-template/head.png">Template de Head</a>
+                        </li>
+                        <li>
+                            <img src="../image/graal-template/body.png" alt="Body Template" class="gallery-img">
+                            <a href="../image/graal-template/body.png">Template de Body</a>
+                        </li>
+                        <li>
+                            <img src="../image/graal-template/shield.png" alt="Shield Template" class="gallery-img">
+                            <a href="../image/graal-template/shield.png">Template de Escudo</a>
+                        </li>
+                    </ul>
+                    <a href="https://eraupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;">Ir para o Site de Upload</a>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3 id="popular-title">Outros Sites Oficiais de Upload</h3>
+                    <ul class="featured-list">
+                        <a href="https://eraupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;">Era</a>
+                        <a href="https://classicupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;">Classic</a>
+                        <a href="https://olwestupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;">Ol'West</a>
+                        <a href="https://zoneupload.graalonline.com/" class="btn" style="width: 100%; text-align: center; margin-top: 10px;">Zone</a>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1526,39 +1641,39 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title-footer">About GraalGuide</h3>
-                    <p id="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
-                    <p><em id="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                    <h3 id="about-title-footer">Sobre o GraalGuide</h3>
+                    <p id="about-desc-footer">GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos ferramentas, guias e recursos para melhorar sua experiência de jogo.</p>
+                    <p><em id="disclaimer-footer">GraalGuide não é afiliado ao GraalOnline ou Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3 id="links-title-footer">Quick Links</h3>
+                    <h3 id="links-title-footer">Links Rápidos</h3>
                     <ul>
-                        <li><a href="index.html" id="link-home-footer">Home</a></li>
+                        <li><a href="index.html" id="link-home-footer">Início</a></li>
                         <li><a href="upload.html" id="link-achievements-footer">Uploads</a></li>
-                        <li><a href="trade-guide.html" id="link-events-footer">Trading Guide</a></li>
+                        <li><a href="trade-guide.html" id="link-events-footer">Guia de Troca</a></li>
                         <li><a href="secret-achievements.html" id="link-gralats-footer">Secret Achievement</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="legal-title-footer">Legal & Policies</h3>
+                    <h3 id="legal-title-footer">Legal e Políticas</h3>
                     <ul>
-                        <li><a href="privacy-policy.html" id="link-privacy-footer">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" id="link-terms-footer">Terms of Service</a></li>
-                        <li><a href="cookie-policy.html" id="link-cookie-footer">Cookie Policy</a></li>
-                        <li><a href="disclaimer.html" id="link-disclaimer-footer">Disclaimer</a></li>
+                        <li><a href="privacy-policy.html" id="link-privacy-footer">Política de Privacidade</a></li>
+                        <li><a href="terms-of-service.html" id="link-terms-footer">Termos de Serviço</a></li>
+                        <li><a href="cookie-policy.html" id="link-cookie-footer">Política de Cookies</a></li>
+                        <li><a href="disclaimer.html" id="link-disclaimer-footer">Aviso Legal</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="connect-title-footer">Connect</h3>
+                    <h3 id="connect-title-footer">Conectar</h3>
                     <ul>
-                        <li><a href="about-me.html" id="link-discord-footer">About Me</a></li>
+                        <li><a href="about-me.html" id="link-discord-footer">Sobre Mim</a></li>
                         <li><a href="https://www.youtube.com/@azrxc" id="link-youtube-footer">YouTube</a></li>
-                        <li><a href="contact-us.html" id="link-contact-footer">Contact Us</a></li>
+                        <li><a href="contact-us.html" id="link-contact-footer">Contate-Nos</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright-footer">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright-footer">&copy; 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.</p>
             </div>
         </div>
     </footer>
@@ -1576,27 +1691,27 @@
         // Quiz Questions and Answers
         const quizQuestions = [
             {
-                question: "Should you buy more than one drill for Mining?",
+                question: "Chapéus e óculos são permitidos em heads personalizadas?",
                 answer: false
             },
             {
-                question: "Is the Trash Pick tool free at the Recycling Depot?",
+                question: "Bodies personalizados devem ser não-animados (apenas estáticos)?",
                 answer: true
             },
             {
-                question: "Can fish caught from Fishing be traded?",
+                question: "Um escudo pode ser disfarçado de chapéu, head ou body?",
                 answer: false
             },
             {
-                question: "Do you need a Pizza Peel tool for Pizza Making?",
+                question: "Preto puro (#000000) ou branco puro (#FFFFFF) aparecerão transparentes no seu upload?",
                 answer: true
             },
             {
-                question: "Is Digging generally more profitable per hour than high-level Mining or Pizza Making?",
-                answer: false
+                question: "Você recebe seus Gralats de volta se o upload for rejeitado?",
+                answer: true
             },
             {
-                question: "Do Car Missions involve more time and risk than the slower, low-effort jobs?",
+                question: "Enviar uma head custa 20.000 Gralats?",
                 answer: true
             }
         ];
@@ -1615,21 +1730,21 @@
                     <div class="quiz-question">
                         <p>${question.question}</p>
                         <div class="quiz-options">
-                            <button class="btn" onclick="checkAnswer(true)">Yes</button>
-                            <button class="btn btn-secondary" onclick="checkAnswer(false)">No</button>
+                            <button class="btn" onclick="checkAnswer(true)">Sim</button>
+                            <button class="btn btn-secondary" onclick="checkAnswer(false)">Não</button>
                         </div>
                     </div>
                 `;
             } else {
                 quizContainer.innerHTML = "";
                 const pct = Math.round((score / quizQuestions.length) * 100);
-                const message = pct === 100 ? "Perfect score! You really know your jobs." :
-                    pct >= 60 ? "Nice work! You've got a solid grasp on the jobs." :
-                    "Give the guide another read and try again!";
+                const message = pct === 100 ? "Pontuação perfeita! Você realmente conhece as regras de upload." :
+                    pct >= 60 ? "Bom trabalho! Você tem um bom domínio das regras." :
+                    "Leia o guia novamente e tente de novo!";
                 quizResult.innerHTML = `
-                    <p>Quiz Complete! Your score is ${score} out of ${quizQuestions.length}.</p>
+                    <p>Quiz Concluído! Sua pontuação é ${score} de ${quizQuestions.length}.</p>
                     <p>${message}</p>
-                    <button class="btn" onclick="retakeQuiz()">Retake Quiz</button>
+                    <button class="btn" onclick="retakeQuiz()">Refazer Quiz</button>
                 `;
             }
         }
@@ -1651,7 +1766,6 @@
             document.getElementById("quizResult").innerHTML = "";
             displayQuiz();
         }
-
 
         // Toggle language options
         function toggleLanguageOptions(buttonId, optionsId) {
@@ -1684,7 +1798,8 @@
             document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
             document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
             
-            // Initialize language option toggles (dropdown open/close only - the options themselves are now real links to each language's own page)
+            // Initialize language option toggles (dropdown open/close only - the options
+            // themselves are now real links to each language's own page)
             toggleLanguageOptions('desktop-language-btn', 'desktop-language-options');
             toggleLanguageOptions('mobile-language-btn', 'mobile-language-options');
             

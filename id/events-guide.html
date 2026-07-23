@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <link rel="icon" type="image/png" href="image/a/graalguide.png">
+    <link rel="icon" type="image/png" href="../image/a/graalguide.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Work Guide - GraalGuide: Master Graal Era Jobs</title>
-    <meta name="description" content="Master all jobs in Graal Era with our comprehensive guide. Learn how to maximize your Gralat earnings from Mining, Pizza Making, Digging, and more.">
-    <link rel="alternate" hreflang="en" href="https://graalguide.com/job-guide.html">
-    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/job-guide.html">
-    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/job-guide.html">
-    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/job-guide.html">
+    <title>Event Coins Guide - GraalGuide: Master Graal Era Events</title>
+    <meta name="description" content="Master earning Event Coins in Graal Era with our comprehensive guide. Learn all methods to get EC through events, achievements, and daily quests.">
+    <link rel="alternate" hreflang="en" href="https://graalguide.com/events-guide.html">
+    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/events-guide.html">
+    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/events-guide.html">
+    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/events-guide.html">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
@@ -18,7 +18,6 @@
             --primary-color: #8a2be2; /* Purple accent */
             --secondary-color: #00bcd4; /* Teal accent */
             --accent-color: #ff5722; /* Orange accent */
-            --success-color: #4CAF50; /* Green for earnings */
             --dark-bg: #121212;
             --darker-bg: #0a0a0a;
             --card-bg: #1e1e1e;
@@ -60,6 +59,7 @@
             line-height: 1.6; 
             font-size: var(--font-md);
             transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
         }
         
         a { 
@@ -164,7 +164,7 @@
             gap: 10px;
         }
 
-        /* Theme Toggle */
+        /* Updated Theme Toggle */
         .theme-toggle {
             background: transparent;
             border: 1px solid var(--border-color);
@@ -344,7 +344,7 @@
         /* Hero Section */
         .hero { 
             background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                       url('image/a/gt.jpg') center/cover no-repeat;
+                       url('../image/a/event.jpg') center/cover no-repeat;
             padding: 100px 0; 
             text-align: center; 
             color: white;
@@ -353,7 +353,7 @@
         
         [data-theme="light"] .hero {
             background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                       url('image/a/gt.jpg') center/cover no-repeat;
+                       url('../image/a/event.jpg') center/cover no-repeat;
             color: #333;
         }
         
@@ -445,7 +445,16 @@
             margin-bottom: 10px;
             font-weight: 500;
         }
-
+        
+        .tag-events { 
+            background: rgba(27, 44, 202, 0.2); 
+            color: #565beb; 
+        }
+        
+        [data-theme="light"] .tag-events {
+            background: rgba(27, 44, 202, 0.15); 
+        }
+        
         .tag-guide { 
             background: rgba(76, 175, 80, 0.2); 
             color: #4caf50; 
@@ -455,15 +464,6 @@
             background: rgba(76, 175, 80, 0.15); 
         }
         
-        .tag-jobs { 
-            background: rgba(0, 255, 255, 0.2); 
-            color: #00d5ff; 
-        }
-        
-        [data-theme="light"] .tag-jobs {
-            background: rgba(0, 255, 255, 0.15); 
-        }
-          
         .article p, .article ul {
             margin-bottom: 15px;
             color: var(--text-muted);
@@ -476,39 +476,23 @@
         }
 
         /* Tip Boxes */
-        .tip, .earnings { 
+        .tip { 
+            background: var(--card-bg); 
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
-            border-left: 4px solid;
+            border-left: 4px solid var(--primary-color);
         }
         
-        .tip { 
-            background: var(--card-bg);
-            border-left-color: var(--primary-color);
-        }
-        
-        .earnings { 
-            background: rgba(76, 175, 80, 0.1);
-            border-left-color: var(--success-color);
-        }
-        
-        .tip h3, .earnings h4 { 
+        .tip h3 { 
             margin-top: 0; 
+            color: var(--text-color); 
             font-weight: 600;
             font-size: var(--font-lg);
         }
         
-        .tip h3 { 
-            color: var(--text-color); 
-        }
-        
-        .earnings h4 { 
-            color: var(--success-color); 
-        }
-        
-        .tip p, .earnings p { 
+        .tip p { 
             margin: 10px 0; 
             color: var(--text-muted);
             font-size: var(--font-md);
@@ -524,40 +508,50 @@
             font-size: var(--font-md);
         }
 
-        /* Job Comparison Table */
-        .job-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--darker-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
-            border: 1px solid var(--border-color);
+        /* Warning Box */
+        .warning { 
+            background: rgba(244, 67, 54, 0.1); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border-left: 4px solid #f44336;
         }
         
-        .job-table th, .job-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .job-table th {
-            background-color: var(--primary-color);
-            color: white;
+        .warning h3 { 
+            margin-top: 0; 
+            color: #f44336; 
             font-weight: 600;
+            font-size: var(--font-lg);
         }
         
-        .job-table tr:last-child td {
-            border-bottom: none;
+        .warning p { 
+            margin: 10px 0; 
+            color: var(--text-muted);
+            font-size: var(--font-md);
+        }
+
+        /* Success Box */
+        .success { 
+            background: rgba(76, 175, 80, 0.1); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            border-left: 4px solid #4caf50;
         }
         
-        .job-table tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+        .success h3 { 
+            margin-top: 0; 
+            color: #4caf50; 
+            font-weight: 600;
+            font-size: var(--font-lg);
         }
         
-        [data-theme="light"] .job-table tr:hover {
-            background-color: rgba(0, 0, 0, 0.05);
+        .success p { 
+            margin: 10px 0; 
+            color: var(--text-muted);
+            font-size: var(--font-md);
         }
 
         /* Interactive Tutorial */
@@ -569,14 +563,14 @@
             margin-bottom: 30px;
             border: 1px solid var(--border-color);
         }
-
+        
         .interactive-tutorial h3 {
             margin-top: 0;
             color: var(--text-color);
             font-weight: 700;
             font-size: var(--font-lg);
         }
-
+        
         .quiz-question {
             margin-bottom: 20px;
             padding: 20px;
@@ -584,29 +578,29 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
         }
-
+        
         .quiz-question p {
             font-weight: 600;
             margin-bottom: 15px;
             color: var(--text-color);
             font-size: var(--font-md);
         }
-
+        
         .quiz-options {
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
+        
+        .btn { 
+            display: inline-block; 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 12px 25px; 
             border: none;
-            border-radius: 30px;
-            font-weight: 600;
+            border-radius: 30px; 
+            font-weight: 600; 
             text-transform: uppercase;
             font-size: var(--font-sm);
             margin: 5px;
@@ -614,23 +608,23 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
         }
-
-        .btn:hover {
-            background: #7329c7;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+        
+        .btn:hover { 
+            background: #7329c7; 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4); 
         }
-
-        .btn-secondary {
-            background: var(--secondary-color);
+        
+        .btn-secondary { 
+            background: var(--secondary-color); 
             box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
         }
-
-        .btn-secondary:hover {
-            background: #0097a7;
+        
+        .btn-secondary:hover { 
+            background: #0097a7; 
             box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
         }
-
+        
         .quiz-result {
             font-size: var(--font-lg);
             font-weight: 700;
@@ -641,17 +635,6 @@
             background: rgba(138, 43, 226, 0.1);
             border-radius: 10px;
             border: 1px solid var(--border-color);
-        }
-
-        @media (max-width: 768px) {
-            .quiz-options {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .quiz-options button {
-                width: 100%;
-            }
         }
 
         /* Sidebar */
@@ -891,6 +874,14 @@
             .articles { 
                 margin-right: 0; 
             }
+            
+            .hero h1 {
+                font-size: var(--font-3xl);
+            }
+            
+            .hero p {
+                font-size: var(--font-md);
+            }
         }
         
         @media (max-width: 1100px) {
@@ -964,32 +955,43 @@
                 display: flex;
             }
             
-            .hero {
+            .hero { 
                 padding: 60px 0;
             }
             
-            .hero h1 {
+            .hero h1 { 
                 font-size: var(--font-2xl);
             }
             
-            .hero p {
-                font-size: var(--font-md);
+            .btn {
+                padding: 10px 20px;
+                margin: 5px 0;
+                display: block;
+                width: 100%;
+                max-width: 280px;
+                margin-left: auto;
+                margin-right: auto;
             }
             
-            .job-table {
-                font-size: 0.9rem;
+            .quiz-options {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .job-table th, .job-table td {
-                padding: 10px;
+            .quiz-options button {
+                width: 100%;
             }
             
             .footer-content { 
                 flex-direction: column; 
                 gap: 20px;
             }
+            
+            .article-img {
+                height: 180px;
+            }
         }
-
+        
         @media (max-width: 480px) {
             :root {
                 --font-xs: 0.65rem;
@@ -1006,12 +1008,29 @@
                 font-size: var(--font-xl);
             }
             
+            .hero {
+                padding: 40px 0;
+            }
+            
             .hero h1 {
                 font-size: var(--font-xl);
             }
             
             .hero p {
                 font-size: var(--font-md);
+            }
+            
+            .article-content {
+                padding: 15px;
+            }
+            
+            .sidebar-widget {
+                padding: 15px;
+            }
+            
+            .featured-list img {
+                width: 35px;
+                height: 35px;
             }
             
             footer {
@@ -1033,14 +1052,20 @@
                 height: 36px;
             }
         }
-        
+
         /* Prevent zoom on focus for iOS */
         @media screen and (max-width: 768px) {
             input, select, textarea {
                 font-size: 16px !important;
             }
         }
-        
+
+        /* Loading animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
@@ -1054,14 +1079,14 @@
         }
     </style>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'G-VVS6GWC596');
-    </script>
+  gtag('config', 'G-VVS6GWC596');
+</script>
 </head>
 <body>
     <header>
@@ -1069,49 +1094,49 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                        <img src="../image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
                     </a>
                 </div>
                 <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
                 <nav id="main-nav">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Beranda</a></li>
                         <li class="dropdown">
-                            <a href="#">Uploads</a>
+                            <a href="#">Upload</a>
                             <ul class="dropdown-menu">
                                 <li><a href="heads.html">Heads</a></li>
                                 <li><a href="bodies.html">Bodies</a></li>
                                 <li><a href="hats.html">Hats</a></li>
-                                <li><a href="upload-sets.html">Upload Sets</a></li>
+                                <li><a href="upload-sets.html">Set Upload</a></li>
                                 <li><a href="templates.html">Templates</a></li>
-                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
-                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Era) ↗</a></li>
-                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Classic) ↗</a></li>
-                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Ol' West) ↗</a></li>
-                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Zone) ↗</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (oleh DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Zone) ↗</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Guides - How to?</a>
+                            <a href="#">Panduan - Bagaimana?</a>
                             <ul class="dropdown-menu">
                                 <li><a href="upload.html">Upload</a></li>
-                                <li><a href="trade-guide.html">Trade</a></li>
-                                <li><a href="workguide.html">Get Gralats</a></li>
-                                <li><a href="events-guide.html">Get Event Coins</a></li>
+                                <li><a href="trade-guide.html">Perdagangan</a></li>
+                                <li><a href="job-guide.html">Dapatkan Gralats</a></li>
+                                <li><a href="events-guide.html">Dapatkan Koin Event</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#">Trade Table</a>
+                            <a href="#">Tabel Perdagangan</a>
                             <ul class="dropdown-menu">
-                                  <li><a href="sellables-calculator.html">Sellables Calculator</a></li>
-                                <li><a href="advanced-calculator.html">Advanced Calculator</a></li>
-                                <li><a href="ratio-history.html">Ratio History</a></li>
-                                <li><a href="profit-loss.html">Profit & Loss Tracker</a></li>
-                                <li><a href="price-house.html">Price House</a></li>
+                                  <li><a href="sellables-calculator.html">Kalkulator Sellables</a></li>
+                                <li><a href="advanced-calculator.html">Kalkulator Lanjutan</a></li>
+                                <li><a href="ratio-history.html">Riwayat Rasio</a></li>
+                                <li><a href="profit-loss.html">Pelacak Untung & Rugi</a></li>
+                                <li><a href="price-house.html">Daftar Harga</a></li>
                             </ul>
                         </li>
-                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
-                        <li><a href="guns.html">Gun Ratings</a></li>
+                        <li><a href="secret-achievements.html">Pencapaian Rahasia</a></li>
+                        <li><a href="guns.html">Rating Senjata</a></li>
                     </ul>
                     
                     <!-- Mobile Actions Container - Side by Side -->
@@ -1119,19 +1144,19 @@
                         <!-- Mobile Language Selector -->
                         <div class="language-selector">
                             <button class="language-btn" id="mobile-language-btn">
-                                <img src="https://flagcdn.com/w40/us.png" alt="English">
-                                <span>English</span>
+                                <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
+                                <span>Indonesia</span>
                             </button>
                             <div class="mobile-language-options" id="mobile-language-options">
-                                <a href="job-guide.html">
+                                <a href="../events-guide.html">
                                     <img src="https://flagcdn.com/w40/us.png" alt="English">
                                     <span>English</span>
                                 </a>
-                                <a href="pt/job-guide.html">
+                                <a href="../pt/events-guide.html">
                                     <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                     <span>Português</span>
                                 </a>
-                                <a href="id/job-guide.html">
+                                <a href="events-guide.html">
                                     <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                     <span>Indonesia</span>
                                 </a>
@@ -1155,19 +1180,19 @@
                     <!-- Language Selector -->
                     <div class="language-selector">
                         <button class="language-btn" id="desktop-language-btn">
-                            <img src="https://flagcdn.com/w40/us.png" alt="English">
-                            <span>English</span>
+                            <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
+                            <span>Indonesia</span>
                         </button>
                         <div class="language-options" id="desktop-language-options">
-                            <a href="job-guide.html">
+                            <a href="../events-guide.html">
                                 <img src="https://flagcdn.com/w40/us.png" alt="English">
                                 <span>English</span>
                             </a>
-                            <a href="pt/job-guide.html">
+                            <a href="../pt/events-guide.html">
                                 <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
                                 <span>Português</span>
                             </a>
-                            <a href="id/job-guide.html">
+                            <a href="events-guide.html">
                                 <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
                                 <span>Indonesia</span>
                             </a>
@@ -1191,8 +1216,8 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 id="hero-title">Master Graal Era Jobs</h1>
-                <p id="hero-description">Learn strategies, tools, and tips for Mining, Pizza Making, Digging, and more.</p>
+                <h1 id="hero-title">Kuasai Koin Event Graal Era</h1>
+                <p id="hero-description">Pelajari semua cara mendapatkan Koin Event melalui event, pencapaian, dan quest harian. Dapatkan hadiah eksklusif dengan panduan lengkap kami.</p>
             </div>
         </div>
     </section>
@@ -1203,320 +1228,177 @@
                 <!-- Introduction -->
                 <article class="article">
                     <div class="article-content">
-                        <span class="tag tag-jobs">Jobs</span>
-                        <span class="tag tag-guide">Guide</span>
-                        <h2 id="intro-title">Introduction to Graal Era Jobs</h2>
-                        <div class="article-meta" id="intro-date">Updated on January 1, 2026</div>
-                        <p id="intro-text">Jobs are essential for earning Gralats in Graal Era. This comprehensive guide covers all seven major jobs, their requirements, earnings potential, and expert tips to maximize your profits.</p>
+                        <span class="tag tag-events">Koin Event</span>
+                        <span class="tag tag-guide">Panduan</span>
+                        <h2 id="intro-title">Pengantar Koin Event (EC)</h2>
+                        <div class="article-meta" id="intro-date">Diperbarui pada 1 Januari 2026</div>
+                        <p id="intro-text">Koin Event (EC) adalah mata uang khusus di Graal Era yang digunakan untuk membeli hadiah eksklusif dari toko event. Panduan ini akan menunjukkan semua cara mendapatkan EC melalui event, pencapaian, dan aktivitas harian.</p>
                     </div>
                 </article>
 
-                <!-- Mining -->
+                <!-- Event House & Event Bots -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="mining-title">1. Mining</h2>
-                        <p id="mining-desc">Mining is one of the most stable, long-term money makers in Era.</p>
+                        <h2 id="event-house-title">Event House & Bot Event</h2>
                         
                         <div class="tip">
-                            <h3 id="mining-requirements">What you need:</h3>
+                            <h3 id="event-house-subtitle">Event House</h3>
+                            <p id="event-house-text">Ikutlah saat admin mengadakan event resmi:</p>
                             <ul>
-                                <li id="mining-tool">A <strong>drill</strong> (cost ≈ 140 Gralats)</li>
-                                <li id="mining-battery">Battery replacements (≈ 80 Gralats) once drill battery dies</li>
+                                <li id="event-house-1">Event tim biasanya hanya memberi 0.1 EC untuk tim pemenang</li>
+                                <li id="event-house-2">Tag Team Spar (TTS): Hanya pemain pemenang terakhir yang mendapat 1 EC</li>
+                                <li id="event-house-3">Balapan, event keberuntungan, dan event keterampilan memberi 1 EC jika kamu menang</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="mining-how">How it works:</h3>
-                            <p id="mining-how-text">Mine rocks to gradually level up. At higher levels, rocks spawn faster, increasing your earning potential.</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="mining-earnings">Earnings:</h4>
-                            <p id="mining-earnings-text">At low level (level 0): <strong>≈ 500 Gralats/hour</strong></p>
-                            <p id="mining-earnings-note">Earnings increase at higher levels due to faster rock spawn rates</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="mining-tips">Tips:</h3>
+                            <h3 id="event-bot-title">Bot Event</h3>
+                            <p id="event-bot-text">Aktifkan Bot Event di pengaturanmu untuk menerima undangan event:</p>
                             <ul>
-                                <li id="mining-tip-1">Rotate between several mining spots</li>
-                                <li id="mining-tip-2">Don't buy more than one drill - it's unnecessary</li>
-                                <li id="mining-tip-3">Use mining to also get EC/achievements at key levels</li>
+                                <li id="event-bot-1">Masuk ke pengaturan dan aktifkan notifikasi Bot Event</li>
+                                <li id="event-bot-2">Saat bot mengundangmu, segera gabung ke event</li>
+                                <li id="event-bot-3">Memenangkan event memberimu 1 EC penuh</li>
                             </ul>
                         </div>
                     </div>
                 </article>
 
-                <!-- Pizza Making -->
+                <!-- Plasma & Laser Tag -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="pizza-title">2. Pizza Making (Speedy Pizza)</h2>
-                        <p id="pizza-desc">Fast, active job; good early money and rewards.</p>
+                        <h2 id="plasma-laser-title">MVP Plasma & Laser Tag</h2>
                         
                         <div class="tip">
-                            <h3 id="pizza-requirements">What you need:</h3>
+                            <h3 id="plasma-title">Plasma (PvP)</h3>
+                            <p id="plasma-text">Jadilah MVP di pertarungan plasma untuk mendapat EC:</p>
                             <ul>
-                                <li id="pizza-tool"><strong>Pizza Peel</strong> tool (cost ≈ 40 Gralats)</li>
+                                <li id="plasma-1">Fokus meraih skor tertinggi di pertandingan</li>
+                                <li id="plasma-2">MVP biasanya menerima 0.1-0.3 EC tergantung performa</li>
+                                <li id="plasma-3">Main di jam ramai untuk pertandingan yang lebih kompetitif</li>
                             </ul>
                         </div>
                         
                         <div class="tip">
-                            <h3 id="pizza-how">How it works:</h3>
-                            <p id="pizza-how-text">Go to Speedy Pizza shop. Pick up box, sauce, cheese, toppings, bake in oven.</p>
-                            <p id="pizza-locations">Locations: Blackholst, Sea Side (Beach), Southridge, Veteran Pizzeria (unlock at ≈3,000 pizzas)</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="pizza-earnings">Earnings:</h4>
-                            <p id="pizza-earnings-text">Each pizza: <strong>7-22 Gralats</strong> (depending on ingredients)</p>
-                            <p id="pizza-earnings-note">Estimated 3,000-20,000 Gralats/day with consistent work</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="pizza-tips">Tips:</h3>
+                            <h3 id="laser-title">Laser Tag</h3>
+                            <p id="laser-text">Jadilah MVP di pertandingan laser tag untuk mendapat EC:</p>
                             <ul>
-                                <li id="pizza-tip-1">Go during off-peak hours for oven</li>
-                                <li id="pizza-tip-2">Use Veteran shop if unlocked (less crowded, faster)</li>
-                                <li id="pizza-tip-3">Don't empty your oven</li>
+                                <li id="laser-1">Mirip dengan plasma, incar skor tertinggi</li>
+                                <li id="laser-2">Hadiah MVP berkisar 0.1-0.3 EC</li>
+                                <li id="laser-3">Latih bidikan dan pergerakan untuk meningkatkan kemampuanmu</li>
                             </ul>
                         </div>
                     </div>
                 </article>
 
-                <!-- Digging -->
+                <!-- Secret Achievements -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="digging-title">3. Digging / Shell Digging</h2>
-                        <p id="digging-desc">Digging shells or shells + sand is a mid-tier job; decent profit if you keep working.</p>
+                        <h2 id="achievements-title">Pencapaian Rahasia</h2>
                         
                         <div class="tip">
-                            <h3 id="digging-requirements">What you need:</h3>
+                            <h3 id="secret-achievements-subtitle">Hadiah EC Tersembunyi</h3>
+                            <p id="secret-achievements-text">Banyak pencapaian rahasia atau tersembunyi memberi pecahan EC:</p>
                             <ul>
-                                <li id="digging-tool">A <strong>shovel</strong> (≈50 Gralats)</li>
+                                <li id="achievements-1">Kebanyakan pencapaian memberi pecahan 0.1 EC, bukan EC penuh</li>
+                                <li id="achievements-2">Saat kamu mengumpulkan 0.3 pecahan EC, itu menjadi 1 EC penuh</li>
+                                <li id="achievements-3">Contoh: 3 pencapaian rahasia (0.1 + 0.1 + 0.1) = 1 EC</li>
                             </ul>
                         </div>
                         
-                        <div class="tip">
-                            <h3 id="digging-how">How it works:</h3>
-                            <p id="digging-how-text">Equip shovel, interact with sand spots. Shells/crab shells drop occasionally; crabs may appear and deal damage.</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="digging-earnings">Earnings:</h4>
-                            <p id="digging-earnings-text">Crab shell: <strong>≈6 Gralats</strong>; other shells vary</p>
-                            <p id="digging-earnings-note">Realistic earnings lower than mining (high level)/pizza due to time between digs but good if you want to save for Trochus</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="digging-tips">Tips:</h3>
-                            <ul>
-                                <li id="digging-tip-1">Keep health topped up (crabs damage) by making another account with healing melee to heal you 24 hours.</li>
-                            </ul>
+                        <div class="success">
+                            <h3 id="youtube-tip-title">Menemukan Pencapaian Rahasia</h3>
+                            <p id="youtube-tip-text">Cara termudah adalah menonton video YouTube atau bertanya ke pemain berpengalaman tentang pencapaian mana yang masih tersedia dan cara menyelesaikannya.</p>
                         </div>
                     </div>
                 </article>
 
-                <!-- Car Missions -->
+                <!-- Daily & Weekly Quests -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="missions-title">4. Car Missions (Delivery)</h2>
-                        <p id="missions-desc">High travel, decent payout if you know the map.</p>
+                        <h2 id="quests-title">Quest Harian & Mingguan</h2>
                         
                         <div class="tip">
-                            <h3 id="missions-requirements">What you need:</h3>
+                            <h3 id="quests-subtitle">Peluang EC Rutin</h3>
+                            <p id="quests-text">Quest direset harian dan mingguan dengan hadiah EC:</p>
                             <ul>
-                                <li id="missions-tool">Access to mission via car mission NPCs</li>
-                                <li id="missions-vehicle">Own a car; map knowledge helps</li>
+                                <li id="quests-1">Beberapa quest memberi pecahan Koin Event (misalnya 0.1 EC)</li>
+                                <li id="quests-2">Cek log quest-mu secara rutin untuk peluang EC</li>
+                                <li id="quests-3">Prioritaskan menyelesaikan quest dengan hadiah EC lebih dulu</li>
                             </ul>
                         </div>
                         
-                        <div class="tip">
-                            <h3 id="missions-how">How it works:</h3>
-                            <p id="missions-how-text">Pick up mission, drive to destinations, deliver passengers. Time & risk involved (you can't get damage if the passenger are with you in the car).</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="missions-earnings">Earnings:</h4>
-                            <p id="missions-earnings-text">Moderate — better than slow jobs but more risk/time</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="missions-tips">Tips:</h3>
-                            <ul>
-                                <li id="missions-tip-1">Car mission around VIP shop is the easiest</li>
-                                <li id="missions-tip-2">Know how to not get damage when you are trying to get a mission from the NPC in PK area</li>
-                            </ul>
+                        <div class="success">
+                            <h3 id="hi5-quest-title">Strategi Quest Hi5</h3>
+                            <p id="hi5-quest-text">Untuk "Quest Hi5", pergilah ke area Start tepat setelah reset harian — kamu akan menemukan banyak pemain melakukannya bersamaan, sehingga lebih mudah selesai dengan cepat.</p>
                         </div>
                     </div>
                 </article>
 
-                <!-- Mushroom Picking -->
+                <!-- EC Collection Tips -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="mushroom-title">5. Mushroom Picking</h2>
-                        <p id="mushroom-desc">Often underrated — good steady income if you have the tool.</p>
+                        <h2 id="tips-title">Tips & Strategi Mengumpulkan EC</h2>
                         
                         <div class="tip">
-                            <h3 id="mushroom-requirements">What you need:</h3>
+                            <h3 id="consistency-title">Konsisten</h3>
+                            <p id="consistency-text">Partisipasi rutin adalah kunci mengumpulkan EC dari waktu ke waktu. Jumlah kecil pun bisa terkumpul banyak!</p>
+                        </div>
+                        
+                        <div class="tip">
+                            <h3 id="priority-title">Prioritaskan Aktivitas Bernilai Tinggi</h3>
+                            <p id="priority-text">Fokus dulu pada aktivitas yang memberi EC penuh, lalu kerjakan pecahan EC:</p>
                             <ul>
-                                <li id="mushroom-tool"><strong>Mushroom Knife</strong> (≈250 Gralats) from mushroom shop</li>
+                                <li id="priority-1">Kemenangan event (1 EC)</li>
+                                <li id="priority-2">MVP di Plasma/Laser Tag (0.1-0.3 EC)</li>
+                                <li id="priority-3">Quest harian/mingguan dengan hadiah EC</li>
+                                <li id="priority-4">Pencapaian rahasia (0.1 EC per buah)</li>
                             </ul>
                         </div>
                         
-                        <div class="tip">
-                            <h3 id="mushroom-how">How it works:</h3>
-                            <p id="mushroom-how-text">Find mushroom patches; use knife to pick mushrooms (fill progress to 100%) then sell.</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="mushroom-earnings">Earnings:</h4>
-                            <p id="mushroom-earnings-text">Mushrooms sell for <strong>≈5 Gralats each</strong></p>
-                            <p id="mushroom-earnings-note">Earnings fluctuate based on pickup speed & competition</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="mushroom-tips">Tips:</h3>
-                            <ul>
-                                <li id="mushroom-tip-1">Go when fewer players are around patches</li>
-                                <li id="mushroom-tip-2">Attack the mushroom patches and another player at the same time (if they are trying to steal your mushroom) to increase your earning rate</li>
-                                <li id="mushroom-tip-3">Get OP mushroom knife that can poison or confuse effect your competitors</li>
-                            </ul>
+                        <div class="success">
+                            <h3 id="community-title">Bergabung dengan Komunitas</h3>
+                            <p id="community-text">Terhubunglah dengan pemain lain untuk mengetahui jadwal event, tips pencapaian, dan bekerja sama untuk hasil lebih baik di event tim.</p>
                         </div>
                     </div>
                 </article>
 
-                <!-- Trash Picking -->
+                <!-- Interactive Quiz -->
                 <article class="article">
                     <div class="article-content">
-                        <h2 id="trash-title">6. Trash Picking</h2>
-                        <p id="trash-desc">Easiest job to start; very low barrier.</p>
-                        
-                        <div class="tip">
-                            <h3 id="trash-requirements">What you need:</h3>
-                            <ul>
-                                <li id="trash-tool"><strong>Trash pick</strong> (free at Recycling Depot)</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="trash-how">How it works:</h3>
-                            <p id="trash-how-text">Walk around streets & open areas outside buildings, pick up trash objects (paper, bottles, etc.).</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="trash-earnings">Earnings:</h4>
-                            <p id="trash-earnings-text">Trash items pay <strong>4-6 Gralats per piece</strong></p>
-                            <p id="trash-earnings-note">Overall earnings low – best as filler or beginner job</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="trash-tips">Tips:</h3>
-                            <ul>
-                                <li id="trash-tip-1">Cover more ground; picking many small items adds up</li>
-                                <li id="trash-tip-2">Combine with walking or exploration to multitask</li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Fishing -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="fishing-title">7. Fishing</h2>
-                        <p id="fishing-desc">A relaxing job, high paced, less risky.</p>
-                        
-                        <div class="tip">
-                            <h3 id="fishing-requirements">What you need:</h3>
-                            <ul>
-                                <li id="fishing-tool">Fishing rod tool</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="fishing-how">How it works:</h3>
-                            <p id="fishing-how-text">Go to water areas, use rod, catch fish. Possibly lure under water or wait for fish to bite.</p>
-                        </div>
-                        
-                        <div class="earnings">
-                            <h4 id="fishing-earnings">Earnings:</h4>
-                            <p id="fishing-earnings-note">Considered high income but fish can't be traded</p>
-                        </div>
-                        
-                        <div class="tip">
-                            <h3 id="fishing-tips">Tips:</h3>
-                            <ul>
-                                <li id="fishing-tip-1">Keep fishing to level up</li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Interactive Tutorial -->
-                <article class="article">
-                    <div class="article-content">
-                        <h2 id="tutorial-title">Interactive Job Tutorial</h2>
+                        <h2 id="quiz-title">Uji Pengetahuan EC-mu!</h2>
                         <div class="interactive-tutorial" id="interactiveTutorial">
-                            <h3 id="quiz-title">Test Your Job Knowledge!</h3>
-                            <p id="quiz-desc">Answer the following questions to test your understanding of the jobs above.</p>
+                            <h3 id="quiz-subtitle">Kuis Koin Event</h3>
+                            <p id="quiz-desc">Jawab pertanyaan ini untuk menguji pemahamanmu tentang Koin Event di Graal Era.</p>
                             <div id="quizContainer"></div>
                             <div id="quizResult" class="quiz-result"></div>
                         </div>
                     </div>
                 </article>
 
+                <!-- Conclusion -->
+                <article class="article">
+                    <div class="article-content">
+                        <h2 id="conclusion-title">Kesimpulan</h2>
+                        <p id="conclusion-text">Mendapatkan Koin Event butuh ketekunan dan pengetahuan tentang semua cara yang tersedia. Dengan mengikuti event, menyelesaikan pencapaian, dan konsisten dengan aktivitas harian, kamu bisa mengumpulkan cukup EC untuk membeli item eksklusif dari toko event. Selamat berburu!</p>
+                    </div>
+                </article>
             </div>
 
             <div class="sidebar">
                 <div class="sidebar-widget">
-                    <h3 id="job-comparison-title">Job Comparison</h3>
-                    <div style="overflow-x: auto;">
-                    <table class="job-table">
-                        <thead>
-                            <tr>
-                                <th>Job</th>
-                                <th>Earnings/Hour</th>
-                                <th>Difficulty</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Mining</td>
-                                <td>500-1000+</td>
-                                <td>Medium</td>
-                            </tr>
-                            <tr>
-                                <td>Pizza Making</td>
-                                <td>600-1200</td>
-                                <td>Medium</td>
-                            </tr>
-                            <tr>
-                                <td>Digging</td>
-                                <td>300-600</td>
-                                <td>Easy</td>
-                            </tr>
-                            <tr>
-                                <td>Car Missions</td>
-                                <td>400-800</td>
-                                <td>Hard</td>
-                            </tr>
-                            <tr>
-                                <td>Mushroom Picking</td>
-                                <td>350-700</td>
-                                <td>Easy</td>
-                            </tr>
-                            <tr>
-                                <td>Trash Picking</td>
-                                <td>200-400</td>
-                                <td>Very Easy</td>
-                            </tr>
-                            <tr>
-                                <td>Fishing</td>
-                                <td>400-900</td>
-                                <td>Easy</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
+                    <h3 id="free-ec-title">EC GRATIS!</h3>
+                    <ul class="featured-list">
+                         <a href="secret-achievements.html" class="btn" style="width: 100%; text-align: center; margin-top: 10px;">Lihat Pencapaian Rahasia</a>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 id="related-guides-title">Panduan Terkait</h3>
+                    <ul class="featured-list">
+                        <li><a href="job-guide.html">Dapatkan Gralats</a></li>
+                        <li><a href="trade-guide.html">Panduan Perdagangan</a></li>
+                        <li><a href="upload.html">Panduan Upload</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1526,39 +1408,39 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="about-title-footer">About GraalGuide</h3>
-                    <p id="about-desc-footer">GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
-                    <p><em id="disclaimer-footer">GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                    <h3 id="about-title">Tentang GraalGuide</h3>
+                    <p id="about-desc">GraalGuide adalah sumber daya buatan penggemar terbaik untuk pemain Graal Era. Kami menyediakan alat, panduan, dan sumber daya untuk meningkatkan pengalaman bermainmu.</p>
+                    <p><em id="disclaimer">GraalGuide tidak berafiliasi dengan GraalOnline atau Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3 id="links-title-footer">Quick Links</h3>
+                    <h3 id="links-title">Tautan Cepat</h3>
                     <ul>
-                        <li><a href="index.html" id="link-home-footer">Home</a></li>
-                        <li><a href="upload.html" id="link-achievements-footer">Uploads</a></li>
-                        <li><a href="trade-guide.html" id="link-events-footer">Trading Guide</a></li>
-                        <li><a href="secret-achievements.html" id="link-gralats-footer">Secret Achievement</a></li>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="upload.html">Uploads</a></li>
+                        <li><a href="trade-guide.html">Panduan Perdagangan</a></li>
+                        <li><a href="secret-achievements.html">Pencapaian Rahasia</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="legal-title-footer">Legal & Policies</h3>
+                    <h3 id="legal-title">Legal & Kebijakan</h3>
                     <ul>
-                        <li><a href="privacy-policy.html" id="link-privacy-footer">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" id="link-terms-footer">Terms of Service</a></li>
-                        <li><a href="cookie-policy.html" id="link-cookie-footer">Cookie Policy</a></li>
-                        <li><a href="disclaimer.html" id="link-disclaimer-footer">Disclaimer</a></li>
+                        <li><a href="privacy-policy.html">Kebijakan Privasi</a></li>
+                        <li><a href="terms-of-service.html">Ketentuan Layanan</a></li>
+                        <li><a href="cookie-policy.html">Kebijakan Cookie</a></li>
+                        <li><a href="disclaimer.html">Sangkalan</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3 id="connect-title-footer">Connect</h3>
+                    <h3 id="connect-title">Terhubung</h3>
                     <ul>
-                        <li><a href="about-me.html" id="link-discord-footer">About Me</a></li>
-                        <li><a href="https://www.youtube.com/@azrxc" id="link-youtube-footer">YouTube</a></li>
-                        <li><a href="contact-us.html" id="link-contact-footer">Contact Us</a></li>
+                        <li><a href="about-me.html">Tentang Saya</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc">YouTube</a></li>
+                        <li><a href="contact-us.html">Hubungi Kami</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p id="copyright-footer">&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <p id="copyright-footer">&copy; 2025 GraalGuide.com. Seluruh hak cipta dilindungi. Semua merek dagang adalah milik pemiliknya masing-masing.</p>
             </div>
         </div>
     </footer>
@@ -1568,35 +1450,31 @@
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
+            
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         }
 
-        // Quiz Questions and Answers
+        // Quiz Questions and Answers for Event Coins
         const quizQuestions = [
             {
-                question: "Should you buy more than one drill for Mining?",
+                question: "Apakah event tim biasanya memberi semua anggota 1 EC penuh?",
                 answer: false
             },
             {
-                question: "Is the Trash Pick tool free at the Recycling Depot?",
+                question: "Bisakah kamu mendapat pecahan EC dari pencapaian rahasia?",
                 answer: true
             },
             {
-                question: "Can fish caught from Fishing be traded?",
-                answer: false
-            },
-            {
-                question: "Do you need a Pizza Peel tool for Pizza Making?",
+                question: "Apakah menjadi MVP di Plasma atau Laser Tag memberi EC?",
                 answer: true
             },
             {
-                question: "Is Digging generally more profitable per hour than high-level Mining or Pizza Making?",
-                answer: false
+                question: "Apakah quest harian dan mingguan kadang memberi EC?",
+                answer: true
             },
             {
-                question: "Do Car Missions involve more time and risk than the slower, low-effort jobs?",
+                question: "Apakah kamu perlu mengaktifkan Bot Event di pengaturan untuk menerima undangan event?",
                 answer: true
             }
         ];
@@ -1615,21 +1493,21 @@
                     <div class="quiz-question">
                         <p>${question.question}</p>
                         <div class="quiz-options">
-                            <button class="btn" onclick="checkAnswer(true)">Yes</button>
-                            <button class="btn btn-secondary" onclick="checkAnswer(false)">No</button>
+                            <button class="btn" onclick="checkAnswer(true)">Ya</button>
+                            <button class="btn btn-secondary" onclick="checkAnswer(false)">Tidak</button>
                         </div>
                     </div>
                 `;
             } else {
                 quizContainer.innerHTML = "";
                 const pct = Math.round((score / quizQuestions.length) * 100);
-                const message = pct === 100 ? "Perfect score! You really know your jobs." :
-                    pct >= 60 ? "Nice work! You've got a solid grasp on the jobs." :
-                    "Give the guide another read and try again!";
+                const message = pct === 100 ? "Skor sempurna! Kamu benar-benar paham event." :
+                    pct >= 60 ? "Kerja bagus! Pemahamanmu tentang event sudah mantap." :
+                    "Baca lagi panduannya dan coba lagi!";
                 quizResult.innerHTML = `
-                    <p>Quiz Complete! Your score is ${score} out of ${quizQuestions.length}.</p>
+                    <p>Kuis Selesai! Skormu ${score} dari ${quizQuestions.length}.</p>
                     <p>${message}</p>
-                    <button class="btn" onclick="retakeQuiz()">Retake Quiz</button>
+                    <button class="btn" onclick="retakeQuiz()">Ulangi Kuis</button>
                 `;
             }
         }
@@ -1674,7 +1552,7 @@
             }
         }
 
-        // Initialize the page
+        // Initialize language and theme
         document.addEventListener('DOMContentLoaded', function() {
             // Check for saved theme preference or default to dark
             const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -1685,6 +1563,7 @@
             document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
             
             // Initialize language option toggles (dropdown open/close only - the options themselves are now real links to each language's own page)
+
             toggleLanguageOptions('desktop-language-btn', 'desktop-language-options');
             toggleLanguageOptions('mobile-language-btn', 'mobile-language-options');
             
@@ -1771,7 +1650,7 @@
                     });
                 });
             }
-
+            
             // Start Quiz
             displayQuiz();
         });
