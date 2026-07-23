@@ -1519,7 +1519,7 @@
                 colors: ["black"],           
             },
             { 
-                image: "../image/heads//19.gif",
+                image: "../image/heads/19.gif",
                 gender: ["male"],
                 colors: ["black"],           
             },
@@ -2605,6 +2605,10 @@
         // Configuration
         const itemsPerPage = 120;
         const HEADS_STATE_KEY = 'headsLastState';
+        // The community dataset is fetched async and dwarfs the static array below;
+        // don't clamp the requested page against the tiny static-only count until
+        // it's loaded, or valid deep-page requests (page 4+) get bounced back.
+        let communityDataLoaded = false;
 
         // On a bare visit (no query string at all, e.g. clicked "Heads" from the nav),
         // resume wherever the visitor last left off instead of always resetting to page 1.
@@ -2667,12 +2671,18 @@
             filteredHeads = filtered;
 
             // Clamp currentPage into range - a stale/out-of-range page number
-            // (bad URL, or a jump target from before the community dataset loaded)
-            // would otherwise slice past the end of the array and render nothing.
-            const maxPage = Math.max(1, Math.ceil(filteredHeads.length / itemsPerPage));
-            if (currentPage > maxPage || currentPage < 1) {
-                currentPage = Math.min(Math.max(currentPage, 1), maxPage);
-                history.replaceState(null, '', buildPageURL(currentPage));
+            // (bad URL) would otherwise slice past the end of the array and render
+            // nothing. Only clamp the upper bound once the community dataset has
+            // loaded - before that, filteredHeads.length understates the true total
+            // and would wrongly bounce valid deep-page requests back down.
+            if (communityDataLoaded) {
+                const maxPage = Math.max(1, Math.ceil(filteredHeads.length / itemsPerPage));
+                if (currentPage > maxPage || currentPage < 1) {
+                    currentPage = Math.min(Math.max(currentPage, 1), maxPage);
+                    history.replaceState(null, '', buildPageURL(currentPage));
+                }
+            } else if (currentPage < 1) {
+                currentPage = 1;
             }
 
             // Calculate which items to show
@@ -2874,9 +2884,14 @@
                 .then(response => response.json())
                 .then(communityHeads => {
                     headsData.push(...communityHeads);
+                    communityDataLoaded = true;
                     renderHeads();
                 })
-                .catch(error => console.error('Could not load community heads:', error));
+                .catch(error => {
+                    console.error('Could not load community heads:', error);
+                    communityDataLoaded = true;
+                    renderHeads();
+                });
 
             // Color filter event listeners
             document.querySelectorAll('.color-filter').forEach(filter => {

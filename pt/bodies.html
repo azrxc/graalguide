@@ -3108,6 +3108,10 @@
         // Configuration
         const itemsPerPage = 80;
         const BODIES_STATE_KEY = 'bodiesLastState';
+        // The community dataset is fetched async and dwarfs the static array below;
+        // don't clamp the requested page against the tiny static-only count until
+        // it's loaded, or valid deep-page requests get bounced back.
+        let communityDataLoaded = false;
 
         // On a bare visit (no query string at all, e.g. clicked "Bodies" from the nav),
         // resume wherever the visitor last left off instead of always resetting to page 1.
@@ -3159,10 +3163,17 @@
 
             // Clamp currentPage into range - a stale/out-of-range page number
             // would otherwise slice past the end of the array and render nothing.
-            const maxPage = Math.max(1, Math.ceil(filteredBodies.length / itemsPerPage));
-            if (currentPage > maxPage || currentPage < 1) {
-                currentPage = Math.min(Math.max(currentPage, 1), maxPage);
-                history.replaceState(null, '', buildPageURL(currentPage));
+            // Only clamp the upper bound once the community dataset has loaded -
+            // before that, filteredBodies.length understates the true total and
+            // would wrongly bounce valid deep-page requests back down.
+            if (communityDataLoaded) {
+                const maxPage = Math.max(1, Math.ceil(filteredBodies.length / itemsPerPage));
+                if (currentPage > maxPage || currentPage < 1) {
+                    currentPage = Math.min(Math.max(currentPage, 1), maxPage);
+                    history.replaceState(null, '', buildPageURL(currentPage));
+                }
+            } else if (currentPage < 1) {
+                currentPage = 1;
             }
 
             // Calculate which items to show
@@ -3357,9 +3368,14 @@
                 .then(response => response.json())
                 .then(communityBodies => {
                     bodiesData.push(...communityBodies);
+                    communityDataLoaded = true;
                     renderBodies();
                 })
-                .catch(error => console.error('Could not load community bodies:', error));
+                .catch(error => {
+                    console.error('Could not load community bodies:', error);
+                    communityDataLoaded = true;
+                    renderBodies();
+                });
 
             // Category filter event listeners
             document.querySelectorAll('input[name="category"]').forEach(checkbox => {

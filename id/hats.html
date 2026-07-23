@@ -1183,6 +1183,10 @@
         // Configuration
         const itemsPerPage = 40;
         const HATS_STATE_KEY = 'hatsLastState';
+        // hatsData starts empty and the entire gallery comes from the async
+        // community fetch; don't clamp the requested page until it's loaded,
+        // or every deep-page request gets bounced back to page 1.
+        let communityDataLoaded = false;
 
         // On a bare visit (no query string at all, e.g. clicked "Hats" from the nav),
         // resume wherever the visitor last left off instead of always resetting to page 1.
@@ -1220,10 +1224,17 @@
 
             // Clamp currentPage into range - a stale/out-of-range page number
             // would otherwise slice past the end of the array and render nothing.
-            const maxPage = Math.max(1, Math.ceil(filteredHats.length / itemsPerPage));
-            if (currentPage > maxPage || currentPage < 1) {
-                currentPage = Math.min(Math.max(currentPage, 1), maxPage);
-                history.replaceState(null, '', buildPageURL(currentPage));
+            // Only clamp the upper bound once the community dataset has loaded -
+            // before that, filteredHats.length understates the true total (hatsData
+            // starts empty) and would wrongly bounce valid deep-page requests back down.
+            if (communityDataLoaded) {
+                const maxPage = Math.max(1, Math.ceil(filteredHats.length / itemsPerPage));
+                if (currentPage > maxPage || currentPage < 1) {
+                    currentPage = Math.min(Math.max(currentPage, 1), maxPage);
+                    history.replaceState(null, '', buildPageURL(currentPage));
+                }
+            } else if (currentPage < 1) {
+                currentPage = 1;
             }
 
             const startIndex = (currentPage - 1) * itemsPerPage;
@@ -1385,10 +1396,15 @@
                 .then(response => response.json())
                 .then(communityHats => {
                     hatsData.push(...communityHats);
+                    communityDataLoaded = true;
                     renderHats();
                     saveHatsState();
                 })
-                .catch(error => console.error('Could not load community hats:', error));
+                .catch(error => {
+                    console.error('Could not load community hats:', error);
+                    communityDataLoaded = true;
+                    renderHats();
+                });
 
             // Modal functionality
             document.querySelector('.close-modal').addEventListener('click', function() {
