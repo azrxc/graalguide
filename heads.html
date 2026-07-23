@@ -543,19 +543,6 @@
         .frame3 { background-position: 0 -64px; }
         .frame4 { background-position: 0 -96px; }
 
-        /* Community-uploaded heads: arbitrary player files, not guaranteed to match the
-           curated set's 32x560 multi-frame sprite sheet layout, so show them as a single
-           unscaled/uncropped icon instead of slicing background-position frames. */
-        .head-single {
-            width: 64px;
-            height: 64px;
-            object-fit: contain;
-            image-rendering: pixelated;
-            border: 1px solid var(--border-color);
-            border-radius: 3px;
-            background: var(--card-bg);
-        }
-        
         /* Improved Reset Button */
         .reset-btn {
             display: block;
@@ -1006,11 +993,6 @@
             .frame3 { background-position: 0 -56px; }
             .frame4 { background-position: 0 -84px; }
 
-            .head-single {
-                width: 56px;
-                height: 56px;
-            }
-
             .page-header {
                 padding: 40px 0;
             }
@@ -1066,11 +1048,6 @@
             .frame2 { background-position: 0 -24px; }
             .frame3 { background-position: 0 -48px; }
             .frame4 { background-position: 0 -72px; }
-
-            .head-single {
-                width: 48px;
-                height: 48px;
-            }
 
             .page-header h1 {
                 font-size: var(--font-xl);
@@ -1169,6 +1146,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="heads.html" data-translate="nav-heads">Heads</a></li>
                                 <li><a href="bodies.html" data-translate="nav-bodies">Bodies</a></li>
+                                <li><a href="hats.html">Hats</a></li>
                                 <li><a href="upload-sets.html" data-translate="nav-sets">Upload Sets</a></li>
                                 <li><a href="templates.html" data-translate="nav-sets">Templates</a></li>
                                 <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
@@ -2841,21 +2819,12 @@
                 const headElement = document.createElement('div');
                 headElement.className = 'head-item';
                 
-                // Community-uploaded heads aren't guaranteed to match the curated set's
-                // 32x560 multi-frame sprite sheet, so show them as one plain icon instead
-                // of slicing background-position frames (which would stretch/warp them).
-                const galleryHTML = head.isCommunity
-                    ? `<img class="head-single" src="${head.image}" alt="${head.image.split('/').pop()}" loading="lazy" decoding="async">`
-                    : `
+                headElement.innerHTML = `
+                    <div class="head-gallery">
                         <div class="head frame1" style="background-image:url('${head.image}')"></div>
                         <div class="head frame2" style="background-image:url('${head.image}')"></div>
                         <div class="head frame3" style="background-image:url('${head.image}')"></div>
                         <div class="head frame4" style="background-image:url('${head.image}')"></div>
-                    `;
-
-                headElement.innerHTML = `
-                    <div class="head-gallery">
-                        ${galleryHTML}
                     </div>
                 `;
                 
@@ -3054,7 +3023,6 @@
             fetch('data/heads-community.json')
                 .then(response => response.json())
                 .then(communityHeads => {
-                    communityHeads.forEach(head => { head.isCommunity = true; });
                     headsData.push(...communityHeads);
                     renderHeads();
                 })

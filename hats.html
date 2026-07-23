@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
+     crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="image/a/graalguide.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "GraalGuide",
+        "url": "https://graalguide.com/",
+        "logo": "https://graalguide.com/image/a/graalguide.png"
+    }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Hats Gallery - GraalGuide Graal Era Custom Hats</title>
+    <meta name="description" content="Browse and download custom hats and headwear for Graal Era.">
+    <style>
+        :root {
+            --primary-color: #8a2be2; /* Purple accent */
+            --secondary-color: #00bcd4; /* Teal accent */
+            --accent-color: #ff5722; /* Orange accent */
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #9e9e9e;
+            --border-color: #333;
+
+            /* Responsive font sizes */
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-md: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.875rem;
+            --font-4xl: 2.25rem;
+        }
+
+        /* Light mode variables */
+        [data-theme="light"] {
+            --dark-bg: #f5f5f5;
+            --darker-bg: #e0e0e0;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --border-color: #dddddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: var(--font-md);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: var(--darker-bg);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: var(--font-2xl);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            position: relative;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+            display: block;
+            padding: 5px 0;
+            position: relative;
+            font-size: var(--font-md);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Updated Theme Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: inline-block;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: inline-block;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: var(--font-sm);
+            height: 40px;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .language-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .language-btn img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        .language-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 150px;
+            z-index: 1000;
+            margin-top: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .language-options.active {
+            display: block;
+        }
+
+        .language-options a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            font-size: var(--font-sm);
+        }
+
+        .language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .language-options a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+            font-size: var(--font-sm);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+
+        [data-theme="light"] .dropdown-menu a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
+        }
+
+        .page-header h1 {
+            font-size: var(--font-4xl);
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: var(--font-lg);
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        /* Disclaimer Banner */
+        .disclaimer-banner {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: 0 auto 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            border-left: 4px solid #e65100;
+        }
+
+        .disclaimer-banner p {
+            margin: 0;
+            font-size: var(--font-sm);
+            line-height: 1.5;
+        }
+
+        .disclaimer-banner strong {
+            font-weight: 700;
+        }
+
+        /* Hats Gallery Content */
+        .hats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hat-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .hat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .hat-display {
+            width: 100%;
+            height: 140px;
+            overflow: hidden;
+            position: relative;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hat-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: pixelated;
+            padding: 8px;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            list-style: none;
+            gap: 8px;
+        }
+
+        .pagination li {
+            margin: 0;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: var(--font-md);
+        }
+
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+        }
+
+        .page-nav {
+            background: var(--dark-bg);
+        }
+
+        /* Jump to page */
+        .jump-to-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .jump-to-page #pageOfLabel {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+        }
+
+        .jump-to-page input[type="number"] {
+            width: 70px;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: var(--font-md);
+            text-align: center;
+        }
+
+        .jump-to-page input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .jump-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: var(--font-sm);
+            transition: all 0.2s ease;
+        }
+
+        .jump-btn:hover {
+            background: #7329c7;
+            transform: translateY(-2px);
+        }
+
+        /* Modal for enlarged view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            color: white !important;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: var(--font-md);
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.5);
+            z-index: 2001;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 6px 25px rgba(138, 43, 226, 0.6);
+            color: white !important;
+        }
+
+        @media (max-width: 480px) {
+            .download-btn {
+                bottom: 20px;
+                padding: 12px 24px;
+                font-size: var(--font-sm);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: var(--font-lg);
+        }
+
+        .footer-section p, .footer-section li {
+            color: var(--text-muted);
+            font-size: var(--font-md);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            font-size: var(--font-md);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+        }
+
+        /* Mobile Actions Container - Side by Side */
+        .mobile-actions-container {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+            gap: 10px;
+            align-items: center;
+        }
+
+        .mobile-actions-container .language-selector {
+            flex: 1;
+            margin: 0;
+        }
+
+        .mobile-actions-container .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .mobile-actions-container .theme-toggle {
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        /* Mobile Language Options */
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-language-options.active {
+            display: block;
+        }
+
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .mobile-language-options a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hats-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+
+            .page-header h1 {
+                font-size: var(--font-3xl);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            :root {
+                --font-xs: 0.7rem;
+                --font-sm: 0.8rem;
+                --font-md: 0.9rem;
+                --font-lg: 1rem;
+                --font-xl: 1.1rem;
+                --font-2xl: 1.3rem;
+                --font-3xl: 1.5rem;
+                --font-4xl: 1.7rem;
+            }
+
+            .header-content {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--darker-bg);
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+                overflow-y: auto;
+                transition: all 0.3s ease;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 0;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                margin: 10px 0;
+                border: none;
+                background: var(--dark-bg);
+                display: none;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-actions {
+                display: none;
+            }
+
+            .mobile-actions-container {
+                display: flex;
+            }
+
+            .hats-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 15px;
+            }
+
+            .hat-display {
+                height: 120px;
+            }
+
+            .page-header {
+                padding: 40px 0;
+            }
+
+            .page-header h1 {
+                font-size: var(--font-2xl);
+            }
+
+            .disclaimer-banner {
+                padding: 12px 15px;
+                margin: 0 20px 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .pagination a {
+                padding: 8px 12px;
+                font-size: var(--font-sm);
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --font-xs: 0.65rem;
+                --font-sm: 0.75rem;
+                --font-md: 0.85rem;
+                --font-lg: 0.95rem;
+                --font-xl: 1.05rem;
+                --font-2xl: 1.2rem;
+                --font-3xl: 1.35rem;
+                --font-4xl: 1.5rem;
+            }
+
+            .logo {
+                font-size: var(--font-xl);
+            }
+
+            .hats-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 12px;
+            }
+
+            .hat-display {
+                height: 100px;
+            }
+
+            .page-header h1 {
+                font-size: var(--font-xl);
+            }
+
+            .page-header p {
+                font-size: var(--font-md);
+            }
+
+            .disclaimer-banner {
+                padding: 10px 12px;
+                margin: 0 15px 15px;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+            }
+
+            footer {
+                padding: 30px 0 15px;
+            }
+
+            .mobile-actions-container {
+                gap: 8px;
+            }
+
+            .mobile-actions-container .theme-toggle {
+                width: 36px;
+                height: 36px;
+            }
+
+            .mobile-actions-container .language-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                height: 36px;
+            }
+        }
+
+        /* No results styling */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            font-size: var(--font-lg);
+        }
+
+        .no-results::before {
+            content: "😢";
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* Prevent zoom on focus for iOS */
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VVS6GWC596');
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <span style="font-size: 1.8rem;">◉</span> Graal<span>Guide</span>
+                    </a>
+                </div>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#">Uploads</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="heads.html">Heads</a></li>
+                                <li><a href="bodies.html">Bodies</a></li>
+                                <li><a href="hats.html">Hats</a></li>
+                                <li><a href="upload-sets.html">Upload Sets</a></li>
+                                <li><a href="templates.html">Templates</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (by DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Now (Zone) ↗</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Guides - How to?</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upload.html">Upload</a></li>
+                                <li><a href="trade-guide.html">Trade</a></li>
+                                <li><a href="job-guide.html">Get Gralats</a></li>
+                                <li><a href="events-guide.html">Get Event Coins</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Trade Table</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sellables-calculator.html">Sellables Calculator</a></li>
+                                <li><a href="advanced-calculator.html">Advanced Calculator</a></li>
+                                <li><a href="ratio-history.html">Ratio History</a></li>
+                                <li><a href="profit-loss.html">Profit & Loss Tracker</a></li>
+                                <li><a href="price-house.html">Price House</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
+                        <li><a href="guns.html">Gun Ratings</a></li>
+                    </ul>
+
+                    <!-- Mobile Actions Container - Side by Side -->
+                    <div class="mobile-actions-container">
+                        <!-- Mobile Language Selector -->
+                        <div class="language-selector">
+                            <button class="language-btn" id="mobile-language-btn">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                <span>English</span>
+                            </button>
+                            <div class="mobile-language-options" id="mobile-language-options">
+                                <a href="#" data-lang="en">
+                                    <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                    <span>English</span>
+                                </a>
+                                <a href="#" data-lang="pt">
+                                    <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                    <span>Português</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Theme Toggle -->
+                        <button class="theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">
+                            <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                            </svg>
+                            <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Desktop Header Actions -->
+                <div class="header-actions">
+                    <!-- Language Selector -->
+                    <div class="language-selector">
+                        <button class="language-btn" id="desktop-language-btn">
+                            <img src="https://flagcdn.com/w40/us.png" alt="English">
+                            <span>English</span>
+                        </button>
+                        <div class="language-options" id="desktop-language-options">
+                            <a href="#" data-lang="en">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                <span>English</span>
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                <span>Português</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Theme Toggle -->
+                    <button class="theme-toggle" id="desktop-theme-toggle" aria-label="Toggle theme">
+                        <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                        </svg>
+                        <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Graal Era Hats Gallery</h1>
+            <p>Browse and download custom hats and headwear for Graal Era.</p>
+        </div>
+    </div>
+
+    <!-- Disclaimer Banner -->
+    <div class="container">
+        <div class="disclaimer-banner">
+            <p><strong>Disclaimer:</strong> All uploaded images are user-generated and publicly available within GraalOnline. GraalGuide does not claim ownership of any user-created content. If you are the creator and wish your upload removed, please contact us via <strong>graalguide.contact@gmail.com</strong></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hats-grid" id="hats-container">
+            <!-- Hats will be populated by JavaScript -->
+        </div>
+
+        <ul class="pagination">
+            <li><a href="#" class="page-nav" data-page="prev">&laquo;</a></li>
+            <li><a href="#" class="active" data-page="1">1</a></li>
+            <li><a href="#" data-page="2">2</a></li>
+            <li><a href="#" data-page="3">3</a></li>
+            <li><a href="#" class="page-nav" data-page="next">&raquo;</a></li>
+        </ul>
+        <form class="jump-to-page" id="jumpToPageForm">
+            <span id="pageOfLabel">Page 1 of 1</span>
+            <input type="number" id="jumpToPageInput" min="1" value="1" aria-label="Jump to page">
+            <button type="submit" class="jump-btn">Go</button>
+        </form>
+    </div>
+
+    <!-- Modal for enlarged view -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="enlarged-img">
+        <a id="download-btn" class="download-btn" download>&#8681; Download</a>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About GraalGuide</h3>
+                    <p>GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
+                    <p><em>GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="upload.html">Uploads</a></li>
+                        <li><a href="trade-guide.html">Trading Guide</a></li>
+                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal & Policies</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="about-me.html">About Me</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc">YouTube</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // No curated hat set yet - the gallery launches entirely from community uploads
+        // (accessories that were previously miscategorized as heads, see hats-community.json)
+        const hatsData = [];
+
+        // Configuration
+        const itemsPerPage = 40;
+        const HATS_STATE_KEY = 'hatsLastState';
+
+        // On a bare visit (no query string at all, e.g. clicked "Hats" from the nav),
+        // resume wherever the visitor last left off instead of always resetting to page 1.
+        let urlParams = new URLSearchParams(window.location.search);
+        if (!window.location.search) {
+            const savedState = localStorage.getItem(HATS_STATE_KEY);
+            if (savedState) {
+                urlParams = new URLSearchParams(savedState);
+                history.replaceState(null, '', 'hats.html?' + savedState);
+            }
+        }
+        let currentPage = parseInt(urlParams.get('page')) || 1;
+        let filteredHats = [...hatsData];
+
+        // Build a real, crawlable URL for a given page
+        function buildPageURL(pageNum) {
+            const params = new URLSearchParams();
+            params.set('page', pageNum);
+            return 'hats.html?' + params.toString();
+        }
+
+        // Remember the current page so the next bare visit can resume here
+        function saveHatsState() {
+            const params = new URLSearchParams();
+            params.set('page', currentPage);
+            localStorage.setItem(HATS_STATE_KEY, params.toString());
+        }
+
+        // Function to render hats based on current page
+        function renderHats() {
+            const hatsContainer = document.getElementById('hats-container');
+            hatsContainer.innerHTML = '';
+
+            filteredHats = hatsData;
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const hatsToShow = filteredHats.slice(startIndex, endIndex);
+
+            if (hatsToShow.length === 0) {
+                hatsContainer.innerHTML = '<div class="no-results">No hats found.</div>';
+                return;
+            }
+
+            hatsToShow.forEach(hat => {
+                const hatElement = document.createElement('div');
+                hatElement.className = 'hat-item';
+
+                hatElement.innerHTML = `
+                    <div class="hat-display">
+                        <img src="${hat.image}" class="hat-img" loading="lazy" decoding="async">
+                    </div>
+                `;
+
+                hatElement.addEventListener('click', function() {
+                    document.getElementById('enlarged-img').src = hat.image;
+                    const downloadBtn = document.getElementById('download-btn');
+                    downloadBtn.href = hat.image;
+                    downloadBtn.download = hat.image.split('/').pop();
+                    document.getElementById('image-modal').style.display = 'flex';
+                });
+
+                hatsContainer.appendChild(hatElement);
+            });
+
+            updatePagination();
+        }
+
+        // Function to update pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredHats.length / itemsPerPage);
+            const paginationContainer = document.querySelector('.pagination');
+
+            const pageOfLabel = document.getElementById('pageOfLabel');
+            const jumpInput = document.getElementById('jumpToPageInput');
+            if (pageOfLabel) pageOfLabel.textContent = `Page ${currentPage} of ${totalPages || 1}`;
+            if (jumpInput) {
+                jumpInput.max = Math.max(totalPages, 1);
+                jumpInput.value = currentPage;
+            }
+
+            const prevButton = paginationContainer.querySelector('[data-page="prev"]').parentNode;
+            const nextButton = paginationContainer.querySelector('[data-page="next"]').parentNode;
+
+            paginationContainer.innerHTML = '';
+            paginationContainer.appendChild(prevButton);
+
+            const maxVisiblePages = window.innerWidth < 768 ? 3 : 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = buildPageURL(i);
+                a.textContent = i;
+                a.dataset.page = i;
+
+                if (i === currentPage) {
+                    a.classList.add('active');
+                }
+
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+            }
+
+            paginationContainer.appendChild(nextButton);
+
+            const prevBtn = document.querySelector('[data-page="prev"]');
+            const nextBtn = document.querySelector('[data-page="next"]');
+
+            if (prevBtn) {
+                prevBtn.href = buildPageURL(Math.max(1, currentPage - 1));
+                prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
+            }
+            if (nextBtn) {
+                nextBtn.href = buildPageURL(Math.min(Math.max(totalPages, 1), currentPage + 1));
+                nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            const jumpForm = document.getElementById('jumpToPageForm');
+            if (jumpForm) {
+                jumpForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const totalPages = Math.ceil(filteredHats.length / itemsPerPage);
+                    let target = parseInt(document.getElementById('jumpToPageInput').value);
+                    if (isNaN(target)) return;
+                    target = Math.min(Math.max(target, 1), Math.max(totalPages, 1));
+                    window.location.href = buildPageURL(target);
+                });
+            }
+
+            document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
+            document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+
+                if (window.innerWidth <= 1100) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickInsideMenuBtn = mobileMenuBtn.contains(event.target);
+
+                if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+
+                if (!event.target.closest('.language-selector')) {
+                    document.querySelectorAll('.language-options, .mobile-language-options').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown') && !e.target.closest('.language-selector')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                }
+            });
+
+            // Initial render
+            renderHats();
+            saveHatsState();
+
+            // Load community-uploaded hats and merge in
+            fetch('data/hats-community.json')
+                .then(response => response.json())
+                .then(communityHats => {
+                    hatsData.push(...communityHats);
+                    renderHats();
+                    saveHatsState();
+                })
+                .catch(error => console.error('Could not load community hats:', error));
+
+            // Modal functionality
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('image-modal').style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('image-modal')) {
+                    document.getElementById('image-modal').style.display = 'none';
+                }
+            });
+
+            // Handle dropdown toggles on mobile/tablet
+            if (window.innerWidth <= 1100) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+
+                        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                            menu.style.display = 'none';
+                        });
+                        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
+
+            // Handle desktop dropdown hover
+            if (window.innerWidth > 1100) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
