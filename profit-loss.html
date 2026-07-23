@@ -388,6 +388,16 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         
+        .chart-container {
+            margin: 25px auto 0;
+            max-width: 800px;
+            background: var(--darker-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            height: 320px;
+        }
+
         .section h2 {
             color: var(--text-color);
             margin-bottom: 20px;
@@ -1093,6 +1103,9 @@
                     <div class="value" id="netResult">0 Trochus</div>
                 </div>
             </div>
+            <div class="chart-container" id="profitChartContainer" style="display: none;">
+                <canvas id="profitChart"></canvas>
+            </div>
         </div>
 
         <!-- Profit Guide Section -->
@@ -1513,6 +1526,62 @@
             document.getElementById('totalProfit').textContent = `${totalProfit.toLocaleString()} Trochus`;
             document.getElementById('totalLoss').textContent = `${totalLoss.toLocaleString()} Trochus`;
             document.getElementById('netResult').textContent = `${(totalProfit - totalLoss).toLocaleString()} Trochus`;
+
+            renderProfitChart();
+        }
+
+        // Per-trade profit/loss bar chart
+        let profitChartInstance = null;
+        function renderProfitChart() {
+            const container = document.getElementById('profitChartContainer');
+
+            if (trades.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            container.style.display = 'block';
+
+            const labels = trades.map(t => t.itemName);
+            const values = trades.map(t => t.sellPrice - t.buyPrice);
+            const colors = values.map(v => v >= 0 ? 'rgba(46, 204, 113, 0.7)' : 'rgba(231, 76, 60, 0.7)');
+
+            const ctx = document.getElementById('profitChart').getContext('2d');
+            if (profitChartInstance) {
+                profitChartInstance.data.labels = labels;
+                profitChartInstance.data.datasets[0].data = values;
+                profitChartInstance.data.datasets[0].backgroundColor = colors;
+                profitChartInstance.update();
+                return;
+            }
+
+            profitChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Profit / Loss per Trade (Trochus)',
+                        data: values,
+                        backgroundColor: colors
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#9e9e9e' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#9e9e9e' }
+                        }
+                    }
+                }
+            });
         }
 
         // Add a new trade
