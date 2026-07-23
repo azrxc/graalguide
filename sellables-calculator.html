@@ -1228,7 +1228,7 @@
             <h2 id="calculator-title" data-translate="calculator-title">Sellables to Trochus Calculator</h2>
             
             <div class="math-hint" id="math-hint" data-translate="math-hint">
-                <strong>Pro Tip:</strong> You can use math operations in the input fields! Try entering "10+5" and it will automatically calculate to 15.
+                <strong>Tip:</strong> Enter plain numbers for each item. Need to calculate a math expression (like 10+5 or 50*20)? Check the Advanced Calculator in the Trade Table menu.
             </div>
             
             <div class="table-container">
@@ -1475,7 +1475,7 @@
                 'page-title': 'Sellables Calculator',
                 'page-description': 'Calculate the value of your Graal Era items and convert between Gralats and Trochus with custom ratios.',
                 'calculator-title': 'Sellables to Trochus Calculator',
-                'math-hint': 'Pro Tip: You can use math operations in the input fields! Try entering "10+5" and it will automatically calculate to 15.',
+                'math-hint': 'Tip: Enter plain numbers for each item. Need to calculate a math expression (like 10+5 or 50*20)? Check the Advanced Calculator in the Trade Table menu.',
                 'shells-label': 'Shells',
                 'minerals-label': 'Minerals',
                 'mushrooms-label': 'Mushrooms',
@@ -1563,7 +1563,7 @@
                 'page-title': 'Calculadora de Vendáveis',
                 'page-description': 'Calcule o valor dos seus itens do Graal Era e converta entre Gralats e Trochus com proporções personalizadas.',
                 'calculator-title': 'Calculadora de Vendáveis para Trochus',
-                'math-hint': 'Dica Profissional: Você pode usar operações matemáticas nos campos de entrada! Tente digitar "10+5" and ele calculará automaticamente para 15.',
+                'math-hint': 'Dica: Digite números simples para cada item. Precisa calcular uma expressão matemática (como 10+5 ou 50*20)? Confira a Calculadora Avançada no menu Tabela de Troca.',
                 'shells-label': 'Conchas',
                 'minerals-label': 'Minerais',
                 'mushrooms-label': 'Cogumelos',
@@ -1721,26 +1721,9 @@
             }, 2500);
         }
 
-        // Function to evaluate mathematical expressions in input fields
+        // Plain number entry only - no math expression evaluation here.
+        // The Advanced Calculator handles math expressions (+, -, *, /) instead.
         function evaluateExpression(id) {
-            const input = document.getElementById(id);
-            let value = input.value.trim();
-
-            // If the input contains mathematical operators, evaluate it
-            if (/[\+\-\*\/]/.test(value)) {
-                try {
-                    // Use Function constructor for safe evaluation
-                    const result = Function('return ' + value)();
-                    if (!isNaN(result) && isFinite(result)) {
-                        input.value = result;
-                    }
-                } catch (e) {
-                    // If evaluation fails, keep the current value
-                    console.error('Error evaluating expression:', e);
-                }
-            }
-
-            // Recalculate totals
             calculate();
         }
 
