@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Gun Ratings & Comparison - GraalGuide</title>
-    <meta name="description" content="Compare and rate guns in Graal Era. Find the best weapons based on community ratings and stats.">
+    <meta name="description" content="Compare and rate Graal Era's guns. Real stats, community ratings, and comments on automatic, pistol, semi-automatic, shotgun, and launcher weapons.">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
@@ -419,7 +419,16 @@
         .star.active {
             color: #ffc107;
         }
-        
+
+        .star.rateable {
+            cursor: pointer;
+        }
+
+        .star.rateable:hover {
+            color: #ffc107;
+            transform: scale(1.15);
+        }
+
         .rating-text {
             font-size: var(--font-sm);
             color: var(--text-muted);
@@ -489,7 +498,36 @@
             max-height: 300px;
             overflow-y: auto;
         }
-        
+
+        .comment-form {
+            margin-bottom: 15px;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-size: var(--font-sm);
+            margin-bottom: 10px;
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .comment-status {
+            margin-left: 10px;
+            font-size: var(--font-xs);
+            color: var(--text-muted);
+        }
+
         .comment {
             padding: 10px;
             border-bottom: 1px solid var(--border-color);
@@ -1089,7 +1127,7 @@
     <div class="page-header">
         <div class="container">
             <h1>Gun Ratings & Comparison</h1>
-            <p>Compare and rate guns in Graal Era. Find the best weapons based on community ratings and stats.</p>
+            <p>Compare and rate Graal Era's guns. Real stats, community ratings, and comments.</p>
         </div>
     </div>
 
@@ -1097,9 +1135,6 @@
         <div class="section">
             <h2>Gun Database</h2>
             
-            <div class="google-form-link">
-                <p>Want to help rate these guns? <a href="https://forms.gle/your-google-form-link-here" target="_blank">Submit your ratings via our Google Form</a></p>
-            </div>
             
             <div class="search-container">
                 <input type="text" class="search-input" id="gun-search" placeholder="Search for guns...">
@@ -1193,81 +1228,247 @@
         </div>
     </footer>
 
-    <script>
-        // Real Graal Era Guns Data
+    <script type="module">
+        // --- Firebase (community ratings & comments) ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+        import {
+            getFirestore, doc, getDoc, runTransaction,
+            collection, addDoc, query, where, getDocs, serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAh3Anoo9KDzVI2hhSyD6MY13C9TTQr-vg",
+            authDomain: "graal-guide.firebaseapp.com",
+            projectId: "graal-guide",
+            storageBucket: "graal-guide.firebasestorage.app",
+            messagingSenderId: "517152860809",
+            appId: "1:517152860809:web:8bcd4937b93683dc1bf458",
+            measurementId: "G-P69ZNFQJV7"
+        };
+        const firebaseApp = initializeApp(firebaseConfig);
+        const db = getFirestore(firebaseApp);
+        const PAGE_SLUG = 'guns';
+
+        function weaponKey(gunId) {
+            return `${PAGE_SLUG}_${gunId}`;
+        }
+
+        async function fetchRating(gunId) {
+            const snap = await getDoc(doc(db, 'weaponRatings', weaponKey(gunId)));
+            if (snap.exists()) {
+                const data = snap.data();
+                return { sum: data.sum || 0, count: data.count || 0 };
+            }
+            return { sum: 0, count: 0 };
+        }
+
+        // Returns the new aggregate, or null if this browser already rated this weapon
+        async function submitRating(gunId, stars) {
+            const storageKey = `rated_${weaponKey(gunId)}`;
+            if (localStorage.getItem(storageKey)) return null;
+
+            const ref = doc(db, 'weaponRatings', weaponKey(gunId));
+            const result = await runTransaction(db, async (transaction) => {
+                const snap = await transaction.get(ref);
+                if (!snap.exists()) {
+                    const initial = { sum: stars, count: 1 };
+                    transaction.set(ref, initial);
+                    return initial;
+                }
+                const data = snap.data();
+                const updated = { sum: (data.sum || 0) + stars, count: (data.count || 0) + 1 };
+                transaction.update(ref, updated);
+                return updated;
+            });
+
+            localStorage.setItem(storageKey, String(stars));
+            return result;
+        }
+
+        async function fetchComments(gunId) {
+            const q = query(collection(db, 'weaponComments'), where('weaponId', '==', weaponKey(gunId)));
+            const snap = await getDocs(q);
+            const comments = snap.docs.map(d => d.data());
+            comments.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+            return comments;
+        }
+
+        // Returns true on success, 'cooldown' if posting too fast, false if the comment was empty
+        async function submitComment(gunId, name, text) {
+            const trimmedText = text.trim().slice(0, 500);
+            if (!trimmedText) return false;
+
+            const cooldownKey = 'lastCommentAt';
+            const lastAt = Number(localStorage.getItem(cooldownKey) || 0);
+            if (Date.now() - lastAt < 15000) return 'cooldown';
+
+            const trimmedName = (name.trim() || 'Anonymous player').slice(0, 40);
+            await addDoc(collection(db, 'weaponComments'), {
+                weaponId: weaponKey(gunId),
+                name: trimmedName,
+                text: trimmedText,
+                createdAt: serverTimestamp()
+            });
+            localStorage.setItem(cooldownKey, String(Date.now()));
+            if (name.trim()) localStorage.setItem('commenterName', trimmedName);
+            return true;
+        }
+
+        // Real Graal Era Guns Data — Automatic, Pistol, Semi-Automatic, Shotgun & Launcher weapons.
+        // Stats sourced from community-maintained Graal Era gun stat compilations;
+        // shop locations aren't reliably documented anywhere public, so they're marked
+        // "Not specified" rather than guessed. Most entries don't have an icon on file yet.
         const guns = [
             {
                 id: 1,
-                name: "Browing Automatic Rifle (BAR)",
+                name: "Browning Automatic Rifle (BAR)",
                 image: "image/guns/1.png",
-                stats: {
-                    damage: "12.5",
-                    clip: "20",
-                    price: "200,000 gralats",
-                    stacked: "No",
-                    special: "-",
-                    location: "Gun Point Shop"
-                },
-                rating: 0,
-                votes: 0,
-                comments: [
-                    {
-                        user: "Test",
-                        text: "Test",
-                        rating: 0,
-                        date: "2024-01-15"
-                    },
-                ]
+                stats: { damage: "9", clip: "25", price: "200,000 gralats", stacked: "No", special: "-", location: "Not specified" }
             },
             {
                 id: 2,
-                name: "Desert Eagle",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Shotgun",
-                stats: {
-                    damage: "8",
-                    clip: "2",
-                    price: "5,500",
-                    stacked: "No",
-                    special: "Dual Weapon",
-                    location: "Gun Point Shop"
-                },
-                rating: 0,
-                votes: 0,
-                comments: [
-                    {
-                        user: "Test",
-                        text: "Test",
-                        rating: 0,
-                        date: "2025-10-25"
-                    },
-                   
-                ]
+                name: "AK47",
+                stats: { damage: "7", clip: "16", price: "1,500 gralats", stacked: "No", special: "-", location: "Not specified" }
             },
             {
                 id: 3,
-                name: "P90",
-                image: "https://via.placeholder.com/300x180/8a2be2/ffffff?text=Shotgun",
-                stats: {
-                    damage: "6",
-                    clip: "2",
-                    price: "6,500",
-                    stacked: "No",
-                    special: "-",
-                    location: "Gun Point Shop"
-                },
-                rating: 0,
-                votes: 0,
-                comments: [
-                    {
-                        user: "Test",
-                        text: "Test",
-                        rating: 0,
-                        date: "2025-10-25"
-                    },
-                   
-                ]
+                name: "AK47u SD",
+                stats: { damage: "8", clip: "14", price: "35 Event Coins", stacked: "No", special: "Flashlight", location: "Not specified" }
+            },
+            {
+                id: 4,
+                name: "AB8",
+                stats: { damage: "8", clip: "40", price: "65,000 gralats", stacked: "No", special: "15 skins to buy from", location: "Not specified" }
+            },
+            {
+                id: 5,
+                name: "Bushmaster ACR",
+                stats: { damage: "7", clip: "15", price: "57,500 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 6,
+                name: "Famas",
+                stats: { damage: "8", clip: "16", price: "30,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 7,
+                name: "FN P90",
+                stats: { damage: "7", clip: "18", price: "55,000 gralats", stacked: "No", special: "Swappable suppressor", location: "Not specified" }
+            },
+            {
+                id: 8,
+                name: "MP40",
+                stats: { damage: "7", clip: "20", price: "10,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 9,
+                name: "PDW SD",
+                stats: { damage: "8", clip: "13", price: "70,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 10,
+                name: "Sten",
+                stats: { damage: "8", clip: "32", price: "65,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 11,
+                name: "Uzi",
+                stats: { damage: "5", clip: "16 (dual)", price: "800 gralats (1,600 dual)", stacked: "Yes", special: "-", location: "Not specified" }
+            },
+            {
+                id: 12,
+                name: "AP7",
+                stats: { damage: "8", clip: "18 (dual)", price: "5,500 gralats (11,000 dual)", stacked: "Yes", special: "-", location: "Not specified" }
+            },
+            {
+                id: 13,
+                name: "Colt 6",
+                stats: { damage: "7", clip: "6", price: "30,000 gralats", stacked: "No", special: "Gun spinning", location: "Not specified" }
+            },
+            {
+                id: 14,
+                name: "Desert Eagle",
+                stats: { damage: "8", clip: "18 (dual)", price: "5,500 gralats (11,000 dual)", stacked: "Yes", special: "-", location: "Not specified" }
+            },
+            {
+                id: 15,
+                name: "Glock 18",
+                stats: { damage: "7", clip: "24", price: "12,000 gralats", stacked: "No", special: "Auto-fire capable", location: "Not specified" }
+            },
+            {
+                id: 16,
+                name: "Starter Gun",
+                stats: { damage: "4", clip: "8 (16 dual)", price: "50 gralats (100 dual)", stacked: "Yes", special: "-", location: "Not specified" }
+            },
+            {
+                id: 17,
+                name: "Adaptive Combat Rifle (ACR)",
+                stats: { damage: "7", clip: "20 (2 bullets/shot)", price: "12,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 18,
+                name: "AP0",
+                stats: { damage: "9", clip: "16 (2 bullets/shot)", price: "70,000 gralats", stacked: "No", special: "Laser sight", location: "Not specified" }
+            },
+            {
+                id: 19,
+                name: "DSR-50 Sniper",
+                stats: { damage: "11", clip: "5", price: "100,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 20,
+                name: "F2000",
+                stats: { damage: "8", clip: "30", price: "65,000 gralats", stacked: "No", special: "Wearable on back", location: "Not specified" }
+            },
+            {
+                id: 21,
+                name: "FAL OSW",
+                stats: { damage: "8", clip: "20", price: "65,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 22,
+                name: "G36K",
+                stats: { damage: "6", clip: "20", price: "12,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 23,
+                name: "Ghost M4",
+                stats: { damage: "8", clip: "20", price: "187,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 24,
+                name: "M4",
+                stats: { damage: "8", clip: "16", price: "55,000 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 25,
+                name: "SVD",
+                stats: { damage: "9", clip: "10", price: "72,500 gralats", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 26,
+                name: "AA-12",
+                stats: { damage: "6 (not stacked)", clip: "24 (2 bullets/shot)", price: "60,000 gralats", stacked: "No", special: "Automatic fire", location: "Not specified" }
+            },
+            {
+                id: 27,
+                name: "Shotgun",
+                stats: { damage: "5", clip: "10 (20 dual)", price: "800 gralats (1,600 dual)", stacked: "Yes", special: "-", location: "Not specified" }
+            },
+            {
+                id: 28,
+                name: "Artillery Cannon",
+                stats: { damage: "8", clip: "16", price: "27 Event Coins", stacked: "No", special: "-", location: "Not specified" }
+            },
+            {
+                id: 29,
+                name: "FIM-92 Stinger",
+                stats: { damage: "6 + fire damage", clip: "1", price: "10,000 gralats", stacked: "No", special: "Fire damage over time", location: "Not specified" }
             },
         ];
+
+        // Live community rating cache: gunId -> { sum, count }
+        const liveRatings = {};
 
         // Pagination settings
         const gunsPerPage = 6;
@@ -1281,45 +1482,113 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Render gun list for first page
             renderGunList();
-            
+
             // Render pagination
             renderPagination();
-            
+
             // Render leaderboard
             renderLeaderboard();
-            
+
             // Set up event listeners
             document.getElementById('compare-btn').addEventListener('click', showComparison);
             document.getElementById('reset-compare').addEventListener('click', resetSelection);
             document.getElementById('close-comparison').addEventListener('click', closeComparison);
             document.getElementById('gun-search').addEventListener('input', filterGuns);
-            
+
             // Mobile menu functionality
-            document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-                document.getElementById('main-nav').classList.toggle('active');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+
+                if (window.innerWidth <= 1100) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
             });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickInsideMenuBtn = mobileMenuBtn.contains(event.target);
+
+                if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                }
+            });
+
+            // Handle dropdown toggles on mobile/tablet
+            if (window.innerWidth <= 1100) {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+
+                        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                            menu.style.display = 'none';
+                        });
+                        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
+
+            // Handle desktop dropdown hover
+            if (window.innerWidth > 1100) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+            }
         });
 
         // Render gun list for current page
         function renderGunList() {
             const gunList = document.getElementById('gun-list');
             gunList.innerHTML = '';
-            
+
             const startIndex = (currentPage - 1) * gunsPerPage;
             const endIndex = Math.min(startIndex + gunsPerPage, filteredGuns.length);
             const gunsToShow = filteredGuns.slice(startIndex, endIndex);
-            
+
             gunsToShow.forEach(gun => {
                 const gunCard = document.createElement('div');
                 gunCard.className = 'gun-card';
                 gunCard.dataset.id = gun.id;
-                
-                // Create star rating HTML
-                const starsHTML = createStarRating(gun.rating, gun.id);
-                
+
+                const alreadyRated = localStorage.getItem(`rated_${weaponKey(gun.id)}`);
+
                 gunCard.innerHTML = `
                     <div class="gun-image">
-                        <img src="${gun.image}" alt="${gun.name}" style="max-width: 100%; max-height: 100%;">
+                        ${gun.image
+                            ? `<img src="${gun.image}" alt="${gun.name}" style="max-width: 100%; max-height: 100%;" onerror="this.parentElement.textContent='No image yet'">`
+                            : 'No image yet'}
                     </div>
                     <div class="gun-name">
                         <span>${gun.name}</span>
@@ -1336,35 +1605,27 @@
                             </div>
                         `).join('')}
                     </div>
-                    <div class="star-rating" id="rating-${gun.id}">
-                        ${starsHTML}
+                    <div class="star-rating" id="rating-${gun.id}" data-rated="${alreadyRated ? 'true' : 'false'}">
+                        ${createStarRating(0, gun.id, false)}
                     </div>
-                    <div class="rating-text">
-                        ${gun.rating} / 5 (${gun.votes} votes)
-                    </div>
+                    <div class="rating-text" id="rating-text-${gun.id}">Loading community rating...</div>
                     <div class="comments-section">
                         <button class="comments-toggle" data-gun-id="${gun.id}">
-                            Comments (${gun.comments.length})
+                            Comments
                         </button>
                         <div class="comments-container" id="comments-${gun.id}">
-                            <div class="comments-list" id="comments-list-${gun.id}">
-                                ${gun.comments.map(comment => `
-                                    <div class="comment">
-                                        <div class="comment-header">
-                                            <span class="comment-user">${comment.user}</span>
-                                            <span class="comment-rating">${'★'.repeat(comment.rating)}${'☆'.repeat(5-comment.rating)}</span>
-                                            <span class="comment-date">${comment.date}</span>
-                                        </div>
-                                        <div class="comment-text">${comment.text}</div>
-                                    </div>
-                                `).join('')}
+                            <div class="comment-form">
+                                <textarea class="comment-input" id="comment-input-${gun.id}" maxlength="500" placeholder="Add your comment..."></textarea>
+                                <button class="btn btn-secondary" type="button" id="comment-submit-${gun.id}">Submit Comment</button>
+                                <span class="comment-status" id="comment-status-${gun.id}"></span>
                             </div>
+                            <div class="comments-list" id="comments-list-${gun.id}">Loading comments...</div>
                         </div>
                     </div>
                 `;
-                
+
                 gunList.appendChild(gunCard);
-                
+
                 // Add event listener for compare checkbox
                 const checkbox = gunCard.querySelector(`#compare-${gun.id}`);
                 checkbox.addEventListener('change', function() {
@@ -1379,34 +1640,140 @@
                         selectedGuns = selectedGuns.filter(g => g.id !== gun.id);
                     }
                 });
-                
-                // Add event listener for comment toggle
+
+                // Comments: lazy-load the first time this gun's panel is expanded
+                let commentsLoaded = false;
                 const commentsToggle = gunCard.querySelector('.comments-toggle');
                 commentsToggle.addEventListener('click', function() {
                     const commentsContainer = document.getElementById(`comments-${gun.id}`);
                     commentsContainer.classList.toggle('active');
                     this.classList.toggle('active');
+                    if (!commentsLoaded) {
+                        commentsLoaded = true;
+                        loadAndRenderComments(gun.id);
+                    }
                 });
+
+                gunCard.querySelector(`#comment-submit-${gun.id}`).addEventListener('click', function() {
+                    handleCommentSubmit(gun.id);
+                });
+
+                // Star rating: click-to-rate, locked out after this browser has voted once
+                gunCard.querySelectorAll(`#rating-${gun.id} .star`).forEach(star => {
+                    star.addEventListener('click', function() {
+                        handleStarClick(gun.id, Number(this.dataset.rating));
+                    });
+                });
+
+                refreshRatingUI(gun.id);
             });
         }
 
-        // Create star rating HTML
-        function createStarRating(rating, gunId) {
+        // Create star rating HTML. interactive=true marks stars clickable (cursor + class).
+        function createStarRating(rating, gunId, interactive) {
             let starsHTML = '';
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 >= 0.5;
-            
+            const fullStars = Math.round(rating);
+
             for (let i = 1; i <= 5; i++) {
-                if (i <= fullStars) {
-                    starsHTML += `<span class="star active" data-rating="${i}">★</span>`;
-                } else if (i === fullStars + 1 && hasHalfStar) {
-                    starsHTML += `<span class="star active" data-rating="${i}">★</span>`;
-                } else {
-                    starsHTML += `<span class="star" data-rating="${i}">★</span>`;
-                }
+                const activeClass = i <= fullStars ? 'active' : '';
+                const rateableClass = interactive ? 'rateable' : '';
+                starsHTML += `<span class="star ${activeClass} ${rateableClass}" data-rating="${i}">★</span>`;
             }
-            
+
             return starsHTML;
+        }
+
+        // Fetch this weapon's live community rating and update its card in place
+        async function refreshRatingUI(gunId) {
+            const ratingContainer = document.getElementById(`rating-${gunId}`);
+            const ratingText = document.getElementById(`rating-text-${gunId}`);
+            if (!ratingContainer || !ratingText) return;
+
+            try {
+                const { sum, count } = await fetchRating(gunId);
+                liveRatings[gunId] = { sum, count };
+                const average = count > 0 ? sum / count : 0;
+                const alreadyRated = localStorage.getItem(`rated_${weaponKey(gunId)}`);
+
+                ratingContainer.innerHTML = createStarRating(average, gunId, !alreadyRated);
+                ratingContainer.querySelectorAll('.star').forEach(star => {
+                    star.addEventListener('click', function() {
+                        handleStarClick(gunId, Number(this.dataset.rating));
+                    });
+                });
+
+                ratingText.textContent = alreadyRated
+                    ? `${average.toFixed(1)} / 5 (${count} vote${count === 1 ? '' : 's'}) — you rated this ${alreadyRated}★`
+                    : `${average.toFixed(1)} / 5 (${count} vote${count === 1 ? '' : 's'}) — tap a star to rate`;
+            } catch (err) {
+                ratingText.textContent = 'Could not load rating right now.';
+                console.error('Rating fetch failed:', err);
+            }
+        }
+
+        async function handleStarClick(gunId, stars) {
+            if (localStorage.getItem(`rated_${weaponKey(gunId)}`)) return;
+            try {
+                const result = await submitRating(gunId, stars);
+                if (result === null) return; // already rated (race with another tab)
+                await refreshRatingUI(gunId);
+                renderLeaderboard();
+            } catch (err) {
+                console.error('Rating submit failed:', err);
+                alert('Could not submit your rating right now. Please try again in a moment.');
+            }
+        }
+
+        function renderCommentsHTML(comments) {
+            if (comments.length === 0) {
+                return '<div class="comment">No comments yet — be the first!</div>';
+            }
+            return comments.map(comment => `
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-user">${escapeHtml(comment.name || 'Anonymous player')}</span>
+                        <span class="comment-date">${comment.createdAt?.toDate ? comment.createdAt.toDate().toLocaleDateString() : ''}</span>
+                    </div>
+                    <div class="comment-text">${escapeHtml(comment.text)}</div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str || '';
+            return div.innerHTML;
+        }
+
+        async function loadAndRenderComments(gunId) {
+            const listEl = document.getElementById(`comments-list-${gunId}`);
+            try {
+                const comments = await fetchComments(gunId);
+                listEl.innerHTML = renderCommentsHTML(comments);
+                const toggle = document.querySelector(`.comments-toggle[data-gun-id="${gunId}"]`);
+                if (toggle) toggle.textContent = `Comments (${comments.length})`;
+            } catch (err) {
+                listEl.innerHTML = '<div class="comment">Could not load comments right now.</div>';
+                console.error('Comments fetch failed:', err);
+            }
+        }
+
+        async function handleCommentSubmit(gunId) {
+            const input = document.getElementById(`comment-input-${gunId}`);
+            const status = document.getElementById(`comment-status-${gunId}`);
+            const savedName = localStorage.getItem('commenterName') || '';
+
+            const result = await submitComment(gunId, savedName, input.value);
+            if (result === true) {
+                input.value = '';
+                status.textContent = 'Posted!';
+                await loadAndRenderComments(gunId);
+            } else if (result === 'cooldown') {
+                status.textContent = 'Please wait a few seconds before posting again.';
+            } else {
+                status.textContent = 'Write something before submitting.';
+            }
+            setTimeout(() => { status.textContent = ''; }, 4000);
         }
 
         // Filter guns based on search input
@@ -1516,7 +1883,9 @@
                 
                 selectedGuns.forEach(gun => {
                     if (stat === 'rating') {
-                        row.innerHTML += `<td>${gun[stat]} / 5 (${gun.votes} votes)</td>`;
+                        const live = liveRatings[gun.id] || { sum: 0, count: 0 };
+                        const average = live.count > 0 ? (live.sum / live.count).toFixed(1) : '0.0';
+                        row.innerHTML += `<td>${average} / 5 (${live.count} votes)</td>`;
                     } else {
                         row.innerHTML += `<td>${gun.stats[stat]}</td>`;
                     }
@@ -1545,27 +1914,39 @@
             document.getElementById('comparison-section').style.display = 'none';
         }
 
-        // Render leaderboard
-        function renderLeaderboard() {
+        // Render leaderboard (uses whatever ratings have been fetched into liveRatings so far)
+        async function renderLeaderboard() {
             const leaderboardList = document.getElementById('leaderboard-list');
             leaderboardList.innerHTML = '';
-            
-            // Sort guns by rating (descending)
-            const sortedGuns = [...guns].sort((a, b) => b.rating - a.rating).slice(0, 10);
-            
+
+            // Make sure every gun's rating has been fetched at least once
+            await Promise.all(guns.map(async gun => {
+                if (!liveRatings[gun.id]) {
+                    liveRatings[gun.id] = await fetchRating(gun.id);
+                }
+            }));
+
+            const averageOf = gun => {
+                const live = liveRatings[gun.id] || { sum: 0, count: 0 };
+                return live.count > 0 ? live.sum / live.count : 0;
+            };
+
+            const sortedGuns = [...guns].sort((a, b) => averageOf(b) - averageOf(a)).slice(0, 10);
+
             sortedGuns.forEach((gun, index) => {
+                const average = averageOf(gun);
                 const leaderboardItem = document.createElement('li');
                 leaderboardItem.className = 'leaderboard-item';
-                
+
                 leaderboardItem.innerHTML = `
                     <div class="leaderboard-rank">${index + 1}</div>
                     <div class="leaderboard-name">${gun.name}</div>
                     <div class="leaderboard-rating">
-                        <div class="leaderboard-stars">${createStarRating(gun.rating, gun.id)}</div>
-                        <div class="leaderboard-score">${gun.rating}/5</div>
+                        <div class="leaderboard-stars">${createStarRating(average, gun.id, false)}</div>
+                        <div class="leaderboard-score">${average.toFixed(1)}/5</div>
                     </div>
                 `;
-                
+
                 leaderboardList.appendChild(leaderboardItem);
             });
         }
