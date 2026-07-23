@@ -3367,6 +3367,9 @@
             fetch('../data/bodies-community.json')
                 .then(response => response.json())
                 .then(communityBodies => {
+                    // Community dataset paths are root-relative; prefix for this
+                    // page's subfolder so the images actually resolve.
+                    communityBodies.forEach(body => { body.image = '../' + body.image; });
                     bodiesData.push(...communityBodies);
                     communityDataLoaded = true;
                     renderBodies();

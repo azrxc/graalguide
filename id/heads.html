@@ -2883,6 +2883,9 @@
             fetch('../data/heads-community.json')
                 .then(response => response.json())
                 .then(communityHeads => {
+                    // Community dataset paths are root-relative; prefix for this
+                    // page's subfolder so the images actually resolve.
+                    communityHeads.forEach(head => { head.image = '../' + head.image; });
                     headsData.push(...communityHeads);
                     communityDataLoaded = true;
                     renderHeads();

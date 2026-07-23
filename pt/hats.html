@@ -1395,6 +1395,9 @@
             fetch('../data/hats-community.json')
                 .then(response => response.json())
                 .then(communityHats => {
+                    // Community dataset paths are root-relative; prefix for this
+                    // page's subfolder so the images actually resolve.
+                    communityHats.forEach(hat => { hat.image = '../' + hat.image; });
                     hatsData.push(...communityHats);
                     communityDataLoaded = true;
                     renderHats();
