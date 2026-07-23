@@ -409,6 +409,70 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
+        /* Community Pulse */
+        .pulse-note {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+            margin-bottom: 15px;
+        }
+
+        .pulse-summary {
+            font-size: var(--font-lg);
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .pulse-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .pulse-form input[type="number"] {
+            width: 120px;
+            padding: 10px 12px;
+            background: var(--input-bg, var(--darker-bg));
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-size: var(--font-md);
+        }
+
+        .pulse-form input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .pulse-submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: var(--font-sm);
+            transition: all 0.2s ease;
+        }
+
+        .pulse-submit-btn:hover {
+            background: #7329c7;
+            transform: translateY(-2px);
+        }
+
+        .pulse-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .pulse-status {
+            font-size: var(--font-xs);
+            color: var(--text-muted);
+        }
+
         /* Guide Book Section */
         .guide-book {
             margin: 30px 0;
@@ -887,6 +951,18 @@
             <h2 id="ratio-history-title" data-translate="ratio-history-title">Trochus to Gralat Ratio History</h2>
             <div class="chart-container">
                 <canvas id="ratioHistoryChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Community Pulse -->
+        <div class="section">
+            <h2>📊 Community Pulse</h2>
+            <p class="pulse-note">See what ratio other players are seeing right now. Community-submitted and not verified — the chart above is GraalGuide's officially tracked data.</p>
+            <div class="pulse-summary" id="pulseSummary">Loading today's submissions...</div>
+            <div class="pulse-form">
+                <input type="number" id="pulseRatioInput" step="0.1" min="1" max="10" placeholder="e.g. 3.7">
+                <button class="pulse-submit-btn" id="pulseSubmitBtn" type="button">Submit Today's Ratio</button>
+                <span class="pulse-status" id="pulseStatus"></span>
             </div>
         </div>
 
@@ -1486,6 +1562,100 @@
                     });
                 });
             }
+        });
+    </script>
+
+    <!-- Community Pulse: crowdsourced "what ratio are you seeing today" widget.
+         Kept fully separate from the chart above, which stays GraalGuide's own
+         curated data - this never writes into historicalData. -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+        import {
+            getFirestore, collection, addDoc, query, where, getDocs, serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAh3Anoo9KDzVI2hhSyD6MY13C9TTQr-vg",
+            authDomain: "graal-guide.firebaseapp.com",
+            projectId: "graal-guide",
+            storageBucket: "graal-guide.firebasestorage.app",
+            messagingSenderId: "517152860809",
+            appId: "1:517152860809:web:8bcd4937b93683dc1bf458",
+            measurementId: "G-P69ZNFQJV7"
+        };
+        const firebaseApp = initializeApp(firebaseConfig);
+        const db = getFirestore(firebaseApp);
+
+        function todayKey() {
+            return new Date().toISOString().slice(0, 10); // YYYY-MM-DD, UTC
+        }
+
+        async function loadPulseSummary() {
+            const summaryEl = document.getElementById('pulseSummary');
+            try {
+                const q = query(collection(db, 'ratioSubmissions'), where('date', '==', todayKey()));
+                const snap = await getDocs(q);
+                if (snap.empty) {
+                    summaryEl.textContent = 'No submissions yet today - be the first!';
+                    return;
+                }
+                const ratios = snap.docs.map(d => d.data().ratio).filter(r => typeof r === 'number');
+                const average = ratios.reduce((sum, r) => sum + r, 0) / ratios.length;
+                summaryEl.textContent = `Today's community average: ${average.toFixed(2)} (from ${ratios.length} submission${ratios.length === 1 ? '' : 's'})`;
+            } catch (err) {
+                summaryEl.textContent = 'Could not load today\'s submissions right now.';
+                console.error('Pulse summary fetch failed:', err);
+            }
+        }
+
+        async function submitPulse() {
+            const input = document.getElementById('pulseRatioInput');
+            const status = document.getElementById('pulseStatus');
+            const submitBtn = document.getElementById('pulseSubmitBtn');
+
+            if (localStorage.getItem('pulseSubmittedDate') === todayKey()) {
+                status.textContent = 'You already submitted today - thanks!';
+                return;
+            }
+
+            const ratio = parseFloat(input.value);
+            if (isNaN(ratio) || ratio < 1 || ratio > 10) {
+                status.textContent = 'Enter a ratio between 1 and 10.';
+                return;
+            }
+
+            submitBtn.disabled = true;
+            try {
+                await addDoc(collection(db, 'ratioSubmissions'), {
+                    ratio: ratio,
+                    date: todayKey(),
+                    createdAt: serverTimestamp()
+                });
+                localStorage.setItem('pulseSubmittedDate', todayKey());
+                status.textContent = 'Thanks for submitting!';
+                input.value = '';
+                await loadPulseSummary();
+            } catch (err) {
+                status.textContent = 'Could not submit right now, please try again.';
+                console.error('Pulse submit failed:', err);
+            } finally {
+                submitBtn.disabled = false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPulseSummary();
+
+            const submitBtn = document.getElementById('pulseSubmitBtn');
+            const input = document.getElementById('pulseRatioInput');
+            if (localStorage.getItem('pulseSubmittedDate') === todayKey()) {
+                document.getElementById('pulseStatus').textContent = 'You already submitted today - thanks!';
+            }
+
+            submitBtn.addEventListener('click', submitPulse);
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') submitPulse();
+            });
         });
     </script>
 </body>
