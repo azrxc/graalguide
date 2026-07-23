@@ -2665,12 +2665,21 @@
             });
             
             filteredHeads = filtered;
-            
+
+            // Clamp currentPage into range - a stale/out-of-range page number
+            // (bad URL, or a jump target from before the community dataset loaded)
+            // would otherwise slice past the end of the array and render nothing.
+            const maxPage = Math.max(1, Math.ceil(filteredHeads.length / itemsPerPage));
+            if (currentPage > maxPage || currentPage < 1) {
+                currentPage = Math.min(Math.max(currentPage, 1), maxPage);
+                history.replaceState(null, '', buildPageURL(currentPage));
+            }
+
             // Calculate which items to show
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const headsToShow = filteredHeads.slice(startIndex, endIndex);
-            
+
             if (headsToShow.length === 0) {
                 headsContainer.innerHTML = '<div class="no-results">No heads found matching your filters.</div>';
                 return;

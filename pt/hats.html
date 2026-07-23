@@ -1218,6 +1218,14 @@
 
             filteredHats = hatsData;
 
+            // Clamp currentPage into range - a stale/out-of-range page number
+            // would otherwise slice past the end of the array and render nothing.
+            const maxPage = Math.max(1, Math.ceil(filteredHats.length / itemsPerPage));
+            if (currentPage > maxPage || currentPage < 1) {
+                currentPage = Math.min(Math.max(currentPage, 1), maxPage);
+                history.replaceState(null, '', buildPageURL(currentPage));
+            }
+
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
             const hatsToShow = filteredHats.slice(startIndex, endIndex);
