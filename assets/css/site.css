@@ -1023,6 +1023,124 @@ nav ul li a:hover {
     position: relative;
 }
 
+/* ------------------------------- Resource hub -------------------------------- */
+/* Homepage: every tool/guide on the site, one click away, grouped by which
+   Graal game it applies to. */
+
+.resource-hub {
+    padding: 10px 0 55px;
+}
+
+.resource-group {
+    margin-bottom: 40px;
+}
+
+.resource-group-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--font-lg);
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.resource-group-title::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: var(--brand);
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.resource-group-title .badge {
+    font-family: var(--font-body);
+    font-size: var(--font-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(240, 180, 41, 0.15);
+    color: var(--brand-light);
+    border: 1px solid rgba(240, 180, 41, 0.35);
+}
+
+.resource-group.is-universal .resource-group-title .badge {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--info-blue);
+    border-color: rgba(59, 130, 246, 0.35);
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.resource-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--panel);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.resource-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand);
+    box-shadow: 0 8px 20px rgba(240, 180, 41, 0.2);
+}
+
+.resource-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    padding: 8px;
+    border-radius: 8px;
+    background: var(--tile-bg);
+    border: 1px solid var(--tile-border);
+    image-rendering: pixelated;
+    box-sizing: content-box;
+}
+
+.resource-text {
+    min-width: 0;
+}
+
+.resource-card-title {
+    display: block;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: var(--font-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.resource-card-desc {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+    .resource-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 /* --------------------------------- Main content ----------------------------- */
 
 .main-content {
