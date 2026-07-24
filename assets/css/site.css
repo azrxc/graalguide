@@ -603,6 +603,17 @@ nav ul li a:hover {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
+/* Compact hero: same photo-background identity, sized to match
+   .page-header for interior pages (Guides - How To) instead of the
+   homepage's bigger flagship scale. */
+.hero.hero-compact {
+    padding: 70px 0;
+}
+
+.hero.hero-compact h1 {
+    font-size: var(--font-3xl);
+}
+
 /* Primary CTA: the game's own glossy dialog-button mechanics (hard border,
    gradient sheen, "pressed" drop-shadow edge), in gold - the one dominant
    hero color that ties back to the title lettering and currency icons. */
