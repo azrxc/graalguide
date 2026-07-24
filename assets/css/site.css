@@ -585,7 +585,10 @@ nav ul li a:hover {
     letter-spacing: 0.01em;
     text-transform: uppercase;
     line-height: 1.02;
-    color: var(--brand-light);
+    background: linear-gradient(180deg, #fff6d5 0%, #ffd873 28%, #f0b429 55%, #b8860b 82%, #7a5400 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     filter:
         drop-shadow(0 3px 0 #3d2400)
         drop-shadow(0 2px 5px rgba(0, 0, 0, 0.55))
@@ -695,6 +698,9 @@ nav ul li a:hover {
     font-family: var(--font-title);
     font-size: var(--font-4xl);
     font-weight: 400;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
     color: var(--brand-light);
     line-height: 1.2;
     text-shadow: 0 0 18px rgba(240, 180, 41, 0.35);
@@ -752,6 +758,14 @@ nav ul li a:hover {
     background-size: cover;
     background-position: top center;
     position: relative;
+}
+
+/* Head sprite sheets are stacked multi-angle frames (32px each); frame 1
+   (the plain top of the sheet) is the back of the head with no face, so
+   the front-facing frame (3rd frame, 64px down) needs an explicit pull
+   instead of the default top-crop. Bodies don't have this problem. */
+.showcase-thumb[data-type="head"] {
+    background-position: center 12.12%;
 }
 
 .showcase-thumb img {
@@ -935,7 +949,7 @@ nav ul li a:hover {
 .head-item:nth-child(even):hover, .body-item:nth-child(even):hover, .hat-item:nth-child(even):hover {
     transform: translateY(-5px);
     border-color: var(--glow-b);
-    box-shadow: 0 0 0 1px var(--glow-b), 0 10px 24px rgba(47, 174, 92, 0.3);
+    box-shadow: 0 0 0 1px var(--glow-b), 0 10px 24px rgba(47, 174, 92, 0.35);
 }
 
 .head-gallery, .body-display, .hat-display {
@@ -944,6 +958,69 @@ nav ul li a:hover {
 
 .head {
     border-color: var(--tile-border);
+}
+
+/* about-me.html profile photo ring - the page's old inline CSS referenced
+   --primary-color/--secondary-color directly, which now resolve to gold/
+   green instead of the original purple/teal, so it needs an explicit
+   solid-gold override here rather than being left to leak through. */
+.profile-image {
+    background: var(--brand);
+    border-color: var(--brand);
+}
+
+/* ------------------------------- Page header --------------------------------- */
+/* Interior pages (galleries, calculators, guides) use .page-header instead
+   of .hero - same photo-background identity, smaller scale since these
+   aren't the homepage. */
+
+.page-header {
+    background:
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(224, 57, 43, 0.16), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(47, 174, 92, 0.14), transparent 65%),
+        linear-gradient(rgba(4, 4, 4, 0.88), rgba(4, 4, 4, 0.94)),
+        url('../../image/a/map.png') center/cover no-repeat;
+    padding: 70px 0;
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="light"] .page-header {
+    background:
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(224, 57, 43, 0.14), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(47, 174, 92, 0.12), transparent 65%),
+        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
+        url('../../image/a/map.png') center/cover no-repeat;
+    color: #fff;
+}
+
+.page-header h1 {
+    font-family: var(--font-title);
+    font-size: var(--font-3xl);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin-bottom: 15px;
+    font-weight: 400;
+    position: relative;
+    background: linear-gradient(180deg, #fff6d5 0%, #ffd873 28%, #f0b429 55%, #b8860b 82%, #7a5400 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter:
+        drop-shadow(0 2px 0 #3d2400)
+        drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.page-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: var(--font-lg);
+    color: #d6d6ce;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    position: relative;
 }
 
 /* --------------------------------- Main content ----------------------------- */
