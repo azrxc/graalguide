@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <link rel="icon" type="image/png" href="../image/a/graalguide.png">
@@ -558,7 +558,7 @@
         }
         
         .comments-toggle::after {
-            content: '▼';
+            content: 'â–¼';
             margin-left: 5px;
             font-size: var(--font-xs);
             transition: transform 0.3s ease;
@@ -1176,6 +1176,10 @@
       gtag('js', new Date());
       gtag('config', 'G-VVS6GWC596');
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
     <header>
@@ -1183,10 +1187,10 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="../image/a/graalguide.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                        <img src="../image/a/graalguide-mark.svg" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
                     </a>
                 </div>
-                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">â˜°</button>
                 <nav id="main-nav">
                     <ul>
                         <li><a href="index.html">Beranda</a></li>
@@ -1198,11 +1202,11 @@
                                 <li><a href="hats.html">Hats</a></li>
                                 <li><a href="upload-sets.html">Set Upload</a></li>
                                 <li><a href="templates.html">Templates</a></li>
-                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (oleh DustyShouri) ↗</a></li>
-                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Era) ↗</a></li>
-                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Classic) ↗</a></li>
-                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Ol' West) ↗</a></li>
-                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Zone) ↗</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer">Upload Viewer (oleh DustyShouri) â†—</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Era) â†—</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Classic) â†—</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Ol' West) â†—</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer">Upload Sekarang (Zone) â†—</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -1243,7 +1247,7 @@
                                 </a>
                                 <a href="../pt/guns.html">
                                     <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
-                                    <span>Português</span>
+                                    <span>PortuguÃªs</span>
                                 </a>
                                 <a href="guns.html">
                                     <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
@@ -1279,7 +1283,7 @@
                             </a>
                             <a href="../pt/guns.html">
                                 <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
-                                <span>Português</span>
+                                <span>PortuguÃªs</span>
                             </a>
                             <a href="guns.html">
                                 <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
@@ -1522,7 +1526,7 @@
             return true;
         }
 
-        // Real Graal Era Guns Data — Automatic, Pistol, Semi-Automatic, Shotgun & Launcher weapons.
+        // Real Graal Era Guns Data â€” Automatic, Pistol, Semi-Automatic, Shotgun & Launcher weapons.
         // Stats sourced from community-maintained Graal Era gun stat compilations;
         // shop locations aren't reliably documented anywhere public, so they're marked
         // "Not specified" rather than guessed. Most entries don't have an icon on file yet.
@@ -1917,7 +1921,7 @@
             for (let i = 1; i <= 5; i++) {
                 const activeClass = i <= fullStars ? 'active' : '';
                 const rateableClass = interactive ? 'rateable' : '';
-                starsHTML += `<span class="star ${activeClass} ${rateableClass}" data-rating="${i}">★</span>`;
+                starsHTML += `<span class="star ${activeClass} ${rateableClass}" data-rating="${i}">â˜…</span>`;
             }
 
             return starsHTML;
@@ -1943,8 +1947,8 @@
                 });
 
                 ratingText.textContent = alreadyRated
-                    ? `${average.toFixed(1)} / 5 (${count} suara) — kamu memberi rating ${alreadyRated}★`
-                    : `${average.toFixed(1)} / 5 (${count} suara) — ketuk bintang untuk memberi rating`;
+                    ? `${average.toFixed(1)} / 5 (${count} suara) â€” kamu memberi rating ${alreadyRated}â˜…`
+                    : `${average.toFixed(1)} / 5 (${count} suara) â€” ketuk bintang untuk memberi rating`;
             } catch (err) {
                 ratingText.textContent = 'Tidak dapat memuat rating saat ini.';
                 console.error('Rating fetch failed:', err);
@@ -1966,7 +1970,7 @@
 
         function renderCommentsHTML(comments) {
             if (comments.length === 0) {
-                return '<div class="comment">Belum ada komentar — jadilah yang pertama!</div>';
+                return '<div class="comment">Belum ada komentar â€” jadilah yang pertama!</div>';
             }
             return comments.map(comment => `
                 <div class="comment">
