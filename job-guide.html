@@ -1736,7 +1736,7 @@
             });
             
             // Handle dropdown toggles on mobile
-            if (window.innerWidth <= 1100) {
+            {
                 document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
                     dropdownToggle.addEventListener('click', function(e) {
                         e.preventDefault();
@@ -1762,7 +1762,7 @@
             }
             
             // Handle desktop dropdown hover
-            if (window.innerWidth > 1100) {
+            if (window.matchMedia('(hover: hover)').matches) {
                 document.querySelectorAll('.dropdown').forEach(dropdown => {
                     dropdown.addEventListener('mouseenter', function() {
                         this.querySelector('.dropdown-menu').style.display = 'block';
