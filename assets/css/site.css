@@ -276,7 +276,6 @@ header {
     margin-right: 8px;
     flex-shrink: 0;
     flex-grow: 0;
-    image-rendering: pixelated;
     vertical-align: middle;
 }
 
@@ -487,13 +486,13 @@ nav ul li a:hover {
 .menu-icon {
     width: 24px;
     height: 24px;
+    padding: 5px;
     border-radius: 6px;
-    object-fit: cover;
-    object-position: top center;
+    object-fit: contain;
     flex-shrink: 0;
     border: 1px solid var(--tile-border);
     background: var(--tile-bg);
-    image-rendering: pixelated;
+    box-sizing: content-box;
 }
 
 .dropdown-menu a:hover {
@@ -1125,7 +1124,6 @@ nav ul li a:hover {
     border-radius: 8px;
     background: var(--tile-bg);
     border: 1px solid var(--tile-border);
-    image-rendering: pixelated;
     box-sizing: content-box;
 }
 

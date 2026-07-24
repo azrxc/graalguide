@@ -1,17 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" shape-rendering="crispEdges">
-  <rect x="1" y="1" width="8" height="1" fill="#f0b429"/>
-  <rect x="1" y="2" width="3" height="1" fill="#f0b429"/>
-  <rect x="4" y="2" width="2" height="1" fill="#171717"/>
-  <rect x="6" y="2" width="3" height="1" fill="#f0b429"/>
-  <rect x="1" y="3" width="3" height="1" fill="#f0b429"/>
-  <rect x="4" y="3" width="2" height="1" fill="#171717"/>
-  <rect x="6" y="3" width="3" height="1" fill="#f0b429"/>
-  <rect x="1" y="4" width="8" height="1" fill="#171717"/>
-  <rect x="1" y="5" width="3" height="1" fill="#f0b429"/>
-  <rect x="4" y="5" width="2" height="1" fill="#171717"/>
-  <rect x="6" y="5" width="3" height="1" fill="#f0b429"/>
-  <rect x="1" y="6" width="3" height="1" fill="#f0b429"/>
-  <rect x="4" y="6" width="2" height="1" fill="#171717"/>
-  <rect x="6" y="6" width="3" height="1" fill="#f0b429"/>
-  <rect x="1" y="7" width="8" height="1" fill="#f0b429"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#f0b429" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="4" y="8" width="16" height="12" rx="1.2"/>
+  <line x1="4" y1="12.5" x2="20" y2="12.5"/>
+  <line x1="12" y1="8" x2="12" y2="20"/>
+  <path d="M8 8 Q8 3.5 12 3.5 Q16 3.5 16 8"/>
 </svg>

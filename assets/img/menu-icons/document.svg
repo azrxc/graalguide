@@ -1,14 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" shape-rendering="crispEdges">
-  <rect x="2" y="1" width="5" height="1" fill="#f0b429"/>
-  <rect x="2" y="2" width="1" height="1" fill="#f0b429"/>
-  <rect x="7" y="2" width="1" height="1" fill="#171717"/>
-  <rect x="8" y="2" width="1" height="1" fill="#f0b429"/>
-  <rect x="3" y="3" width="4" height="1" fill="#f0b429"/>
-  <rect x="2" y="4" width="1" height="1" fill="#f0b429"/>
-  <rect x="8" y="4" width="1" height="1" fill="#f0b429"/>
-  <rect x="3" y="5" width="4" height="1" fill="#f0b429"/>
-  <rect x="2" y="6" width="1" height="1" fill="#f0b429"/>
-  <rect x="8" y="6" width="1" height="1" fill="#f0b429"/>
-  <rect x="3" y="7" width="3" height="1" fill="#f0b429"/>
-  <rect x="2" y="8" width="7" height="1" fill="#f0b429"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#f0b429" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M6 3.5 H14 L18 7.5 V20.5 H6 Z"/>
+  <path d="M14 3.5 V7.5 H18"/>
+  <line x1="8.5" y1="12" x2="15.5" y2="12"/>
+  <line x1="8.5" y1="15.5" x2="15.5" y2="15.5"/>
+  <line x1="8.5" y1="19" x2="12.5" y2="19"/>
 </svg>
