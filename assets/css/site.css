@@ -590,10 +590,7 @@ nav ul li a:hover {
     letter-spacing: 0.01em;
     text-transform: uppercase;
     line-height: 1.02;
-    background: linear-gradient(180deg, #fff6d5 0%, #ffd873 28%, #f0b429 55%, #b8860b 82%, #7a5400 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--brand-light);
     filter:
         drop-shadow(0 3px 0 #3d2400)
         drop-shadow(0 2px 5px rgba(0, 0, 0, 0.55))
@@ -1021,10 +1018,7 @@ nav ul li a:hover {
     margin-bottom: 15px;
     font-weight: 400;
     position: relative;
-    background: linear-gradient(180deg, #fff6d5 0%, #ffd873 28%, #f0b429 55%, #b8860b 82%, #7a5400 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--brand-light);
     filter:
         drop-shadow(0 2px 0 #3d2400)
         drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
@@ -1473,6 +1467,54 @@ footer {
     background: var(--chrome-elevated);
     gap: 10px;
     align-items: center;
+}
+
+/* ------------------------- Community dataset status --------------------- */
+/* Shown while the large community-upload dataset is fetching, and left up
+   (with a retry action) if the fetch fails, so a slow/broken connection
+   doesn't silently show a tiny gallery as if it were the whole thing. */
+
+.community-status {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    background: var(--panel);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    color: var(--text-color);
+    font-size: var(--font-sm);
+}
+
+.community-status-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    image-rendering: pixelated;
+}
+
+.community-status.is-loading .community-status-icon {
+    animation: community-status-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes community-status-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+}
+
+.community-status-retry {
+    background: var(--brand);
+    color: #362600;
+    border: none;
+    border-radius: 8px;
+    padding: 7px 16px;
+    font-weight: 700;
+    font-size: var(--font-xs);
+    text-transform: uppercase;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .mobile-actions-container .language-selector {

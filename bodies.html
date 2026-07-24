@@ -351,7 +351,7 @@
 
         /* Page Header */
         .page-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            background: var(--primary-color);
             padding: 60px 0;
             color: white;
             text-align: center;
@@ -388,7 +388,7 @@
 
         /* Disclaimer Banner */
         .disclaimer-banner {
-            background: linear-gradient(135deg, #3b82f6 0%, #f57c00 100%);
+            background: var(--secondary-color);
             color: white;
             padding: 15px 20px;
             margin: 0 auto 30px;
@@ -528,7 +528,7 @@
         .reset-btn {
             display: block;
             width: 100%;
-            background: linear-gradient(135deg, var(--accent-color) 0%, #d84315 100%);
+            background: var(--accent-color);
             color: white;
             text-align: center;
             padding: 14px;
@@ -672,7 +672,7 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            background: var(--primary-color);
             color: white !important;
             padding: 14px 30px;
             border-radius: 30px;
@@ -1107,7 +1107,7 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="image/a/graalguide-mark.svg" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                        <img src="assets/img/mascot/freeze.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
                     </a>
                 </div>
                 <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
@@ -1274,6 +1274,7 @@
             </div>
             
             <div class="gallery-container">
+                <div class="community-status" id="community-status"></div>
                 <div class="bodies-grid" id="bodies-container">
                     <!-- Bodies will be populated by JavaScript -->
                 </div>
@@ -3368,18 +3369,34 @@
             saveBodiesState();
 
             // Load community-uploaded bodies (large external dataset) and merge in
-            fetch('data/bodies-community.json')
-                .then(response => response.json())
-                .then(communityBodies => {
-                    bodiesData.push(...communityBodies);
-                    communityDataLoaded = true;
-                    renderBodies();
-                })
-                .catch(error => {
-                    console.error('Could not load community bodies:', error);
-                    communityDataLoaded = true;
-                    renderBodies();
-                });
+            const communityStatus = document.getElementById('community-status');
+            function loadCommunityBodies() {
+                communityStatus.className = 'community-status is-loading';
+                communityStatus.style.display = 'flex';
+                communityStatus.innerHTML = '<img src="assets/img/mascot/freeze.png" class="community-status-icon" alt="">Loading community uploads&hellip;';
+
+                fetch('data/bodies-community.json')
+                    .then(response => {
+                        if (!response.ok) throw new Error('HTTP ' + response.status);
+                        return response.json();
+                    })
+                    .then(communityBodies => {
+                        bodiesData.push(...communityBodies);
+                        communityDataLoaded = true;
+                        communityStatus.style.display = 'none';
+                        renderBodies();
+                    })
+                    .catch(error => {
+                        console.error('Could not load community bodies:', error);
+                        communityDataLoaded = true;
+                        communityStatus.className = 'community-status';
+                        communityStatus.style.display = 'flex';
+                        communityStatus.innerHTML = '<img src="assets/img/mascot/freeze.png" class="community-status-icon" alt="">Community uploads froze up and did not load - showing the default gallery only.<button type="button" class="community-status-retry" id="community-retry">Retry</button>';
+                        document.getElementById('community-retry').addEventListener('click', loadCommunityBodies);
+                        renderBodies();
+                    });
+            }
+            loadCommunityBodies();
 
             // Category filter event listeners
             document.querySelectorAll('input[name="category"]').forEach(checkbox => {

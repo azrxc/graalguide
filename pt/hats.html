@@ -351,7 +351,7 @@
 
         /* Page Header */
         .page-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            background: var(--primary-color);
             padding: 60px 0;
             color: white;
             text-align: center;
@@ -388,7 +388,7 @@
 
         /* Disclaimer Banner */
         .disclaimer-banner {
-            background: linear-gradient(135deg, #3b82f6 0%, #f57c00 100%);
+            background: var(--secondary-color);
             color: white;
             padding: 15px 20px;
             margin: 0 auto 30px;
@@ -578,7 +578,7 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--primary-color) 0%, #6a3093 100%);
+            background: var(--primary-color);
             color: white !important;
             padding: 14px 30px;
             border-radius: 30px;
@@ -963,7 +963,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
     <header>
@@ -971,7 +971,7 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="../image/a/graalguide-mark.svg" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                        <img src="../assets/img/mascot/freeze.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
                     </a>
                 </div>
                 <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
@@ -1105,6 +1105,7 @@
     </div>
 
     <div class="container">
+        <div class="community-status" id="community-status"></div>
         <div class="hats-grid" id="hats-container">
             <!-- Hats will be populated by JavaScript -->
         </div>
@@ -1395,22 +1396,38 @@
             saveHatsState();
 
             // Load community-uploaded hats and merge in
-            fetch('../data/hats-community.json')
-                .then(response => response.json())
-                .then(communityHats => {
-                    // Community dataset paths are root-relative; prefix for this
-                    // page's subfolder so the images actually resolve.
-                    communityHats.forEach(hat => { hat.image = '../' + hat.image; });
-                    hatsData.push(...communityHats);
-                    communityDataLoaded = true;
-                    renderHats();
-                    saveHatsState();
-                })
-                .catch(error => {
-                    console.error('Could not load community hats:', error);
-                    communityDataLoaded = true;
-                    renderHats();
-                });
+            const communityStatus = document.getElementById('community-status');
+            function loadCommunityHats() {
+                communityStatus.className = 'community-status is-loading';
+                communityStatus.style.display = 'flex';
+                communityStatus.innerHTML = '<img src="../assets/img/mascot/freeze.png" class="community-status-icon" alt="">Carregando uploads da comunidade&hellip;';
+
+                fetch('../data/hats-community.json')
+                    .then(response => {
+                        if (!response.ok) throw new Error('HTTP ' + response.status);
+                        return response.json();
+                    })
+                    .then(communityHats => {
+                        // Community dataset paths are root-relative; prefix for this
+                        // page's subfolder so the images actually resolve.
+                        communityHats.forEach(hat => { hat.image = '../' + hat.image; });
+                        hatsData.push(...communityHats);
+                        communityDataLoaded = true;
+                        communityStatus.style.display = 'none';
+                        renderHats();
+                        saveHatsState();
+                    })
+                    .catch(error => {
+                        console.error('Could not load community hats:', error);
+                        communityDataLoaded = true;
+                        communityStatus.className = 'community-status';
+                        communityStatus.style.display = 'flex';
+                        communityStatus.innerHTML = '<img src="../assets/img/mascot/freeze.png" class="community-status-icon" alt="">Os uploads da comunidade travaram e não carregaram - mostrando apenas a galeria padrão.<button type="button" class="community-status-retry" id="community-retry">Tentar novamente</button>';
+                        document.getElementById('community-retry').addEventListener('click', loadCommunityHats);
+                        renderHats();
+                    });
+            }
+            loadCommunityHats();
 
             // Modal functionality
             document.querySelector('.close-modal').addEventListener('click', function() {
