@@ -1331,6 +1331,9 @@
             </div>
             
             <div class="gallery-container">
+                <div class="favorites-bar">
+                    <button type="button" class="favorites-toggle" id="favorites-toggle">☆ Favorites Only <span id="favorites-count">(0)</span></button>
+                </div>
                 <div class="community-status" id="community-status"></div>
                 <div class="heads-grid" id="heads-container">
                     <!-- Heads will be populated by JavaScript -->
@@ -2607,6 +2610,29 @@
             },
         ];
 
+        // Favorites (localStorage, shared across heads/bodies/hats since
+        // image paths are unique across all three galleries)
+        const FAVORITES_KEY = 'graalguide_favorites';
+        function getFavorites() {
+            try {
+                return new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY)) || []);
+            } catch (e) {
+                return new Set();
+            }
+        }
+        function saveFavorites(set) {
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify([...set]));
+        }
+        let favorites = getFavorites();
+        let showFavoritesOnly = false;
+
+        function updateFavoritesButton() {
+            const btn = document.getElementById('favorites-toggle');
+            if (!btn) return;
+            btn.classList.toggle('active', showFavoritesOnly);
+            btn.innerHTML = (showFavoritesOnly ? '★' : '☆') + ' Favorites Only <span id="favorites-count">(' + favorites.size + ')</span>';
+        }
+
         // Configuration
         const itemsPerPage = 120;
         const HEADS_STATE_KEY = 'headsLastState';
@@ -2664,12 +2690,14 @@
             const filtered = headsData.filter(head => {
                 // Check color filter
                 const colorMatch = currentColorFilter === "all" || head.colors.includes(currentColorFilter);
-                
+
                 // Check gender filters
-                const genderMatch = currentGenderFilters.includes("all") || 
+                const genderMatch = currentGenderFilters.includes("all") ||
                                   head.gender.some(gender => currentGenderFilters.includes(gender));
-                
-                return colorMatch && genderMatch;
+
+                const favMatch = !showFavoritesOnly || favorites.has(head.image);
+
+                return colorMatch && genderMatch && favMatch;
             });
             
             filteredHeads = filtered;
@@ -2695,7 +2723,9 @@
             const headsToShow = filteredHeads.slice(startIndex, endIndex);
 
             if (headsToShow.length === 0) {
-                headsContainer.innerHTML = '<div class="no-results">No heads found matching your filters.</div>';
+                headsContainer.innerHTML = showFavoritesOnly
+                    ? '<div class="no-results">No favorites yet - tap the star on any head to save it here.</div>'
+                    : '<div class="no-results">No heads found matching your filters.</div>';
                 return;
             }
             
@@ -2708,6 +2738,7 @@
             // listener per item.
             headsContainer.innerHTML = headsToShow.map(head => `
                 <div class="head-item" data-image="${head.image}">
+                    <button type="button" class="fav-btn${favorites.has(head.image) ? ' active' : ''}" data-fav-image="${head.image}" aria-label="Favorite">${favorites.has(head.image) ? '★' : '☆'}</button>
                     <div class="head-gallery">
                         <div class="head frame1" style="background-image:url('${head.image}')"></div>
                         <div class="head frame2" style="background-image:url('${head.image}')"></div>
@@ -2975,6 +3006,25 @@
             // Delegated click handler for the gallery grid - one listener
             // for the whole container instead of one per rendered item.
             document.getElementById('heads-container').addEventListener('click', function(e) {
+                const favBtn = e.target.closest('.fav-btn');
+                if (favBtn) {
+                    e.stopPropagation();
+                    const image = favBtn.dataset.favImage;
+                    if (favorites.has(image)) {
+                        favorites.delete(image);
+                        favBtn.classList.remove('active');
+                        favBtn.textContent = '☆';
+                    } else {
+                        favorites.add(image);
+                        favBtn.classList.add('active');
+                        favBtn.textContent = '★';
+                    }
+                    saveFavorites(favorites);
+                    updateFavoritesButton();
+                    if (showFavoritesOnly) renderHeads();
+                    return;
+                }
+
                 const item = e.target.closest('.head-item');
                 if (!item) return;
                 const image = item.dataset.image;
@@ -2984,6 +3034,18 @@
                 downloadBtn.download = image.split('/').pop();
                 document.getElementById('image-modal').style.display = 'flex';
             });
+
+            // Favorites-only toggle
+            const favoritesToggleBtn = document.getElementById('favorites-toggle');
+            if (favoritesToggleBtn) {
+                favoritesToggleBtn.addEventListener('click', function() {
+                    showFavoritesOnly = !showFavoritesOnly;
+                    currentPage = 1;
+                    updateFavoritesButton();
+                    renderHeads();
+                });
+            }
+            updateFavoritesButton();
             
             // Close modal when clicking outside
             window.addEventListener('click', function(event) {

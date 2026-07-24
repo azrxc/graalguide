@@ -1275,6 +1275,9 @@
 
             <div class="gallery-container">
                 <div class="community-status" id="community-status"></div>
+                <div class="favorites-bar">
+                    <button type="button" class="favorites-toggle" id="favorites-toggle">☆ Somente Favoritos <span id="favorites-count">(0)</span></button>
+                </div>
                 <div class="bodies-grid" id="bodies-container">
                     <!-- Bodies will be populated by JavaScript -->
                 </div>
@@ -3113,6 +3116,29 @@
         // Configuration
         const itemsPerPage = 80;
         const BODIES_STATE_KEY = 'bodiesLastState';
+
+        // Favorites (localStorage, shared across heads/bodies/hats since
+        // image paths are unique across all three galleries)
+        const FAVORITES_KEY = 'graalguide_favorites';
+        function getFavorites() {
+            try {
+                return new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY)) || []);
+            } catch (e) {
+                return new Set();
+            }
+        }
+        function saveFavorites(set) {
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify([...set]));
+        }
+        let favorites = getFavorites();
+        let showFavoritesOnly = false;
+
+        function updateFavoritesButton() {
+            const btn = document.getElementById('favorites-toggle');
+            if (!btn) return;
+            btn.classList.toggle('active', showFavoritesOnly);
+            btn.innerHTML = (showFavoritesOnly ? '★' : '☆') + ' Somente Favoritos <span id="favorites-count">(' + favorites.size + ')</span>';
+        }
         // The community dataset is fetched async and dwarfs the static array below;
         // don't clamp the requested page against the tiny static-only count until
         // it's loaded, or valid deep-page requests get bounced back.
@@ -3159,8 +3185,10 @@
             // Filter bodies based on current filters
             const filtered = bodiesData.filter(body => {
                 // Check if "All" is selected or if body matches any selected category
-                return currentCategoryFilters.includes("all") || 
+                const categoryMatch = currentCategoryFilters.includes("all") ||
                        body.categories.some(category => currentCategoryFilters.includes(category));
+                const favMatch = !showFavoritesOnly || favorites.has(body.image);
+                return categoryMatch && favMatch;
             });
             
             filteredBodies = filtered;
@@ -3186,7 +3214,9 @@
             const bodiesToShow = filteredBodies.slice(startIndex, endIndex);
             
             if (bodiesToShow.length === 0) {
-                bodiesContainer.innerHTML = '<div class="no-results">Nenhum body encontrado com esses filtros.</div>';
+                bodiesContainer.innerHTML = showFavoritesOnly
+                    ? '<div class="no-results">Ainda sem favoritos - toque na estrela de qualquer body para salvá-lo aqui.</div>'
+                    : '<div class="no-results">Nenhum body encontrado com esses filtros.</div>';
                 return;
             }
             
@@ -3199,6 +3229,7 @@
             // listener per item.
             bodiesContainer.innerHTML = bodiesToShow.map(body => `
                 <div class="body-item" data-image="${body.image}">
+                    <button type="button" class="fav-btn${favorites.has(body.image) ? ' active' : ''}" data-fav-image="${body.image}" aria-label="Favoritar">${favorites.has(body.image) ? '★' : '☆'}</button>
                     <div class="body-display">
                         <img src="${body.image}" class="body-img" loading="lazy" decoding="async">
                     </div>
@@ -3445,6 +3476,25 @@
             // Delegated click handler for the gallery grid - one listener
             // for the whole container instead of one per rendered item.
             document.getElementById('bodies-container').addEventListener('click', function(e) {
+                const favBtn = e.target.closest('.fav-btn');
+                if (favBtn) {
+                    e.stopPropagation();
+                    const image = favBtn.dataset.favImage;
+                    if (favorites.has(image)) {
+                        favorites.delete(image);
+                        favBtn.classList.remove('active');
+                        favBtn.textContent = '☆';
+                    } else {
+                        favorites.add(image);
+                        favBtn.classList.add('active');
+                        favBtn.textContent = '★';
+                    }
+                    saveFavorites(favorites);
+                    updateFavoritesButton();
+                    if (showFavoritesOnly) renderBodies();
+                    return;
+                }
+
                 const item = e.target.closest('.body-item');
                 if (!item) return;
                 const image = item.dataset.image;
@@ -3454,6 +3504,18 @@
                 downloadBtn.download = image.split('/').pop();
                 document.getElementById('image-modal').style.display = 'flex';
             });
+
+            // Favorites-only toggle
+            const favoritesToggleBtn = document.getElementById('favorites-toggle');
+            if (favoritesToggleBtn) {
+                favoritesToggleBtn.addEventListener('click', function() {
+                    showFavoritesOnly = !showFavoritesOnly;
+                    currentPage = 1;
+                    updateFavoritesButton();
+                    renderBodies();
+                });
+            }
+            updateFavoritesButton();
             
             // Close modal when clicking outside
             window.addEventListener('click', function(event) {

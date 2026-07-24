@@ -1469,6 +1469,71 @@ footer {
     align-items: center;
 }
 
+/* ------------------------------ Favorites -------------------------------- */
+/* Per-item save button (heads/bodies/hats) plus the "Favorites Only" filter
+   toggle above each gallery grid. State lives in localStorage, shared across
+   all three gallery types since image paths are unique. */
+
+.favorites-bar {
+    margin-bottom: 16px;
+}
+
+.favorites-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--panel);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 9px 16px;
+    color: var(--text-color);
+    font-size: var(--font-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.favorites-toggle:hover {
+    border-color: var(--brand);
+}
+
+.favorites-toggle.active {
+    background: var(--brand);
+    color: #362600;
+    border-color: var(--brand);
+}
+
+.fav-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 5;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.55);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.fav-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.fav-btn.active {
+    color: var(--brand);
+    background: rgba(0, 0, 0, 0.75);
+}
+
 /* ------------------------- Community dataset status --------------------- */
 /* Shown while the large community-upload dataset is fetching, and left up
    (with a retry action) if the fetch fails, so a slow/broken connection

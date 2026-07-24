@@ -1106,6 +1106,9 @@
 
     <div class="container">
         <div class="community-status" id="community-status"></div>
+        <div class="favorites-bar">
+            <button type="button" class="favorites-toggle" id="favorites-toggle">☆ Somente Favoritos <span id="favorites-count">(0)</span></button>
+        </div>
         <div class="hats-grid" id="hats-container">
             <!-- Hats will be populated by JavaScript -->
         </div>
@@ -1187,6 +1190,29 @@
         // Configuration
         const itemsPerPage = 40;
         const HATS_STATE_KEY = 'hatsLastState';
+
+        // Favorites (localStorage, shared across heads/bodies/hats since
+        // image paths are unique across all three galleries)
+        const FAVORITES_KEY = 'graalguide_favorites';
+        function getFavorites() {
+            try {
+                return new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY)) || []);
+            } catch (e) {
+                return new Set();
+            }
+        }
+        function saveFavorites(set) {
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify([...set]));
+        }
+        let favorites = getFavorites();
+        let showFavoritesOnly = false;
+
+        function updateFavoritesButton() {
+            const btn = document.getElementById('favorites-toggle');
+            if (!btn) return;
+            btn.classList.toggle('active', showFavoritesOnly);
+            btn.innerHTML = (showFavoritesOnly ? '★' : '☆') + ' Somente Favoritos <span id="favorites-count">(' + favorites.size + ')</span>';
+        }
         // hatsData starts empty and the entire gallery comes from the async
         // community fetch; don't clamp the requested page until it's loaded,
         // or every deep-page request gets bounced back to page 1.
@@ -1223,7 +1249,7 @@
         function renderHats() {
             const hatsContainer = document.getElementById('hats-container');
 
-            filteredHats = hatsData;
+            filteredHats = showFavoritesOnly ? hatsData.filter(hat => favorites.has(hat.image)) : hatsData;
 
             // Clamp currentPage into range - a stale/out-of-range page number
             // would otherwise slice past the end of the array and render nothing.
@@ -1245,7 +1271,9 @@
             const hatsToShow = filteredHats.slice(startIndex, endIndex);
 
             if (hatsToShow.length === 0) {
-                hatsContainer.innerHTML = '<div class="no-results">Nenhum hat encontrado.</div>';
+                hatsContainer.innerHTML = showFavoritesOnly
+                    ? '<div class="no-results">Ainda sem favoritos - toque na estrela de qualquer hat para salvá-lo aqui.</div>'
+                    : '<div class="no-results">Nenhum hat encontrado.</div>';
                 return;
             }
 
@@ -1258,6 +1286,7 @@
             // listener per item.
             hatsContainer.innerHTML = hatsToShow.map(hat => `
                 <div class="hat-item" data-image="${hat.image}">
+                    <button type="button" class="fav-btn${favorites.has(hat.image) ? ' active' : ''}" data-fav-image="${hat.image}" aria-label="Favoritar">${favorites.has(hat.image) ? '★' : '☆'}</button>
                     <div class="hat-display">
                         <img src="${hat.image}" class="hat-img" loading="lazy" decoding="async">
                     </div>
@@ -1430,6 +1459,25 @@
             // Delegated click handler for the gallery grid - one listener
             // for the whole container instead of one per rendered item.
             document.getElementById('hats-container').addEventListener('click', function(e) {
+                const favBtn = e.target.closest('.fav-btn');
+                if (favBtn) {
+                    e.stopPropagation();
+                    const image = favBtn.dataset.favImage;
+                    if (favorites.has(image)) {
+                        favorites.delete(image);
+                        favBtn.classList.remove('active');
+                        favBtn.textContent = '☆';
+                    } else {
+                        favorites.add(image);
+                        favBtn.classList.add('active');
+                        favBtn.textContent = '★';
+                    }
+                    saveFavorites(favorites);
+                    updateFavoritesButton();
+                    if (showFavoritesOnly) renderHats();
+                    return;
+                }
+
                 const item = e.target.closest('.hat-item');
                 if (!item) return;
                 const image = item.dataset.image;
@@ -1439,6 +1487,18 @@
                 downloadBtn.download = image.split('/').pop();
                 document.getElementById('image-modal').style.display = 'flex';
             });
+
+            // Favorites-only toggle
+            const favoritesToggleBtn = document.getElementById('favorites-toggle');
+            if (favoritesToggleBtn) {
+                favoritesToggleBtn.addEventListener('click', function() {
+                    showFavoritesOnly = !showFavoritesOnly;
+                    currentPage = 1;
+                    updateFavoritesButton();
+                    renderHats();
+                });
+            }
+            updateFavoritesButton();
 
             window.addEventListener('click', function(event) {
                 if (event.target === document.getElementById('image-modal')) {
