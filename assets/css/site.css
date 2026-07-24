@@ -7,18 +7,21 @@
    ========================================================================== */
 
 :root {
-    /* GraalOnline Era's own identity: a dark, gang-run city. Gold for
-       money/rarity/VIP, green for success/online/cash, red for gangs and
-       danger, blue for police/info - straight off the game's own marketing
-       and economy (Gralats, Trochus, gang bases, gang wars). */
+    /* Two colors, deliberately: gold and deep blue sit opposite each other
+       on the color wheel (gold = yellow-orange, its complement is
+       blue-violet), the highest-contrast pairing available and the
+       standard premium dark-UI combination. Gold carries the brand
+       identity (currency, rarity, the marquee title); blue is the one
+       secondary accent for everything else. No purple, green, or orange
+       anywhere in the system. */
     --brand: #f0b429;      /* gold: currency, rarity, the marquee title */
     --brand-light: #ffd873;
     --brand-dark: #b8860b;
 
-    --glow-a: #e0392b;     /* gang red: danger, PvP */
-    --glow-b: #2fae5c;     /* money green: success, online */
-    --info-blue: #3b82f6;  /* police blue: info */
-    --badge-red: #e0392b;
+    --glow-a: #3b82f6;     /* blue accent */
+    --glow-b: #3b82f6;     /* blue accent (alias, kept for old call sites) */
+    --info-blue: #3b82f6;
+    --badge-red: #3b82f6;
     --star-gold: #f0b429;
 
     --chrome-bg: #101010;
@@ -506,8 +509,8 @@ nav ul li a:hover {
 
 .hero {
     background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(224, 57, 43, 0.16), transparent 65%),
-        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(47, 174, 92, 0.14), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(240, 180, 41, 0.14), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.14), transparent 65%),
         linear-gradient(rgba(4, 4, 4, 0.88), rgba(4, 4, 4, 0.94)),
         url('../../image/a/map.png') center/cover no-repeat;
     padding: 110px 0 95px;
@@ -541,8 +544,8 @@ nav ul li a:hover {
 
 [data-theme="light"] .hero {
     background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(224, 57, 43, 0.14), transparent 65%),
-        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(47, 174, 92, 0.12), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(240, 180, 41, 0.12), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.12), transparent 65%),
         linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
         url('../../image/a/map.png') center/cover no-repeat;
     color: #fff;
@@ -819,7 +822,7 @@ nav ul li a:hover {
 .showcase-thumb:nth-child(even):hover {
     transform: translateY(-5px) scale(1.05);
     border-color: var(--glow-b);
-    box-shadow: 0 0 0 1px var(--glow-b), 0 10px 24px rgba(47, 174, 92, 0.35);
+    box-shadow: 0 0 0 1px var(--glow-b), 0 10px 24px rgba(59, 130, 246, 0.35);
 }
 
 .showcase-thumb.rotating {
@@ -963,7 +966,7 @@ nav ul li a:hover {
 .head-item:nth-child(even):hover, .body-item:nth-child(even):hover, .hat-item:nth-child(even):hover {
     transform: translateY(-5px);
     border-color: var(--glow-b);
-    box-shadow: 0 0 0 1px var(--glow-b), 0 10px 24px rgba(47, 174, 92, 0.35);
+    box-shadow: 0 0 0 1px var(--glow-b), 0 10px 24px rgba(59, 130, 246, 0.35);
 }
 
 .head-gallery, .body-display, .hat-display {
@@ -990,8 +993,8 @@ nav ul li a:hover {
 
 .page-header {
     background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(224, 57, 43, 0.16), transparent 65%),
-        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(47, 174, 92, 0.14), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(240, 180, 41, 0.14), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.14), transparent 65%),
         linear-gradient(rgba(4, 4, 4, 0.88), rgba(4, 4, 4, 0.94)),
         url('../../image/a/map.png') center/cover no-repeat;
     padding: 70px 0;
@@ -1004,8 +1007,8 @@ nav ul li a:hover {
 
 [data-theme="light"] .page-header {
     background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(224, 57, 43, 0.14), transparent 65%),
-        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(47, 174, 92, 0.12), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(240, 180, 41, 0.12), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.12), transparent 65%),
         linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
         url('../../image/a/map.png') center/cover no-repeat;
     color: #fff;
@@ -1264,9 +1267,9 @@ nav ul li a:hover {
 }
 
 .tag-guide {
-    background: rgba(76, 175, 80, 0.18);
-    color: #4caf50;
-    border-color: rgba(76, 175, 80, 0.35);
+    background: rgba(240, 180, 41, 0.18);
+    color: var(--star-gold);
+    border-color: rgba(240, 180, 41, 0.35);
 }
 
 .tag-ec {
@@ -1282,9 +1285,9 @@ nav ul li a:hover {
 }
 
 .tag-tro {
-    background: rgba(224, 57, 43, 0.18);
-    color: var(--badge-red);
-    border-color: rgba(224, 57, 43, 0.35);
+    background: rgba(59, 130, 246, 0.18);
+    color: var(--info-blue);
+    border-color: rgba(59, 130, 246, 0.35);
 }
 
 .article p, .article ul {
