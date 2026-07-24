@@ -927,11 +927,12 @@
         }
 
         .no-results::before {
-            content: url('assets/img/mascot/mascot-alive.gif');
+            content: '';
+            display: block;
             width: 90px;
             height: 90px;
-            display: block;
             margin: 0 auto 15px;
+            background: url('assets/img/mascot/mascot-alive.gif') center / contain no-repeat;
         }
 
         /* Prevent zoom on focus for iOS */
