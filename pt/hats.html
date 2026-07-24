@@ -1222,7 +1222,6 @@
         // Function to render hats based on current page
         function renderHats() {
             const hatsContainer = document.getElementById('hats-container');
-            hatsContainer.innerHTML = '';
 
             filteredHats = hatsData;
 
@@ -1250,26 +1249,20 @@
                 return;
             }
 
-            hatsToShow.forEach(hat => {
-                const hatElement = document.createElement('div');
-                hatElement.className = 'hat-item';
-
-                hatElement.innerHTML = `
+            // Build all item markup in one pass and write it in a single
+            // innerHTML assignment instead of creating/appending N separate
+            // elements - the per-item DOM churn was the main-thread cost
+            // behind a Core Web Vitals INP (interaction responsiveness)
+            // warning on this page. Clicks are handled by one delegated
+            // listener on the container (set up once, below) instead of one
+            // listener per item.
+            hatsContainer.innerHTML = hatsToShow.map(hat => `
+                <div class="hat-item" data-image="${hat.image}">
                     <div class="hat-display">
                         <img src="${hat.image}" class="hat-img" loading="lazy" decoding="async">
                     </div>
-                `;
-
-                hatElement.addEventListener('click', function() {
-                    document.getElementById('enlarged-img').src = hat.image;
-                    const downloadBtn = document.getElementById('download-btn');
-                    downloadBtn.href = hat.image;
-                    downloadBtn.download = hat.image.split('/').pop();
-                    document.getElementById('image-modal').style.display = 'flex';
-                });
-
-                hatsContainer.appendChild(hatElement);
-            });
+                </div>
+            `).join('');
 
             updatePagination();
         }
@@ -1432,6 +1425,19 @@
             // Modal functionality
             document.querySelector('.close-modal').addEventListener('click', function() {
                 document.getElementById('image-modal').style.display = 'none';
+            });
+
+            // Delegated click handler for the gallery grid - one listener
+            // for the whole container instead of one per rendered item.
+            document.getElementById('hats-container').addEventListener('click', function(e) {
+                const item = e.target.closest('.hat-item');
+                if (!item) return;
+                const image = item.dataset.image;
+                document.getElementById('enlarged-img').src = image;
+                const downloadBtn = document.getElementById('download-btn');
+                downloadBtn.href = image;
+                downloadBtn.download = image.split('/').pop();
+                document.getElementById('image-modal').style.display = 'flex';
             });
 
             window.addEventListener('click', function(event) {

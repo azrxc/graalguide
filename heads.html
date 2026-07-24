@@ -2659,8 +2659,7 @@
         // Function to render heads based on current page and filters
         function renderHeads() {
             const headsContainer = document.getElementById('heads-container');
-            headsContainer.innerHTML = '';
-            
+
             // Filter heads based on current filters
             const filtered = headsData.filter(head => {
                 // Check color filter
@@ -2700,31 +2699,23 @@
                 return;
             }
             
-            // Create HTML for each head
-            headsToShow.forEach(head => {
-                const headElement = document.createElement('div');
-                headElement.className = 'head-item';
-                
-                headElement.innerHTML = `
+            // Build all item markup in one pass and write it in a single
+            // innerHTML assignment instead of creating/appending N separate
+            // elements - the per-item DOM churn was the main-thread cost
+            // behind a Core Web Vitals INP (interaction responsiveness)
+            // warning on this page. Clicks are handled by one delegated
+            // listener on the container (set up once, below) instead of one
+            // listener per item.
+            headsContainer.innerHTML = headsToShow.map(head => `
+                <div class="head-item" data-image="${head.image}">
                     <div class="head-gallery">
                         <div class="head frame1" style="background-image:url('${head.image}')"></div>
                         <div class="head frame2" style="background-image:url('${head.image}')"></div>
                         <div class="head frame3" style="background-image:url('${head.image}')"></div>
                         <div class="head frame4" style="background-image:url('${head.image}')"></div>
                     </div>
-                `;
-                
-                // Add click event to show enlarged image
-                headElement.addEventListener('click', function() {
-                    document.getElementById('enlarged-img').src = head.image;
-                    const downloadBtn = document.getElementById('download-btn');
-                    downloadBtn.href = head.image;
-                    downloadBtn.download = head.image.split('/').pop();
-                    document.getElementById('image-modal').style.display = 'flex';
-                });
-                
-                headsContainer.appendChild(headElement);
-            });
+                </div>
+            `).join('');
             
             // Update pagination
             updatePagination();
@@ -2979,6 +2970,19 @@
             // Modal functionality
             document.querySelector('.close-modal').addEventListener('click', function() {
                 document.getElementById('image-modal').style.display = 'none';
+            });
+
+            // Delegated click handler for the gallery grid - one listener
+            // for the whole container instead of one per rendered item.
+            document.getElementById('heads-container').addEventListener('click', function(e) {
+                const item = e.target.closest('.head-item');
+                if (!item) return;
+                const image = item.dataset.image;
+                document.getElementById('enlarged-img').src = image;
+                const downloadBtn = document.getElementById('download-btn');
+                downloadBtn.href = image;
+                downloadBtn.download = image.split('/').pop();
+                document.getElementById('image-modal').style.display = 'flex';
             });
             
             // Close modal when clicking outside

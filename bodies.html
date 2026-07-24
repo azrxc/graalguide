@@ -3155,8 +3155,7 @@
         // Function to render bodies based on current page and filters
         function renderBodies() {
             const bodiesContainer = document.getElementById('bodies-container');
-            bodiesContainer.innerHTML = '';
-            
+
             // Filter bodies based on current filters
             const filtered = bodiesData.filter(body => {
                 // Check if "All" is selected or if body matches any selected category
@@ -3191,28 +3190,20 @@
                 return;
             }
             
-            // Create HTML for each body
-            bodiesToShow.forEach(body => {
-                const bodyElement = document.createElement('div');
-                bodyElement.className = 'body-item';
-                
-                bodyElement.innerHTML = `
+            // Build all item markup in one pass and write it in a single
+            // innerHTML assignment instead of creating/appending N separate
+            // elements - the per-item DOM churn was the main-thread cost
+            // behind a Core Web Vitals INP (interaction responsiveness)
+            // warning on this page. Clicks are handled by one delegated
+            // listener on the container (set up once, below) instead of one
+            // listener per item.
+            bodiesContainer.innerHTML = bodiesToShow.map(body => `
+                <div class="body-item" data-image="${body.image}">
                     <div class="body-display">
                         <img src="${body.image}" class="body-img" loading="lazy" decoding="async">
                     </div>
-                `;
-                
-                // Add click event to show enlarged image
-                bodyElement.addEventListener('click', function() {
-                    document.getElementById('enlarged-img').src = body.image;
-                    const downloadBtn = document.getElementById('download-btn');
-                    downloadBtn.href = body.image;
-                    downloadBtn.download = body.image.split('/').pop();
-                    document.getElementById('image-modal').style.display = 'flex';
-                });
-                
-                bodiesContainer.appendChild(bodyElement);
-            });
+                </div>
+            `).join('');
             
             // Update pagination
             updatePagination();
@@ -3446,6 +3437,19 @@
             // Modal functionality
             document.querySelector('.close-modal').addEventListener('click', function() {
                 document.getElementById('image-modal').style.display = 'none';
+            });
+
+            // Delegated click handler for the gallery grid - one listener
+            // for the whole container instead of one per rendered item.
+            document.getElementById('bodies-container').addEventListener('click', function(e) {
+                const item = e.target.closest('.body-item');
+                if (!item) return;
+                const image = item.dataset.image;
+                document.getElementById('enlarged-img').src = image;
+                const downloadBtn = document.getElementById('download-btn');
+                downloadBtn.href = image;
+                downloadBtn.download = image.split('/').pop();
+                document.getElementById('image-modal').style.display = 'flex';
             });
             
             // Close modal when clicking outside
