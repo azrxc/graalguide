@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gani Previewer - GraalGuide</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="image/a/graalguide-favicon.png">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+    body { min-height: 100vh; padding: 0 0 60px; }
+    .pv-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--tile-border, rgba(255,255,255,0.08));
+        margin-bottom: 24px;
+    }
+    .pv-header a.pv-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-primary, #eee);
+        text-decoration: none;
+        font-family: var(--font-display);
+        font-weight: 700;
+    }
+    .pv-header a.pv-logo img { width: 28px; height: 28px; }
+    .pv-header a.pv-logo span { color: var(--primary-color); }
+    .pv-header h1 {
+        font-size: 15px;
+        color: var(--text-secondary, #9aa0a6);
+        font-weight: 400;
+        margin: 0 0 0 4px;
+        padding-left: 12px;
+        border-left: 1px solid var(--tile-border, rgba(255,255,255,0.15));
+    }
+
+    .pv-wrap {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .pv-card {
+        background: var(--darker-bg);
+        border: 1px solid var(--tile-border, rgba(255,255,255,0.08));
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    }
+
+    .stage-wrap { display: flex; align-items: center; justify-content: center; gap: 16px; }
+    #stage {
+        background:
+            linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%) -8px 0/16px 16px,
+            linear-gradient(-45deg, rgba(255,255,255,0.04) 25%, transparent 25%) -8px 0/16px 16px,
+            linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.04) 75%) -8px 0/16px 16px,
+            linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.04) 75%) -8px 0/16px 16px,
+            var(--chrome-bg);
+        border-radius: 10px;
+        border: 1px solid var(--tile-border, rgba(255,255,255,0.1));
+        image-rendering: pixelated;
+        cursor: grab;
+        touch-action: none;
+    }
+    #stage.dragging { cursor: grabbing; }
+    .tool-row { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+    .text-btn {
+        background: var(--tile-bg);
+        border: 1px solid var(--tile-border, rgba(255,255,255,0.12));
+        color: var(--text-primary, #eee);
+        border-radius: 8px;
+        padding: 7px 14px;
+        font-size: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .text-btn:hover { background: var(--tile-bg-hover); }
+    .text-btn-primary { background: var(--primary-color); color: #101010; border-color: var(--primary-color); }
+    .text-btn-primary:hover { filter: brightness(1.08); }
+    .tool-btn-icon { width: 15px; height: 15px; flex-shrink: 0; }
+    .tool-hint { font-size: 11px; color: var(--text-secondary, #9aa0a6); text-align: center; margin-top: 10px; }
+    .icon-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: var(--tile-bg);
+        border: 1px solid var(--tile-border, rgba(255,255,255,0.12));
+        color: var(--text-primary, #eee);
+        cursor: pointer;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .icon-btn:hover { background: var(--tile-bg-hover); }
+    .icon-btn.active { background: var(--primary-color); color: #101010; border-color: var(--primary-color); }
+    .dir-cross {
+        display: grid;
+        grid-template-columns: repeat(3, 34px);
+        grid-template-rows: repeat(3, 34px);
+        gap: 4px;
+        justify-content: center;
+    }
+    .zoom-row { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
+
+    .slot-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--tile-bg);
+        border: 1px solid var(--tile-border, rgba(255,255,255,0.1));
+        border-radius: 12px;
+        padding: 10px 12px;
+    }
+    .slot-thumb {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        background: var(--darker-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        flex-shrink: 0;
+        font-size: 10px;
+        color: var(--text-secondary, #9aa0a6);
+    }
+    .slot-thumb img { max-width: 100%; max-height: 100%; image-rendering: pixelated; }
+    .slot-info { flex: 1; min-width: 0; }
+    .slot-type { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary, #9aa0a6); }
+    .slot-name { font-size: 13px; color: var(--text-primary, #eee); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .slot-change-btn {
+        background: none;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+    .slot-change-btn:hover { background: var(--primary-color); color: #101010; }
+
+    .browser { margin-top: 8px; }
+    .browser[hidden] { display: none; }
+    .browser-search {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid var(--tile-border, rgba(255,255,255,0.15));
+        background: var(--chrome-bg);
+        color: var(--text-primary, #eee);
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    .browser-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary, #9aa0a6); margin: 10px 0 6px; }
+    .browser-grid { display: grid; grid-template-columns: repeat(auto-fill, 48px); gap: 8px; min-height: 44px; }
+    .browser-thumb {
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+        border: 2px solid var(--tile-border, rgba(255,255,255,0.12));
+        background: var(--chrome-bg) center/cover no-repeat;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary, #9aa0a6);
+        font-size: 9px;
+        overflow: hidden;
+    }
+    .browser-thumb img { max-width: 100%; max-height: 100%; image-rendering: pixelated; }
+    .browser-thumb.active { border-color: var(--primary-color); }
+    .browser-pager { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 12px; font-size: 12px; color: var(--text-secondary, #9aa0a6); }
+    .browser-pager button {
+        background: var(--tile-bg);
+        border: 1px solid var(--tile-border, rgba(255,255,255,0.12));
+        color: var(--text-primary, #eee);
+        border-radius: 6px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+    .browser-pager button:disabled { opacity: 0.35; cursor: default; }
+    .browser-note { font-size: 11px; color: var(--text-secondary, #9aa0a6); font-style: italic; margin: 4px 0 0; }
+</style>
+</head>
+<body>
+
+<div class="pv-header">
+    <a href="index.html" class="pv-logo"><img src="assets/img/mascot/freeze.png" alt="">Graal<span>Guide</span></a>
+    <h1>Gani Previewer</h1>
+</div>
+
+<div class="pv-wrap">
+    <div class="pv-card">
+        <div class="stage-wrap">
+            <canvas id="stage" width="200" height="240"></canvas>
+            <div class="dir-cross">
+                <div></div>
+                <button type="button" class="icon-btn" data-dir="0" title="Up">&#9650;</button>
+                <div></div>
+                <button type="button" class="icon-btn" data-dir="1" title="Left">&#9664;</button>
+                <div></div>
+                <button type="button" class="icon-btn" data-dir="3" title="Right">&#9654;</button>
+                <div></div>
+                <button type="button" class="icon-btn" data-dir="2" title="Down">&#9660;</button>
+                <div></div>
+            </div>
+        </div>
+        <div class="zoom-row">
+            <button type="button" class="icon-btn zoom-btn" data-zoom="3">1x</button>
+            <button type="button" class="icon-btn zoom-btn" data-zoom="6">2x</button>
+            <button type="button" class="icon-btn zoom-btn" data-zoom="9">3x</button>
+            <button type="button" class="icon-btn zoom-btn" data-zoom="12">4x</button>
+        </div>
+        <div class="tool-row">
+            <button type="button" class="text-btn" id="reset-view-btn">Reset View</button>
+            <button type="button" class="text-btn text-btn-primary" id="download-image-btn">
+                <svg class="tool-btn-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Image
+            </button>
+        </div>
+        <p class="tool-hint">Drag the character to pan around while zoomed in. Download saves a clean, full image of the combo - no cropping, background is transparent.</p>
+    </div>
+
+    <div class="pv-card" data-slot-card="body">
+        <div class="slot-card">
+            <div class="slot-thumb"><img id="body-slot-thumb-img" alt=""></div>
+            <div class="slot-info">
+                <div class="slot-type">Body</div>
+                <div class="slot-name" id="body-slot-name">&mdash;</div>
+            </div>
+            <button type="button" class="slot-change-btn" data-slot="body">Change</button>
+        </div>
+        <div class="browser" id="body-browser" hidden></div>
+    </div>
+
+    <div class="pv-card" data-slot-card="head">
+        <div class="slot-card">
+            <div class="slot-thumb"><img id="head-slot-thumb-img" alt=""></div>
+            <div class="slot-info">
+                <div class="slot-type">Head</div>
+                <div class="slot-name" id="head-slot-name">&mdash;</div>
+            </div>
+            <button type="button" class="slot-change-btn" data-slot="head">Change</button>
+        </div>
+        <div class="browser" id="head-browser" hidden></div>
+    </div>
+
+    <div class="pv-card" data-slot-card="hat">
+        <div class="slot-card">
+            <div class="slot-thumb"><img id="hat-slot-thumb-img" alt=""></div>
+            <div class="slot-info">
+                <div class="slot-type">Hat</div>
+                <div class="slot-name" id="hat-slot-name">None</div>
+            </div>
+            <button type="button" class="slot-change-btn" data-slot="hat">Change</button>
+        </div>
+        <div class="browser" id="hat-browser" hidden></div>
+    </div>
+</div>
+
+<script src="assets/js/gani-renderer.js"></script>
+<script>
+// Real default idle.gani (the base game's standard stand-still animation -
+// every custom head/body/hat conforms to this same sprite grid so it can
+// render in any of these directions). Decoded from a Graal default asset
+// bundle, not authored here.
+const IDLE_GANI = `GANI0001
+SPRITE    0         SPRITES    0    0   24   12 shadow
+SPRITE   40           ATTR1    0    0   48   48 hat up
+SPRITE   41           ATTR1   48    0   48   48 hat left
+SPRITE   42           ATTR1   96    0   48   48 hat down
+SPRITE   43           ATTR1  144    0   48   48 hat right
+SPRITE  100            HEAD    0    0   32   32 head up
+SPRITE  101            HEAD    0   32   32   32 head left
+SPRITE  102            HEAD    0   64   32   32 head down
+SPRITE  103            HEAD    0   96   32   32 head right
+SPRITE  200            BODY    0    0   32   32 body up
+SPRITE  201            BODY   32    0   32   32 body left
+SPRITE  202            BODY   64    0   32   32 body down
+SPRITE  203            BODY   96    0   32   32 body right
+
+ATTACHSPRITE  100   40  -8 -18
+ATTACHSPRITE  101   41 -12 -18
+ATTACHSPRITE  102   42  -8 -18
+ATTACHSPRITE  103   43  -4 -18
+
+ANI
+   0  12  34,  200   8  16,  100   8   2
+   0  12  36,  201  12  16,  101  12   2
+   0  12  34,  202   8  16,  102   8   2
+   0  12  36,  203   4  16,  103   4   2
+ANIEND
+`;
+
+const gani = parseGani(IDLE_GANI);
+const images = { HEAD: new Image(), BODY: new Image(), ATTR1: new Image() };
+let direction = 2; // down, facing the viewer
+let scale = 6;     // 2x default
+
+const canvas = document.getElementById('stage');
+const ctx = canvas.getContext('2d');
+// panX/panY are raw screen pixels, not logical gani units - that keeps a
+// drag feel 1:1 with the mouse regardless of zoom level. They only exist
+// to let you look around while zoomed in; Download ignores them entirely.
+let panX = 0, panY = 0;
+
+// The idle pose's true bounding box (hat/head/body/shadow combined, same
+// for all 4 directions) is x:[0,48], y:[-16,48] relative to the origin -
+// so centering it in the canvas means offsetting by half its own size,
+// not just half the canvas.
+function redraw() {
+    const originX = (canvas.width / scale) / 2 - 24 + panX / scale;
+    const originY = (canvas.height / scale) / 2 - 16 + panY / scale;
+    renderGaniFrame(ctx, gani, images, direction, originX, originY, scale, 0);
+}
+['HEAD', 'BODY', 'ATTR1'].forEach(key => { images[key].onload = redraw; images[key].onerror = redraw; });
+
+// ---- Drag to pan (mouse + touch) ----
+(function() {
+    let dragging = false;
+    let startX = 0, startY = 0, startPanX = 0, startPanY = 0;
+
+    function beginDrag(x, y) {
+        dragging = true;
+        startX = x; startY = y;
+        startPanX = panX; startPanY = panY;
+        canvas.classList.add('dragging');
+    }
+    function moveDrag(x, y) {
+        if (!dragging) return;
+        panX = startPanX + (x - startX);
+        panY = startPanY + (y - startY);
+        redraw();
+    }
+    function endDrag() {
+        dragging = false;
+        canvas.classList.remove('dragging');
+    }
+
+    canvas.addEventListener('mousedown', e => beginDrag(e.clientX, e.clientY));
+    window.addEventListener('mousemove', e => moveDrag(e.clientX, e.clientY));
+    window.addEventListener('mouseup', endDrag);
+
+    canvas.addEventListener('touchstart', e => {
+        beginDrag(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+    canvas.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        e.preventDefault();
+        moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: false });
+    canvas.addEventListener('touchend', endDrag);
+})();
+
+document.getElementById('reset-view-btn').addEventListener('click', () => {
+    panX = 0; panY = 0;
+    redraw();
+});
+
+// Downloads a clean render at a fixed high resolution, ignoring whatever
+// zoom/pan you're currently viewing at - so the file always shows the full
+// combo, not whatever happens to be scrolled into view. Respects direction
+// since that's an actual pose choice, not a viewport setting.
+document.getElementById('download-image-btn').addEventListener('click', () => {
+    const exportScale = 8;
+    const off = document.createElement('canvas');
+    off.width = 70 * exportScale;
+    off.height = 84 * exportScale;
+    const offCtx = off.getContext('2d');
+    const originX = (off.width / exportScale) / 2 - 24;
+    const originY = (off.height / exportScale) / 2 - 16;
+    renderGaniFrame(offCtx, gani, images, direction, originX, originY, exportScale, 0);
+    off.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'graalguide-gani-preview.png';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+    });
+});
+
+document.querySelectorAll('.dir-cross .icon-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.dir-cross .icon-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        direction = +btn.dataset.dir;
+        redraw();
+    });
+});
+document.querySelector('.dir-cross .icon-btn[data-dir="2"]').classList.add('active');
+
+document.querySelectorAll('.zoom-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.zoom-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        scale = +btn.dataset.zoom;
+        redraw();
+    });
+});
+document.querySelector('.zoom-btn[data-zoom="6"]').classList.add('active');
+
+// ---- Favorites (same localStorage key/shape as heads.html/bodies.html/
+// hats.html - a flat set of image paths, shared across all three galleries
+// since paths are unique per type). localStorage is per-origin, so
+// favorites saved on the live site won't show up on localhost - favorite
+// something on this same local server's heads.html/bodies.html/hats.html
+// to test this locally. ----
+const FAVORITES_KEY = 'graalguide_favorites';
+function getFavorites() {
+    try { return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || []; }
+    catch (e) { return []; }
+}
+function nameFromPath(path) {
+    return path.split('/').pop().replace(/\.(png|gif)$/i, '').replace(/[-_]+/g, ' ').trim();
+}
+function mostRecentFavorite(pathFragment) {
+    const matches = getFavorites().filter(p => p.includes(pathFragment));
+    return matches.length ? matches[matches.length - 1] : null; // last = most recently starred
+}
+
+// ---- Deep link from a gallery "Preview" button: previewer.html?type=head&src=image/heads-community/xxx.png
+// The clicked item is explicit; the other two slots still default to favorites. ----
+const params = new URLSearchParams(location.search);
+const linkedType = params.get('type');   // 'body' | 'head' | 'hat'
+const linkedSrc = params.get('src');
+
+const SLOT_CONFIG = {
+    body: { jsonUrl: 'data/bodies-community.json', pathFragment: '/bodies-community/', imageKey: 'BODY', allowNone: false },
+    head: { jsonUrl: 'data/heads-community.json', pathFragment: '/heads-community/', imageKey: 'HEAD', allowNone: false },
+    hat:  { jsonUrl: 'data/hats-community.json', pathFragment: '/hats-community/', imageKey: 'ATTR1', allowNone: true }
+};
+
+const PAGE_SIZE = 30;
+const slotState = {}; // slot -> { allItems, filtered, page, query, loaded }
+
+function selectForSlot(slot, src, name) {
+    const cfg = SLOT_CONFIG[slot];
+    document.getElementById(`${slot}-slot-name`).textContent = src ? (name || nameFromPath(src)) : 'None';
+    const thumbImg = document.getElementById(`${slot}-slot-thumb-img`);
+    thumbImg.src = src || '';
+    thumbImg.style.display = src ? '' : 'none';
+    if (src) {
+        images[cfg.imageKey].src = src;
+    } else {
+        images[cfg.imageKey] = new Image();
+        redraw();
+    }
+    closeBrowser(slot);
+}
+
+function closeBrowser(slot) {
+    document.getElementById(`${slot}-browser`).hidden = true;
+}
+
+function renderBrowserGrid(slot) {
+    const cfg = SLOT_CONFIG[slot];
+    const state = slotState[slot];
+    const grid = document.getElementById(`${slot}-grid`);
+    grid.innerHTML = '';
+
+    let items = state.allItems;
+    if (state.query) {
+        const q = state.query.toLowerCase();
+        items = items.filter(it => nameFromPath(it.image).toLowerCase().includes(q));
+    }
+    const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+    state.page = Math.min(state.page, totalPages);
+    const pageItems = items.slice((state.page - 1) * PAGE_SIZE, state.page * PAGE_SIZE);
+
+    if (cfg.allowNone && state.page === 1 && !state.query) {
+        grid.appendChild(makeThumb(slot, null, 'None'));
+    }
+    pageItems.forEach(it => grid.appendChild(makeThumb(slot, it.image, nameFromPath(it.image))));
+
+    document.getElementById(`${slot}-page-label`).textContent = `Page ${state.page} of ${totalPages} (${items.length} results)`;
+    document.getElementById(`${slot}-prev`).disabled = state.page <= 1;
+    document.getElementById(`${slot}-next`).disabled = state.page >= totalPages;
+}
+
+function makeThumb(slot, src, name) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'browser-thumb';
+    if (src) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = name;
+        img.loading = 'lazy';
+        btn.appendChild(img);
+    } else {
+        btn.textContent = 'None';
+    }
+    btn.addEventListener('click', () => selectForSlot(slot, src, name));
+    return btn;
+}
+
+function buildBrowser(slot) {
+    const cfg = SLOT_CONFIG[slot];
+    const container = document.getElementById(`${slot}-browser`);
+    container.innerHTML = `
+        <div class="browser-label">Your Favorites</div>
+        <div class="browser-grid" id="${slot}-fav-grid"></div>
+        <p class="browser-note" id="${slot}-fav-empty" style="display:none;">No favorites yet - star some on ${slot === 'hat' ? 'hats.html' : slot + 's.html'}.</p>
+        <div class="browser-label">Browse All</div>
+        <input type="text" class="browser-search" id="${slot}-search" placeholder="Search by filename...">
+        <div class="browser-grid" id="${slot}-grid"></div>
+        <p class="browser-note" id="${slot}-loading">Loading...</p>
+        <div class="browser-pager">
+            <button type="button" id="${slot}-prev">&laquo; Prev</button>
+            <span id="${slot}-page-label"></span>
+            <button type="button" id="${slot}-next">Next &raquo;</button>
+        </div>
+    `;
+
+    const favs = getFavorites().filter(p => p.includes(cfg.pathFragment));
+    const favGrid = document.getElementById(`${slot}-fav-grid`);
+    favs.forEach(src => favGrid.appendChild(makeThumb(slot, src, nameFromPath(src))));
+    document.getElementById(`${slot}-fav-empty`).style.display = favs.length ? 'none' : '';
+
+    document.getElementById(`${slot}-search`).addEventListener('input', (e) => {
+        slotState[slot].query = e.target.value.trim();
+        slotState[slot].page = 1;
+        renderBrowserGrid(slot);
+    });
+    document.getElementById(`${slot}-prev`).addEventListener('click', () => {
+        slotState[slot].page--;
+        renderBrowserGrid(slot);
+    });
+    document.getElementById(`${slot}-next`).addEventListener('click', () => {
+        slotState[slot].page++;
+        renderBrowserGrid(slot);
+    });
+
+    if (!slotState[slot].loaded) {
+        fetch(cfg.jsonUrl)
+            .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+            .then(data => {
+                slotState[slot].allItems = data;
+                slotState[slot].loaded = true;
+                document.getElementById(`${slot}-loading`).style.display = 'none';
+                renderBrowserGrid(slot);
+            })
+            .catch(err => {
+                document.getElementById(`${slot}-loading`).textContent = 'Could not load the full list right now - your favorites above still work.';
+                console.error(`Failed to load ${cfg.jsonUrl}:`, err);
+            });
+    } else {
+        document.getElementById(`${slot}-loading`).style.display = 'none';
+        renderBrowserGrid(slot);
+    }
+}
+
+['body', 'head', 'hat'].forEach(slot => {
+    slotState[slot] = { allItems: [], page: 1, query: '', loaded: false };
+    document.querySelector(`.slot-change-btn[data-slot="${slot}"]`).addEventListener('click', () => {
+        const browser = document.getElementById(`${slot}-browser`);
+        const wasHidden = browser.hidden;
+        ['body', 'head', 'hat'].forEach(s => closeBrowser(s));
+        if (wasHidden) {
+            browser.hidden = false;
+            if (!browser.dataset.built) {
+                buildBrowser(slot);
+                browser.dataset.built = '1';
+            }
+        }
+    });
+});
+
+// ---- Initial selection: explicit slot from the URL wins for that slot;
+// every slot falls back to the most recent favorite, then to nothing. ----
+const initialBody = (linkedType === 'body' && linkedSrc) ? linkedSrc : mostRecentFavorite('/bodies-community/');
+const initialHead = (linkedType === 'head' && linkedSrc) ? linkedSrc : mostRecentFavorite('/heads-community/');
+const initialHat = (linkedType === 'hat' && linkedSrc) ? linkedSrc : mostRecentFavorite('/hats-community/');
+
+if (initialBody) selectForSlot('body', initialBody);
+else document.getElementById('body-slot-thumb-img').style.display = 'none';
+if (initialHead) selectForSlot('head', initialHead);
+else document.getElementById('head-slot-thumb-img').style.display = 'none';
+if (initialHat) selectForSlot('hat', initialHat);
+else document.getElementById('hat-slot-thumb-img').style.display = 'none';
+</script>
+</body>
+</html>
