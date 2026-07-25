@@ -574,18 +574,52 @@
             transform: scale(1.1);
         }
 
-        /* TikTok/Reels-style vertical action rail, pinned to the right edge
-           so it never sits over the image itself. */
+        /* TikTok/Reels-style vertical action rail, pinned to the bottom-right
+           corner so it never sits over the image and leaves the vertical
+           center-right free for the next/prev nav button. */
         .modal-actions {
             position: fixed;
             right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
+            bottom: 90px;
             display: flex;
             flex-direction: column;
             gap: 18px;
             z-index: 2001;
         }
+
+        /* Prev/next carousel arrows - the visible, discoverable way to move
+           through the gallery, alongside swipe and arrow keys. */
+        .modal-nav-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.72);
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            color: white !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 2001;
+        }
+
+        .modal-nav-btn:hover {
+            background: rgba(0, 0, 0, 0.65);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .modal-nav-btn.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        #modal-prev-btn { left: 16px; }
+        #modal-next-btn { right: 16px; }
 
         .modal-action-btn {
             width: 48px;
@@ -641,6 +675,7 @@
         @media (max-width: 480px) {
             .modal-actions {
                 right: 10px;
+                bottom: 70px;
                 gap: 14px;
             }
             .modal-action-btn {
@@ -651,6 +686,12 @@
                 width: 19px;
                 height: 19px;
             }
+            .modal-nav-btn {
+                width: 40px;
+                height: 40px;
+            }
+            #modal-prev-btn { left: 8px; }
+            #modal-next-btn { right: 8px; }
         }
 
         /* Footer */
@@ -1206,6 +1247,12 @@
     <div id="image-modal" class="modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="enlarged-img">
+        <button type="button" id="modal-prev-btn" class="modal-nav-btn" aria-label="Sebelumnya" title="Sebelumnya">
+            <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button type="button" id="modal-next-btn" class="modal-nav-btn" aria-label="Berikutnya" title="Berikutnya">
+            <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
         <div class="modal-actions">
             <button type="button" id="modal-fav-btn" class="modal-action-btn" aria-label="Favorit" title="Favorit">
                 <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -1565,11 +1612,19 @@
                 document.getElementById('image-modal').style.display = 'none';
             });
 
-            // TikTok-style vertical swipe/scroll through the currently filtered
-            // list while the modal is open (swipe or scroll up = next, down =
+            // TikTok-style horizontal swipe/scroll through the currently filtered
+            // list while the modal is open (swipe or scroll left = next, right =
             // previous). Tracks position by index into filteredHats so it works
             // seamlessly across pagination boundaries, not just the current page.
             let modalCurrentIndex = -1;
+
+            function updateNavButtons() {
+                const list = filteredHats;
+                const prevBtn = document.getElementById('modal-prev-btn');
+                const nextBtn = document.getElementById('modal-next-btn');
+                prevBtn.classList.toggle('disabled', modalCurrentIndex <= 0);
+                nextBtn.classList.toggle('disabled', !list || modalCurrentIndex >= list.length - 1);
+            }
 
             function setModalContent(index, animate) {
                 const list = filteredHats;
@@ -1587,6 +1642,7 @@
                     downloadBtn.download = image.split('/').pop();
                     favBtn.classList.toggle('active', favorites.has(image));
                     document.getElementById('share-btn').classList.remove('nudge');
+                    updateNavButtons();
                 };
 
                 if (animate) {
@@ -1601,44 +1657,53 @@
                 setModalContent(modalCurrentIndex + direction, true);
             }
 
+            document.getElementById('modal-prev-btn').addEventListener('click', function() {
+                navigateModal(-1);
+            });
+            document.getElementById('modal-next-btn').addEventListener('click', function() {
+                navigateModal(1);
+            });
+
             (function() {
                 const modalEl = document.getElementById('image-modal');
-                let touchStartY = null;
+                let touchStartX = null;
 
                 modalEl.addEventListener('touchstart', function(e) {
-                    touchStartY = e.touches[0].clientY;
+                    touchStartX = e.touches[0].clientX;
                 }, { passive: true });
 
                 modalEl.addEventListener('touchend', function(e) {
-                    if (touchStartY === null) return;
-                    const deltaY = touchStartY - e.changedTouches[0].clientY;
+                    if (touchStartX === null) return;
+                    const deltaX = touchStartX - e.changedTouches[0].clientX;
                     const threshold = 50;
-                    if (deltaY > threshold) {
+                    if (deltaX > threshold) {
                         navigateModal(1);
-                    } else if (deltaY < -threshold) {
+                    } else if (deltaX < -threshold) {
                         navigateModal(-1);
                     }
-                    touchStartY = null;
+                    touchStartX = null;
                 }, { passive: true });
 
-                // Desktop equivalent: scroll wheel, same as TikTok's web player
+                // Desktop equivalent: horizontal trackpad/wheel scroll. Only
+                // deltaX is checked so an ordinary vertical mouse-wheel scroll
+                // (deltaY) never triggers navigation by accident.
                 let wheelCooldown = false;
                 modalEl.addEventListener('wheel', function(e) {
-                    if (wheelCooldown) return;
+                    if (wheelCooldown || Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
                     wheelCooldown = true;
                     setTimeout(() => { wheelCooldown = false; }, 350);
-                    if (e.deltaY > 0) {
+                    if (e.deltaX > 0) {
                         navigateModal(1);
-                    } else if (e.deltaY < 0) {
+                    } else if (e.deltaX < 0) {
                         navigateModal(-1);
                     }
                 }, { passive: true });
 
                 document.addEventListener('keydown', function(e) {
                     if (modalEl.style.display !== 'flex') return;
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                    if (e.key === 'ArrowRight') {
                         navigateModal(1);
-                    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                    } else if (e.key === 'ArrowLeft') {
                         navigateModal(-1);
                     }
                 });
