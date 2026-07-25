@@ -1990,3 +1990,25 @@ footer {
 .ad-slot-fluid {
     min-height: 250px;
 }
+
+/* ----------------------------- Header page title ------------------------------ */
+/* "GraalGuide | Page Title" next to the logo, same pattern as previewer.html -
+   tells you which page you're on without waiting for the hero to load. */
+.header-page-title {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 4px;
+    margin-right: auto;  /* eats the header's space-between gap, keeping this snug against the logo instead of floating toward center */
+    padding-left: 14px;
+    border-left: 1px solid var(--border-strong);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 900px) {
+    .header-page-title {
+        display: none;
+    }
+}
