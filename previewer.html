@@ -137,6 +137,23 @@
     .slot-info { flex: 1; min-width: 0; }
     .slot-type { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary, #9aa0a6); }
     .slot-name { font-size: 13px; color: var(--text-primary, #eee); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .slot-fav-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: none;
+        border: 1px solid var(--tile-border, rgba(255,255,255,0.15));
+        color: var(--text-secondary, #9aa0a6);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .slot-fav-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+    .slot-fav-btn.active { color: var(--primary-color); border-color: var(--primary-color); }
+    .slot-fav-btn.active .slot-fav-icon { fill: currentColor; }
+    .slot-fav-icon { width: 17px; height: 17px; fill: none; }
     .slot-change-btn {
         background: none;
         border: 1px solid var(--primary-color);
@@ -240,6 +257,9 @@
                 <div class="slot-type">Body</div>
                 <div class="slot-name" id="body-slot-name">&mdash;</div>
             </div>
+            <button type="button" class="slot-fav-btn" data-slot="body" aria-label="Favorite this body" title="Favorite this body">
+                <svg class="slot-fav-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </button>
             <button type="button" class="slot-change-btn" data-slot="body">Change</button>
         </div>
         <div class="browser" id="body-browser" hidden></div>
@@ -252,6 +272,9 @@
                 <div class="slot-type">Head</div>
                 <div class="slot-name" id="head-slot-name">&mdash;</div>
             </div>
+            <button type="button" class="slot-fav-btn" data-slot="head" aria-label="Favorite this head" title="Favorite this head">
+                <svg class="slot-fav-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </button>
             <button type="button" class="slot-change-btn" data-slot="head">Change</button>
         </div>
         <div class="browser" id="head-browser" hidden></div>
@@ -264,6 +287,9 @@
                 <div class="slot-type">Hat</div>
                 <div class="slot-name" id="hat-slot-name">None</div>
             </div>
+            <button type="button" class="slot-fav-btn" data-slot="hat" aria-label="Favorite this hat" title="Favorite this hat">
+                <svg class="slot-fav-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </button>
             <button type="button" class="slot-change-btn" data-slot="hat">Change</button>
         </div>
         <div class="browser" id="hat-browser" hidden></div>
@@ -425,6 +451,22 @@ function getFavorites() {
     try { return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || []; }
     catch (e) { return []; }
 }
+function saveFavorites(list) {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(list));
+}
+function isFavorite(src) {
+    return !!src && getFavorites().includes(src);
+}
+// Keeps the previewer's star in sync with the galleries: same key, same
+// array-of-paths shape heads.html/bodies.html/hats.html read and write, so
+// favoriting here shows up there and vice versa.
+function toggleFavorite(src) {
+    const favs = getFavorites();
+    const idx = favs.indexOf(src);
+    if (idx >= 0) favs.splice(idx, 1);
+    else favs.push(src);
+    saveFavorites(favs);
+}
 function nameFromPath(path) {
     return path.split('/').pop().replace(/\.(png|gif)$/i, '').replace(/[-_]+/g, ' ').trim();
 }
@@ -447,9 +489,19 @@ const SLOT_CONFIG = {
 
 const PAGE_SIZE = 30;
 const slotState = {}; // slot -> { allItems, filtered, page, query, loaded }
+const currentSrc = { body: null, head: null, hat: null };
+
+function updateSlotFavButton(slot) {
+    const btn = document.querySelector(`.slot-fav-btn[data-slot="${slot}"]`);
+    const active = isFavorite(currentSrc[slot]);
+    btn.classList.toggle('active', active);
+    btn.disabled = !currentSrc[slot];
+    btn.style.opacity = currentSrc[slot] ? '1' : '0.4';
+}
 
 function selectForSlot(slot, src, name) {
     const cfg = SLOT_CONFIG[slot];
+    currentSrc[slot] = src || null;
     document.getElementById(`${slot}-slot-name`).textContent = src ? (name || nameFromPath(src)) : 'None';
     const thumbImg = document.getElementById(`${slot}-slot-thumb-img`);
     thumbImg.src = src || '';
@@ -460,8 +512,18 @@ function selectForSlot(slot, src, name) {
         images[cfg.imageKey] = new Image();
         redraw();
     }
+    updateSlotFavButton(slot);
     closeBrowser(slot);
 }
+
+document.querySelectorAll('.slot-fav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const slot = btn.dataset.slot;
+        if (!currentSrc[slot]) return;
+        toggleFavorite(currentSrc[slot]);
+        updateSlotFavButton(slot);
+    });
+});
 
 function closeBrowser(slot) {
     document.getElementById(`${slot}-browser`).hidden = true;
@@ -588,11 +650,11 @@ const initialHead = (linkedType === 'head' && linkedSrc) ? linkedSrc : mostRecen
 const initialHat = (linkedType === 'hat' && linkedSrc) ? linkedSrc : mostRecentFavorite('/hats-community/');
 
 if (initialBody) selectForSlot('body', initialBody);
-else document.getElementById('body-slot-thumb-img').style.display = 'none';
+else { document.getElementById('body-slot-thumb-img').style.display = 'none'; updateSlotFavButton('body'); }
 if (initialHead) selectForSlot('head', initialHead);
-else document.getElementById('head-slot-thumb-img').style.display = 'none';
+else { document.getElementById('head-slot-thumb-img').style.display = 'none'; updateSlotFavButton('head'); }
 if (initialHat) selectForSlot('hat', initialHat);
-else document.getElementById('hat-slot-thumb-img').style.display = 'none';
+else { document.getElementById('hat-slot-thumb-img').style.display = 'none'; updateSlotFavButton('hat'); }
 </script>
 </body>
 </html>

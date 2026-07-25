@@ -1081,6 +1081,12 @@
                                 <li><a href="hats.html"><img src="../assets/img/menu-icons/hat.svg" alt="" class="menu-icon">Hats</a></li>
                                 <li><a href="upload-sets.html"><img src="../assets/img/menu-icons/box.svg" alt="" class="menu-icon">Set Upload</a></li>
                                 <li><a href="templates.html"><img src="../assets/img/menu-icons/document.svg" alt="" class="menu-icon">Templates</a></li>
+                                <li><a href="../previewer.html"><img src="../assets/img/menu-icons/eye.svg" alt="" class="menu-icon">Gani Previewer</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Upload Sekarang &#8599;</a>
+                            <ul class="dropdown-menu">
                                 <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer"><img src="../assets/img/menu-icons/eye.svg" alt="" class="menu-icon">Upload Viewer (oleh DustyShouri) ↗</a></li>
                                 <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Sekarang (Era) ↗</a></li>
                                 <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Sekarang (Classic) ↗</a></li>
@@ -1192,6 +1198,17 @@
         </div>
     </div>
 
+    <div class="container">
+        <a href="../previewer.html" class="previewer-teaser">
+            <img src="../assets/img/mascot/normal.png" alt="" class="previewer-teaser-icon">
+            <div class="previewer-teaser-text">
+                <strong>Baru: Gani Previewer</strong>
+                <span>Gabungkan head, body, dan hat lalu lihat hasilnya secara langsung sebelum kamu download atau upload.</span>
+            </div>
+            <span class="previewer-teaser-cta">Coba sekarang &rarr;</span>
+        </a>
+    </div>
+
     <!-- Disclaimer Banner -->
     <div class="container">
         <div class="disclaimer-banner">
@@ -1259,6 +1276,9 @@
             <button type="button" id="modal-fav-btn" class="modal-action-btn" aria-label="Favorit" title="Favorit">
                 <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </button>
+            <a id="preview-btn" class="modal-action-btn" target="_blank" rel="noopener" aria-label="Pratinjau pada karakter" title="Pratinjau pada karakter">
+                <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </a>
             <a id="download-btn" class="modal-action-btn" download aria-label="Unduh" title="Unduh">
                 <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             </a>
@@ -1636,6 +1656,7 @@
                 const imgEl = document.getElementById('enlarged-img');
                 const downloadBtn = document.getElementById('download-btn');
                 const favBtn = document.getElementById('modal-fav-btn');
+                const previewBtn = document.getElementById('preview-btn');
 
                 const apply = () => {
                     imgEl.src = image;
@@ -1643,6 +1664,7 @@
                     downloadBtn.href = image;
                     downloadBtn.download = image.split('/').pop();
                     favBtn.classList.toggle('active', favorites.has(image));
+                    previewBtn.href = '../previewer.html?type=hat&src=' + encodeURIComponent(image);
                     document.getElementById('share-btn').classList.remove('nudge');
                     updateNavButtons();
                 };
