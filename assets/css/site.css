@@ -281,6 +281,19 @@ header {
     color: var(--brand-light);
 }
 
+/* Desktop only - the max-width:1100px query below overrides this back to
+   a fixed dropdown panel. Giving nav the flex-grow itself (rather than
+   relying on space-between, which was cramming it against the language/
+   theme controls) centers it in whatever room is left between the logo
+   group and the header actions, instead of hugging either edge. */
+@media (min-width: 1101px) {
+    nav {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+}
+
 nav ul {
     display: flex;
     list-style: none;
@@ -1999,7 +2012,6 @@ footer {
     color: var(--text-muted);
     font-weight: 400;
     margin-left: 4px;
-    margin-right: auto;  /* eats the header's space-between gap, keeping this snug against the logo instead of floating toward center */
     padding-left: 14px;
     border-left: 1px solid var(--border-strong);
     white-space: nowrap;
