@@ -591,10 +591,9 @@
            through the gallery, alongside swipe and arrow keys. */
         .modal-nav-btn {
             position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
+            bottom: 24px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             background: rgba(20, 20, 20, 0.72);
             border: 1.5px solid rgba(255, 255, 255, 0.35);
@@ -610,7 +609,7 @@
 
         .modal-nav-btn:hover {
             background: rgba(0, 0, 0, 0.65);
-            transform: translateY(-50%) scale(1.08);
+            transform: scale(1.08);
         }
 
         .modal-nav-btn.disabled {
@@ -618,8 +617,10 @@
             pointer-events: none;
         }
 
-        #modal-prev-btn { left: 16px; }
-        #modal-next-btn { right: 16px; }
+        /* Paired at the bottom-center of the image, clear of the vertical
+           action rail (favorite/preview/download/share) on the right. */
+        #modal-prev-btn { left: calc(50% - 54px); }
+        #modal-next-btn { left: calc(50% + 8px); }
 
         .modal-action-btn {
             width: 48px;
@@ -689,9 +690,10 @@
             .modal-nav-btn {
                 width: 40px;
                 height: 40px;
+                bottom: 16px;
             }
-            #modal-prev-btn { left: 8px; }
-            #modal-next-btn { right: 8px; }
+            #modal-prev-btn { left: calc(50% - 46px); }
+            #modal-next-btn { left: calc(50% + 6px); }
         }
 
         /* Footer */
