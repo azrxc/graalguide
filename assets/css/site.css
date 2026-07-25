@@ -1932,6 +1932,13 @@ footer {
     border-radius: 12px;
 }
 
+.share-section-mascot {
+    width: 56px;
+    height: 56px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
 .share-section-title {
     font-size: var(--font-xl);
     font-weight: 700;
