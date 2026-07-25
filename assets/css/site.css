@@ -1957,8 +1957,10 @@ footer {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 22px;
-    border-radius: 30px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 50%;
     font-weight: 700;
     font-size: var(--font-sm);
     color: white !important;
@@ -1970,9 +1972,16 @@ footer {
     white-space: nowrap;
 }
 
+/* Icon-only by default - the label only shows itself again briefly for
+   the "Copied!" confirmation, since that feedback matters more than the
+   platform names do sitting there permanently. */
+.share-btn-label {
+    display: none;
+}
+
 .share-icon {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     flex-shrink: 0;
 }
 
@@ -1989,6 +1998,13 @@ footer {
 
 .share-platform-btn.copied {
     background: #3ba55d !important;
+    width: auto;
+    padding: 12px 20px;
+    border-radius: 30px;
+}
+
+.share-platform-btn.copied .share-btn-label {
+    display: inline;
 }
 
 @media (max-width: 480px) {
@@ -1998,6 +2014,11 @@ footer {
     }
 
     .share-platform-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .share-platform-btn.copied {
         padding: 10px 16px;
         font-size: var(--font-xs);
     }
