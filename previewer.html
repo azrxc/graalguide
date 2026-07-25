@@ -470,8 +470,11 @@ function toggleFavorite(src) {
 function nameFromPath(path) {
     return path.split('/').pop().replace(/\.(png|gif)$/i, '').replace(/[-_]+/g, ' ').trim();
 }
-function mostRecentFavorite(pathFragment) {
-    const matches = getFavorites().filter(p => p.includes(pathFragment));
+// fragments is an array because each gallery has two source folders: the
+// hand-curated set (image/bodies/1.png) and the community uploads
+// (image/bodies-community/xxx.png) - a favorite from either one counts.
+function mostRecentFavorite(fragments) {
+    const matches = getFavorites().filter(p => fragments.some(f => p.includes(f)));
     return matches.length ? matches[matches.length - 1] : null; // last = most recently starred
 }
 
@@ -482,9 +485,9 @@ const linkedType = params.get('type');   // 'body' | 'head' | 'hat'
 const linkedSrc = params.get('src');
 
 const SLOT_CONFIG = {
-    body: { jsonUrl: 'data/bodies-community.json', pathFragment: '/bodies-community/', imageKey: 'BODY', allowNone: false },
-    head: { jsonUrl: 'data/heads-community.json', pathFragment: '/heads-community/', imageKey: 'HEAD', allowNone: false },
-    hat:  { jsonUrl: 'data/hats-community.json', pathFragment: '/hats-community/', imageKey: 'ATTR1', allowNone: true }
+    body: { jsonUrl: 'data/bodies-community.json', pathFragments: ['/bodies-community/', '/bodies/'], imageKey: 'BODY', allowNone: false },
+    head: { jsonUrl: 'data/heads-community.json', pathFragments: ['/heads-community/', '/heads/'], imageKey: 'HEAD', allowNone: false },
+    hat:  { jsonUrl: 'data/hats-community.json', pathFragments: ['/hats-community/', '/hats/'], imageKey: 'ATTR1', allowNone: true }
 };
 
 const PAGE_SIZE = 30;
@@ -589,7 +592,7 @@ function buildBrowser(slot) {
         </div>
     `;
 
-    const favs = getFavorites().filter(p => p.includes(cfg.pathFragment));
+    const favs = getFavorites().filter(p => cfg.pathFragments.some(f => p.includes(f)));
     const favGrid = document.getElementById(`${slot}-fav-grid`);
     favs.forEach(src => favGrid.appendChild(makeThumb(slot, src, nameFromPath(src))));
     document.getElementById(`${slot}-fav-empty`).style.display = favs.length ? 'none' : '';
@@ -645,9 +648,9 @@ function buildBrowser(slot) {
 
 // ---- Initial selection: explicit slot from the URL wins for that slot;
 // every slot falls back to the most recent favorite, then to nothing. ----
-const initialBody = (linkedType === 'body' && linkedSrc) ? linkedSrc : mostRecentFavorite('/bodies-community/');
-const initialHead = (linkedType === 'head' && linkedSrc) ? linkedSrc : mostRecentFavorite('/heads-community/');
-const initialHat = (linkedType === 'hat' && linkedSrc) ? linkedSrc : mostRecentFavorite('/hats-community/');
+const initialBody = (linkedType === 'body' && linkedSrc) ? linkedSrc : mostRecentFavorite(SLOT_CONFIG.body.pathFragments);
+const initialHead = (linkedType === 'head' && linkedSrc) ? linkedSrc : mostRecentFavorite(SLOT_CONFIG.head.pathFragments);
+const initialHat = (linkedType === 'hat' && linkedSrc) ? linkedSrc : mostRecentFavorite(SLOT_CONFIG.hat.pathFragments);
 
 if (initialBody) selectForSlot('body', initialBody);
 else { document.getElementById('body-slot-thumb-img').style.display = 'none'; updateSlotFavButton('body'); }
