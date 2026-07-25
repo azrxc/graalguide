@@ -1268,10 +1268,10 @@
             <div class="hero-content">
                 <span class="hero-kicker"><img src="../image/a/head.png" alt=""> Companheiro do Graal Online Era</span>
                 <h1>Graal Guide</h1>
-                <p>O recurso definitivo de jogadores de Graal para outros jogadores</p>
-                <a href="upload.html" class="btn">Navegar Uploads</a>
-                <a href="trade-guide.html" class="btn btn-secondary">Guias de Troca</a>
-                <a href="https://discord.gg/graalians" class="btn btn-accent">Entrar no Discord Oficial</a>
+                <p id="hero-text">O recurso definitivo de jogadores de Graal para outros jogadores</p>
+                <a href="upload.html" class="btn" id="browse-btn">Navegar Uploads</a>
+                <a href="trade-guide.html" class="btn btn-secondary" id="trading-btn">Guias de Troca</a>
+                <a href="https://discord.gg/graalians" class="btn btn-accent" id="discord-btn">Entrar no Discord Oficial</a>
             </div>
         </div>
     </section>
@@ -1512,8 +1512,8 @@
                     </div>
                     <div class="article-content">
                         <span class="tag tag-news">Aviso de Atualizações</span>
-                        <h2>📢 Graal Guide: Mais de 21.000 Novos Uploads!</h2>
-                        <div class="article-meta">Atualizado em 23 de Julho de 2026</div>
+                        <h2 id="article1-title">📢 Graal Guide: Mais de 21.000 Novos Uploads!</h2>
+                        <div class="article-meta" id="article1-date">Atualizado em 23 de Julho de 2026</div>
                        <p>
 Grande atualização! Adicionamos mais de 21.000 novas heads e bodies à coleção — navegue, filtre e baixe qualquer uma delas instantaneamente. A paginação está mais rápida, cada upload agora tem um botão de Download com um clique para você baixar e enviar direto no jogo, e nossas páginas de guia agora incluem quizzes interativos para testar o que você aprendeu. Continuaremos melhorando com mais conteúdo e atualizações ao longo do tempo. Para enviar feedback: https://forms.gle/y53ZN3Qish8zm34RA
 </p>
@@ -1525,10 +1525,10 @@ Grande atualização! Adicionamos mais de 21.000 novas heads e bodies à coleç�
                     <div class="article-content">
                         <span class="tag tag-tro">Troca</span>
                         <span class="tag tag-guide">Guia</span>
-                        <h2>Troca: Maximize Seus Lucros no Graal Era</h2>
-                        <div class="article-meta">Atualizado em 1 de Janeiro de 2026</div>
+                        <h2 id="article2-title">Troca: Maximize Seus Lucros no Graal Era</h2>
+                        <div class="article-meta" id="article2-date">Atualizado em 1 de Janeiro de 2026</div>
                         <p>Entenda as tendências atuais do mercado, valores de itens e estratégias de troca usadas por traders bem-sucedidos.</p>
-                        <a href="trade-guide.html" class="btn article-cta">Ler Guia de Troca</a>
+                        <a href="trade-guide.html" class="btn article-cta" id="article2-btn">Ler Guia de Troca</a>
                     </div>
                 </article>
 
@@ -1537,86 +1537,111 @@ Grande atualização! Adicionamos mais de 21.000 novas heads e bodies à coleç�
                     <div class="article-content">
                         <span class="tag tag-ec">Moedas de Evento</span>
                         <span class="tag tag-guide">Guia</span>
-                        <h2>100+ Conquistas Secretas: Como Conseguir Moedas de Evento Grátis</h2>
-                        <div class="article-meta">Atualizado em 1 de Janeiro de 2026</div>
-                        <p>Descubra todas as conquistas secretas no Graal Era e aprenda a conseguir Moedas de Evento grátis. Nosso guia cobre tudo com vídeos guia no YouTube.</p>
-                        <a href="secret-achievements.html" class="btn article-cta">Ver Todas as Conquistas</a>
+                        <h2 id="article3-title">100+ Conquistas Secretas: Como Conseguir Moedas de Evento Grátis</h2>
+                        <div class="article-meta" id="article3-date">Atualizado em 1 de Janeiro de 2026</div>
+                        <p id="article3-desc">Descubra todas as conquistas secretas no Graal Era e aprenda a conseguir Moedas de Evento grátis. Nosso guia cobre tudo com vídeos guia no YouTube.</p>
+                        <a href="secret-achievements.html" class="btn article-cta" id="article3-btn">Ver Todas as Conquistas</a>
                     </div>
                 </article>
             </div>
 
             <div class="sidebar">
                 <div class="sidebar-widget">
-                    <h3>Mais Visitados</h3>
+                    <h3 id="popular-title">Mais Visitados</h3>
                     <ul class="featured-list">
                         <li>
                             <img src="../image/bodies/23.png" alt="Head Animado">
-                            <a href="bodies.html"><img src="../assets/img/menu-icons/body.svg" alt="" class="menu-icon">Coleção de Bodies</a>
+                            <a href="bodies.html" id="popular1">Coleção de Bodies</a>
                         </li>
                         <li>
                             <img src="../image/a/tro.png" alt="Body Personalizado">
-                            <a href="sellables-calculator.html"><img src="../assets/img/menu-icons/calculator.svg" alt="" class="menu-icon">Calculadora de Vendáveis</a>
+                            <a href="sellables-calculator.html" id="popular2">Calculadora de Vendáveis</a>
                         </li>
                         <li>
                             <img src="../image/a/ec.png" alt="Design de Shield">
-                            <a href="secret-achievements.html">Conquistas Secretas</a>
+                            <a href="secret-achievements.html" id="popular3">Conquistas Secretas</a>
                         </li>
                         <li>
                             <img src="../image/a/head.png" alt="Upload GIF">
-                            <a href="heads.html"><img src="../assets/img/menu-icons/head.svg" alt="" class="menu-icon">Coleção de Heads</a>
+                            <a href="heads.html" id="popular4">Coleção de Heads</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="sidebar-widget">
-                    <h3>Guias Recentes</h3>
+                    <h3 id="guides-title">Guias Recentes</h3>
                     <ul class="featured-list">
-                        <li><a href="upload.html"><img src="../assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Como Fazer Upload?</a></li>
-                        <li><a href="trade-guide.html"><img src="../assets/img/menu-icons/swap.svg" alt="" class="menu-icon">Como Trocar?</a></li>
-                        <li><a href="events-guide.html"><img src="../assets/img/menu-icons/star.svg" alt="" class="menu-icon">Como Conseguir Moedas de Evento?</a></li>
-                        <li><a href="job-guide.html"><img src="../assets/img/menu-icons/coin.svg" alt="" class="menu-icon">Como Ganhar Gralats?</a></li>
+                        <li><a href="upload.html" id="guide1">Como Fazer Upload?</a></li>
+                        <li><a href="trade-guide.html" id="guide2">Como Trocar?</a></li>
+                        <li><a href="events-guide.html" id="guide3">Como Conseguir Moedas de Evento?</a></li>
+                        <li><a href="job-guide.html" id="guide4">Como Ganhar Gralats?</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="share-section" data-share-text="Dá uma olhada nisso no GraalGuide!" data-copied-text="Copiado!" data-copied-discord-text="Copiado! Cole no Discord">
+        <h3 class="share-section-title">Compartilhe Esta Página</h3>
+        <p class="share-section-subtitle">Compartilhe com outros jogadores de Graal Era!</p>
+        <div class="share-section-buttons">
+            <button type="button" class="share-platform-btn share-discord">
+                <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                <span class="share-btn-label">Discord</span>
+            </button>
+            <a href="#" class="share-platform-btn share-whatsapp" target="_blank" rel="noopener noreferrer">
+                <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                <span class="share-btn-label">WhatsApp</span>
+            </a>
+            <a href="#" class="share-platform-btn share-telegram" target="_blank" rel="noopener noreferrer">
+                <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                <span class="share-btn-label">Telegram</span>
+            </a>
+            <button type="button" class="share-platform-btn share-copy">
+                <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                <span class="share-btn-label">Copiar Link</span>
+            </button>
+        </div>
+    </div>
+    <script src="../assets/js/share-buttons.js"></script>
+
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Sobre o GraalGuide</h3>
-                    <p>GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos ferramentas, guias e recursos para melhorar sua experiência de jogo.</p>
-                    <p><em>GraalGuide não é afiliado ao GraalOnline ou Toonslab.</em></p>
+                    <h3 id="about-title">Sobre o GraalGuide</h3>
+                    <p id="about-desc">GraalGuide é o principal recurso feito por fãs para jogadores do Graal Era. Fornecemos ferramentas, guias e recursos para melhorar sua experiência de jogo.</p>
+                    <p><em id="disclaimer">GraalGuide não é afiliado ao GraalOnline ou Toonslab.</em></p>
                 </div>
                 <div class="footer-section">
-                    <h3>Links Rápidos</h3>
+                    <h3 id="links-title">Links Rápidos</h3>
                     <ul>
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="upload.html"><img src="../assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Uploads</a></li>
-                        <li><a href="trade-guide.html"><img src="../assets/img/menu-icons/swap.svg" alt="" class="menu-icon">Guia de Troca</a></li>
+                        <li><a href="index.html" id="link1">Início</a></li>
+                        <li><a href="upload.html" id="link2">Uploads</a></li>
+                        <li><a href="trade-guide.html" id="link3">Guia de Troca</a></li>
+                        <li><a href="secret-achievements.html" id="link4">Conquistas Secretas</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Legal e Políticas</h3>
+                    <h3 id="legal-title">Legal e Políticas</h3>
                     <ul>
-                        <li><a href="privacy-policy.html">Política de Privacidade</a></li>
-                        <li><a href="terms-of-service.html">Termos de Serviço</a></li>
-                        <li><a href="cookie-policy.html">Política de Cookies</a></li>
-                        <li><a href="disclaimer.html">Aviso Legal</a></li>
+                        <li><a href="privacy-policy.html" id="policy1">Política de Privacidade</a></li>
+                        <li><a href="terms-of-service.html" id="policy2">Termos de Serviço</a></li>
+                        <li><a href="cookie-policy.html" id="policy3">Política de Cookies</a></li>
+                        <li><a href="disclaimer.html" id="policy4">Aviso Legal</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Conectar</h3>
+                    <h3 id="connect-title">Conectar</h3>
                     <ul>
-                        <li><a href="about-me.html">Sobre Mim</a></li>
-                        <li><a href="https://www.youtube.com/@azrxc">YouTube</a></li>
-                        <li><a href="contact-us.html">Contate-Nos</a></li>
+                        <li><a href="about-me.html" id="connect1">Sobre Mim</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc" id="connect2">YouTube</a></li>
+                        <li><a href="contact-us.html" id="connect3">Contate-Nos</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.</p>
+                <p id="copyright">&copy; 2025 GraalGuide.com. Todos os direitos reservados. Todas as marcas registradas são propriedade de seus respectivos donos.</p>
             </div>
         </div>
     </footer>

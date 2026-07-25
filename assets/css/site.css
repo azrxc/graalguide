@@ -1823,3 +1823,85 @@ footer {
         font-size: 16px !important;
     }
 }
+
+/* Share section - inline "share this page" block used on guide/calculator/gallery pages */
+.share-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px 20px;
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+}
+
+.share-section-title {
+    font-size: var(--font-xl);
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--text-color);
+}
+
+.share-section-subtitle {
+    font-size: var(--font-sm);
+    color: var(--text-muted);
+    margin: 0 0 20px;
+}
+
+.share-section-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.share-platform-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: var(--font-sm);
+    color: white !important;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.share-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.share-platform-btn:hover {
+    transform: translateY(-3px);
+    color: white !important;
+    filter: brightness(1.1);
+}
+
+.share-discord { background: #5865f2; }
+.share-whatsapp { background: #25d366; }
+.share-telegram { background: #26a5e4; }
+.share-copy { background: #6b7280; }
+
+.share-platform-btn.copied {
+    background: #3ba55d !important;
+}
+
+@media (max-width: 480px) {
+    .share-section {
+        padding: 24px 16px;
+        margin: 24px auto;
+    }
+
+    .share-platform-btn {
+        padding: 10px 16px;
+        font-size: var(--font-xs);
+    }
+}
