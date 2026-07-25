@@ -185,6 +185,21 @@
     }
     .browser-pager button:disabled { opacity: 0.35; cursor: default; }
     .browser-note { font-size: 11px; color: var(--text-muted); font-style: italic; margin: 4px 0 0; }
+    .browser-upload-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: var(--tile-bg);
+        border: 1px dashed var(--tile-border, rgba(255,255,255,0.25));
+        color: var(--text-color);
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    .browser-upload-btn:hover { background: var(--tile-bg-hover); border-color: var(--primary-color); }
 </style>
 </head>
 <body>
@@ -486,6 +501,39 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.dropdown-menu').forEach(menu => { menu.style.display = 'none'; });
         }
     });
+
+    // Handle dropdown toggles on mobile (no hover on touch, so tapping the
+    // trigger has to expand the submenu itself)
+    document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const dropdown = this.parentElement;
+            const dropdownMenu = this.nextElementSibling;
+            const isVisible = dropdownMenu.style.display === 'block';
+            document.querySelectorAll('.dropdown').forEach(item => {
+                if (item !== dropdown) {
+                    item.classList.remove('active');
+                    item.querySelector('.dropdown-menu').style.display = 'none';
+                }
+            });
+            dropdown.classList.toggle('active');
+            dropdownMenu.style.display = isVisible ? 'none' : 'block';
+        });
+    });
+
+    // Handle desktop dropdown hover - gated on actual hover support so this
+    // doesn't fire on touch/tablet devices that report a wide viewport
+    if (window.matchMedia('(hover: hover)').matches) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', function() {
+                this.querySelector('.dropdown-menu').style.display = 'block';
+            });
+            dropdown.addEventListener('mouseleave', function() {
+                this.querySelector('.dropdown-menu').style.display = 'none';
+            });
+        });
+    }
 });
 </script>
 <script>
@@ -710,6 +758,24 @@ function selectForSlot(slot, src, name) {
     closeBrowser(slot);
 }
 
+// A local file never round-trips through a real gallery path, so it can't
+// be favorited (currentSrc stays null - updateSlotFavButton already
+// disables the star whenever that's the case) and won't show up in the
+// Preview-from-gallery deep link either. Purely a client-side preview -
+// nothing is uploaded anywhere.
+function selectUploadForSlot(slot, file) {
+    const cfg = SLOT_CONFIG[slot];
+    const url = URL.createObjectURL(file);
+    currentSrc[slot] = null;
+    document.getElementById(`${slot}-slot-name`).textContent = file.name + ' (uploaded)';
+    const thumbImg = document.getElementById(`${slot}-slot-thumb-img`);
+    thumbImg.src = url;
+    thumbImg.style.display = '';
+    images[cfg.imageKey].src = url;
+    updateSlotFavButton(slot);
+    closeBrowser(slot);
+}
+
 document.querySelectorAll('.slot-fav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const slot = btn.dataset.slot;
@@ -781,6 +847,13 @@ function buildBrowser(slot) {
             <span id="${slot}-page-label"></span>
             <button type="button" id="${slot}-next">Next &raquo;</button>
         </div>
+        <div class="browser-label">Or Upload Your Own</div>
+        <button type="button" class="browser-upload-btn" id="${slot}-upload-btn">
+            <svg class="tool-btn-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            Choose a file from your device
+        </button>
+        <input type="file" accept="image/*" id="${slot}-upload-input" hidden>
+        <p class="browser-note">Not saved anywhere - just previewed in your browser. Favoriting doesn't apply to uploads.</p>
     `;
 
     const favs = getFavorites().filter(p => cfg.pathFragments.some(f => p.includes(f)));
@@ -797,6 +870,13 @@ function buildBrowser(slot) {
         slotState[slot].page--;
         renderBrowserGrid(slot);
     });
+    const uploadInput = document.getElementById(`${slot}-upload-input`);
+    document.getElementById(`${slot}-upload-btn`).addEventListener('click', () => uploadInput.click());
+    uploadInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) selectUploadForSlot(slot, file);
+    });
+
     document.getElementById(`${slot}-next`).addEventListener('click', () => {
         slotState[slot].page++;
         renderBrowserGrid(slot);
