@@ -7,22 +7,20 @@
    ========================================================================== */
 
 :root {
-    /* Two colors, deliberately: gold and deep blue sit opposite each other
-       on the color wheel (gold = yellow-orange, its complement is
-       blue-violet), the highest-contrast pairing available and the
-       standard premium dark-UI combination. Gold carries the brand
-       identity (currency, rarity, the marquee title); blue is the one
-       secondary accent for everything else. No purple, green, or orange
-       anywhere in the system. */
-    --brand: #f0b429;      /* gold: currency, rarity, the marquee title */
-    --brand-light: #ffd873;
-    --brand-dark: #b8860b;
+    /* One color, deliberately: blue, matching the Freeze mascot, plus
+       black and white doing the rest of the work as neutrals. No gold,
+       purple, green, or orange anywhere in the system - hierarchy comes
+       from shade (light/medium/dark blue) and from white, not from a
+       second hue. */
+    --brand: #3b82f6;      /* blue: matches the Freeze mascot, the brand identity */
+    --brand-light: #7aa9fa;
+    --brand-dark: #2563eb;
 
-    --glow-a: #3b82f6;     /* blue accent */
-    --glow-b: #3b82f6;     /* blue accent (alias, kept for old call sites) */
+    --glow-a: var(--brand-light);  /* accent, hover states */
+    --glow-b: var(--brand-dark);   /* accent, secondary fills */
     --info-blue: #3b82f6;
     --badge-red: #3b82f6;
-    --star-gold: #f0b429;
+    --star-gold: #ffffff;  /* name is legacy from the gold-accent era; stars/ratings are white now */
 
     --chrome-bg: #101010;
     --chrome-elevated: #181818;
@@ -79,8 +77,8 @@
     --text-color: #181816;
     --text-muted: #5c5c54;
 
-    --primary-color: #a5760f;
-    --secondary-color: #1a8a4a;
+    --primary-color: #2563eb;
+    --secondary-color: #1d4ed8;
     --accent-color: #2563eb;
     --dark-bg: var(--chrome-bg);
     --darker-bg: var(--chrome-elevated);
@@ -508,7 +506,7 @@ nav ul li a:hover {
 
 .hero {
     background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(240, 180, 41, 0.14), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(59, 130, 246, 0.14), transparent 65%),
         radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.14), transparent 65%),
         linear-gradient(rgba(4, 4, 4, 0.88), rgba(4, 4, 4, 0.94)),
         url('../../image/a/map.png') center/cover no-repeat;
@@ -543,7 +541,7 @@ nav ul li a:hover {
 
 [data-theme="light"] .hero {
     background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(240, 180, 41, 0.12), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(59, 130, 246, 0.12), transparent 65%),
         radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.12), transparent 65%),
         linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
         url('../../image/a/map.png') center/cover no-repeat;
@@ -565,13 +563,13 @@ nav ul li a:hover {
     letter-spacing: 0.14em;
     color: var(--brand-light);
     background: rgba(16, 16, 16, 0.7);
-    border: 1px solid rgba(240, 180, 41, 0.4);
+    border: 1px solid rgba(59, 130, 246, 0.4);
     padding: 7px 16px 7px 10px;
     border-radius: 20px;
     margin-bottom: 24px;
     text-transform: uppercase;
     backdrop-filter: blur(6px);
-    box-shadow: 0 0 20px rgba(240, 180, 41, 0.12);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.12);
 }
 
 .hero-kicker img {
@@ -592,9 +590,9 @@ nav ul li a:hover {
     line-height: 1.02;
     color: var(--brand-light);
     filter:
-        drop-shadow(0 3px 0 #3d2400)
+        drop-shadow(0 3px 0 #1e2a4a)
         drop-shadow(0 2px 5px rgba(0, 0, 0, 0.55))
-        drop-shadow(0 12px 34px rgba(240, 180, 41, 0.3));
+        drop-shadow(0 12px 34px rgba(59, 130, 246, 0.3));
 }
 
 .hero p {
@@ -622,7 +620,7 @@ nav ul li a:hover {
 .btn {
     display: inline-block;
     background: var(--brand);
-    color: #362600;
+    color: #ffffff;
     padding: 13px 28px;
     border-radius: 10px;
     font-weight: 700;
@@ -631,21 +629,21 @@ nav ul li a:hover {
     font-size: var(--font-sm);
     margin: 5px;
     transition: all 0.2s ease;
-    border: 2px solid #7a5400;
+    border: 2px solid #1e3a8a;
     cursor: pointer;
-    box-shadow: 0 4px 0 #7a5400, 0 8px 20px rgba(240, 180, 41, 0.3);
+    box-shadow: 0 4px 0 #1e3a8a, 0 8px 20px rgba(59, 130, 246, 0.3);
 }
 
 .btn:hover {
     background: var(--brand-light);
-    color: #362600;
+    color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 0 #7a5400, 0 12px 26px rgba(240, 180, 41, 0.38);
+    box-shadow: 0 6px 0 #1e3a8a, 0 12px 26px rgba(59, 130, 246, 0.38);
 }
 
 .btn:active {
     transform: translateY(2px);
-    box-shadow: 0 2px 0 #7a5400, 0 4px 10px rgba(240, 180, 41, 0.3);
+    box-shadow: 0 2px 0 #1e3a8a, 0 4px 10px rgba(59, 130, 246, 0.3);
 }
 
 /* Secondary: solid fill, same treatment as primary/accent - never the
@@ -720,11 +718,11 @@ nav ul li a:hover {
     -webkit-text-fill-color: initial;
     color: var(--brand-light);
     line-height: 1.2;
-    text-shadow: 0 0 18px rgba(240, 180, 41, 0.35);
+    text-shadow: 0 0 18px rgba(59, 130, 246, 0.35);
 }
 
 [data-theme="light"] .stat-item .stat-number {
-    color: #a5760f;
+    color: #2563eb;
     text-shadow: none;
 }
 
@@ -816,7 +814,7 @@ nav ul li a:hover {
 .showcase-thumb:nth-child(odd):hover {
     transform: translateY(-5px) scale(1.05);
     border-color: var(--brand);
-    box-shadow: 0 0 0 1px var(--brand), 0 10px 24px rgba(240, 180, 41, 0.35);
+    box-shadow: 0 0 0 1px var(--brand), 0 10px 24px rgba(59, 130, 246, 0.35);
 }
 
 .showcase-thumb:nth-child(even):hover {
@@ -960,7 +958,7 @@ nav ul li a:hover {
 .head-item:nth-child(odd):hover, .body-item:nth-child(odd):hover, .hat-item:nth-child(odd):hover {
     transform: translateY(-5px);
     border-color: var(--brand);
-    box-shadow: 0 0 0 1px var(--brand), 0 10px 24px rgba(240, 180, 41, 0.3);
+    box-shadow: 0 0 0 1px var(--brand), 0 10px 24px rgba(59, 130, 246, 0.3);
 }
 
 .head-item:nth-child(even):hover, .body-item:nth-child(even):hover, .hat-item:nth-child(even):hover {
@@ -993,7 +991,7 @@ nav ul li a:hover {
 
 .page-header {
     background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(240, 180, 41, 0.14), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(59, 130, 246, 0.14), transparent 65%),
         radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.14), transparent 65%),
         linear-gradient(rgba(4, 4, 4, 0.88), rgba(4, 4, 4, 0.94)),
         url('../../image/a/map.png') center/cover no-repeat;
@@ -1007,7 +1005,7 @@ nav ul li a:hover {
 
 [data-theme="light"] .page-header {
     background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(240, 180, 41, 0.12), transparent 65%),
+        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(59, 130, 246, 0.12), transparent 65%),
         radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.12), transparent 65%),
         linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
         url('../../image/a/map.png') center/cover no-repeat;
@@ -1024,7 +1022,7 @@ nav ul li a:hover {
     position: relative;
     color: var(--brand-light);
     filter:
-        drop-shadow(0 2px 0 #3d2400)
+        drop-shadow(0 2px 0 #1e2a4a)
         drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
@@ -1078,9 +1076,9 @@ nav ul li a:hover {
     letter-spacing: 0.05em;
     padding: 3px 10px;
     border-radius: 20px;
-    background: rgba(240, 180, 41, 0.15);
+    background: rgba(59, 130, 246, 0.15);
     color: var(--brand-light);
-    border: 1px solid rgba(240, 180, 41, 0.35);
+    border: 1px solid rgba(59, 130, 246, 0.35);
 }
 
 .resource-group.is-universal .resource-group-title .badge {
@@ -1111,7 +1109,7 @@ nav ul li a:hover {
 .resource-card:hover {
     transform: translateY(-3px);
     border-color: var(--brand);
-    box-shadow: 0 8px 20px rgba(240, 180, 41, 0.2);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
 }
 
 .resource-icon {
@@ -1263,15 +1261,15 @@ nav ul li a:hover {
 }
 
 .tag-guide {
-    background: rgba(240, 180, 41, 0.18);
+    background: rgba(59, 130, 246, 0.18);
     color: var(--star-gold);
-    border-color: rgba(240, 180, 41, 0.35);
+    border-color: rgba(59, 130, 246, 0.35);
 }
 
 .tag-ec {
-    background: rgba(240, 180, 41, 0.18);
+    background: rgba(59, 130, 246, 0.18);
     color: var(--star-gold);
-    border-color: rgba(240, 180, 41, 0.35);
+    border-color: rgba(59, 130, 246, 0.35);
 }
 
 .tag-upload {
@@ -1503,7 +1501,7 @@ footer {
 
 .favorites-toggle.active {
     background: var(--brand);
-    color: #362600;
+    color: #ffffff;
     border-color: var(--brand);
 }
 
@@ -1574,7 +1572,7 @@ footer {
 
 .community-status-retry {
     background: var(--brand);
-    color: #362600;
+    color: #ffffff;
     border: none;
     border-radius: 8px;
     padding: 7px 16px;
