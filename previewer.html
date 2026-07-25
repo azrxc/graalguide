@@ -822,6 +822,11 @@ function renderBrowserGrid(slot) {
     document.getElementById(`${slot}-page-label`).textContent = `Page ${state.page} of ${totalPages} (${items.length} results)`;
     document.getElementById(`${slot}-prev`).disabled = state.page <= 1;
     document.getElementById(`${slot}-next`).disabled = state.page >= totalPages;
+
+    // Only flag "no results" for an actual empty search - not while the
+    // list is still loading (state.allItems briefly empty on first open).
+    const showNoResults = state.loaded && !!state.query && items.length === 0;
+    document.getElementById(`${slot}-search-empty`).style.display = showNoResults ? '' : 'none';
 }
 
 function makeThumb(slot, src, name) {
@@ -851,6 +856,7 @@ function buildBrowser(slot) {
         <div class="browser-label">Browse All</div>
         <input type="text" class="browser-search" id="${slot}-search" placeholder="Search by filename...">
         <div class="browser-grid" id="${slot}-grid"></div>
+        <p class="browser-note browser-empty" id="${slot}-search-empty" style="display:none;"><img src="assets/img/mascot/dead.png" alt="" class="browser-empty-mascot">Nothing matches that search.</p>
         <p class="browser-note" id="${slot}-loading">Loading...</p>
         <div class="browser-pager">
             <button type="button" id="${slot}-prev">&laquo; Prev</button>
