@@ -572,7 +572,7 @@ ANIEND
 const gani = parseGani(IDLE_GANI);
 const images = { HEAD: new Image(), BODY: new Image(), ATTR1: new Image() };
 let direction = 2; // down, facing the viewer
-let scale = 6;     // 2x default
+let scale = 3;     // 1x default
 
 const canvas = document.getElementById('stage');
 const ctx = canvas.getContext('2d');
@@ -677,7 +677,7 @@ document.querySelectorAll('.zoom-btn').forEach(btn => {
         redraw();
     });
 });
-document.querySelector('.zoom-btn[data-zoom="6"]').classList.add('active');
+document.querySelector('.zoom-btn[data-zoom="3"]').classList.add('active');
 
 // ---- Favorites (same localStorage key/shape as heads.html/bodies.html/
 // hats.html - a flat set of image paths, shared across all three galleries
