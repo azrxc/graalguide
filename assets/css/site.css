@@ -648,19 +648,23 @@ nav ul li a:hover {
     box-shadow: 0 2px 0 #7a5400, 0 4px 10px rgba(240, 180, 41, 0.3);
 }
 
-/* Secondary: dark HUD tile button */
+/* Secondary: solid fill, same treatment as primary/accent - never the
+   near-invisible low-opacity tile this used to be. A button with no
+   readable contrast against its background is a real usability bug, not
+   a style choice, so this stays solid and theme-aware (blue in dark
+   mode, green in light mode, both already-established design tokens). */
 .btn-secondary {
-    background: var(--tile-bg);
-    border: 1px solid var(--tile-border);
-    color: #fff;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
 }
 
 .btn-secondary:hover {
-    background: var(--tile-bg-hover);
-    color: #fff;
-    border-color: var(--border-strong);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    background: var(--glow-a);
+    color: white;
+    filter: brightness(1.12);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
 }
 
 /* Accent: police blue, for informational/external actions (e.g. Discord) */
