@@ -49,7 +49,7 @@
     .text-btn {
         background: var(--tile-bg);
         border: 1px solid var(--tile-border, rgba(255,255,255,0.12));
-        color: var(--text-primary, #eee);
+        color: var(--text-color);
         border-radius: 8px;
         padding: 7px 14px;
         font-size: 12px;
@@ -62,14 +62,14 @@
     .text-btn-primary { background: var(--primary-color); color: #101010; border-color: var(--primary-color); }
     .text-btn-primary:hover { filter: brightness(1.08); }
     .tool-btn-icon { width: 15px; height: 15px; flex-shrink: 0; }
-    .tool-hint { font-size: 11px; color: var(--text-secondary, #9aa0a6); text-align: center; margin-top: 10px; }
+    .tool-hint { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 10px; }
     .icon-btn {
         width: 34px;
         height: 34px;
         border-radius: 8px;
         background: var(--tile-bg);
         border: 1px solid var(--tile-border, rgba(255,255,255,0.12));
-        color: var(--text-primary, #eee);
+        color: var(--text-color);
         cursor: pointer;
         font-size: 15px;
         display: flex;
@@ -107,19 +107,19 @@
         overflow: hidden;
         flex-shrink: 0;
         font-size: 10px;
-        color: var(--text-secondary, #9aa0a6);
+        color: var(--text-muted);
     }
     .slot-thumb img { max-width: 100%; max-height: 100%; image-rendering: pixelated; }
     .slot-info { flex: 1; min-width: 0; }
-    .slot-type { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary, #9aa0a6); }
-    .slot-name { font-size: 13px; color: var(--text-primary, #eee); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .slot-type { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+    .slot-name { font-size: 13px; color: var(--text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .slot-fav-btn {
         width: 36px;
         height: 36px;
         border-radius: 8px;
         background: none;
         border: 1px solid var(--tile-border, rgba(255,255,255,0.15));
-        color: var(--text-secondary, #9aa0a6);
+        color: var(--text-muted);
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -150,11 +150,11 @@
         border-radius: 8px;
         border: 1px solid var(--tile-border, rgba(255,255,255,0.15));
         background: var(--chrome-bg);
-        color: var(--text-primary, #eee);
+        color: var(--text-color);
         font-size: 13px;
         margin-bottom: 10px;
     }
-    .browser-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary, #9aa0a6); margin: 10px 0 6px; }
+    .browser-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 10px 0 6px; }
     .browser-grid { display: grid; grid-template-columns: repeat(auto-fill, 48px); gap: 8px; min-height: 44px; }
     .browser-thumb {
         width: 48px;
@@ -167,24 +167,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--text-secondary, #9aa0a6);
+        color: var(--text-muted);
         font-size: 9px;
         overflow: hidden;
     }
     .browser-thumb img { max-width: 100%; max-height: 100%; image-rendering: pixelated; }
     .browser-thumb.active { border-color: var(--primary-color); }
-    .browser-pager { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 12px; font-size: 12px; color: var(--text-secondary, #9aa0a6); }
+    .browser-pager { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
     .browser-pager button {
         background: var(--tile-bg);
         border: 1px solid var(--tile-border, rgba(255,255,255,0.12));
-        color: var(--text-primary, #eee);
+        color: var(--text-color);
         border-radius: 6px;
         padding: 5px 10px;
         cursor: pointer;
         font-size: 12px;
     }
     .browser-pager button:disabled { opacity: 0.35; cursor: default; }
-    .browser-note { font-size: 11px; color: var(--text-secondary, #9aa0a6); font-style: italic; margin: 4px 0 0; }
+    .browser-note { font-size: 11px; color: var(--text-muted); font-style: italic; margin: 4px 0 0; }
 </style>
 </head>
 <body>
