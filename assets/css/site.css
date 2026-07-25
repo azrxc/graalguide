@@ -658,6 +658,7 @@ nav ul li a:hover {
     text-transform: uppercase;
     letter-spacing: 0.03em;
     font-size: var(--font-sm);
+    text-align: center;
     margin: 5px;
     transition: all 0.2s ease;
     border: 2px solid #1e3a8a;
