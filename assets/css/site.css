@@ -387,10 +387,20 @@ nav ul li a:hover {
     background: transparent;
     border: none;
     color: var(--text-color);
-    font-size: var(--font-2xl);
     cursor: pointer;
     padding: 5px 10px;
     z-index: 1001;
+    transition: color 0.2s ease;
+}
+
+.mobile-menu-btn:hover,
+.mobile-menu-btn:active {
+    color: var(--primary-color);
+}
+
+.menu-icon-svg {
+    width: 26px;
+    height: 26px;
 }
 
 /* Language selector */
