@@ -61,15 +61,23 @@
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         }
         
-        body { 
-            background-color: var(--dark-bg); 
-            color: var(--text-color); 
+        body {
+            background-color: var(--dark-bg);
+            background-image:
+                radial-gradient(ellipse 700px 500px at 8% 0%, rgba(59, 130, 246, 0.16), transparent 60%),
+                radial-gradient(ellipse 600px 600px at 100% 35%, rgba(59, 130, 246, 0.11), transparent 60%);
+            color: var(--text-color);
             line-height: 1.6;
             font-size: var(--font-md);
             transition: background-color 0.3s ease, color 0.3s ease;
             min-height: 100vh;
         }
-        
+
+        /* Glow reads muddy on a light ground - keep light mode flat */
+        [data-theme="light"] body {
+            background-image: none;
+        }
+
         a { 
             text-decoration: none; 
             color: var(--primary-color); 
