@@ -1905,3 +1905,23 @@ footer {
         font-size: var(--font-xs);
     }
 }
+
+/* Ad slots - consistent spacing/centering so units never sit flush
+   against nav links or buttons (avoids accidental-click policy issues)
+   and never cause layout jumps once they resolve. */
+.ad-slot {
+    margin: 32px auto;
+    max-width: 970px;
+    min-height: 100px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.ad-slot-sidebar {
+    margin: 0 0 24px;
+    max-width: none;
+}
+
+.ad-slot-fluid {
+    min-height: 250px;
+}
