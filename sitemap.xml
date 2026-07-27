@@ -115,6 +115,13 @@
   <priority>0.9</priority>
 </url>
 <url>
+  <loc>https://graalguide.com/previewer.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/previewer.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/previewer.html"/>
+  <lastmod>2026-07-27T12:00:00+08:00</lastmod>
+  <priority>0.9</priority>
+</url>
+<url>
   <loc>https://graalguide.com/upload.html</loc>
   <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/upload.html"/>
   <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/upload.html"/>
