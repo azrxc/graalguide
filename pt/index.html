@@ -1742,9 +1742,9 @@ Grande atualização! Adicionamos mais de 21.000 novas heads e bodies à coleç�
                 setTimeout(() => {
                     const img = tile.querySelector('img');
                     if (img) {
-                        img.src = item.image;
+                        img.src = '../' + item.image;
                     } else {
-                        tile.style.backgroundImage = `url('${item.image}')`;
+                        tile.style.backgroundImage = `url('../${item.image}')`;
                     }
                     tile.classList.remove('rotating');
                 }, 300);
