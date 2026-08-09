@@ -549,6 +549,364 @@
             }
         }
 
+        /* Fit Builder: clickable gear preview linking into each gallery */
+        .fit-builder {
+            padding: 10px 0 60px;
+        }
+
+        .fit-builder-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .fit-avatar-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .fit-avatar-stage {
+            position: relative;
+            width: 200px;
+            height: 240px;
+            margin: 10px auto 10px;
+        }
+
+        .fit-avatar-stage canvas {
+            image-rendering: pixelated;
+            width: 200px;
+            height: 240px;
+            display: block;
+        }
+
+        .fit-tag {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(10, 10, 13, 0.82);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: var(--font-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--text-color);
+            white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+
+        .fit-tag:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Dot marking exactly where each line meets the sprite, like a
+           "shop this look" callout on a product photo. */
+        .fit-tag::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary-color);
+        }
+
+        /* Right-side callout (Head): line points left into the sprite */
+        .fit-tag-right {
+            left: 150px;
+            margin-left: 0.7cm;
+            transform: translateY(-50%);
+        }
+
+        .fit-tag-right::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            width: 0.7cm;
+            height: 1px;
+            background: var(--border-color);
+            transform: translateY(-50%);
+            transition: background 0.25s ease;
+        }
+
+        .fit-tag-right::after {
+            top: 50%;
+            right: calc(100% + 0.7cm - 3px);
+            transform: translateY(-50%);
+        }
+
+        .fit-tag-right:hover::before {
+            background: var(--primary-color);
+        }
+
+        /* Left-side callout (Body): line points right into the sprite */
+        .fit-tag-left {
+            right: 150px;
+            margin-right: 0.7cm;
+            transform: translateY(-50%);
+        }
+
+        .fit-tag-left::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 0.7cm;
+            height: 1px;
+            background: var(--border-color);
+            transform: translateY(-50%);
+            transition: background 0.25s ease;
+        }
+
+        .fit-tag-left::after {
+            top: 50%;
+            left: calc(100% + 0.7cm - 3px);
+            transform: translateY(-50%);
+        }
+
+        .fit-tag-left:hover::before {
+            background: var(--primary-color);
+        }
+
+        /* Top callout (Hat): line points down into the sprite */
+        .fit-tag-top {
+            left: 50%;
+            bottom: 168px;
+            margin-bottom: 0.7cm;
+            transform: translateX(-50%);
+        }
+
+        .fit-tag-top::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 1px;
+            height: 0.7cm;
+            background: var(--border-color);
+            transform: translateX(-50%);
+            transition: background 0.25s ease;
+        }
+
+        .fit-tag-top::after {
+            left: 50%;
+            top: calc(100% + 0.7cm - 3px);
+            transform: translateX(-50%);
+        }
+
+        .fit-tag-top:hover::before {
+            background: var(--primary-color);
+        }
+
+        .fit-tag-head {
+            top: 125px;
+        }
+
+        .fit-tag-body {
+            top: 180px;
+        }
+
+        /* Combo Set: spans head-to-leg with a bracket instead of a single
+           point, since it stands for the whole head+body combo, not one part. */
+        .fit-combo {
+            position: absolute;
+            left: calc(200px + 0.7cm);
+            top: 90px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .fit-combo-bracket {
+            position: relative;
+            width: 10px;
+            height: 100%;
+            margin-right: 8px;
+            border-right: 1px solid var(--border-color);
+            flex-shrink: 0;
+            transition: border-color 0.25s ease;
+        }
+
+        .fit-combo-bracket::before,
+        .fit-combo-bracket::after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            width: 10px;
+            height: 1px;
+            background: var(--border-color);
+            transition: background 0.25s ease;
+        }
+
+        .fit-combo-bracket::before {
+            top: 0;
+        }
+
+        .fit-combo-bracket::after {
+            bottom: 0;
+        }
+
+        .fit-combo-label {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(10, 10, 13, 0.82);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: var(--font-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--text-color);
+            white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+
+        .fit-combo:hover .fit-combo-label {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .fit-combo:hover .fit-combo-bracket {
+            border-color: var(--primary-color);
+        }
+
+        .fit-combo:hover .fit-combo-bracket::before,
+        .fit-combo:hover .fit-combo-bracket::after {
+            background: var(--primary-color);
+        }
+
+        @media (max-width: 480px) {
+            .fit-avatar-stage {
+                width: 160px;
+                height: 192px;
+            }
+
+            .fit-avatar-stage canvas {
+                width: 160px;
+                height: 192px;
+            }
+
+            .fit-tag-right { left: 120px; }
+            .fit-tag-left { right: 120px; }
+            .fit-tag-top { bottom: 134px; }
+            .fit-tag-head { top: 100px; }
+            .fit-tag-body { top: 144px; }
+
+            .fit-combo {
+                left: calc(160px + 0.7cm);
+                top: 72px;
+                height: 88px;
+            }
+        }
+
+        .fit-avatar-caption {
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .fit-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .fit-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 14px 18px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.25s ease;
+        }
+
+        .fit-slot:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            border-color: var(--primary-color);
+        }
+
+        .fit-slot-crop {
+            width: 48px;
+            height: 48px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fit-slot-crop img {
+            image-rendering: pixelated;
+            flex-shrink: 0;
+        }
+
+        .fit-slot-label {
+            font-size: var(--font-sm);
+            font-weight: 700;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .fit-slot-arrow {
+            display: inline-block;
+            transition: transform 0.25s ease;
+        }
+
+        .fit-slot:hover .fit-slot-arrow {
+            transform: translateX(4px);
+        }
+
+        .fit-slot-soon {
+            border-style: dashed;
+            cursor: default;
+        }
+
+        .fit-slot-soon:hover {
+            transform: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-color: var(--border-color);
+        }
+
+        .fit-slot-mystery {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-muted);
+        }
+
+        .fit-slot-soon-badge {
+            font-size: var(--font-xs);
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        @media (max-width: 640px) {
+            .fit-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         /* Main Content */
         .main-content {
             display: flex;
@@ -1318,7 +1676,7 @@
 
             <div class="showcase-heading">
                 <h2>Milhares de Heads & Bodies Personalizados</h2>
-                <p>Uma pequena amostra do que há na coleção — todos disponíveis para baixar e prontos para fazer upload.</p>
+                <p>Uma pequena amostra do que há na coleção, todos disponíveis para baixar e prontos para fazer upload.</p>
             </div>
 
             <div class="showcase-grid" id="showcaseGrid">
@@ -1343,6 +1701,55 @@
             <div class="showcase-cta">
                 <a href="bodies.html" class="btn">Ver Todos os Bodies</a>
                 <a href="heads.html" class="btn btn-secondary">Ver Todos os Heads</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="fit-builder">
+        <div class="container">
+            <div class="showcase-heading">
+                <h2>Monte Seu Visual</h2>
+                <p>Curtiu o visual desse cara? Toca numa peça e vai pegar a sua.</p>
+            </div>
+            <div class="fit-builder-layout">
+                <div class="fit-avatar-card">
+                    <div class="fit-avatar-stage">
+                        <canvas id="fitAvatarCanvas" width="200" height="240" aria-hidden="true"></canvas>
+                        <a href="hats.html" class="fit-tag fit-tag-top fit-tag-hat">Chapéu</a>
+                        <a href="heads.html" class="fit-tag fit-tag-right fit-tag-head">Cabeça</a>
+                        <a href="bodies.html" class="fit-tag fit-tag-left fit-tag-body">Corpo</a>
+                        <a href="upload-sets.html" class="fit-combo">
+                            <span class="fit-combo-bracket"></span>
+                            <span class="fit-combo-label">Kit Completo</span>
+                        </a>
+                    </div>
+                    <span class="fit-avatar-caption">Milhares de combinações. Escolha sua vibe.</span>
+                </div>
+                <div class="fit-slots">
+                    <a href="hats.html" class="fit-slot">
+                        <div class="fit-slot-crop">
+                            <img src="../image/hats-community/era_tam-easter19-headband3.png" alt="Galeria de chapéus" width="48" height="48" style="object-fit: none; object-position: -96px 0px;">
+                        </div>
+                        <span class="fit-slot-label">Chapéu</span>
+                    </a>
+                    <a href="heads.html" class="fit-slot">
+                        <div class="fit-slot-crop">
+                            <img src="../image/heads/3.png" alt="Galeria de heads" width="32" height="32" style="object-fit: none; object-position: 0px -64px;">
+                        </div>
+                        <span class="fit-slot-label">Cabeça</span>
+                    </a>
+                    <a href="bodies.html" class="fit-slot">
+                        <div class="fit-slot-crop">
+                            <img src="../image/bodies/1.png" alt="Galeria de bodies" width="32" height="32" style="object-fit: none; object-position: -64px 0px;">
+                        </div>
+                        <span class="fit-slot-label">Corpo</span>
+                    </a>
+                    <div class="fit-slot fit-slot-soon">
+                        <div class="fit-slot-crop fit-slot-mystery">?</div>
+                        <span class="fit-slot-label">Escudos e Mais</span>
+                        <span class="fit-slot-soon-badge">Em breve (talvez)</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1534,7 +1941,7 @@
                         <h2 id="article1-title">📢 Graal Guide: Mais de 21.000 Novos Uploads!</h2>
                         <div class="article-meta" id="article1-date">Atualizado em 23 de Julho de 2026</div>
                        <p>
-Grande atualização! Adicionamos mais de 21.000 novas heads e bodies à coleção — navegue, filtre e baixe qualquer uma delas instantaneamente. A paginação está mais rápida, cada upload agora tem um botão de Download com um clique para você baixar e enviar direto no jogo, e nossas páginas de guia agora incluem quizzes interativos para testar o que você aprendeu. Continuaremos melhorando com mais conteúdo e atualizações ao longo do tempo.
+Grande atualização! Adicionamos mais de 21.000 novas heads e bodies à coleção. Navegue, filtre e baixe qualquer uma delas instantaneamente. A paginação está mais rápida, cada upload agora tem um botão de Download com um clique para você baixar e enviar direto no jogo, e nossas páginas de guia agora incluem quizzes interativos para testar o que você aprendeu. Continuaremos melhorando com mais conteúdo e atualizações ao longo do tempo.
 </p>
                     </div>
                 </article>
@@ -1635,6 +2042,7 @@ Grande atualização! Adicionamos mais de 21.000 novas heads e bodies à coleç�
         </div>
     </div>
     <script src="../assets/js/share-buttons.js"></script>
+    <script src="../assets/js/gani-renderer.js"></script>
 
     <footer>
         <div class="container">
@@ -1751,11 +2159,62 @@ Grande atualização! Adicionamos mais de 21.000 novas heads e bodies à coleç�
             }, 2200);
         }
 
+        // Fit Builder avatar: same minimal idle-pose renderer as the Gani
+        // Previewer, just pointed at one fixed head/body/hat combo so the
+        // homepage has something to show off without needing user input.
+        const FIT_IDLE_GANI = `GANI0001
+SPRITE    0         SPRITES    0    0   24   12 shadow
+SPRITE   40           ATTR1    0    0   48   48 hat up
+SPRITE   41           ATTR1   48    0   48   48 hat left
+SPRITE   42           ATTR1   96    0   48   48 hat down
+SPRITE   43           ATTR1  144    0   48   48 hat right
+SPRITE  100            HEAD    0    0   32   32 head up
+SPRITE  101            HEAD    0   32   32   32 head left
+SPRITE  102            HEAD    0   64   32   32 head down
+SPRITE  103            HEAD    0   96   32   32 head right
+SPRITE  200            BODY    0    0   32   32 body up
+SPRITE  201            BODY   32    0   32   32 body left
+SPRITE  202            BODY   64    0   32   32 body down
+SPRITE  203            BODY   96    0   32   32 body right
+
+ATTACHSPRITE  100   40  -8 -18
+ATTACHSPRITE  101   41 -12 -18
+ATTACHSPRITE  102   42  -8 -18
+ATTACHSPRITE  103   43  -4 -18
+
+ANI
+   0  12  34,  200   8  16,  100   8   2
+   0  12  36,  201  12  16,  101  12   2
+   0  12  34,  202   8  16,  102   8   2
+   0  12  36,  203   4  16,  103   4   2
+ANIEND
+`;
+
+        function renderFitAvatar() {
+            const canvas = document.getElementById('fitAvatarCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const gani = parseGani(FIT_IDLE_GANI);
+            const images = { HEAD: new Image(), BODY: new Image(), ATTR1: new Image() };
+            const scale = 3;
+            const originX = (canvas.width / scale) / 2 - 24;
+            const originY = (canvas.height / scale) / 2 - 16;
+            const draw = () => renderGaniFrame(ctx, gani, images, 2, originX, originY, scale, 0);
+            images.HEAD.onload = draw;
+            images.BODY.onload = draw;
+            images.ATTR1.onload = draw;
+            images.HEAD.src = '../image/heads/3.png';
+            images.BODY.src = '../image/bodies/1.png';
+            images.ATTR1.src = '../image/hats-community/era_tam-easter19-headband3.png';
+        }
+
         // Initialize theme and interactions
         document.addEventListener('DOMContentLoaded', function() {
             // Check for saved theme preference or default to dark
             const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
+
+            renderFitAvatar();
 
             // Start the rotating upload showcase
             loadShowcasePool();

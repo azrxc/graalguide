@@ -1579,7 +1579,7 @@
             return true;
         }
 
-        // Real Graal Era Guns Data — Automatic, Pistol, Semi-Automatic, Shotgun & Launcher weapons.
+        // Real Graal Era Guns Data: Automatic, Pistol, Semi-Automatic, Shotgun & Launcher weapons.
         // Stats sourced from community-maintained Graal Era gun stat compilations;
         // shop locations aren't reliably documented anywhere public, so they're marked
         // "Not specified" rather than guessed. Most entries don't have an icon on file yet.
@@ -2000,8 +2000,8 @@
                 });
 
                 ratingText.textContent = alreadyRated
-                    ? `${average.toFixed(1)} / 5 (${count} suara) — kamu memberi rating ${alreadyRated}★`
-                    : `${average.toFixed(1)} / 5 (${count} suara) — ketuk bintang untuk memberi rating`;
+                    ? `${average.toFixed(1)} / 5 (${count} suara), kamu memberi rating ${alreadyRated}★`
+                    : `${average.toFixed(1)} / 5 (${count} suara), ketuk bintang untuk memberi rating`;
             } catch (err) {
                 ratingText.textContent = 'Tidak dapat memuat rating saat ini.';
                 console.error('Rating fetch failed:', err);
@@ -2023,7 +2023,7 @@
 
         function renderCommentsHTML(comments) {
             if (comments.length === 0) {
-                return '<div class="comment">Belum ada komentar — jadilah yang pertama!</div>';
+                return '<div class="comment">Belum ada komentar. Jadilah yang pertama!</div>';
             }
             return comments.map(comment => `
                 <div class="comment">

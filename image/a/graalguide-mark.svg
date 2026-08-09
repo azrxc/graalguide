@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <title>GraalGuide</title>
-  <path d="M12 3 L15 8 L19 6 L17.5 10.5 L21 12 L17.5 13.5 L19 18 L15 16 L12 21 L9 16 L5 18 L6.5 13.5 L3 12 L6.5 10.5 L5 6 L9 8 Z" fill="#f0b429"/>
-  <circle cx="12" cy="12" r="5.5" fill="#101010"/>
-  <circle cx="9.6" cy="11.2" r="1" fill="#f0b429"/>
-  <circle cx="14.4" cy="11.2" r="1" fill="#f0b429"/>
-  <path d="M9.5 14 Q12 15.6 14.5 14" stroke="#f0b429" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-</svg>
