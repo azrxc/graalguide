@@ -453,6 +453,60 @@
             padding: 8px;
         }
 
+        /* The in-game chat command to equip a shield by filename, plus a
+           one-tap copy button - the whole point of this gallery is letting
+           players grab that exact command without retyping the filename. */
+        .shield-code {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 10px;
+            border-top: 1px solid var(--border-color);
+            background: var(--dark-bg);
+        }
+
+        .shield-code code {
+            flex: 1;
+            min-width: 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .shield-code-copy {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .shield-code-copy:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .shield-code-copy.copied {
+            color: #3ba55d;
+            border-color: #3ba55d;
+        }
+
+        .shield-code-copy svg {
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+        }
+
         /* Pagination */
         .pagination {
             display: flex;
@@ -1455,14 +1509,30 @@
             // warning on this page. Clicks are handled by one delegated
             // listener on the container (set up once, below) instead of one
             // listener per item.
-            shieldsContainer.innerHTML = shieldsToShow.map(shield => `
+            shieldsContainer.innerHTML = shieldsToShow.map(shield => {
+                // The favorites view can mix in items from other galleries -
+                // only show the in-game command for genuine shields, since
+                // "setshield" would be the wrong command for a favorited
+                // head/body/hat/sword shown here.
+                const isRealShield = shield.image.includes('/shields-community/');
+                const code = isRealShield ? 'setshield ' + shield.image.split('/').pop() : null;
+                return `
                 <div class="shield-item" data-image="${shield.image}">
                     <button type="button" class="fav-btn${favorites.has(shield.image) ? ' active' : ''}" data-fav-image="${shield.image}" aria-label="Favorit">${favorites.has(shield.image) ? '★' : '☆'}</button>
                     <div class="shield-display">
                         <img src="${shield.image}" class="shield-img" loading="lazy" decoding="async">
                     </div>
+                    ${code ? `
+                    <div class="shield-code">
+                        <code title="${code}">${code}</code>
+                        <button type="button" class="shield-code-copy" data-code="${code}" aria-label="Salin perintah" title="Salin perintah">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </div>
+                    ` : ''}
                 </div>
-            `).join('');
+            `;
+            }).join('');
 
             updatePagination();
         }
@@ -1783,6 +1853,24 @@
             // Delegated click handler for the gallery grid - one listener
             // for the whole container instead of one per rendered item.
             document.getElementById('shields-container').addEventListener('click', function(e) {
+                const copyBtn = e.target.closest('.shield-code-copy');
+                if (copyBtn) {
+                    e.stopPropagation();
+                    const code = copyBtn.dataset.code;
+                    const markCopied = () => {
+                        copyBtn.classList.add('copied');
+                        copyBtn.title = 'Disalin!';
+                        setTimeout(() => {
+                            copyBtn.classList.remove('copied');
+                            copyBtn.title = 'Salin perintah';
+                        }, 1500);
+                    };
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(code).then(markCopied).catch(() => {});
+                    }
+                    return;
+                }
+
                 const favBtn = e.target.closest('.fav-btn');
                 if (favBtn) {
                     e.stopPropagation();
