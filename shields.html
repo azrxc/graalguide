@@ -1091,11 +1091,11 @@
                         <li class="dropdown">
                             <a href="#">Upload Now &#8599;</a>
                             <ul class="dropdown-menu">
-                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/eye.svg" alt="" class="menu-icon">Upload Viewer (by DustyShouri) â†—</a></li>
-                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Era) â†—</a></li>
-                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Classic) â†—</a></li>
-                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Ol' West) â†—</a></li>
-                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Zone) â†—</a></li>
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/eye.svg" alt="" class="menu-icon">Upload Viewer (by DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Zone) ↗</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -1136,7 +1136,7 @@
                                 </a>
                                 <a href="pt/shields.html">
                                     <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
-                                    <span>PortuguÃªs</span>
+                                    <span>Português</span>
                                 </a>
                                 <a href="id/shields.html">
                                     <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
@@ -1172,7 +1172,7 @@
                             </a>
                             <a href="pt/shields.html">
                                 <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
-                                <span>PortuguÃªs</span>
+                                <span>Português</span>
                             </a>
                             <a href="id/shields.html">
                                 <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
@@ -1224,7 +1224,7 @@
     <div class="container">
         <div class="community-status" id="community-status"></div>
         <div class="favorites-bar">
-            <button type="button" class="favorites-toggle" id="favorites-toggle">â˜† Favorites Only <span id="favorites-count">(0)</span></button>
+            <button type="button" class="favorites-toggle" id="favorites-toggle">☆ Favorites Only <span id="favorites-count">(0)</span></button>
         </div>
         <div class="shields-grid" id="shields-container">
             <!-- Shields will be populated by JavaScript -->
@@ -1375,7 +1375,7 @@
             const btn = document.getElementById('favorites-toggle');
             if (!btn) return;
             btn.classList.toggle('active', showFavoritesOnly);
-            btn.innerHTML = (showFavoritesOnly ? 'â˜…' : 'â˜†') + ' Favorites Only <span id="favorites-count">(' + favorites.size + ')</span>';
+            btn.innerHTML = (showFavoritesOnly ? '★' : '☆') + ' Favorites Only <span id="favorites-count">(' + favorites.size + ')</span>';
         }
 
         // Configuration
@@ -1456,7 +1456,7 @@
             // same INP-friendly pattern used on the other galleries.
             shieldsContainer.innerHTML = shieldsToShow.map(shield => `
                 <div class="shield-item" data-image="${shield.image}">
-                    <button type="button" class="fav-btn${favorites.has(shield.image) ? ' active' : ''}" data-fav-image="${shield.image}" aria-label="Favorite">${favorites.has(shield.image) ? 'â˜…' : 'â˜†'}</button>
+                    <button type="button" class="fav-btn${favorites.has(shield.image) ? ' active' : ''}" data-fav-image="${shield.image}" aria-label="Favorite">${favorites.has(shield.image) ? '★' : '☆'}</button>
                     <div class="shield-display">
                         <img src="${shield.image}" class="shield-img" loading="lazy" decoding="async">
                     </div>
@@ -1773,7 +1773,7 @@
                 const gridBtn = document.querySelector(`.fav-btn[data-fav-image="${key}"]`);
                 if (gridBtn) {
                     gridBtn.classList.toggle('active', favorites.has(key));
-                    gridBtn.textContent = favorites.has(key) ? 'â˜…' : 'â˜†';
+                    gridBtn.textContent = favorites.has(key) ? '★' : '☆';
                 }
                 if (showFavoritesOnly && !favorites.has(key)) renderShields();
             });
@@ -1788,11 +1788,11 @@
                     if (favorites.has(image)) {
                         favorites.delete(image);
                         favBtn.classList.remove('active');
-                        favBtn.textContent = 'â˜†';
+                        favBtn.textContent = '☆';
                     } else {
                         favorites.add(image);
                         favBtn.classList.add('active');
-                        favBtn.textContent = 'â˜…';
+                        favBtn.textContent = '★';
                     }
                     saveFavorites(favorites);
                     updateFavoritesButton();
