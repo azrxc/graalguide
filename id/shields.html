@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
+     crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" href="../image/a/graalguide-favicon.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "GraalGuide",
+        "url": "https://graalguide.com/",
+        "logo": "https://graalguide.com/image/a/graalguide-favicon.png"
+    }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Shields - GraalGuide Shields Kustom Graal Era</title>
+    <meta name="description" content="Jelajahi upload perisai kustom untuk Graal Era. Unduh salah satunya atau jadikan inspirasi buat desainmu sendiri.">
+    <link rel="alternate" hreflang="en" href="https://graalguide.com/shields.html">
+    <link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/shields.html">
+    <link rel="alternate" hreflang="id" href="https://graalguide.com/id/shields.html">
+    <link rel="alternate" hreflang="x-default" href="https://graalguide.com/shields.html">
+    <link rel="canonical" href="https://graalguide.com/id/shields.html">
+    <style>
+        :root {
+            --primary-color: #3b82f6; /* Purple accent */
+            --secondary-color: #3b82f6; /* Teal accent */
+            --accent-color: #3b82f6; /* Orange accent */
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #9e9e9e;
+            --border-color: #333;
+
+            /* Responsive font sizes */
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-md: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.875rem;
+            --font-4xl: 2.25rem;
+        }
+
+        /* Light mode variables */
+        [data-theme="light"] {
+            --dark-bg: #f5f5f5;
+            --darker-bg: #e0e0e0;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --border-color: #dddddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: var(--font-md);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: var(--darker-bg);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: var(--font-2xl);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            position: relative;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+            display: block;
+            padding: 5px 0;
+            position: relative;
+            font-size: var(--font-md);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Updated Theme Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: inline-block;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: inline-block;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: var(--font-sm);
+            height: 40px;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .language-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .language-btn img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        .language-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 150px;
+            z-index: 1000;
+            margin-top: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .language-options.active {
+            display: block;
+        }
+
+        .language-options a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            font-size: var(--font-sm);
+        }
+
+        .language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .language-options a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+            font-size: var(--font-sm);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+
+        [data-theme="light"] .dropdown-menu a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--primary-color);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
+            opacity: 0.1;
+        }
+
+        .page-header h1 {
+            font-size: var(--font-4xl);
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: var(--font-lg);
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        /* Disclaimer Banner */
+        .disclaimer-banner {
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px 20px;
+            margin: 0 auto 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            border-left: 4px solid #e65100;
+        }
+
+        .disclaimer-banner p {
+            margin: 0;
+            font-size: var(--font-sm);
+            line-height: 1.5;
+        }
+
+        .disclaimer-banner strong {
+            font-weight: 700;
+        }
+
+        /* Shields Gallery Content */
+        .shields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .shield-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .shield-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .shield-display {
+            width: 100%;
+            height: 140px;
+            overflow: hidden;
+            position: relative;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shield-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: pixelated;
+            padding: 8px;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            list-style: none;
+            gap: 8px;
+        }
+
+        .pagination li {
+            margin: 0;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: var(--font-md);
+        }
+
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+
+        .page-nav {
+            background: var(--dark-bg);
+        }
+
+        /* Jump to page */
+        .jump-to-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .jump-to-page #pageOfLabel {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+        }
+
+        .jump-to-page input[type="number"] {
+            width: 70px;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: var(--font-md);
+            text-align: center;
+        }
+
+        .jump-to-page input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .jump-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: var(--font-sm);
+            transition: all 0.2s ease;
+        }
+
+        .jump-btn:hover {
+            background: #1e3a8a;
+            transform: translateY(-2px);
+        }
+
+        /* Modal for enlarged view */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            transition: opacity 0.15s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* TikTok/Reels-style vertical action rail, pinned to the bottom-right
+           corner so it never sits over the image and leaves the vertical
+           center-right free for the next/prev nav button. */
+        .modal-actions {
+            position: fixed;
+            right: 16px;
+            bottom: 90px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            z-index: 2001;
+        }
+
+        /* Prev/next carousel arrows - the visible, discoverable way to move
+           through the gallery, alongside swipe and arrow keys. */
+        .modal-nav-btn {
+            position: fixed;
+            bottom: 24px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.72);
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            color: white !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 2001;
+        }
+
+        .modal-nav-btn:hover {
+            background: rgba(0, 0, 0, 0.65);
+            transform: scale(1.08);
+        }
+
+        .modal-nav-btn.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* Paired at the bottom-center of the image, clear of the vertical
+           action rail (favorite/preview/download/share) on the right. */
+        #modal-prev-btn { left: calc(50% - 54px); }
+        #modal-next-btn { left: calc(50% + 8px); }
+
+        .modal-action-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.72);
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            color: white !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .modal-action-icon-svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        .modal-action-btn:hover {
+            background: rgba(0, 0, 0, 0.65);
+            transform: scale(1.08);
+            color: white !important;
+        }
+
+        .modal-action-btn.copied {
+            background: #3ba55d;
+        }
+
+        #modal-fav-btn.active {
+            color: var(--primary-color) !important;
+        }
+
+        #modal-fav-btn.active .modal-action-icon-svg {
+            fill: currentColor;
+        }
+
+        @keyframes pulseNudge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .modal-action-btn.nudge {
+            animation: pulseNudge 0.6s ease-in-out 3;
+        }
+
+        @media (max-width: 480px) {
+            .modal-actions {
+                right: 10px;
+                bottom: 70px;
+                gap: 14px;
+            }
+            .modal-action-btn {
+                width: 42px;
+                height: 42px;
+            }
+            .modal-action-icon-svg {
+                width: 19px;
+                height: 19px;
+            }
+            .modal-nav-btn {
+                width: 40px;
+                height: 40px;
+                bottom: 16px;
+            }
+            #modal-prev-btn { left: calc(50% - 46px); }
+            #modal-next-btn { left: calc(50% + 6px); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: var(--font-lg);
+        }
+
+        .footer-section p, .footer-section li {
+            color: var(--text-muted);
+            font-size: var(--font-md);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            font-size: var(--font-md);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+        }
+
+        /* Mobile Actions Container - Side by Side */
+        .mobile-actions-container {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: var(--darker-bg);
+            gap: 10px;
+            align-items: center;
+        }
+
+        .mobile-actions-container .language-selector {
+            flex: 1;
+            margin: 0;
+        }
+
+        .mobile-actions-container .language-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .mobile-actions-container .theme-toggle {
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        /* Mobile Language Options */
+        .mobile-language-options {
+            display: none;
+            margin-top: 10px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-language-options.active {
+            display: block;
+        }
+
+        .mobile-language-options a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-language-options a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-language-options a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .mobile-language-options a:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-language-options a img {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .shields-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+
+            .page-header h1 {
+                font-size: var(--font-3xl);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            :root {
+                --font-xs: 0.7rem;
+                --font-sm: 0.8rem;
+                --font-md: 0.9rem;
+                --font-lg: 1rem;
+                --font-xl: 1.1rem;
+                --font-2xl: 1.3rem;
+                --font-3xl: 1.5rem;
+                --font-4xl: 1.7rem;
+            }
+
+            .header-content {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--darker-bg);
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+                overflow-y: auto;
+                transition: all 0.3s ease;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 0;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                margin: 10px 0;
+                border: none;
+                background: var(--dark-bg);
+                display: none;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-actions {
+                display: none;
+            }
+
+            .mobile-actions-container {
+                display: flex;
+            }
+
+            .shields-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 15px;
+            }
+
+            .shield-display {
+                height: 120px;
+            }
+
+            .page-header {
+                padding: 40px 0;
+            }
+
+            .page-header h1 {
+                font-size: var(--font-2xl);
+            }
+
+            .disclaimer-banner {
+                padding: 12px 15px;
+                margin: 0 20px 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .pagination a {
+                padding: 8px 12px;
+                font-size: var(--font-sm);
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --font-xs: 0.65rem;
+                --font-sm: 0.75rem;
+                --font-md: 0.85rem;
+                --font-lg: 0.95rem;
+                --font-xl: 1.05rem;
+                --font-2xl: 1.2rem;
+                --font-3xl: 1.35rem;
+                --font-4xl: 1.5rem;
+            }
+
+            .logo {
+                font-size: var(--font-xl);
+            }
+
+            .shields-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 12px;
+            }
+
+            .shield-display {
+                height: 100px;
+            }
+
+            .page-header h1 {
+                font-size: var(--font-xl);
+            }
+
+            .page-header p {
+                font-size: var(--font-md);
+            }
+
+            .disclaimer-banner {
+                padding: 10px 12px;
+                margin: 0 15px 15px;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+            }
+
+            footer {
+                padding: 30px 0 15px;
+            }
+
+            .mobile-actions-container {
+                gap: 8px;
+            }
+
+            .mobile-actions-container .theme-toggle {
+                width: 36px;
+                height: 36px;
+            }
+
+            .mobile-actions-container .language-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                height: 36px;
+            }
+        }
+
+        /* No results styling */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            font-size: var(--font-lg);
+        }
+
+        .no-results::before {
+            content: '';
+            display: block;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 15px;
+            background: url('../assets/img/mascot/mascot-alive.gif') center / contain no-repeat;
+        }
+
+        /* Prevent zoom on focus for iOS */
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles for accessibility */
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VVS6GWC596');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="../assets/img/mascot/freeze.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                    </a>
+                </div>
+                <span class="header-page-title">Galeri Shields</span>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu"><svg class="menu-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg></button>
+                <nav id="main-nav">
+                    <ul>
+                        <li class="dropdown">
+                            <a href="#">Upload</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="heads.html"><img src="../assets/img/menu-icons/head.svg" alt="" class="menu-icon">Heads</a></li>
+                                <li><a href="bodies.html"><img src="../assets/img/menu-icons/body.svg" alt="" class="menu-icon">Bodies</a></li>
+                                <li><a href="hats.html"><img src="../assets/img/menu-icons/hat.svg" alt="" class="menu-icon">Hats</a></li>
+                                <li><a href="swords.html"><img src="../assets/img/menu-icons/sword.svg" alt="" class="menu-icon">Swords</a></li>
+                                <li><a href="shields.html"><img src="../assets/img/menu-icons/shield.svg" alt="" class="menu-icon">Shields</a></li>
+                                <li><a href="upload-sets.html"><img src="../assets/img/menu-icons/box.svg" alt="" class="menu-icon">Set Upload</a></li>
+                                <li><a href="templates.html"><img src="../assets/img/menu-icons/document.svg" alt="" class="menu-icon">Templates</a></li>
+                                <li><a href="../previewer.html"><img src="../assets/img/menu-icons/eye.svg" alt="" class="menu-icon">Gani Previewer</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Upload Sekarang &#8599;</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer"><img src="../assets/img/menu-icons/eye.svg" alt="" class="menu-icon">Upload Viewer (oleh DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Sekarang (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Sekarang (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Sekarang (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="../assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Sekarang (Zone) ↗</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Panduan - Bagaimana?</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upload.html"><img src="../assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload</a></li>
+                                <li><a href="trade-guide.html"><img src="../assets/img/menu-icons/swap.svg" alt="" class="menu-icon">Perdagangan</a></li>
+                                <li><a href="job-guide.html"><img src="../assets/img/menu-icons/coin.svg" alt="" class="menu-icon">Dapatkan Gralats</a></li>
+                                <li><a href="events-guide.html"><img src="../assets/img/menu-icons/star.svg" alt="" class="menu-icon">Dapatkan Koin Event</a></li>
+                            <li><a href="secret-achievements.html"><img src="../assets/img/menu-icons/trophy.svg" alt="" class="menu-icon">Pencapaian Rahasia</a></li>
+                                </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Alat Perdagangan</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sellables-calculator.html"><img src="../assets/img/menu-icons/calculator.svg" alt="" class="menu-icon">Kalkulator Sellables</a></li>
+                                <li><a href="advanced-calculator.html"><img src="../assets/img/menu-icons/calculator.svg" alt="" class="menu-icon">Kalkulator Lanjutan</a></li>
+                                <li><a href="ratio-history.html"><img src="../assets/img/menu-icons/chart.svg" alt="" class="menu-icon">Riwayat Rasio</a></li>
+                                <li><a href="profit-loss.html"><img src="../assets/img/menu-icons/chart.svg" alt="" class="menu-icon">Pelacak Untung & Rugi</a></li>
+                                <li><a href="price-house.html"><img src="../assets/img/menu-icons/house.svg" alt="" class="menu-icon">Daftar Harga</a></li>
+                            <li><a href="guns.html"><img src="../assets/img/menu-icons/gun.svg" alt="" class="menu-icon">Rating Senjata</a></li>
+                                </ul>
+                        </li>
+                    </ul>
+
+                    <!-- Mobile Actions Container - Side by Side -->
+                    <div class="mobile-actions-container">
+                        <!-- Mobile Language Selector -->
+                        <div class="language-selector">
+                            <button class="language-btn" id="mobile-language-btn">
+                                <img src="https://flagcdn.com/w40/id.png" alt="Indonesia">
+                                <span>Indonesia</span>
+                            </button>
+                            <div class="mobile-language-options" id="mobile-language-options">
+                                <a href="../shields.html">
+                                    <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                    <span>English</span>
+                                </a>
+                                <a href="../pt/shields.html">
+                                    <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                    <span>Português</span>
+                                </a>
+                                <a href="shields.html">
+                                    <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
+                                    <span>Indonesia</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Theme Toggle -->
+                        <button class="theme-toggle" id="mobile-theme-toggle" aria-label="Toggle theme">
+                            <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                            </svg>
+                            <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Desktop Header Actions -->
+                <div class="header-actions">
+                    <!-- Language Selector -->
+                    <div class="language-selector">
+                        <button class="language-btn" id="desktop-language-btn">
+                            <img src="https://flagcdn.com/w40/id.png" alt="Indonesia">
+                            <span>Indonesia</span>
+                        </button>
+                        <div class="language-options" id="desktop-language-options">
+                            <a href="../shields.html">
+                                <img src="https://flagcdn.com/w40/us.png" alt="English">
+                                <span>English</span>
+                            </a>
+                            <a href="../pt/shields.html">
+                                <img src="https://flagcdn.com/w40/br.png" alt="Portuguese">
+                                <span>Português</span>
+                            </a>
+                            <a href="shields.html">
+                                <img src="https://flagcdn.com/w40/id.png" alt="Indonesian">
+                                <span>Indonesia</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Theme Toggle -->
+                    <button class="theme-toggle" id="desktop-theme-toggle" aria-label="Toggle theme">
+                        <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                        </svg>
+                        <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Galeri Shields Graal Era</h1>
+            <p>Jelajahi upload perisai kustom. Unduh salah satunya, atau jadikan inspirasi buat desainmu sendiri.</p>
+        </div>
+    </div>
+
+    <!-- Disclaimer Banner -->
+    <div class="container">
+        <div class="disclaimer-banner">
+            <p><strong>Sangkalan:</strong> Semua gambar yang diunggah dibuat oleh pengguna dan tersedia untuk umum di dalam GraalOnline. GraalGuide tidak mengklaim kepemilikan atas konten buatan pengguna apa pun. Jika kamu adalah pembuatnya dan ingin uploadmu dihapus, silakan hubungi kami melalui <strong>graalguide.contact@gmail.com</strong></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="ad-slot">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-4927938315377514"
+                 data-ad-slot="7356329738"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="community-status" id="community-status"></div>
+        <div class="favorites-bar">
+            <button type="button" class="favorites-toggle" id="favorites-toggle">☆ Hanya Favorit <span id="favorites-count">(0)</span></button>
+        </div>
+        <div class="shields-grid" id="shields-container">
+            <!-- Shields will be populated by JavaScript -->
+        </div>
+
+        <ul class="pagination">
+            <li><a href="#" class="page-nav" data-page="prev">&laquo;</a></li>
+            <li><a href="#" class="active" data-page="1">1</a></li>
+            <li><a href="#" data-page="2">2</a></li>
+            <li><a href="#" data-page="3">3</a></li>
+            <li><a href="#" class="page-nav" data-page="next">&raquo;</a></li>
+        </ul>
+        <form class="jump-to-page" id="jumpToPageForm">
+            <span id="pageOfLabel">Halaman 1 dari 1</span>
+            <input type="number" id="jumpToPageInput" min="1" value="1" aria-label="Lompat ke halaman">
+            <button type="submit" class="jump-btn">Ke</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="ad-slot ad-slot-fluid">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-format="autorelaxed"
+                 data-ad-client="ca-pub-4927938315377514"
+                 data-ad-slot="6601274774"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+
+    <!-- Modal for enlarged view -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="enlarged-img">
+        <button type="button" id="modal-prev-btn" class="modal-nav-btn" aria-label="Sebelumnya" title="Sebelumnya">
+            <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button type="button" id="modal-next-btn" class="modal-nav-btn" aria-label="Berikutnya" title="Berikutnya">
+            <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <div class="modal-actions">
+            <button type="button" id="modal-fav-btn" class="modal-action-btn" aria-label="Favorit" title="Favorit">
+                <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </button>
+            <a id="download-btn" class="modal-action-btn" download aria-label="Unduh" title="Unduh">
+                <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </a>
+            <button type="button" id="share-btn" class="modal-action-btn" aria-label="Bagikan" title="Bagikan">
+                <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="share-section" data-share-text="Lihat ini di GraalGuide!" data-copied-text="Disalin!" data-copied-discord-text="Disalin! Tempel di Discord">
+        <img src="../assets/img/mascot/angry.png" alt="" class="share-section-mascot">
+        <h3 class="share-section-title">Bagikan Halaman Ini!!</h3>
+        <p class="share-section-subtitle">Kamu belum membagikan ini ke sesama Graalians?</p>
+        <div class="share-section-buttons">
+            <button type="button" class="share-platform-btn share-discord">
+                <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                <span class="share-btn-label">Discord</span>
+            </button>
+            <a href="#" class="share-platform-btn share-whatsapp" target="_blank" rel="noopener noreferrer">
+                <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                <span class="share-btn-label">WhatsApp</span>
+            </a>
+            <a href="#" class="share-platform-btn share-telegram" target="_blank" rel="noopener noreferrer">
+                <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                <span class="share-btn-label">Telegram</span>
+            </a>
+            <button type="button" class="share-platform-btn share-copy">
+                <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                <span class="share-btn-label">Salin Link</span>
+            </button>
+        </div>
+    </div>
+    <script src="../assets/js/share-buttons.js"></script>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang GraalGuide</h3>
+                    <p>GraalGuide adalah sumber daya buatan penggemar terbaik untuk pemain Graal Era. Kami menyediakan alat, panduan, dan sumber daya untuk meningkatkan pengalaman bermainmu.</p>
+                    <p><em>GraalGuide tidak berafiliasi dengan GraalOnline atau Toonslab.</em></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="upload.html">Upload</a></li>
+                        <li><a href="trade-guide.html">Panduan Perdagangan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal & Kebijakan</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Kebijakan Privasi</a></li>
+                        <li><a href="terms-of-service.html">Ketentuan Layanan</a></li>
+                        <li><a href="cookie-policy.html">Kebijakan Cookie</a></li>
+                        <li><a href="disclaimer.html">Sangkalan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Terhubung</h3>
+                    <ul>
+                        <li><a href="about-me.html">Tentang Saya</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc">YouTube</a></li>
+                        <li><a href="contact-us.html">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GraalGuide.com. Seluruh hak cipta dilindungi. Semua merek dagang adalah milik pemiliknya masing-masing.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // No curated shield set yet - the gallery launches entirely from community uploads
+        // (accessories that were previously miscategorized as heads, see shields-community.json)
+        const shieldsData = [];
+
+        // Configuration
+        const itemsPerPage = 40;
+        const SHIELDS_STATE_KEY = 'shieldsLastState';
+
+        // Favorites (localStorage, shared across heads/bodies/shields since
+        // image paths are unique across all three galleries)
+        const FAVORITES_KEY = 'graalguide_favorites';
+        function getFavorites() {
+            try {
+                return new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY)) || []);
+            } catch (e) {
+                return new Set();
+            }
+        }
+        function saveFavorites(set) {
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify([...set]));
+        }
+        let favorites = getFavorites();
+        let showFavoritesOnly = false;
+
+        function updateFavoritesButton() {
+            const btn = document.getElementById('favorites-toggle');
+            if (!btn) return;
+            btn.classList.toggle('active', showFavoritesOnly);
+            btn.innerHTML = (showFavoritesOnly ? '★' : '☆') + ' Hanya Favorit <span id="favorites-count">(' + favorites.size + ')</span>';
+        }
+        // shieldsData starts empty and the entire gallery comes from the async
+        // community fetch; don't clamp the requested page until it's loaded,
+        // or every deep-page request gets bounced back to page 1.
+        let communityDataLoaded = false;
+
+        // On a bare visit (no query string at all, e.g. clicked "Shields" from the nav),
+        // resume wherever the visitor last left off instead of always resetting to page 1.
+        let urlParams = new URLSearchParams(window.location.search);
+        if (!window.location.search) {
+            const savedState = localStorage.getItem(SHIELDS_STATE_KEY);
+            if (savedState) {
+                urlParams = new URLSearchParams(savedState);
+                history.replaceState(null, '', 'shields.html?' + savedState);
+            }
+        }
+        let currentPage = parseInt(urlParams.get('page')) || 1;
+        let filteredShields = [...shieldsData];
+
+        // Build a real, crawlable URL for a given page
+        function buildPageURL(pageNum) {
+            const params = new URLSearchParams();
+            params.set('page', pageNum);
+            return 'shields.html?' + params.toString();
+        }
+
+        // Remember the current page so the next bare visit can resume here
+        function saveShieldsState() {
+            const params = new URLSearchParams();
+            params.set('page', currentPage);
+            localStorage.setItem(SHIELDS_STATE_KEY, params.toString());
+        }
+
+        // Function to render shields based on current page
+        function renderShields() {
+            const shieldsContainer = document.getElementById('shields-container');
+
+            filteredShields = showFavoritesOnly ? shieldsData.filter(shield => favorites.has(shield.image)) : shieldsData;
+
+            // Clamp currentPage into range - a stale/out-of-range page number
+            // would otherwise slice past the end of the array and render nothing.
+            // Only clamp the upper bound once the community dataset has loaded -
+            // before that, filteredShields.length understates the true total (shieldsData
+            // starts empty) and would wrongly bounce valid deep-page requests back down.
+            if (communityDataLoaded) {
+                const maxPage = Math.max(1, Math.ceil(filteredShields.length / itemsPerPage));
+                if (currentPage > maxPage || currentPage < 1) {
+                    currentPage = Math.min(Math.max(currentPage, 1), maxPage);
+                    history.replaceState(null, '', buildPageURL(currentPage));
+                }
+            } else if (currentPage < 1) {
+                currentPage = 1;
+            }
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const shieldsToShow = filteredShields.slice(startIndex, endIndex);
+
+            if (shieldsToShow.length === 0) {
+                shieldsContainer.innerHTML = showFavoritesOnly
+                    ? '<div class="no-results">Belum ada favorit - ketuk bintang pada shield mana pun untuk menyimpannya di sini.</div>'
+                    : '<div class="no-results">Tidak ada shield ditemukan.</div>';
+                return;
+            }
+
+            // Build all item markup in one pass and write it in a single
+            // innerHTML assignment instead of creating/appending N separate
+            // elements - the per-item DOM churn was the main-thread cost
+            // behind a Core Web Vitals INP (interaction responsiveness)
+            // warning on this page. Clicks are handled by one delegated
+            // listener on the container (set up once, below) instead of one
+            // listener per item.
+            shieldsContainer.innerHTML = shieldsToShow.map(shield => `
+                <div class="shield-item" data-image="${shield.image}">
+                    <button type="button" class="fav-btn${favorites.has(shield.image) ? ' active' : ''}" data-fav-image="${shield.image}" aria-label="Favorit">${favorites.has(shield.image) ? '★' : '☆'}</button>
+                    <div class="shield-display">
+                        <img src="${shield.image}" class="shield-img" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            `).join('');
+
+            updatePagination();
+        }
+
+        // Function to update pagination
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredShields.length / itemsPerPage);
+            const paginationContainer = document.querySelector('.pagination');
+
+            const pageOfLabel = document.getElementById('pageOfLabel');
+            const jumpInput = document.getElementById('jumpToPageInput');
+            if (pageOfLabel) pageOfLabel.textContent = `Halaman ${currentPage} dari ${totalPages || 1}`;
+            if (jumpInput) {
+                jumpInput.max = Math.max(totalPages, 1);
+                jumpInput.value = currentPage;
+            }
+
+            const prevButton = paginationContainer.querySelector('[data-page="prev"]').parentNode;
+            const nextButton = paginationContainer.querySelector('[data-page="next"]').parentNode;
+
+            paginationContainer.innerHTML = '';
+            paginationContainer.appendChild(prevButton);
+
+            const maxVisiblePages = window.innerWidth < 768 ? 3 : 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = buildPageURL(i);
+                a.textContent = i;
+                a.dataset.page = i;
+
+                if (i === currentPage) {
+                    a.classList.add('active');
+                }
+
+                li.appendChild(a);
+                paginationContainer.appendChild(li);
+            }
+
+            paginationContainer.appendChild(nextButton);
+
+            const prevBtn = document.querySelector('[data-page="prev"]');
+            const nextBtn = document.querySelector('[data-page="next"]');
+
+            if (prevBtn) {
+                prevBtn.href = buildPageURL(Math.max(1, currentPage - 1));
+                prevBtn.parentNode.classList.toggle('disabled', currentPage === 1);
+            }
+            if (nextBtn) {
+                nextBtn.href = buildPageURL(Math.min(Math.max(totalPages, 1), currentPage + 1));
+                nextBtn.parentNode.classList.toggle('disabled', currentPage === totalPages || totalPages === 0);
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            const jumpForm = document.getElementById('jumpToPageForm');
+            if (jumpForm) {
+                jumpForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const totalPages = Math.ceil(filteredShields.length / itemsPerPage);
+                    let target = parseInt(document.getElementById('jumpToPageInput').value);
+                    if (isNaN(target)) return;
+                    target = Math.min(Math.max(target, 1), Math.max(totalPages, 1));
+                    window.location.href = buildPageURL(target);
+                });
+            }
+
+            document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
+            document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+
+                if (window.innerWidth <= 1100) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickInsideMenuBtn = mobileMenuBtn.contains(event.target);
+
+                if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+
+                if (!event.target.closest('.language-selector')) {
+                    document.querySelectorAll('.language-options, .mobile-language-options').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown') && !e.target.closest('.language-selector')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                }
+            });
+
+            // Initial render
+            renderShields();
+            saveShieldsState();
+
+            // Load community-uploaded shields and merge in
+            const communityStatus = document.getElementById('community-status');
+            function loadCommunityShields() {
+                communityStatus.className = 'community-status is-loading';
+                communityStatus.style.display = 'flex';
+                communityStatus.innerHTML = '<img src="../assets/img/mascot/freeze.png" class="community-status-icon" alt="">Memuat unggahan komunitas&hellip;';
+
+                fetch('../data/shields-community.json')
+                    .then(response => {
+                        if (!response.ok) throw new Error('HTTP ' + response.status);
+                        return response.json();
+                    })
+                    .then(communityShields => {
+                        // Community dataset paths are root-relative; prefix for this
+                        // page's subfolder so the images actually resolve.
+                        communityShields.forEach(shield => { shield.image = '../' + shield.image; });
+                        shieldsData.push(...communityShields);
+                        communityDataLoaded = true;
+                        communityStatus.style.display = 'none';
+                        renderShields();
+                        saveShieldsState();
+                    })
+                    .catch(error => {
+                        console.error('Could not load community shields:', error);
+                        communityDataLoaded = true;
+                        communityStatus.className = 'community-status';
+                        communityStatus.style.display = 'flex';
+                        communityStatus.innerHTML = '<img src="../assets/img/mascot/freeze.png" class="community-status-icon" alt="">Unggahan komunitas gagal dimuat - hanya menampilkan galeri default.<button type="button" class="community-status-retry" id="community-retry">Coba lagi</button>';
+                        document.getElementById('community-retry').addEventListener('click', loadCommunityShields);
+                        renderShields();
+                    });
+            }
+            loadCommunityShields();
+
+            // Modal functionality
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('image-modal').style.display = 'none';
+            });
+
+            // TikTok-style horizontal swipe/scroll through the currently filtered
+            // list while the modal is open (swipe or scroll left = next, right =
+            // previous). Tracks position by index into filteredShields so it works
+            // seamlessly across pagination boundaries, not just the current page.
+            let modalCurrentIndex = -1;
+
+            function updateNavButtons() {
+                const list = filteredShields;
+                const prevBtn = document.getElementById('modal-prev-btn');
+                const nextBtn = document.getElementById('modal-next-btn');
+                prevBtn.classList.toggle('disabled', modalCurrentIndex <= 0);
+                nextBtn.classList.toggle('disabled', !list || modalCurrentIndex >= list.length - 1);
+            }
+
+            function setModalContent(index, animate) {
+                const list = filteredShields;
+                if (!list || index < 0 || index >= list.length) return;
+                modalCurrentIndex = index;
+                const image = list[index].image;
+                const imgEl = document.getElementById('enlarged-img');
+                const downloadBtn = document.getElementById('download-btn');
+                const favBtn = document.getElementById('modal-fav-btn');
+                const apply = () => {
+                    imgEl.src = image;
+                    imgEl.style.opacity = '1';
+                    downloadBtn.href = image;
+                    downloadBtn.download = image.split('/').pop();
+                    favBtn.classList.toggle('active', favorites.has(image));
+                    document.getElementById('share-btn').classList.remove('nudge');
+                    updateNavButtons();
+                };
+
+                if (animate) {
+                    imgEl.style.opacity = '0';
+                    setTimeout(apply, 120);
+                } else {
+                    apply();
+                }
+            }
+
+            function navigateModal(direction) {
+                setModalContent(modalCurrentIndex + direction, true);
+            }
+
+            document.getElementById('modal-prev-btn').addEventListener('click', function() {
+                navigateModal(-1);
+            });
+            document.getElementById('modal-next-btn').addEventListener('click', function() {
+                navigateModal(1);
+            });
+
+            (function() {
+                const modalEl = document.getElementById('image-modal');
+                let touchStartX = null;
+
+                modalEl.addEventListener('touchstart', function(e) {
+                    touchStartX = e.touches[0].clientX;
+                }, { passive: true });
+
+                modalEl.addEventListener('touchend', function(e) {
+                    if (touchStartX === null) return;
+                    const deltaX = touchStartX - e.changedTouches[0].clientX;
+                    const threshold = 50;
+                    if (deltaX > threshold) {
+                        navigateModal(1);
+                    } else if (deltaX < -threshold) {
+                        navigateModal(-1);
+                    }
+                    touchStartX = null;
+                }, { passive: true });
+
+                // Desktop equivalent: horizontal trackpad/wheel scroll. Only
+                // deltaX is checked so an ordinary vertical mouse-wheel scroll
+                // (deltaY) never triggers navigation by accident.
+                let wheelCooldown = false;
+                modalEl.addEventListener('wheel', function(e) {
+                    if (wheelCooldown || Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
+                    wheelCooldown = true;
+                    setTimeout(() => { wheelCooldown = false; }, 350);
+                    if (e.deltaX > 0) {
+                        navigateModal(1);
+                    } else if (e.deltaX < 0) {
+                        navigateModal(-1);
+                    }
+                }, { passive: true });
+
+                document.addEventListener('keydown', function(e) {
+                    if (modalEl.style.display !== 'flex') return;
+                    if (e.key === 'ArrowRight') {
+                        navigateModal(1);
+                    } else if (e.key === 'ArrowLeft') {
+                        navigateModal(-1);
+                    }
+                });
+            })();
+
+            // Nudge the share button right after a download, like TikTok
+            // prompting a repost right after you engage with something.
+            document.getElementById('download-btn').addEventListener('click', function() {
+                const shareBtn = document.getElementById('share-btn');
+                shareBtn.classList.add('nudge');
+                setTimeout(() => shareBtn.classList.remove('nudge'), 2000);
+            });
+
+            // Share button - native share sheet (Discord shows up there on mobile)
+            // with a copy-link fallback for browsers without navigator.share.
+            document.getElementById('share-btn').addEventListener('click', function() {
+                const shareBtn = this;
+                const imageUrl = document.getElementById('download-btn').href;
+
+                const showCopied = () => {
+                    shareBtn.classList.add('copied');
+                    shareBtn.title = 'Disalin!';
+                    setTimeout(() => {
+                        shareBtn.classList.remove('copied');
+                        shareBtn.title = 'Bagikan';
+                    }, 2000);
+                };
+
+                if (navigator.share) {
+                    navigator.share({ title: 'GraalGuide', text: 'Lihat ini di GraalGuide!', url: imageUrl })
+                        .catch(err => {
+                            if (err.name !== 'AbortError' && navigator.clipboard) {
+                                navigator.clipboard.writeText(imageUrl).then(showCopied).catch(() => {});
+                            }
+                        });
+                } else if (navigator.clipboard) {
+                    navigator.clipboard.writeText(imageUrl).then(showCopied).catch(() => {});
+                }
+            });
+
+            // Favorite button inside the modal, wired to the same
+            // localStorage-backed favorites Set the grid star buttons use.
+            document.getElementById('modal-fav-btn').addEventListener('click', function() {
+                if (modalCurrentIndex < 0 || modalCurrentIndex >= filteredShields.length) return;
+                const key = filteredShields[modalCurrentIndex].image;
+                if (favorites.has(key)) {
+                    favorites.delete(key);
+                    this.classList.remove('active');
+                } else {
+                    favorites.add(key);
+                    this.classList.add('active');
+                }
+                saveFavorites(favorites);
+                updateFavoritesButton();
+                const gridBtn = document.querySelector(`.fav-btn[data-fav-image="${key}"]`);
+                if (gridBtn) {
+                    gridBtn.classList.toggle('active', favorites.has(key));
+                    gridBtn.textContent = favorites.has(key) ? '★' : '☆';
+                }
+                if (showFavoritesOnly && !favorites.has(key)) renderShields();
+            });
+
+            // Delegated click handler for the gallery grid - one listener
+            // for the whole container instead of one per rendered item.
+            document.getElementById('shields-container').addEventListener('click', function(e) {
+                const favBtn = e.target.closest('.fav-btn');
+                if (favBtn) {
+                    e.stopPropagation();
+                    const image = favBtn.dataset.favImage;
+                    if (favorites.has(image)) {
+                        favorites.delete(image);
+                        favBtn.classList.remove('active');
+                        favBtn.textContent = '☆';
+                    } else {
+                        favorites.add(image);
+                        favBtn.classList.add('active');
+                        favBtn.textContent = '★';
+                    }
+                    saveFavorites(favorites);
+                    updateFavoritesButton();
+                    if (showFavoritesOnly) renderShields();
+                    return;
+                }
+
+                const item = e.target.closest('.shield-item');
+                if (!item) return;
+                const image = item.dataset.image;
+                const idx = filteredShields.findIndex(h => h.image === image);
+                setModalContent(idx >= 0 ? idx : 0, false);
+                document.getElementById('image-modal').style.display = 'flex';
+            });
+
+            // Favorites-only toggle
+            const favoritesToggleBtn = document.getElementById('favorites-toggle');
+            if (favoritesToggleBtn) {
+                favoritesToggleBtn.addEventListener('click', function() {
+                    showFavoritesOnly = !showFavoritesOnly;
+                    currentPage = 1;
+                    updateFavoritesButton();
+                    renderShields();
+                });
+            }
+            updateFavoritesButton();
+
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('image-modal')) {
+                    document.getElementById('image-modal').style.display = 'none';
+                }
+            });
+
+            // Handle dropdown toggles on mobile/tablet
+            {
+                document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                    dropdownToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const dropdown = this.parentElement;
+                        const dropdownMenu = this.nextElementSibling;
+                        const isVisible = dropdownMenu.style.display === 'block';
+
+                        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                            menu.style.display = 'none';
+                        });
+                        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            }
+
+            // Handle desktop dropdown hover
+            if (window.matchMedia('(hover: hover)').matches) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'block';
+                    });
+
+                    dropdown.addEventListener('mouseleave', function() {
+                        this.querySelector('.dropdown-menu').style.display = 'none';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
