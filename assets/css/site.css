@@ -1032,11 +1032,7 @@ nav ul li a:hover {
    aren't the homepage. */
 
 .page-header {
-    background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(59, 130, 246, 0.14), transparent 65%),
-        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.14), transparent 65%),
-        linear-gradient(rgba(4, 4, 4, 0.88), rgba(4, 4, 4, 0.94)),
-        url('../../image/a/map.png') center/cover no-repeat;
+    background: var(--primary-color);
     padding: 70px 0;
     color: white;
     text-align: center;
@@ -1046,11 +1042,7 @@ nav ul li a:hover {
 }
 
 [data-theme="light"] .page-header {
-    background:
-        radial-gradient(ellipse 550px 320px at 12% 25%, rgba(59, 130, 246, 0.12), transparent 65%),
-        radial-gradient(ellipse 550px 320px at 90% 70%, rgba(59, 130, 246, 0.12), transparent 65%),
-        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
-        url('../../image/a/map.png') center/cover no-repeat;
+    background: var(--primary-color);
     color: #fff;
 }
 
