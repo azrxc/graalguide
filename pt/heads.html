@@ -2869,20 +2869,27 @@
         function renderHeads() {
             const headsContainer = document.getElementById('heads-container');
 
-            // Filter heads based on current filters
-            const filtered = headsData.filter(head => {
-                // Check color filter
-                const colorMatch = currentColorFilter === "all" || head.colors.includes(currentColorFilter);
-                
-                // Check gender filters
-                const genderMatch = currentGenderFilters.includes("all") ||
-                                  head.gender.some(gender => currentGenderFilters.includes(gender));
+            let filtered;
+            if (showFavoritesOnly) {
+                // Favorites are shared across every gallery (heads/bodies/hats/
+                // swords/shields), so "Favorites Only" shows the whole collection
+                // here, not just the ones that happen to be heads. Color/gender
+                // filters don't apply to items from other galleries, so skip them
+                // entirely in this mode.
+                filtered = [...favorites].map(image => ({ image }));
+            } else {
+                filtered = headsData.filter(head => {
+                    // Check color filter
+                    const colorMatch = currentColorFilter === "all" || head.colors.includes(currentColorFilter);
 
-                const favMatch = !showFavoritesOnly || favorites.has(head.image);
+                    // Check gender filters
+                    const genderMatch = currentGenderFilters.includes("all") ||
+                                      head.gender.some(gender => currentGenderFilters.includes(gender));
 
-                return colorMatch && genderMatch && favMatch;
-            });
-            
+                    return colorMatch && genderMatch;
+                });
+            }
+
             filteredHeads = filtered;
 
             // Clamp currentPage into range - a stale/out-of-range page number
@@ -2907,7 +2914,7 @@
             
             if (headsToShow.length === 0) {
                 headsContainer.innerHTML = showFavoritesOnly
-                    ? '<div class="no-results">Ainda sem favoritos - toque na estrela de qualquer head para salvá-la aqui.</div>'
+                    ? '<div class="no-results">Ainda sem favoritos - toque na estrela em qualquer item (heads, bodies, hats, swords, shields) para salvá-lo aqui.</div>'
                     : '<div class="no-results">Nenhuma head encontrada com esses filtros.</div>';
                 return;
             }
@@ -2919,7 +2926,20 @@
             // warning on this page. Clicks are handled by one delegated
             // listener on the container (set up once, below) instead of one
             // listener per item.
-            headsContainer.innerHTML = headsToShow.map(head => `
+            // The favorites-only view can contain non-head items (bodies,
+            // hats, swords, shields all share the same favorites list), so it
+            // uses a plain single-image tile instead of the head-specific
+            // 4-direction sprite crop, which would misread any non-head image.
+            headsContainer.innerHTML = showFavoritesOnly
+                ? headsToShow.map(head => `
+                    <div class="head-item" data-image="${head.image}">
+                        <button type="button" class="fav-btn${favorites.has(head.image) ? ' active' : ''}" data-fav-image="${head.image}" aria-label="Favoritar">${favorites.has(head.image) ? '★' : '☆'}</button>
+                        <div class="head-gallery">
+                            <img src="${head.image}" style="width:100%;height:100%;object-fit:contain;image-rendering:pixelated;" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                `).join('')
+                : headsToShow.map(head => `
                 <div class="head-item" data-image="${head.image}">
                     <button type="button" class="fav-btn${favorites.has(head.image) ? ' active' : ''}" data-fav-image="${head.image}" aria-label="Favoritar">${favorites.has(head.image) ? '★' : '☆'}</button>
                     <div class="head-gallery">
@@ -2930,7 +2950,7 @@
                     </div>
                 </div>
             `).join('');
-            
+
             // Update pagination
             updatePagination();
         }
@@ -3219,7 +3239,20 @@
                     downloadBtn.href = image;
                     downloadBtn.download = image.split('/').pop();
                     favBtn.classList.toggle('active', favorites.has(image));
-                    previewBtn.href = '../previewer.html?type=head&src=' + encodeURIComponent(image);
+                    // The favorites view can mix in bodies/hats/swords/shields -
+                    // detect the real type from the path instead of assuming
+                    // "head", and hide the preview button entirely for
+                    // swords/shields since the Gani Previewer has no weapon slot.
+                    const previewType = image.includes('/bodies') ? 'body'
+                        : image.includes('/hats') ? 'hat'
+                        : image.includes('/swords-community') || image.includes('/shields-community') ? null
+                        : 'head';
+                    if (previewType) {
+                        previewBtn.style.display = '';
+                        previewBtn.href = '../previewer.html?type=' + previewType + '&src=' + encodeURIComponent(image);
+                    } else {
+                        previewBtn.style.display = 'none';
+                    }
                     document.getElementById('share-btn').classList.remove('nudge');
                     updateNavButtons();
                 };

@@ -3365,14 +3365,18 @@
         function renderBodies() {
             const bodiesContainer = document.getElementById('bodies-container');
 
-            // Filter bodies based on current filters
-            const filtered = bodiesData.filter(body => {
-                // Check if "All" is selected or if body matches any selected category
-                const categoryMatch = currentCategoryFilters.includes("all") ||
-                       body.categories.some(category => currentCategoryFilters.includes(category));
-                const favMatch = !showFavoritesOnly || favorites.has(body.image);
-                return categoryMatch && favMatch;
-            });
+            let filtered;
+            if (showFavoritesOnly) {
+                // Favorites are shared across every gallery (heads/bodies/hats/
+                // swords/shields), so this shows the whole collection here, not
+                // just the ones that happen to be bodies.
+                filtered = [...favorites].map(image => ({ image }));
+            } else {
+                filtered = bodiesData.filter(body =>
+                    currentCategoryFilters.includes("all") ||
+                    body.categories.some(category => currentCategoryFilters.includes(category))
+                );
+            }
             
             filteredBodies = filtered;
 
@@ -3398,7 +3402,7 @@
             
             if (bodiesToShow.length === 0) {
                 bodiesContainer.innerHTML = showFavoritesOnly
-                    ? '<div class="no-results">Belum ada favorit - ketuk bintang pada body mana pun untuk menyimpannya di sini.</div>'
+                    ? '<div class="no-results">Belum ada favorit - ketuk bintang pada apa pun (heads, bodies, hats, swords, shields) untuk menyimpannya di sini.</div>'
                     : '<div class="no-results">Tidak ada body yang cocok dengan filter ini.</div>';
                 return;
             }
@@ -3686,7 +3690,20 @@
                     downloadBtn.href = image;
                     downloadBtn.download = image.split('/').pop();
                     favBtn.classList.toggle('active', favorites.has(image));
-                    previewBtn.href = '../previewer.html?type=body&src=' + encodeURIComponent(image);
+                    // The favorites view can mix in heads/hats/swords/shields -
+                    // detect the real type from the path instead of assuming
+                    // "body", and hide the preview button for swords/shields
+                    // since the Gani Previewer has no weapon slot.
+                    const previewType = image.includes('/heads') ? 'head'
+                        : image.includes('/hats') ? 'hat'
+                        : image.includes('/swords-community') || image.includes('/shields-community') ? null
+                        : 'body';
+                    if (previewType) {
+                        previewBtn.style.display = '';
+                        previewBtn.href = '../previewer.html?type=' + previewType + '&src=' + encodeURIComponent(image);
+                    } else {
+                        previewBtn.style.display = 'none';
+                    }
                     document.getElementById('share-btn').classList.remove('nudge');
                     updateNavButtons();
                 };

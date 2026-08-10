@@ -1417,7 +1417,10 @@
         function renderSwords() {
             const swordsContainer = document.getElementById('swords-container');
 
-            filteredSwords = showFavoritesOnly ? swordsData.filter(sword => favorites.has(sword.image)) : swordsData;
+            // Favorites are shared across every gallery (heads/bodies/hats/
+            // swords/shields), so this shows the whole collection here, not
+            // just the ones that happen to be swords.
+            filteredSwords = showFavoritesOnly ? [...favorites].map(image => ({ image })) : swordsData;
 
             // Clamp currentPage into range - a stale/out-of-range page number
             // would otherwise slice past the end of the array and render nothing.
@@ -1440,7 +1443,7 @@
 
             if (swordsToShow.length === 0) {
                 swordsContainer.innerHTML = showFavoritesOnly
-                    ? '<div class="no-results">Ainda sem favoritos - toque na estrela de qualquer sword para salvá-lo aqui.</div>'
+                    ? '<div class="no-results">Ainda sem favoritos - toque na estrela em qualquer item (heads, bodies, hats, swords, shields) para salvá-lo aqui.</div>'
                     : '<div class="no-results">Nenhum sword encontrado.</div>';
                 return;
             }

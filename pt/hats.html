@@ -1431,7 +1431,10 @@
         function renderHats() {
             const hatsContainer = document.getElementById('hats-container');
 
-            filteredHats = showFavoritesOnly ? hatsData.filter(hat => favorites.has(hat.image)) : hatsData;
+            // Favorites are shared across every gallery (heads/bodies/hats/
+            // swords/shields), so this shows the whole collection here, not
+            // just the ones that happen to be hats.
+            filteredHats = showFavoritesOnly ? [...favorites].map(image => ({ image })) : hatsData;
 
             // Clamp currentPage into range - a stale/out-of-range page number
             // would otherwise slice past the end of the array and render nothing.
@@ -1454,7 +1457,7 @@
 
             if (hatsToShow.length === 0) {
                 hatsContainer.innerHTML = showFavoritesOnly
-                    ? '<div class="no-results">Ainda sem favoritos - toque na estrela de qualquer hat para salvá-lo aqui.</div>'
+                    ? '<div class="no-results">Ainda sem favoritos - toque na estrela em qualquer item (heads, bodies, hats, swords, shields) para salvá-lo aqui.</div>'
                     : '<div class="no-results">Nenhum hat encontrado.</div>';
                 return;
             }
@@ -1668,7 +1671,20 @@
                     downloadBtn.href = image;
                     downloadBtn.download = image.split('/').pop();
                     favBtn.classList.toggle('active', favorites.has(image));
-                    previewBtn.href = '../previewer.html?type=hat&src=' + encodeURIComponent(image);
+                    // The favorites view can mix in heads/bodies/swords/shields -
+                    // detect the real type from the path instead of assuming
+                    // "hat", and hide the preview button for swords/shields
+                    // since the Gani Previewer has no weapon slot.
+                    const previewType = image.includes('/heads') ? 'head'
+                        : image.includes('/bodies') ? 'body'
+                        : image.includes('/swords-community') || image.includes('/shields-community') ? null
+                        : 'hat';
+                    if (previewType) {
+                        previewBtn.style.display = '';
+                        previewBtn.href = '../previewer.html?type=' + previewType + '&src=' + encodeURIComponent(image);
+                    } else {
+                        previewBtn.style.display = 'none';
+                    }
                     document.getElementById('share-btn').classList.remove('nudge');
                     updateNavButtons();
                 };

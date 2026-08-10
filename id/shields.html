@@ -1417,7 +1417,10 @@
         function renderShields() {
             const shieldsContainer = document.getElementById('shields-container');
 
-            filteredShields = showFavoritesOnly ? shieldsData.filter(shield => favorites.has(shield.image)) : shieldsData;
+            // Favorites are shared across every gallery (heads/bodies/hats/
+            // swords/shields), so this shows the whole collection here, not
+            // just the ones that happen to be shields.
+            filteredShields = showFavoritesOnly ? [...favorites].map(image => ({ image })) : shieldsData;
 
             // Clamp currentPage into range - a stale/out-of-range page number
             // would otherwise slice past the end of the array and render nothing.
@@ -1440,7 +1443,7 @@
 
             if (shieldsToShow.length === 0) {
                 shieldsContainer.innerHTML = showFavoritesOnly
-                    ? '<div class="no-results">Belum ada favorit - ketuk bintang pada shield mana pun untuk menyimpannya di sini.</div>'
+                    ? '<div class="no-results">Belum ada favorit - ketuk bintang pada apa pun (heads, bodies, hats, swords, shields) untuk menyimpannya di sini.</div>'
                     : '<div class="no-results">Tidak ada shield ditemukan.</div>';
                 return;
             }
