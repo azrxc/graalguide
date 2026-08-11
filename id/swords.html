@@ -1021,6 +1021,32 @@
             font-size: var(--font-lg);
         }
 
+        /* Section headings in the grouped Favorites Only view */
+        .fav-group-heading {
+            font-size: var(--font-lg);
+            font-weight: 700;
+            margin: 30px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .fav-group-heading:first-child {
+            margin-top: 0;
+        }
+
+        .fav-group-count {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+        }
+
+        .fav-group-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
         .no-results::before {
             content: '';
             display: block;
@@ -1437,40 +1463,79 @@
                 currentPage = 1;
             }
 
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const swordsToShow = filteredSwords.slice(startIndex, endIndex);
+            // Favorites aren't paginated - the whole point is seeing your
+            // whole collection at once, grouped by which gallery each item
+            // came from, instead of hunting across pages.
+            const swordsToShow = showFavoritesOnly ? filteredSwords : filteredSwords.slice((currentPage - 1) * itemsPerPage, (currentPage - 1) * itemsPerPage + itemsPerPage);
 
             if (swordsToShow.length === 0) {
                 swordsContainer.innerHTML = showFavoritesOnly
                     ? '<div class="no-results">Belum ada favorit - ketuk bintang pada apa pun (heads, bodies, hats, swords, shields) untuk menyimpannya di sini.</div>'
                     : '<div class="no-results">Tidak ada sword ditemukan.</div>';
+                updatePagination();
                 return;
             }
 
-            // Build all item markup in one pass and write it in a single
-            // innerHTML assignment instead of creating/appending N separate
-            // elements - the per-item DOM churn was the main-thread cost
-            // behind a Core Web Vitals INP (interaction responsiveness)
-            // warning on this page. Clicks are handled by one delegated
-            // listener on the container (set up once, below) instead of one
-            // listener per item.
-            swordsContainer.innerHTML = swordsToShow.map(sword => `
+            const favTile = sword => `
                 <div class="sword-item" data-image="${sword.image}">
                     <button type="button" class="fav-btn${favorites.has(sword.image) ? ' active' : ''}" data-fav-image="${sword.image}" aria-label="Favorit">${favorites.has(sword.image) ? '★' : '☆'}</button>
                     <div class="sword-display">
                         <img src="${sword.image}" class="sword-img" loading="lazy" decoding="async">
                     </div>
                 </div>
-            `).join('');
+            `;
+
+            if (showFavoritesOnly) {
+                // Group the shared favorites list by which gallery each image
+                // actually came from, so it reads like "Heads (3) / Bodies (2)
+                // / ..." instead of one undifferentiated grid.
+                const groups = [
+                    { label: 'Heads', test: img => /\/heads(-community)?\//.test(img) },
+                    { label: 'Bodies', test: img => /\/bodies(-community)?\//.test(img) },
+                    { label: 'Hats', test: img => img.includes('/hats-community/') },
+                    { label: 'Swords', test: img => img.includes('/swords-community/') },
+                    { label: 'Shields', test: img => img.includes('/shields-community/') },
+                ];
+                let html = '';
+                const seen = new Set();
+                groups.forEach(g => {
+                    const items = swordsToShow.filter(item => g.test(item.image));
+                    items.forEach(item => seen.add(item.image));
+                    if (items.length === 0) return;
+                    html += `<h3 class="fav-group-heading">${g.label} <span class="fav-group-count">(${items.length})</span></h3>`;
+                    html += `<div class="fav-group-grid">` + items.map(favTile).join('') + `</div>`;
+                });
+                const leftover = swordsToShow.filter(item => !seen.has(item.image));
+                if (leftover.length) {
+                    html += `<h3 class="fav-group-heading">Other <span class="fav-group-count">(${leftover.length})</span></h3>`;
+                    html += `<div class="fav-group-grid">` + leftover.map(favTile).join('') + `</div>`;
+                }
+                swordsContainer.innerHTML = html;
+            } else {
+                // Build all item markup in one pass and write it in a single
+                // innerHTML assignment instead of creating/appending N separate
+                // elements - the per-item DOM churn was the main-thread cost
+                // behind a Core Web Vitals INP (interaction responsiveness)
+                // warning on this page. Clicks are handled by one delegated
+                // listener on the container (set up once, below) instead of one
+                // listener per item.
+                swordsContainer.innerHTML = swordsToShow.map(favTile).join('');
+            }
 
             updatePagination();
         }
 
         // Function to update pagination
         function updatePagination() {
-            const totalPages = Math.ceil(filteredSwords.length / itemsPerPage);
             const paginationContainer = document.querySelector('.pagination');
+            const jumpForm = document.getElementById('jumpToPageForm');
+            // Favorites view shows everything at once (grouped by gallery),
+            // so page-number controls don't apply there.
+            if (paginationContainer) paginationContainer.style.display = showFavoritesOnly ? 'none' : '';
+            if (jumpForm) jumpForm.style.display = showFavoritesOnly ? 'none' : '';
+            if (showFavoritesOnly) return;
+
+            const totalPages = Math.ceil(filteredSwords.length / itemsPerPage);
 
             const pageOfLabel = document.getElementById('pageOfLabel');
             const jumpInput = document.getElementById('jumpToPageInput');
