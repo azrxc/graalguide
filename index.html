@@ -62,13 +62,14 @@
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         }
         
-        body { 
-            background-color: var(--dark-bg); 
-            color: var(--text-color); 
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
             line-height: 1.6;
             font-size: var(--font-md);
             transition: background-color 0.3s ease, color 0.3s ease;
             min-height: 100vh;
+            overflow-x: hidden;
         }
         
         a { 
@@ -569,6 +570,13 @@
             padding: 20px 30px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            /* The Combo Set callout sits outside the sprite stage via
+               absolute positioning, so its width never counts toward this
+               card's own box - without a min-width the flex layout can
+               squeeze the neighboring fit-slots grid right up against the
+               stage, and the callout (longer in pt/id) ends up overlapping
+               the "Hat" slot's label instead of the layout wrapping first. */
+            min-width: 460px;
         }
 
         .fit-avatar-stage {
@@ -791,9 +799,14 @@
         }
 
         @media (max-width: 480px) {
+            .fit-avatar-card {
+                min-width: 0;
+            }
+
             .fit-avatar-stage {
                 width: 160px;
                 height: 192px;
+                margin-bottom: 44px;
             }
 
             .fit-avatar-stage canvas {
@@ -807,10 +820,20 @@
             .fit-tag-head { top: 100px; }
             .fit-tag-body { top: 144px; }
 
+            /* Too little room beside the sprite on narrow phones for the
+               bracket + label to fit without overflowing the viewport, so
+               it drops below the sprite instead, centered, bracket-free. */
             .fit-combo {
-                left: calc(160px + 0.7cm);
-                top: 72px;
-                height: 88px;
+                left: 50%;
+                top: 100%;
+                margin-top: 10px;
+                height: auto;
+                transform: translateX(-50%);
+                justify-content: center;
+            }
+
+            .fit-combo-bracket {
+                display: none;
             }
         }
 
