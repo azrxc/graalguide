@@ -1538,7 +1538,8 @@
             // since that command would be wrong for a favorited head/body/etc.
             const shieldTile = item => {
                 const isRealShield = item.image.includes('/shields-community/');
-                const code = isRealShield ? 'setshield ' + item.image.split('/').pop() : null;
+                const isPersonalShield = /era_personal_shield/i.test(item.image);
+                const code = (isRealShield && !isPersonalShield) ? 'setshield ' + item.image.split('/').pop() : null;
                 return `
                 <div class="shield-item" data-image="${item.image}">
                     <button type="button" class="fav-btn${favorites.has(item.image) ? ' active' : ''}" data-fav-image="${item.image}" aria-label="Favorite">${favorites.has(item.image) ? '★' : '☆'}</button>
