@@ -554,6 +554,33 @@
   <priority>0.5</priority>
 </url>
 <url>
+  <loc>https://graalguide.com/memory-lane.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/memory-lane.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/memory-lane.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/memory-lane.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/memory-lane.html"/>
+  <lastmod>2026-08-12T00:00:00+08:00</lastmod>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/pt/memory-lane.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/memory-lane.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/memory-lane.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/memory-lane.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/memory-lane.html"/>
+  <lastmod>2026-08-12T00:00:00+08:00</lastmod>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://graalguide.com/id/memory-lane.html</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/memory-lane.html"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/memory-lane.html"/>
+  <xhtml:link rel="alternate" hreflang="id" href="https://graalguide.com/id/memory-lane.html"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://graalguide.com/memory-lane.html"/>
+  <lastmod>2026-08-12T00:00:00+08:00</lastmod>
+  <priority>0.5</priority>
+</url>
+<url>
   <loc>https://graalguide.com/contact-us.html</loc>
   <xhtml:link rel="alternate" hreflang="en" href="https://graalguide.com/contact-us.html"/>
   <xhtml:link rel="alternate" hreflang="pt" href="https://graalguide.com/pt/contact-us.html"/>
