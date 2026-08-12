@@ -42,12 +42,6 @@
         "height":  1080
     },
     {
-        "image":  "image/memory-lane/gt.jpg",
-        "type":  "image",
-        "width":  2340,
-        "height":  1080
-    },
-    {
         "image":  "image/memory-lane/ii.jpg",
         "type":  "image",
         "width":  2340,
@@ -700,12 +694,6 @@
         "type":  "image",
         "width":  3228,
         "height":  2820
-    },
-    {
-        "image":  "image/memory-lane/tr.jpg",
-        "type":  "image",
-        "width":  669,
-        "height":  478
     },
     {
         "image":  "image/memory-lane/trade.jpg",
