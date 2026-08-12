@@ -488,6 +488,17 @@
             color: var(--text-muted);
         }
 
+        #ratio.input-error {
+            border-color: #e74c3c !important;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.25) !important;
+        }
+
+        .ratio-hint {
+            color: #e74c3c;
+            font-size: var(--font-sm);
+            margin-top: 6px;
+        }
+
         .sellable-icon {
             display: block;
             width: 26px;
@@ -568,8 +579,57 @@
             background: var(--accent-color); 
         }
         
-        .btn-accent:hover { 
-            background: #c0392b; 
+        .btn-accent:hover {
+            background: #c0392b;
+        }
+
+        /* Compact icon row for secondary calculator actions */
+        .calc-icon-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin: 18px 0 8px;
+        }
+
+        .calc-icon-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: var(--font-sm);
+        }
+
+        .calc-icon-btn .icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--darker-bg);
+            border: 1.5px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .calc-icon-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        .calc-icon-btn:hover .icon-circle {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            transform: scale(1.08);
         }
 
         /* Guidance Box */
@@ -1370,6 +1430,7 @@
                 <div class="total-box">
                     <h3 id="ratio-label">Proporção</h3>
                     <input type="text" id="ratio" value="4.0" oninput="evaluateExpression('ratio')" aria-labelledby="ratio-label">
+                    <div class="ratio-hint" id="ratio-hint" style="display: none;">Deve estar entre 3.0 e 7.0</div>
                 </div>
                 <div class="total-box">
                     <h3 id="total-trochus-label">Total de Trochus</h3>
@@ -1378,11 +1439,26 @@
             </div>
 
             <div style="text-align: center; margin: 30px 0;">
-                <button class="btn" onclick="toggleGuidance()" id="price-guide-btn">Guia de Preços</button>
-                <button class="btn btn-secondary" onclick="resetCalculator()" id="reset-btn">Redefinir</button>
                 <button class="btn btn-accent" onclick="saveData()" id="save-btn">Salvar Dados</button>
-                <button class="btn" onclick="scrollToSavedData()" id="load-btn">Ver Dados Salvos</button>
-                <button class="btn btn-secondary" onclick="copySummary()" id="copy-btn">Copiar Resumo</button>
+
+                <div class="calc-icon-actions">
+                    <button type="button" class="calc-icon-btn" onclick="toggleGuidance()" id="price-guide-btn" title="Guia de Preços">
+                        <span class="icon-circle"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></span>
+                        <span id="price-guide-btn-label">Guia de Preços</span>
+                    </button>
+                    <button type="button" class="calc-icon-btn" onclick="resetCalculator()" id="reset-btn" title="Redefinir">
+                        <span class="icon-circle"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg></span>
+                        <span id="reset-btn-label">Redefinir</span>
+                    </button>
+                    <button type="button" class="calc-icon-btn" onclick="scrollToSavedData()" id="load-btn" title="Ver Dados Salvos">
+                        <span class="icon-circle"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></span>
+                        <span id="load-btn-label">Ver Dados Salvos</span>
+                    </button>
+                    <button type="button" class="calc-icon-btn" onclick="copySummary()" id="copy-btn" title="Copiar Resumo">
+                        <span class="icon-circle"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
+                        <span id="copy-btn-label">Copiar Resumo</span>
+                    </button>
+                </div>
             </div>
 
             <!-- Guidance Box -->
@@ -1658,11 +1734,17 @@
             document.getElementById("totalSellables").textContent = totalSellables.toLocaleString();
             document.getElementById("totalGralats").textContent = totalGralats.toLocaleString();
 
-            let ratio = parseFloat(document.getElementById("ratio").value) || 4.0;
+            let ratioInput = document.getElementById("ratio");
+            let ratioHint = document.getElementById("ratio-hint");
+            let ratio = parseFloat(ratioInput.value) || 4.0;
             if (ratio >= 3.0 && ratio <= 7.0) {
                 document.getElementById("totalTrochus").textContent = (totalGralats / ratio).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                ratioInput.classList.remove("input-error");
+                ratioHint.style.display = "none";
             } else {
                 document.getElementById("totalTrochus").textContent = "Proporção Inválida";
+                ratioInput.classList.add("input-error");
+                ratioHint.style.display = "block";
             }
 
             saveDraft();
@@ -1715,6 +1797,8 @@
             document.getElementById("totalSellables").textContent = "0";
             document.getElementById("totalGralats").textContent = "0";
             document.getElementById("totalTrochus").textContent = "0";
+            document.getElementById("ratio").classList.remove("input-error");
+            document.getElementById("ratio-hint").style.display = "none";
             localStorage.removeItem("calculatorDraft");
         }
 
