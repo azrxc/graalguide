@@ -694,39 +694,41 @@
             align-items: center;
         }
         
+        .load-btn,
         .delete-btn {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1.5px solid var(--border-color);
             cursor: pointer;
-            font-size: var(--font-sm);
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .delete-btn:hover {
-            background: #d84315;
-            transform: translateY(-2px);
+            color: var(--text-color);
+            transition: all 0.2s ease;
         }
 
-        .load-btn {
-            background: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-size: var(--font-sm);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            margin-right: 8px;
+        .load-btn svg,
+        .delete-btn svg {
+            width: 17px;
+            height: 17px;
+            stroke: currentColor;
+            fill: none;
         }
 
         .load-btn:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: white;
+            transform: scale(1.08);
+        }
+
+        .delete-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+            transform: scale(1.08);
         }
 
         .entry-actions {
@@ -1898,12 +1900,18 @@
 
                 let loadBtn = document.createElement("button");
                 loadBtn.className = "load-btn";
-                loadBtn.textContent = "Muat";
+                loadBtn.type = "button";
+                loadBtn.title = "Muat";
+                loadBtn.setAttribute("aria-label", "Muat");
+                loadBtn.innerHTML = '<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>';
                 loadBtn.onclick = () => loadEntry(index);
 
                 let deleteBtn = document.createElement("button");
                 deleteBtn.className = "delete-btn";
-                deleteBtn.textContent = "Hapus";
+                deleteBtn.type = "button";
+                deleteBtn.title = "Hapus";
+                deleteBtn.setAttribute("aria-label", "Hapus");
+                deleteBtn.innerHTML = '<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
                 deleteBtn.onclick = () => deleteEntry(index);
 
                 actions.appendChild(loadBtn);
