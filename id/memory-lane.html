@@ -45,6 +45,12 @@
             --font-2xl: 1.5rem;
             --font-3xl: 1.875rem;
             --font-4xl: 2.25rem;
+
+            /* Repeating watermark, applied over every photo (grid tile and
+               modal full view alike) so a reposted screenshot always carries
+               proof of where it came from - the user's specifically worried
+               about trade-history screenshots getting reused to scam people. */
+            --watermark-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="110"><text x="10" y="65" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="rgba(255,255,255,0.35)" stroke="rgba(0,0,0,0.25)" stroke-width="0.6" transform="rotate(-22 110 55)">graalguide.com</text></svg>');
         }
 
         /* Light mode variables */
@@ -417,15 +423,22 @@
            table (fixed cream paper color regardless of dark/light theme,
            thick bottom border for the "caption" strip, slight alternating
            tilt) instead of the uniform item-catalog card look. */
+        /* Masonry via CSS columns instead of a uniform grid, so each photo
+           keeps its real aspect ratio (portrait/landscape/square) rather
+           than being cropped into identical boxes - reads like a scattered
+           photographer's portfolio wall instead of a product catalog. */
         .memory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 32px 24px;
+            columns: 5 220px;
+            column-gap: 24px;
             margin-bottom: 40px;
             padding: 10px;
         }
 
         .memory-item {
+            display: inline-block;
+            width: 100%;
+            break-inside: avoid;
+            margin-bottom: 32px;
             background: #f7f1e6;
             border-radius: 2px;
             overflow: hidden;
@@ -452,13 +465,18 @@
 
         .memory-photo {
             width: 100%;
-            height: 160px;
             overflow: hidden;
             position: relative;
             background: #1a1a1a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        }
+
+        .memory-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: var(--watermark-pattern);
+            background-repeat: repeat;
+            pointer-events: none;
         }
 
         .memory-caption {
@@ -472,10 +490,13 @@
             text-overflow: ellipsis;
         }
 
+        /* No fixed height/object-fit here on purpose - each photo keeps its
+           real aspect ratio, which is what actually produces the varied
+           tile sizes (portrait shots read tall, landscape shots read wide). */
         .memory-img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
         }
 
         /* Pagination */
@@ -578,12 +599,28 @@
             backdrop-filter: blur(5px);
         }
 
+        .modal-image-wrap {
+            position: relative;
+            display: inline-block;
+        }
+
         .modal-content {
-            max-width: 90%;
-            max-height: 90%;
+            display: block;
+            max-width: 90vw;
+            max-height: 90vh;
             border-radius: 10px;
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
             transition: opacity 0.15s ease;
+        }
+
+        .modal-image-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: var(--watermark-pattern);
+            background-repeat: repeat;
+            border-radius: 10px;
+            pointer-events: none;
         }
 
         .close-modal {
@@ -862,7 +899,7 @@
 
         @media (max-width: 992px) {
             .memory-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                columns: 4 180px;
             }
 
             .page-header h1 {
@@ -942,12 +979,12 @@
             }
 
             .memory-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 15px;
+                columns: 3 150px;
+                column-gap: 15px;
             }
 
-            .memory-photo {
-                height: 120px;
+            .memory-item {
+                margin-bottom: 20px;
             }
 
             .page-header {
@@ -991,12 +1028,12 @@
             }
 
             .memory-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 12px;
+                columns: 2 130px;
+                column-gap: 12px;
             }
 
-            .memory-photo {
-                height: 100px;
+            .memory-item {
+                margin-bottom: 16px;
             }
 
             .page-header h1 {
@@ -1279,7 +1316,9 @@
     <!-- Modal for enlarged view -->
     <div id="image-modal" class="modal">
         <span class="close-modal">&times;</span>
-        <img class="modal-content" id="enlarged-img">
+        <div class="modal-image-wrap">
+            <img class="modal-content" id="enlarged-img">
+        </div>
         <button type="button" id="modal-prev-btn" class="modal-nav-btn" aria-label="Sebelumnya" title="Sebelumnya">
             <svg class="modal-action-icon-svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
