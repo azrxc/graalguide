@@ -48,7 +48,6 @@
                modal full view alike) so a reposted screenshot always carries
                proof of where it came from - the user's specifically worried
                about trade-history screenshots getting reused to scam people. */
-            --watermark-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="110"><text x="10" y="65" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="rgba(255,255,255,0.35)" stroke="rgba(0,0,0,0.25)" stroke-width="0.6" transform="rotate(-22 110 55)">graalguide.com</text></svg>');
         }
 
         /* Light mode variables */
@@ -480,15 +479,6 @@
             background: #1a1a1a;
         }
 
-        .memory-photo::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: var(--watermark-pattern);
-            background-repeat: repeat;
-            pointer-events: none;
-        }
-
         .memory-caption {
             margin-top: 10px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -562,16 +552,6 @@
             border-radius: 10px;
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
             transition: opacity 0.15s ease;
-        }
-
-        .modal-image-wrap::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: var(--watermark-pattern);
-            background-repeat: repeat;
-            border-radius: 10px;
-            pointer-events: none;
         }
 
         .close-modal {
@@ -1457,6 +1437,17 @@
                         communityDataLoaded = true;
                         communityStatus.style.display = 'none';
                         renderMemory();
+
+                        // A shared link (?p=filename.jpg) opens straight to
+                        // that photo instead of just the bare gallery.
+                        const sharedPhoto = new URLSearchParams(window.location.search).get('p');
+                        if (sharedPhoto) {
+                            const idx = memoryData.findIndex(m => m.image.split('/').pop() === sharedPhoto);
+                            if (idx >= 0) {
+                                setModalContent(idx, false);
+                                document.getElementById('image-modal').style.display = 'flex';
+                            }
+                        }
                     })
                     .catch(error => {
                         console.error('Could not load memory lane photos:', error);
@@ -1474,6 +1465,7 @@
             document.querySelector('.close-modal').addEventListener('click', function() {
                 document.getElementById('image-modal').style.display = 'none';
                 document.getElementById('enlarged-video').pause();
+                history.replaceState(null, '', 'memory-lane.html');
             });
 
             // TikTok-style vertical swipe/scroll through the currently filtered
@@ -1481,6 +1473,14 @@
             // previous). Tracks position by index into filteredMemories so it works
             // seamlessly across pagination boundaries, not just the current page.
             let modalCurrentIndex = -1;
+            let currentShareUrl = '';
+
+            // A photo's identity for sharing/deep-linking is its filename,
+            // not its array index - the catalog gets reshuffled and added
+            // to over time, so index isn't stable across visits.
+            function photoIdFromItem(item) {
+                return item.image.split('/').pop();
+            }
 
             function updateNavButtons() {
                 const list = filteredMemories;
@@ -1517,6 +1517,10 @@
                     videoEl.style.opacity = '1';
                     captionEl.textContent = item.caption || '';
                     updateNavButtons();
+
+                    const photoId = photoIdFromItem(item);
+                    currentShareUrl = window.location.origin + window.location.pathname + '?p=' + encodeURIComponent(photoId);
+                    history.replaceState(null, '', 'memory-lane.html?p=' + encodeURIComponent(photoId));
                 };
 
                 if (animate) {
@@ -1588,8 +1592,7 @@
             // with a copy-link fallback for browsers without navigator.share.
             document.getElementById('share-btn').addEventListener('click', function() {
                 const shareBtn = this;
-                const videoEl = document.getElementById('enlarged-video');
-                const imageUrl = (videoEl.style.display !== 'none' && videoEl.src) ? videoEl.src : document.getElementById('enlarged-img').src;
+                const shareUrl = currentShareUrl || (window.location.origin + window.location.pathname);
 
                 const showCopied = () => {
                     shareBtn.classList.add('copied');
@@ -1601,14 +1604,14 @@
                 };
 
                 if (navigator.share) {
-                    navigator.share({ title: 'GraalGuide', text: 'Dá uma olhada nisso no GraalGuide!', url: imageUrl })
+                    navigator.share({ title: 'GraalGuide - Nostalgia', text: 'Dá uma olhada nisso no GraalGuide!', url: shareUrl })
                         .catch(err => {
                             if (err.name !== 'AbortError' && navigator.clipboard) {
-                                navigator.clipboard.writeText(imageUrl).then(showCopied).catch(() => {});
+                                navigator.clipboard.writeText(shareUrl).then(showCopied).catch(() => {});
                             }
                         });
                 } else if (navigator.clipboard) {
-                    navigator.clipboard.writeText(imageUrl).then(showCopied).catch(() => {});
+                    navigator.clipboard.writeText(shareUrl).then(showCopied).catch(() => {});
                 }
             });
 
@@ -1627,6 +1630,7 @@
                 if (event.target === document.getElementById('image-modal')) {
                     document.getElementById('image-modal').style.display = 'none';
                     document.getElementById('enlarged-video').pause();
+                    history.replaceState(null, '', 'memory-lane.html');
                 }
             });
 
