@@ -1337,13 +1337,15 @@
             // warning on this page. Clicks are handled by one delegated
             // listener on the container (set up once, below) instead of one
             // listener per item.
-            memoryContainer.innerHTML = memoryData.map(item => {
+            memoryContainer.innerHTML = memoryData.map((item, idx) => {
                 const isVideo = item.type === 'video';
-                // Landscape shots get a wider tile - real collage variety
-                // instead of a uniform grid. aspect-ratio is set inline from
-                // the item's real pixel size so the tile reserves correct
-                // space before the file even loads (lazy-load friendly).
-                const featured = item.width && item.height && item.width > item.height * 1.15;
+                // A spread of tiles - roughly 1 in 5, picked by position so
+                // it's stable across reloads - run at double width. Since
+                // aspect-ratio is preserved, a featured PORTRAIT shot reads
+                // tall and a featured LANDSCAPE shot reads wide, so the wall
+                // gets real size variety in both directions, not just a
+                // uniform column of same-width cards.
+                const featured = idx % 5 === 2;
                 const media = isVideo
                     ? `<video class="memory-img" style="aspect-ratio: ${item.width || 720} / ${item.height || 1280};" muted preload="metadata" src="${item.image}"></video>
                        <span class="memory-video-badge">${PLAY_ICON_SVG}</span>`
