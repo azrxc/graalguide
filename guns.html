@@ -342,7 +342,6 @@
 
         /* Page Header */
         .page-header {
-            background: var(--primary-color);
             padding: 60px 0;
             color: white;
             text-align: center;
@@ -350,7 +349,18 @@
             position: relative;
             overflow: hidden;
         }
-        
+
+        html .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                       url('image/a/Screenshot_20241103_182307_Graal_Era.jpg') center/cover no-repeat;
+        }
+
+        html[data-theme="light"] .page-header {
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+                       url('image/a/Screenshot_20241103_182307_Graal_Era.jpg') center/cover no-repeat;
+            color: #333;
+        }
+
         .page-header::before {
             content: '';
             position: absolute;
