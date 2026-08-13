@@ -484,6 +484,49 @@
             line-height: 1.8;
         }
 
+        .memory-lane-notice {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 35px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid #c58a3f;
+            text-align: center;
+        }
+
+        .memory-lane-notice h2 {
+            color: #c58a3f;
+            margin-bottom: 18px;
+            font-size: var(--font-xl);
+            font-weight: 700;
+        }
+
+        .memory-lane-notice p {
+            color: var(--text-muted);
+            font-size: var(--font-md);
+            line-height: 1.85;
+            max-width: 680px;
+            margin: 0 auto 24px;
+        }
+
+        .memory-lane-notice-btn {
+            display: inline-block;
+            background: #c58a3f;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: var(--font-md);
+            transition: all 0.3s ease;
+        }
+
+        .memory-lane-notice-btn:hover {
+            background: #a8722f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(197, 138, 63, 0.35);
+            color: white;
+        }
+
         /* Footer */
         footer { 
             background: var(--darker-bg); 
@@ -984,6 +1027,12 @@
                 <h2>About GraalGuide</h2>
                 <p>GraalGuide was created to give back to the community that has given me so much. The site features comprehensive guides, trading resources, achievement tracking, and other tools to help players navigate the world of Graal Era.</p>
                 <p>As someone who isn't a professional developer, I've focused on creating a clean, functional website that serves the community's needs. I'm always open to feedback and suggestions for how to improve the site.</p>
+            </div>
+
+            <div class="memory-lane-notice">
+                <h2>Thank You for the Memories</h2>
+                <p>Every friend I made, every trade, every dumb inside joke that somehow lasted years, I never wanted any of it to just disappear. So I saved what I could and gave it its own little space on this site. If you were part of my Graal story, even for a moment, this is my way of saying it mattered. Come take a look.</p>
+                <a href="memory-lane.html" class="memory-lane-notice-btn">Walk Through Memory Lane</a>
             </div>
         </div>
     </div>
