@@ -798,11 +798,17 @@
             background: var(--primary-color);
         }
 
-        @media (max-width: 480px) {
+        /* .fit-avatar-card's min-width: 460px (above) needs to drop before
+           the .container's viewport - 40px padding gets narrower than that,
+           i.e. below a 500px viewport, not just below the 480px tier where
+           the rest of the mobile avatar-builder layout kicks in. */
+        @media (max-width: 500px) {
             .fit-avatar-card {
                 min-width: 0;
             }
+        }
 
+        @media (max-width: 480px) {
             .fit-avatar-stage {
                 width: 160px;
                 height: 192px;
