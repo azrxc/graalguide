@@ -262,13 +262,23 @@
 
         /* Page Header */
         .page-header {
-            background: var(--primary-color);
             padding: 60px 0;
             color: white;
             text-align: center;
             margin-bottom: 30px;
             position: relative;
             overflow: hidden;
+        }
+
+        html .page-header {
+            background: linear-gradient(rgba(35, 22, 8, 0.55), rgba(35, 22, 8, 0.55)),
+                       url('image/a/memory-lane-pattern.png') center/440px repeat;
+        }
+
+        html[data-theme="light"] .page-header {
+            background: linear-gradient(rgba(255, 248, 235, 0.55), rgba(255, 248, 235, 0.55)),
+                       url('image/a/memory-lane-pattern.png') center/440px repeat;
+            color: #3a2a15;
         }
         
         .page-header::before {
