@@ -355,9 +355,10 @@
             display: block;
         }
 
-        /* Page Header */
+        /* Page Header - tiled mosaic of real (watermarked) memory photos,
+           warm amber tint to match this page's theme instead of the site's
+           default blue. */
         .page-header {
-            background: var(--primary-color);
             padding: 60px 0;
             color: white;
             text-align: center;
@@ -366,15 +367,15 @@
             overflow: hidden;
         }
 
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><circle cx="50" cy="50" r="40" fill="white"/></svg>');
-            opacity: 0.1;
+        html .page-header {
+            background: linear-gradient(rgba(35, 22, 8, 0.55), rgba(35, 22, 8, 0.55)),
+                       url('../image/a/memory-lane-pattern.png') center/440px repeat;
+        }
+
+        html[data-theme="light"] .page-header {
+            background: linear-gradient(rgba(255, 248, 235, 0.55), rgba(255, 248, 235, 0.55)),
+                       url('../image/a/memory-lane-pattern.png') center/440px repeat;
+            color: #3a2a15;
         }
 
         .page-header h1 {
