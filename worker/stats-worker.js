@@ -30,12 +30,20 @@ function json(data, status = 200) {
 }
 
 // Increments data[itemKey] inside the JSON blob stored at blobKey and writes it back.
-// Returns the new count.
+// Returns the new count. On the free plan, Workers KV caps out at 1,000 writes/day -
+// if that's exhausted, the put() throws. We still return the incremented number (so
+// the visitor who triggered this sees the count go up) but swallow the write error so
+// a quota day never breaks the download button; the increment just won't persist until
+// the quota resets at midnight UTC.
 async function bump(env, blobKey, itemKey) {
     const raw = await env.STATS.get(blobKey);
     const data = raw ? JSON.parse(raw) : {};
     data[itemKey] = (data[itemKey] || 0) + 1;
-    await env.STATS.put(blobKey, JSON.stringify(data));
+    try {
+        await env.STATS.put(blobKey, JSON.stringify(data));
+    } catch (err) {
+        // KV write quota hit for today - skip persisting, fail soft.
+    }
     return data[itemKey];
 }
 
@@ -57,7 +65,11 @@ async function promote(env, leaderboardKey, entry, idField) {
 
     list.sort((a, b) => b.count - a.count);
     list = list.slice(0, 5);
-    await env.STATS.put(leaderboardKey, JSON.stringify(list));
+    try {
+        await env.STATS.put(leaderboardKey, JSON.stringify(list));
+    } catch (err) {
+        // KV write quota hit for today - skip persisting, fail soft.
+    }
 }
 
 export default {
