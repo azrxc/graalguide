@@ -521,6 +521,7 @@
         }
         
         .head-item {
+            position: relative;
             background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
@@ -528,6 +529,25 @@
             transition: all 0.3s ease;
             cursor: pointer;
             border: 1px solid var(--border-color);
+        }
+
+        .head-download-badge {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            z-index: 5;
+            padding: 2px 7px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--brand-light, #7aa9fa);
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.6;
+            pointer-events: none;
+        }
+
+        .head-download-badge:empty {
+            display: none;
         }
         
         .head-item:hover {
@@ -1580,6 +1600,7 @@
         </div>
     </div>
     <script src="../assets/js/share-buttons.js"></script>
+    <script src="../assets/js/live-stats.js"></script>
 
     <footer>
         <div class="container">
@@ -3003,6 +3024,7 @@
                 headsContainer.innerHTML = headsToShow.map(head => `
                 <div class="head-item" data-image="${head.image}">
                     <button type="button" class="fav-btn${favorites.has(head.image) ? ' active' : ''}" data-fav-image="${head.image}" aria-label="Favorit">${favorites.has(head.image) ? '★' : '☆'}</button>
+                    <span class="head-download-badge" data-badge-id="${head.image.split('/').pop()}"></span>
                     <div class="head-gallery">
                         <div class="head frame1" style="background-image:url('${head.image}')"></div>
                         <div class="head frame2" style="background-image:url('${head.image}')"></div>
@@ -3015,6 +3037,24 @@
 
             // Update pagination
             updatePagination();
+            applyDownloadBadges();
+        }
+
+        // Populates the "1.2K downloads" badge on every rendered card from the
+        // counts map fetched once on page load (see LiveStats.fetchCounts call
+        // below) - avoids one network request per card.
+        let downloadCounts = {};
+        function applyDownloadBadges() {
+            document.querySelectorAll('.head-download-badge').forEach(el => {
+                const count = downloadCounts[el.dataset.badgeId] || 0;
+                el.textContent = count > 0 ? LiveStats.formatCount(count) + ' downloads' : '';
+            });
+        }
+        if (typeof LiveStats !== 'undefined') {
+            LiveStats.fetchCounts('heads').then(counts => {
+                downloadCounts = counts;
+                applyDownloadBadges();
+            });
         }
 
         // Function to update pagination
@@ -3283,6 +3323,7 @@
             // previous). Tracks position by index into filteredHeads so it works
             // seamlessly across pagination boundaries, not just the current page.
             let modalCurrentIndex = -1;
+            let currentModalImage = null;
 
             function updateNavButtons() {
                 const list = filteredHeads;
@@ -3307,6 +3348,7 @@
                     imgEl.style.opacity = '1';
                     downloadBtn.href = image;
                     downloadBtn.download = image.split('/').pop();
+                    currentModalImage = image;
                     favBtn.classList.toggle('active', favorites.has(image));
                     // The favorites view can mix in bodies/hats/swords/shields -
                     // detect the real type from the path instead of assuming
@@ -3396,6 +3438,17 @@
                 const shareBtn = document.getElementById('share-btn');
                 shareBtn.classList.add('nudge');
                 setTimeout(() => shareBtn.classList.remove('nudge'), 2000);
+
+                if (currentModalImage && typeof LiveStats !== 'undefined') {
+                    const id = currentModalImage.split('/').pop();
+                    const label = 'Head #' + id.replace(/\.\w+$/, '');
+                    LiveStats.recordDownload('heads', id, label, currentModalImage).then(function (count) {
+                        if (count !== null) {
+                            downloadCounts[id] = count;
+                            applyDownloadBadges();
+                        }
+                    });
+                }
             });
 
             // Share button - native share sheet (Discord shows up there on mobile)
