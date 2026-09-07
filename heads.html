@@ -1612,6 +1612,7 @@
         </div>
     </div>
     <script src="assets/js/share-buttons.js"></script>
+    <script src="assets/js/live-stats.js"></script>
 
     <footer>
         <div class="container">
@@ -3333,6 +3334,7 @@
             // into filteredHeads so it works seamlessly across pagination
             // boundaries, not just the current page.
             let modalCurrentIndex = -1;
+            let currentModalImage = null;
 
             function updateNavButtons() {
                 const list = filteredHeads;
@@ -3357,6 +3359,7 @@
                     imgEl.style.opacity = '1';
                     downloadBtn.href = image;
                     downloadBtn.download = image.split('/').pop();
+                    currentModalImage = image;
                     favBtn.classList.toggle('active', favorites.has(image));
                     // The favorites view can mix in bodies/hats/swords/shields -
                     // detect the real type from the path instead of assuming
@@ -3446,6 +3449,17 @@
                 const shareBtn = document.getElementById('share-btn');
                 shareBtn.classList.add('nudge');
                 setTimeout(() => shareBtn.classList.remove('nudge'), 2000);
+
+                if (currentModalImage && typeof LiveStats !== 'undefined') {
+                    const id = currentModalImage.split('/').pop();
+                    const label = 'Head #' + id.replace(/\.\w+$/, '');
+                    LiveStats.recordDownload('heads', id, label, currentModalImage).then(function (count) {
+                        if (count !== null) {
+                            downloadCounts[id] = count;
+                            applyDownloadBadges();
+                        }
+                    });
+                }
             });
 
             // Share button - native share sheet (Discord shows up there on mobile)
