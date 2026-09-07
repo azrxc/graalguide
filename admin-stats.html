@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Live Stats - GraalGuide</title>
+    <link rel="icon" type="image/png" href="image/a/graalguide-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        body {
+            background: var(--dark-bg);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            padding: 32px 16px 80px;
+        }
+
+        .admin-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .admin-header h1 {
+            font-family: var(--font-title);
+            font-weight: 400;
+            font-size: var(--font-3xl);
+            margin-bottom: 6px;
+        }
+
+        .admin-header p {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+        }
+
+        .admin-section {
+            background: var(--panel);
+            border: 1px solid var(--border-strong);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .admin-section h2 {
+            font-size: var(--font-lg);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .admin-refresh {
+            background: var(--tile-bg);
+            border: 1px solid var(--tile-border);
+            color: var(--text-color);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: var(--font-xs);
+            cursor: pointer;
+        }
+
+        .admin-refresh:hover {
+            background: var(--tile-bg-hover);
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--font-sm);
+        }
+
+        .admin-table th, .admin-table td {
+            text-align: left;
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .admin-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: var(--font-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .admin-table td.admin-count {
+            color: var(--brand-light);
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .admin-category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .admin-tab {
+            background: var(--tile-bg);
+            border: 1px solid var(--tile-border);
+            color: var(--text-muted);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: var(--font-xs);
+            cursor: pointer;
+        }
+
+        .admin-tab.active {
+            background: var(--brand);
+            border-color: var(--brand);
+            color: #fff;
+        }
+
+        .admin-empty {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+            padding: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-wrap">
+        <div class="admin-header">
+            <h1>Live Stats Dashboard</h1>
+            <p>Not linked anywhere on the site - bookmark this page. Pulls straight from the stats worker, no caching.</p>
+        </div>
+
+        <div class="live-stats-totals admin-section">
+            <div class="live-stats-total">
+                <span class="live-stats-total-number" id="adminTotalDownloads">0</span>
+                <span class="live-stats-total-label">Lifetime Downloads</span>
+            </div>
+            <div class="live-stats-total">
+                <span class="live-stats-total-number" id="adminTotalVisitors">0</span>
+                <span class="live-stats-total-label">Graalians Tracked</span>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h2>Downloads by Item <button type="button" class="admin-refresh" id="refreshDownloads">Refresh</button></h2>
+            <div class="admin-category-tabs" id="categoryTabs"></div>
+            <table class="admin-table">
+                <thead>
+                    <tr><th>Rank</th><th>Item</th><th>Downloads</th></tr>
+                </thead>
+                <tbody id="categoryTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="admin-section">
+            <h2>Visitors by Country <button type="button" class="admin-refresh" id="refreshCountries">Refresh</button></h2>
+            <table class="admin-table">
+                <thead>
+                    <tr><th>Rank</th><th>Country</th><th>Visitors</th></tr>
+                </thead>
+                <tbody id="countryTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="assets/js/live-stats.js"></script>
+    <script>
+        (function () {
+            var CATEGORIES = ["heads", "bodies", "hats", "shields", "swords", "guns"];
+            var activeCategory = CATEGORIES[0];
+
+            function renderTotals() {
+                LiveStats.fetchTotals().then(function (totals) {
+                    document.getElementById("adminTotalDownloads").textContent = totals.downloads.toLocaleString();
+                    document.getElementById("adminTotalVisitors").textContent = totals.visitors.toLocaleString();
+                });
+            }
+
+            function renderCategoryTable(category) {
+                var tbody = document.getElementById("categoryTableBody");
+                tbody.innerHTML = '<tr><td colspan="3" class="admin-empty">Loading...</td></tr>';
+                LiveStats.fetchCounts(category).then(function (counts) {
+                    var rows = Object.keys(counts)
+                        .map(function (id) { return { id: id, count: counts[id] }; })
+                        .sort(function (a, b) { return b.count - a.count; });
+
+                    if (!rows.length) {
+                        tbody.innerHTML = '<tr><td colspan="3" class="admin-empty">No downloads tracked yet for this category.</td></tr>';
+                        return;
+                    }
+
+                    tbody.innerHTML = rows.map(function (row, i) {
+                        return "<tr><td>" + (i + 1) + "</td><td>" + LiveStats.escapeHtml(row.id) +
+                            '</td><td class="admin-count">' + row.count.toLocaleString() + "</td></tr>";
+                    }).join("");
+                });
+            }
+
+            function renderCategoryTabs() {
+                var tabs = document.getElementById("categoryTabs");
+                tabs.innerHTML = CATEGORIES.map(function (cat) {
+                    return '<button type="button" class="admin-tab' + (cat === activeCategory ? " active" : "") +
+                        '" data-category="' + cat + '">' + cat + "</button>";
+                }).join("");
+                tabs.querySelectorAll(".admin-tab").forEach(function (btn) {
+                    btn.addEventListener("click", function () {
+                        activeCategory = btn.dataset.category;
+                        renderCategoryTabs();
+                        renderCategoryTable(activeCategory);
+                    });
+                });
+            }
+
+            function renderCountryTable() {
+                var tbody = document.getElementById("countryTableBody");
+                tbody.innerHTML = '<tr><td colspan="3" class="admin-empty">Loading...</td></tr>';
+                LiveStats.fetchCounts("countries").then(function (counts) {
+                    var rows = Object.keys(counts)
+                        .map(function (code) { return { code: code, count: counts[code] }; })
+                        .sort(function (a, b) { return b.count - a.count; });
+
+                    if (!rows.length) {
+                        tbody.innerHTML = '<tr><td colspan="3" class="admin-empty">No visits tracked yet.</td></tr>';
+                        return;
+                    }
+
+                    tbody.innerHTML = rows.map(function (row, i) {
+                        return "<tr><td>" + (i + 1) + "</td><td>" + LiveStats.countryFlag(row.code) + " " +
+                            LiveStats.escapeHtml(LiveStats.countryName(row.code)) + '</td><td class="admin-count">' +
+                            row.count.toLocaleString() + "</td></tr>";
+                    }).join("");
+                });
+            }
+
+            document.getElementById("refreshDownloads").addEventListener("click", function () {
+                renderCategoryTable(activeCategory);
+            });
+            document.getElementById("refreshCountries").addEventListener("click", renderCountryTable);
+
+            renderTotals();
+            renderCategoryTabs();
+            renderCategoryTable(activeCategory);
+            renderCountryTable();
+        })();
+    </script>
+</body>
+</html>
