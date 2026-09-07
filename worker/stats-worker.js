@@ -114,6 +114,27 @@ export default {
                 return json(raw ? JSON.parse(raw) : {});
             }
 
+            // GET /total - lifetime downloads across every category, and total tracked
+            // visitors, both summed on read so they cost nothing extra on the write
+            // side (no dedicated counters to bump).
+            if (url.pathname === "/total" && request.method === "GET") {
+                const listed = await env.STATS.list({ prefix: "counts:" });
+                let downloads = 0;
+                let visitors = 0;
+                for (const key of listed.keys) {
+                    const raw = await env.STATS.get(key.name);
+                    if (!raw) continue;
+                    const data = JSON.parse(raw);
+                    const sum = Object.values(data).reduce((a, b) => a + b, 0);
+                    if (key.name === "counts:countries") {
+                        visitors = sum;
+                    } else {
+                        downloads += sum;
+                    }
+                }
+                return json({ downloads, visitors });
+            }
+
             // GET /leaderboard - both top-5 widgets for the homepage, 2 cheap reads.
             if (url.pathname === "/leaderboard" && request.method === "GET") {
                 const [countries, downloads] = await Promise.all([

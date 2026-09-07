@@ -49,6 +49,43 @@ const LiveStats = (function () {
             .catch(() => ({ countries: [], downloads: [] }));
     }
 
+    // Lifetime downloads across every category, and total tracked visitors -
+    // both summed server-side on read, no dedicated write-side counter needed.
+    function fetchTotals() {
+        return fetch(STATS_API + "/total")
+            .then((r) => r.json())
+            .then((data) => ({
+                downloads: typeof data.downloads === "number" ? data.downloads : 0,
+                visitors: typeof data.visitors === "number" ? data.visitors : 0,
+            }))
+            .catch(() => ({ downloads: 0, visitors: 0 }));
+    }
+
+    // Animates el's text from 0 up to `value` over `duration` ms, formatted
+    // with formatCount along the way - the "counter ticking up" effect.
+    function countUp(el, value, duration) {
+        duration = duration || 1200;
+        const start = performance.now();
+        function tick(now) {
+            const progress = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = formatCount(Math.round(value * eased));
+            if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+
+    // /download and /view accept free-text fields from any caller (no auth on
+    // the Worker) - always escape before putting them in the DOM via innerHTML.
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+    }
+
     // 1234 -> "1.2K", 1200000 -> "1.2M" - the "1M chats" style social-proof format.
     function formatCount(n) {
         n = Number(n) || 0;
@@ -85,5 +122,12 @@ const LiveStats = (function () {
         return COUNTRY_NAMES[code] || code || "Unknown";
     }
 
-    return { pingView, recordDownload, fetchCounts, fetchLeaderboard, formatCount, countryFlag, countryName };
+    return {
+        pingView, recordDownload, fetchCounts, fetchLeaderboard, fetchTotals,
+        countUp, formatCount, countryFlag, countryName, escapeHtml,
+    };
 })();
+
+// Self-invoking, same pattern as share-buttons.js - including this script tag
+// on a page is all that's needed for it to start counting that visit.
+LiveStats.pingView();

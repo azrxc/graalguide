@@ -2034,6 +2034,172 @@ footer {
     }
 }
 
+/* Live stats: homepage widgets powered by worker/stats-worker.js -
+   lifetime download counter + top-5 downloads/countries leaderboards. */
+.live-stats-totals {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin: 0 auto 28px;
+}
+
+.live-stats-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.live-stats-total-number {
+    font-family: var(--font-title);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 400;
+    color: var(--brand);
+    line-height: 1;
+}
+
+.live-stats-total-label {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.live-stats-map-card {
+    background: var(--panel);
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto 20px;
+}
+
+.live-stats-map {
+    width: 100%;
+    line-height: 0;
+}
+
+.live-stats-map svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.live-stats-map-country {
+    fill: var(--tile-bg);
+    stroke: var(--dark-bg);
+    stroke-width: 0.5;
+}
+
+.live-stats-map-country.is-top {
+    fill: var(--brand);
+}
+
+.live-stats-map-country.is-top:hover,
+.live-stats-map-country:hover {
+    fill: var(--brand-light);
+}
+
+.live-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.live-stats-card {
+    background: var(--panel);
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.live-stats-card-title {
+    font-size: var(--font-md);
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 14px;
+}
+
+.live-stats-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.live-stats-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.live-stats-rank {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--tile-bg);
+    border: 1px solid var(--tile-border);
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.live-stats-item:first-child .live-stats-rank {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+}
+
+.live-stats-thumb {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--tile-bg);
+    object-fit: contain;
+}
+
+.live-stats-flag {
+    flex-shrink: 0;
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.live-stats-name {
+    flex: 1;
+    min-width: 0;
+    color: var(--text-color);
+    font-size: var(--font-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.live-stats-count {
+    flex-shrink: 0;
+    color: var(--brand-light);
+    font-size: var(--font-sm);
+    font-weight: 700;
+}
+
+.live-stats-empty {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+}
+
+@media (max-width: 640px) {
+    .live-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Ad slots - consistent spacing/centering so units never sit flush
    against nav links or buttons (avoids accidental-click policy issues)
    and never cause layout jumps once they resolve. */

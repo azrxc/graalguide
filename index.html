@@ -1794,6 +1794,46 @@
         </div>
     </section>
 
+    <section class="live-stats">
+        <div class="container">
+            <div class="showcase-heading">
+                <h2>The Numbers Don't Lie</h2>
+                <p>Real downloads, real players, updating live as it happens.</p>
+            </div>
+
+            <div class="live-stats-totals">
+                <div class="live-stats-total">
+                    <span class="live-stats-total-number" id="liveTotalDownloads">0</span>
+                    <span class="live-stats-total-label">Lifetime Downloads</span>
+                </div>
+                <div class="live-stats-total">
+                    <span class="live-stats-total-number" id="liveTotalVisitors">0</span>
+                    <span class="live-stats-total-label">Graalians Tracked</span>
+                </div>
+            </div>
+
+            <div class="live-stats-map-card">
+                <h3 class="live-stats-card-title">Where Graalians Are Grinding</h3>
+                <div class="live-stats-map" id="liveStatsMap" aria-label="World map highlighting the top 5 countries by visitors"></div>
+            </div>
+
+            <div class="live-stats-grid">
+                <div class="live-stats-card">
+                    <h3 class="live-stats-card-title">Most Downloaded</h3>
+                    <ol class="live-stats-list" id="topDownloadsList">
+                        <li class="live-stats-empty">Loading...</li>
+                    </ol>
+                </div>
+                <div class="live-stats-card">
+                    <h3 class="live-stats-card-title">Top Countries</h3>
+                    <ol class="live-stats-list" id="topCountriesList">
+                        <li class="live-stats-empty">Loading...</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="resource-hub">
         <div class="container">
             <div class="showcase-heading">
@@ -2078,6 +2118,114 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
     </div>
     <script src="assets/js/share-buttons.js"></script>
     <script src="assets/js/gani-renderer.js"></script>
+    <script src="assets/js/live-stats.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson-client/3.1.0/topojson-client.min.js"></script>
+    <script>
+        (function () {
+            // ISO 3166-1 alpha-2 -> numeric-3 (zero-padded), for matching the
+            // world-atlas topology's country ids to our top-5 country codes.
+            var ALPHA2_TO_NUMERIC = {
+                US: "840", PH: "608", BR: "076", ID: "360", MY: "458", SG: "702",
+                MX: "484", GB: "826", CA: "124", AU: "036", DE: "276", FR: "250",
+                IN: "356", JP: "392", KR: "410", VN: "704", TH: "764", ES: "724",
+                IT: "380", NL: "528", PT: "620", AR: "032", CL: "152", CO: "170",
+                PE: "604", SA: "682", AE: "784", EG: "818", NG: "566", ZA: "710",
+                PK: "586", BD: "050", TR: "792", RU: "643", PL: "616", RO: "642",
+                NZ: "554", IE: "372", SE: "752", NO: "578", DK: "208", FI: "246",
+                CH: "756", AT: "040", BE: "056", GR: "300", IL: "376"
+            };
+
+            function renderMap(topCountries) {
+                var container = document.getElementById("liveStatsMap");
+                if (!container || !window.d3 || !window.topojson || !topCountries.length) return;
+
+                var width = container.clientWidth || 800;
+                var height = Math.round(width * 0.52);
+
+                var svg = d3.select(container).append("svg")
+                    .attr("viewBox", "0 0 " + width + " " + height)
+                    .attr("preserveAspectRatio", "xMidYMid meet");
+
+                var projection = d3.geoNaturalEarth1().fitSize([width, height], { type: "Sphere" });
+                var path = d3.geoPath(projection);
+
+                var rankByNumeric = {};
+                topCountries.forEach(function (c, i) {
+                    var numeric = ALPHA2_TO_NUMERIC[c.code];
+                    if (numeric) rankByNumeric[numeric] = i;
+                });
+
+                fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+                    .then(function (r) { return r.json(); })
+                    .then(function (topology) {
+                        var countries = topojson.feature(topology, topology.objects.countries).features;
+                        svg.append("g")
+                            .selectAll("path")
+                            .data(countries)
+                            .join("path")
+                            .attr("d", path)
+                            .attr("class", function (d) {
+                                return rankByNumeric.hasOwnProperty(d.id) ? "live-stats-map-country is-top" : "live-stats-map-country";
+                            })
+                            .append("title")
+                            .text(function (d) { return d.properties.name; });
+                    })
+                    .catch(function () {
+                        container.innerHTML = '<p class="live-stats-empty">Map unavailable right now.</p>';
+                    });
+            }
+
+            function renderDownloadsList(items) {
+                var list = document.getElementById("topDownloadsList");
+                if (!list) return;
+                if (!items.length) {
+                    list.innerHTML = '<li class="live-stats-empty">No downloads tracked yet - be the first!</li>';
+                    return;
+                }
+                list.innerHTML = items.map(function (item, i) {
+                    return '<li class="live-stats-item">' +
+                        '<span class="live-stats-rank">' + (i + 1) + "</span>" +
+                        '<img class="live-stats-thumb" src="' + LiveStats.escapeHtml(item.thumb) + '" alt="" loading="lazy">' +
+                        '<span class="live-stats-name">' + LiveStats.escapeHtml(item.name) + "</span>" +
+                        '<span class="live-stats-count">' + LiveStats.formatCount(item.count) + "</span>" +
+                        "</li>";
+                }).join("");
+            }
+
+            function renderCountriesList(items) {
+                var list = document.getElementById("topCountriesList");
+                if (!list) return;
+                if (!items.length) {
+                    list.innerHTML = '<li class="live-stats-empty">No visits tracked yet.</li>';
+                    return;
+                }
+                list.innerHTML = items.map(function (item, i) {
+                    return '<li class="live-stats-item">' +
+                        '<span class="live-stats-rank">' + (i + 1) + "</span>" +
+                        '<span class="live-stats-flag">' + LiveStats.countryFlag(item.code) + "</span>" +
+                        '<span class="live-stats-name">' + LiveStats.escapeHtml(LiveStats.countryName(item.code)) + "</span>" +
+                        '<span class="live-stats-count">' + LiveStats.formatCount(item.count) + "</span>" +
+                        "</li>";
+                }).join("");
+            }
+
+            var downloadsEl = document.getElementById("liveTotalDownloads");
+            var visitorsEl = document.getElementById("liveTotalVisitors");
+            if (downloadsEl || visitorsEl) {
+                LiveStats.fetchTotals().then(function (totals) {
+                    if (downloadsEl) LiveStats.countUp(downloadsEl, totals.downloads);
+                    if (visitorsEl) LiveStats.countUp(visitorsEl, totals.visitors);
+                });
+            }
+
+            LiveStats.fetchLeaderboard().then(function (data) {
+                renderDownloadsList(data.downloads || []);
+                renderCountriesList(data.countries || []);
+                renderMap(data.countries || []);
+            });
+        })();
+    </script>
 
     <footer>
         <div class="container">
