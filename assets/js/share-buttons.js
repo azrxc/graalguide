@@ -1,4 +1,4 @@
-// Powers the ".share-section" block (Discord / WhatsApp / Telegram / Copy Link)
+// Powers the ".share-section" block (Discord / Facebook / WhatsApp / Telegram / Copy Link)
 // that appears on guide, calculator, gallery, and upload pages.
 // Translated strings come from data-* attributes on .share-section so this
 // single script works unmodified across en/pt/id.
@@ -9,6 +9,11 @@
         const shareText = section.dataset.shareText || 'Check this out on GraalGuide!';
         const copiedText = section.dataset.copiedText || 'Copied!';
         const copiedDiscordText = section.dataset.copiedDiscordText || 'Copied! Paste in Discord';
+
+        const fbLink = section.querySelector('.share-facebook');
+        if (fbLink) {
+            fbLink.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+        }
 
         const waLink = section.querySelector('.share-whatsapp');
         if (waLink) {
