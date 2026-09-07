@@ -531,6 +531,7 @@
         }
         
         .head-item {
+            position: relative;
             background: var(--tile-bg, var(--card-bg));
             border-radius: 12px;
             overflow: hidden;
@@ -538,6 +539,25 @@
             transition: all 0.25s ease;
             cursor: pointer;
             border: 1px solid var(--tile-border, var(--border-color));
+        }
+
+        .head-download-badge {
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            z-index: 5;
+            padding: 2px 7px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--brand-light, #7aa9fa);
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.6;
+            pointer-events: none;
+        }
+
+        .head-download-badge:empty {
+            display: none;
         }
 
         .head-item:hover {
@@ -3015,6 +3035,7 @@
                 headsContainer.innerHTML = headsToShow.map(head => `
                 <div class="head-item" data-image="${head.image}">
                     <button type="button" class="fav-btn${favorites.has(head.image) ? ' active' : ''}" data-fav-image="${head.image}" aria-label="Favorite">${favorites.has(head.image) ? '★' : '☆'}</button>
+                    <span class="head-download-badge" data-badge-id="${head.image.split('/').pop()}"></span>
                     <div class="head-gallery">
                         <div class="head frame1" style="background-image:url('${head.image}')"></div>
                         <div class="head frame2" style="background-image:url('${head.image}')"></div>
@@ -3027,6 +3048,24 @@
 
             // Update pagination
             updatePagination();
+            applyDownloadBadges();
+        }
+
+        // Populates the "1.2K downloads" badge on every rendered card from the
+        // counts map fetched once on page load (see LiveStats.fetchCounts call
+        // below) - avoids one network request per card.
+        let downloadCounts = {};
+        function applyDownloadBadges() {
+            document.querySelectorAll('.head-download-badge').forEach(el => {
+                const count = downloadCounts[el.dataset.badgeId] || 0;
+                el.textContent = count > 0 ? LiveStats.formatCount(count) + ' downloads' : '';
+            });
+        }
+        if (typeof LiveStats !== 'undefined') {
+            LiveStats.fetchCounts('heads').then(counts => {
+                downloadCounts = counts;
+                applyDownloadBadges();
+            });
         }
 
         // Function to update pagination
