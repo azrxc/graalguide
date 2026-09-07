@@ -2,8 +2,7 @@
 // Powers: per-item download counts on gallery cards, the homepage "Most Downloaded"
 // widget, and the homepage "Top Countries" world map.
 //
-// TODO: swap in the real *.workers.dev URL once the Cloudflare Worker is deployed.
-const STATS_API = "https://graalguide-stats.YOUR-SUBDOMAIN.workers.dev";
+const STATS_API = "https://graalguide.azrele2.workers.dev";
 
 const LiveStats = (function () {
     const VIEW_PING_KEY = "gg_view_pinged_on";
