@@ -108,44 +108,29 @@ const LiveStats = (function () {
         return '<img src="https://flagcdn.com/24x18/' + lower + '.png" alt="" class="live-stats-flag-img" onerror="this.style.display=\'none\'">';
     }
 
-    const COUNTRY_NAMES = {
-        US: "United States", PH: "Philippines", BR: "Brazil", ID: "Indonesia",
-        MY: "Malaysia", SG: "Singapore", MX: "Mexico", GB: "United Kingdom",
-        CA: "Canada", AU: "Australia", DE: "Germany", FR: "France", IN: "India",
-        JP: "Japan", KR: "South Korea", VN: "Vietnam", TH: "Thailand",
-        ES: "Spain", IT: "Italy", NL: "Netherlands", PT: "Portugal",
-        AR: "Argentina", CL: "Chile", CO: "Colombia", PE: "Peru",
-        SA: "Saudi Arabia", AE: "United Arab Emirates", EG: "Egypt",
-        NG: "Nigeria", ZA: "South Africa", PK: "Pakistan", BD: "Bangladesh",
-        TR: "Turkey", RU: "Russia", PL: "Poland", RO: "Romania",
-        NZ: "New Zealand", IE: "Ireland", SE: "Sweden", NO: "Norway",
-        DK: "Denmark", FI: "Finland", CH: "Switzerland", AT: "Austria",
-        BE: "Belgium", GR: "Greece", IL: "Israel", XX: "Unknown",
-        // Matches the wider country coverage the map's color-by-country
-        // logic already had (assets/js is shared, but this list had fallen
-        // behind index.html's own alpha2->numeric table).
-        CN: "China", TW: "Taiwan", HK: "Hong Kong", LK: "Sri Lanka",
-        NP: "Nepal", MM: "Myanmar", KH: "Cambodia", LA: "Laos",
-        KZ: "Kazakhstan", UA: "Ukraine", CZ: "Czechia", HU: "Hungary",
-        SK: "Slovakia", BG: "Bulgaria", HR: "Croatia", RS: "Serbia",
-        IS: "Iceland", LU: "Luxembourg", MA: "Morocco", DZ: "Algeria",
-        TN: "Tunisia", KE: "Kenya", GH: "Ghana", ET: "Ethiopia",
-        TZ: "Tanzania", UG: "Uganda", ZW: "Zimbabwe", VE: "Venezuela",
-        EC: "Ecuador", BO: "Bolivia", PY: "Paraguay", UY: "Uruguay",
-        CR: "Costa Rica", PA: "Panama", GT: "Guatemala", HN: "Honduras",
-        SV: "El Salvador", NI: "Nicaragua", DO: "Dominican Republic",
-        PR: "Puerto Rico", JM: "Jamaica", TT: "Trinidad and Tobago",
-        QA: "Qatar", KW: "Kuwait", BH: "Bahrain", OM: "Oman", JO: "Jordan",
-        LB: "Lebanon", IQ: "Iraq", IR: "Iran", AF: "Afghanistan",
-        MN: "Mongolia", UZ: "Uzbekistan", AZ: "Azerbaijan", GE: "Georgia",
-        AM: "Armenia", BY: "Belarus", LT: "Lithuania", LV: "Latvia",
-        EE: "Estonia", SI: "Slovenia", CY: "Cyprus", MT: "Malta",
-        AL: "Albania", MK: "North Macedonia", BA: "Bosnia and Herzegovina",
-        MD: "Moldova", CU: "Cuba",
-    };
+    // Every country deserves its real name, not a 2-letter code - use the
+    // browser's own locale database (covers all ISO country codes, always
+    // up to date) instead of a hand-maintained list that will always be
+    // missing someone. Falls back to the raw code only on ancient browsers
+    // without Intl.DisplayNames support.
+    let regionNames = null;
+    try {
+        regionNames = new Intl.DisplayNames(["en"], { type: "region" });
+    } catch (e) {
+        regionNames = null;
+    }
 
     function countryName(code) {
-        return COUNTRY_NAMES[code] || code || "Unknown";
+        if (!code || code === "XX") return "Unknown";
+        if (regionNames) {
+            try {
+                const name = regionNames.of(code.toUpperCase());
+                if (name && name !== code.toUpperCase()) return name;
+            } catch (e) {
+                // invalid/unrecognized code - fall through to raw code below
+            }
+        }
+        return code;
     }
 
     return {
