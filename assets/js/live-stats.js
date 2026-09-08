@@ -102,7 +102,10 @@ const LiveStats = (function () {
     function countryFlag(code) {
         if (!code || code.length !== 2) return "";
         var lower = code.toLowerCase();
-        return '<img src="https://flagcdn.com/24x18/' + lower + '.png" alt="' + code + '" class="live-stats-flag-img">';
+        // alt="" (decorative, not the raw code) so a failed image load hides
+        // itself instead of falling back to showing "US"/"MY"/etc. as text -
+        // the country name is already shown separately alongside this.
+        return '<img src="https://flagcdn.com/24x18/' + lower + '.png" alt="" class="live-stats-flag-img" onerror="this.style.display=\'none\'">';
     }
 
     const COUNTRY_NAMES = {
