@@ -1495,9 +1495,13 @@ footer {
 }
 
 .footer-side-project {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     margin-top: 14px;
-    opacity: 0.6;
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+    opacity: 0.7;
     transition: opacity 0.2s ease;
 }
 
