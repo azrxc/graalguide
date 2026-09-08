@@ -2197,7 +2197,8 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                     shields: "shields.html", swords: "swords.html", guns: "guns.html",
                 };
                 list.innerHTML = items.map(function (item, i) {
-                    var galleryUrl = GALLERY_PAGES[item.category] || "#";
+                    var page = GALLERY_PAGES[item.category];
+                    var galleryUrl = page ? page + "?open=" + encodeURIComponent(item.id) : "#";
                     return '<li class="live-stats-item">' +
                         '<span class="live-stats-rank">' + (i + 1) + "</span>" +
                         '<a href="' + LiveStats.escapeHtml(galleryUrl) + '">' +
