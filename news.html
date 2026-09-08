@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="image/a/graalguide-favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest News - GraalGuide</title>
+    <meta name="description" content="Official GraalOnline Era announcements and patch notes, pulled live from Discord.">
+    <link rel="canonical" href="https://graalguide.com/news.html">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #3b82f6;
+            --accent-color: #3b82f6;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #9e9e9e;
+            --border-color: #333;
+
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-md: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.875rem;
+            --font-4xl: 2.25rem;
+        }
+
+        [data-theme="light"] {
+            --dark-bg: #f5f5f5;
+            --darker-bg: #e0e0e0;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --border-color: #dddddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: var(--font-md);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: var(--darker-bg);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: var(--font-2xl);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            position: relative;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+            display: block;
+            padding: 5px 0;
+            position: relative;
+            font-size: var(--font-md);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        .theme-toggle .moon-icon {
+            display: inline-block;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: inline-block;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+            font-size: var(--font-sm);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .page-header {
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        html .page-header {
+            background: linear-gradient(rgba(10, 20, 35, 0.75), rgba(10, 20, 35, 0.75)),
+                       url('image/a/memory-lane-pattern.png') center/440px repeat;
+        }
+
+        html[data-theme="light"] .page-header {
+            background: linear-gradient(rgba(235, 243, 255, 0.75), rgba(235, 243, 255, 0.75)),
+                       url('image/a/memory-lane-pattern.png') center/440px repeat;
+            color: #142033;
+        }
+
+        .page-header h1 {
+            font-size: var(--font-3xl);
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: var(--font-lg);
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        html[data-theme="light"] .page-header p {
+            color: rgba(20, 32, 51, 0.85);
+        }
+
+        .discord-feed-section {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+        }
+
+        .discord-feed-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            font-size: var(--font-xl);
+            font-weight: 700;
+        }
+
+        .discord-message {
+            display: flex;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .discord-message:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .discord-message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--dark-bg);
+        }
+
+        .discord-message-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .discord-message-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+        }
+
+        .discord-message-author {
+            font-weight: 700;
+            color: var(--text-color);
+            font-size: var(--font-sm);
+        }
+
+        .discord-message-time {
+            color: var(--text-muted);
+            font-size: var(--font-xs);
+        }
+
+        .discord-message-content {
+            color: var(--text-muted);
+            font-size: var(--font-md);
+            line-height: 1.7;
+            overflow-wrap: break-word;
+        }
+
+        .discord-message-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .discord-message-images img {
+            max-width: 240px;
+            max-height: 240px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .discord-feed-empty {
+            color: var(--text-muted);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer {
+            background: var(--darker-bg);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: var(--font-lg);
+        }
+
+        .footer-section p, .footer-section li {
+            color: var(--text-muted);
+            font-size: var(--font-md);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            font-size: var(--font-md);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+        }
+
+        .footer-side-project {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            color: var(--text-muted);
+            font-size: var(--font-xs);
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-side-project:hover {
+            opacity: 1;
+        }
+
+        .footer-side-project img {
+            height: 34px;
+            width: auto;
+            display: block;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 1100px) {
+            :root {
+                --font-xs: 0.7rem;
+                --font-sm: 0.8rem;
+                --font-md: 0.9rem;
+                --font-lg: 1rem;
+                --font-xl: 1.1rem;
+                --font-2xl: 1.3rem;
+                --font-3xl: 1.5rem;
+                --font-4xl: 1.7rem;
+            }
+
+            nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--darker-bg);
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                z-index: 999;
+                overflow-y: auto;
+                transition: all 0.3s ease;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 0;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                margin: 10px 0;
+                border: none;
+                background: var(--dark-bg);
+                display: none;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-actions {
+                display: none;
+            }
+
+            .page-header {
+                padding: 40px 0;
+            }
+
+            .page-header h1 {
+                font-size: var(--font-2xl);
+            }
+
+            .page-header p {
+                font-size: var(--font-md);
+            }
+
+            .discord-feed-section {
+                padding: 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --font-xs: 0.65rem;
+                --font-sm: 0.75rem;
+                --font-md: 0.85rem;
+                --font-lg: 0.95rem;
+                --font-xl: 1.05rem;
+                --font-2xl: 1.2rem;
+                --font-3xl: 1.35rem;
+                --font-4xl: 1.5rem;
+            }
+
+            .logo {
+                font-size: var(--font-xl);
+            }
+
+            .page-header {
+                padding: 30px 0;
+            }
+
+            .discord-feed-section {
+                padding: 15px;
+            }
+
+            .discord-message-images img {
+                max-width: 160px;
+                max-height: 160px;
+            }
+
+            footer {
+                padding: 30px 0 15px;
+            }
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVS6GWC596"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VVS6GWC596');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/img/mascot/freeze.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                    </a>
+                </div>
+                <span class="header-page-title">Latest News</span>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu"><svg class="menu-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg></button>
+                <nav id="main-nav">
+                    <ul>
+                        <li class="dropdown">
+                            <a href="#">Uploads</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="heads.html"><img src="assets/img/menu-icons/head.svg" alt="" class="menu-icon">Heads</a></li>
+                                <li><a href="bodies.html"><img src="assets/img/menu-icons/body.svg" alt="" class="menu-icon">Bodies</a></li>
+                                <li><a href="hats.html"><img src="assets/img/menu-icons/hat.svg" alt="" class="menu-icon">Hats</a></li>
+                                <li><a href="swords.html"><img src="assets/img/menu-icons/sword.svg" alt="" class="menu-icon">Swords</a></li>
+                                <li><a href="shields.html"><img src="assets/img/menu-icons/shield.svg" alt="" class="menu-icon">Shields</a></li>
+                                <li><a href="upload-sets.html"><img src="assets/img/menu-icons/box.svg" alt="" class="menu-icon">Upload Sets</a></li>
+                                <li><a href="templates.html"><img src="assets/img/menu-icons/document.svg" alt="" class="menu-icon">Templates</a></li>
+                                <li><a href="previewer.html"><img src="assets/img/menu-icons/eye.svg" alt="" class="menu-icon">Gani Previewer</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Upload Now &#8599;</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="https://dustyshouri.github.io/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/eye.svg" alt="" class="menu-icon">Upload Viewer (by DustyShouri) ↗</a></li>
+                                <li><a href="https://eraupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Era) ↗</a></li>
+                                <li><a href="https://classicupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Classic) ↗</a></li>
+                                <li><a href="https://olwestupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Ol' West) ↗</a></li>
+                                <li><a href="https://zoneupload.graalonline.com/" target="_blank" rel="noopener noreferrer"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload Now (Zone) ↗</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Guides - How to?</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="upload.html"><img src="assets/img/menu-icons/upload-arrow.svg" alt="" class="menu-icon">Upload</a></li>
+                                <li><a href="trade-guide.html"><img src="assets/img/menu-icons/swap.svg" alt="" class="menu-icon">Trade</a></li>
+                                <li><a href="job-guide.html"><img src="assets/img/menu-icons/coin.svg" alt="" class="menu-icon">Get Gralats</a></li>
+                                <li><a href="events-guide.html"><img src="assets/img/menu-icons/star.svg" alt="" class="menu-icon">Get Event Coins</a></li>
+                                <li><a href="secret-achievements.html"><img src="assets/img/menu-icons/trophy.svg" alt="" class="menu-icon">Secret Achievements</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Trade Tools</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sellables-calculator.html"><img src="assets/img/menu-icons/calculator.svg" alt="" class="menu-icon">Sellables Calculator</a></li>
+                                <li><a href="advanced-calculator.html"><img src="assets/img/menu-icons/calculator.svg" alt="" class="menu-icon">Advanced Calculator</a></li>
+                                <li><a href="ratio-history.html"><img src="assets/img/menu-icons/chart.svg" alt="" class="menu-icon">Ratio History</a></li>
+                                <li><a href="profit-loss.html"><img src="assets/img/menu-icons/chart.svg" alt="" class="menu-icon">Profit & Loss Tracker</a></li>
+                                <li><a href="price-house.html"><img src="assets/img/menu-icons/house.svg" alt="" class="menu-icon">Price House</a></li>
+                                <li><a href="guns.html"><img src="assets/img/menu-icons/gun.svg" alt="" class="menu-icon">Gun Ratings</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="theme-toggle" id="desktop-theme-toggle" aria-label="Toggle theme">
+                        <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                        </svg>
+                        <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Latest News</h1>
+            <p>Official GraalOnline Era announcements and patch notes, pulled straight from Discord.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="discord-feed-section">
+            <h2>Era Announcements</h2>
+            <div id="eraAnnouncementsFeed">
+                <p class="discord-feed-empty">Loading...</p>
+            </div>
+        </div>
+
+        <div class="discord-feed-section">
+            <h2>Era Patch Notes</h2>
+            <div id="eraPatchNotesFeed">
+                <p class="discord-feed-empty">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About GraalGuide</h3>
+                    <p>GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
+                    <p><em>GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="upload.html">Uploads</a></li>
+                        <li><a href="trade-guide.html">Trading Guide</a></li>
+                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal &amp; Policies</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="about-me.html">About Me</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc">YouTube</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="memory-lane.html">Memory Lane</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+                <div class="footer-side-project">
+                    <span>My other project:</span>
+                    <a href="https://www.blutobox.com/" target="_blank" rel="noopener">
+                        <img src="image/a/Bluto%20Box.png" alt="Bluto Box">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/live-stats.js"></script>
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+                if (window.innerWidth <= 1100) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => { menu.style.display = 'none'; });
+                    document.querySelectorAll('.dropdown').forEach(dropdown => { dropdown.classList.remove('active'); });
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mainNav.contains(event.target);
+                const isClickInsideMenuBtn = mobileMenuBtn.contains(event.target);
+                if (!isClickInsideNav && !isClickInsideMenuBtn && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+                dropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const dropdown = this.parentElement;
+                    const dropdownMenu = this.nextElementSibling;
+                    const isVisible = dropdownMenu.style.display === 'block';
+                    document.querySelectorAll('.dropdown').forEach(item => {
+                        if (item !== dropdown) {
+                            item.classList.remove('active');
+                            item.querySelector('.dropdown-menu').style.display = 'none';
+                        }
+                    });
+                    dropdown.classList.toggle('active');
+                    dropdownMenu.style.display = isVisible ? 'none' : 'block';
+                });
+            });
+
+            if (window.matchMedia('(hover: hover)').matches) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.addEventListener('mouseenter', function() { this.querySelector('.dropdown-menu').style.display = 'block'; });
+                    dropdown.addEventListener('mouseleave', function() { this.querySelector('.dropdown-menu').style.display = 'none'; });
+                });
+            }
+
+            function renderFeed(containerId, channelId) {
+                const container = document.getElementById(containerId);
+                if (!container || typeof LiveStats === 'undefined') return;
+                LiveStats.fetchDiscordFeed(channelId).then(function (messages) {
+                    if (!messages.length) {
+                        container.innerHTML = '<p class="discord-feed-empty">Nothing here yet.</p>';
+                        return;
+                    }
+                    container.innerHTML = messages.map(LiveStats.formatDiscordMessage).join('');
+                });
+            }
+
+            renderFeed('eraAnnouncementsFeed', '694583153473486876');
+            renderFeed('eraPatchNotesFeed', '1199216608854409246');
+        });
+    </script>
+</body>
+</html>

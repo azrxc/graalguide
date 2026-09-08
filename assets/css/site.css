@@ -2168,6 +2168,79 @@ footer {
     margin-top: 10px;
 }
 
+/* Homepage "Latest News" preview - Discord message card styling, kept in
+   sync with the fuller copy in news.html's own inline <style> (that page
+   isn't on this shared stylesheet). */
+.discord-message {
+    display: flex;
+    gap: 12px;
+}
+
+.discord-message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--tile-bg);
+}
+
+.discord-message-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.discord-message-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+
+.discord-message-author {
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: var(--font-sm);
+}
+
+.discord-message-time {
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+}
+
+.discord-message-content {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+    line-height: 1.6;
+    overflow-wrap: break-word;
+}
+
+.discord-message-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.discord-message-images img {
+    max-width: 160px;
+    max-height: 160px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.discord-feed-empty {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+}
+
+.live-stats-news-link {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: var(--font-sm);
+    font-weight: 600;
+}
+
 .live-stats-map-country.is-active {
     fill: var(--brand);
 }
