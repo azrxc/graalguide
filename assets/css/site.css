@@ -2068,6 +2068,14 @@ footer {
     letter-spacing: 0.08em;
 }
 
+.live-stats-since-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: var(--font-xs);
+    opacity: 0.7;
+    margin: -8px auto 24px;
+}
+
 .live-stats-map-card {
     background: var(--panel);
     border: 1px solid var(--border-strong);
