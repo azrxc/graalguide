@@ -2,14 +2,14 @@
 //
 // Powers three things on the site, all from two small KV blobs per bucket:
 //   - per-item download counts shown on every gallery card ("1.2K downloads")
-//   - homepage "Top 5 Most Downloaded" widget
-//   - homepage "Top 5 Countries" world map
+//   - homepage "Top 10 Most Downloaded" widget
+//   - homepage "Top 10 Countries" world map / country race
 //
 // KV layout (namespace binding: STATS):
 //   counts:<category>   -> { "<itemId>": <int count>, ... }   (one blob per gallery, e.g. counts:heads)
 //   counts:countries     -> { "<ISO2>": <int count>, ... }
-//   leaderboard:downloads -> [{ category, id, name, thumb, count }, ...]  (top 5, kept pre-sorted)
-//   leaderboard:countries -> [{ code, count }, ...]                       (top 5, kept pre-sorted)
+//   leaderboard:downloads -> [{ category, id, name, thumb, count }, ...]  (top 10, kept pre-sorted)
+//   leaderboard:countries -> [{ code, count }, ...]                       (top 10, kept pre-sorted)
 //
 // The leaderboard blobs are maintained incrementally on every write so GET
 // requests are always 1-2 cheap KV reads, never a full scan - important
@@ -47,9 +47,11 @@ async function bump(env, blobKey, itemKey) {
     return data[itemKey];
 }
 
-// Inserts/updates `entry` in the top-5 leaderboard at leaderboardKey, keyed by idField.
-// Skips the write entirely if entry doesn't make the top 5 - keeps write volume low
-// since only genuine top-5 contenders ever touch the leaderboard blob.
+const LEADERBOARD_SIZE = 10;
+
+// Inserts/updates `entry` in the top-N leaderboard at leaderboardKey, keyed by idField.
+// Skips the write entirely if entry doesn't make the cut - keeps write volume low
+// since only genuine top-N contenders ever touch the leaderboard blob.
 async function promote(env, leaderboardKey, entry, idField) {
     const raw = await env.STATS.get(leaderboardKey);
     let list = raw ? JSON.parse(raw) : [];
@@ -57,14 +59,14 @@ async function promote(env, leaderboardKey, entry, idField) {
     const idx = list.findIndex((x) => x[idField] === entry[idField]);
     if (idx >= 0) {
         list[idx] = entry;
-    } else if (list.length < 5 || entry.count > list[list.length - 1].count) {
+    } else if (list.length < LEADERBOARD_SIZE || entry.count > list[list.length - 1].count) {
         list.push(entry);
     } else {
         return;
     }
 
     list.sort((a, b) => b.count - a.count);
-    list = list.slice(0, 5);
+    list = list.slice(0, LEADERBOARD_SIZE);
     try {
         await env.STATS.put(leaderboardKey, JSON.stringify(list));
     } catch (err) {
@@ -236,7 +238,7 @@ export default {
                 return json({ downloads, visitors });
             }
 
-            // GET /leaderboard - both top-5 widgets for the homepage, 2 cheap reads.
+            // GET /leaderboard - both top-10 widgets for the homepage, 2 cheap reads.
             if (url.pathname === "/leaderboard" && request.method === "GET") {
                 const [countries, downloads] = await Promise.all([
                     env.STATS.get("leaderboard:countries"),
