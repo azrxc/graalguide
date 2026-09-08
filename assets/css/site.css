@@ -2181,6 +2181,7 @@ footer {
 
 .live-stats-count {
     flex-shrink: 0;
+    margin-left: auto;
     color: var(--brand-light);
     font-size: var(--font-sm);
     font-weight: 700;

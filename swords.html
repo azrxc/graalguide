@@ -1705,6 +1705,22 @@
             renderSwords();
             saveSwordsState();
 
+            // Deep link support (?open=<filename>) - lets other pages (e.g. the
+            // homepage's Most Downloaded widget) link straight to one item's
+            // modal instead of just the gallery. Retried after community data
+            // loads below since the target item might be a community upload.
+            const deepLinkId = urlParams.get('open');
+            let deepLinkOpened = false;
+            function tryOpenDeepLink() {
+                if (!deepLinkId || deepLinkOpened) return;
+                const idx = filteredSwords.findIndex(h => h.image.split('/').pop() === deepLinkId);
+                if (idx < 0) return;
+                deepLinkOpened = true;
+                setModalContent(idx, false);
+                document.getElementById('image-modal').style.display = 'flex';
+            }
+            tryOpenDeepLink();
+
             // Load community-uploaded swords and merge in
             const communityStatus = document.getElementById('community-status');
             function loadCommunitySwords() {
@@ -1722,6 +1738,7 @@
                         communityDataLoaded = true;
                         communityStatus.style.display = 'none';
                         renderSwords();
+                        tryOpenDeepLink();
                         saveSwordsState();
                     })
                     .catch(error => {
