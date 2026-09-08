@@ -2035,7 +2035,9 @@ footer {
 }
 
 /* Live stats: homepage widgets powered by worker/stats-worker.js -
-   lifetime download counter + top-5 downloads/countries leaderboards. */
+   lifetime download counter, a world map highlighting every country with
+   tracked activity (no numbers shown, just presence), and the top-5
+   most-downloaded items list. */
 .live-stats-totals {
     display: flex;
     justify-content: center;
@@ -2092,28 +2094,13 @@ footer {
     stroke-width: 0.5;
 }
 
-.live-stats-map-country.is-top {
+.live-stats-map-country.is-active {
     fill: var(--brand);
 }
 
-.live-stats-map-country.is-top:hover,
+.live-stats-map-country.is-active:hover,
 .live-stats-map-country:hover {
     fill: var(--brand-light);
-}
-
-.live-stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.live-stats-card {
-    background: var(--panel);
-    border: 1px solid var(--border-strong);
-    border-radius: 16px;
-    padding: 20px;
 }
 
 .live-stats-card-title {

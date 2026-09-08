@@ -1806,30 +1806,18 @@
                     <span class="live-stats-total-number" id="liveTotalDownloads">0</span>
                     <span class="live-stats-total-label">Lifetime Downloads</span>
                 </div>
-                <div class="live-stats-total">
-                    <span class="live-stats-total-number" id="liveTotalVisitors">0</span>
-                    <span class="live-stats-total-label">Graalians Tracked</span>
-                </div>
             </div>
 
             <div class="live-stats-map-card">
                 <h3 class="live-stats-card-title">Where Graalians Are Grinding</h3>
-                <div class="live-stats-map" id="liveStatsMap" aria-label="World map highlighting the top 5 countries by visitors"></div>
+                <div class="live-stats-map" id="liveStatsMap" aria-label="World map highlighting every country with tracked visitors"></div>
             </div>
 
-            <div class="live-stats-grid">
-                <div class="live-stats-card">
-                    <h3 class="live-stats-card-title">Most Downloaded</h3>
-                    <ol class="live-stats-list" id="topDownloadsList">
-                        <li class="live-stats-empty">Loading...</li>
-                    </ol>
-                </div>
-                <div class="live-stats-card">
-                    <h3 class="live-stats-card-title">Top Countries</h3>
-                    <ol class="live-stats-list" id="topCountriesList">
-                        <li class="live-stats-empty">Loading...</li>
-                    </ol>
-                </div>
+            <div class="live-stats-map-card">
+                <h3 class="live-stats-card-title">Most Downloaded</h3>
+                <ol class="live-stats-list" id="topDownloadsList">
+                    <li class="live-stats-empty">Loading...</li>
+                </ol>
             </div>
         </div>
     </section>
@@ -2124,7 +2112,10 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
     <script>
         (function () {
             // ISO 3166-1 alpha-2 -> numeric-3 (zero-padded), for matching the
-            // world-atlas topology's country ids to our top-5 country codes.
+            // world-atlas topology's country ids to visited countries. Every
+            // country with any tracked activity gets highlighted (not just a
+            // top handful), so this list intentionally covers broadly rather
+            // than just this site's known-largest markets.
             var ALPHA2_TO_NUMERIC = {
                 US: "840", PH: "608", BR: "076", ID: "360", MY: "458", SG: "702",
                 MX: "484", GB: "826", CA: "124", AU: "036", DE: "276", FR: "250",
@@ -2133,12 +2124,24 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                 PE: "604", SA: "682", AE: "784", EG: "818", NG: "566", ZA: "710",
                 PK: "586", BD: "050", TR: "792", RU: "643", PL: "616", RO: "642",
                 NZ: "554", IE: "372", SE: "752", NO: "578", DK: "208", FI: "246",
-                CH: "756", AT: "040", BE: "056", GR: "300", IL: "376"
+                CH: "756", AT: "040", BE: "056", GR: "300", IL: "376",
+                CN: "156", TW: "158", HK: "344", LK: "144", NP: "524", MM: "104",
+                KH: "116", LA: "418", KZ: "398", UA: "804", CZ: "203", HU: "348",
+                SK: "703", BG: "100", HR: "191", RS: "688", IS: "352", LU: "442",
+                MA: "504", DZ: "012", TN: "788", KE: "404", GH: "288", ET: "231",
+                TZ: "834", UG: "800", ZW: "716", VE: "862", EC: "218", BO: "068",
+                PY: "600", UY: "858", CR: "188", PA: "591", GT: "320", HN: "340",
+                SV: "222", NI: "558", DO: "214", PR: "630", JM: "388", TT: "780",
+                QA: "634", KW: "414", BH: "048", OM: "512", JO: "400", LB: "422",
+                IQ: "368", IR: "364", AF: "004", MN: "496", UZ: "860", AZ: "031",
+                GE: "268", AM: "051", BY: "112", LT: "440", LV: "428", EE: "233",
+                SI: "705", CY: "196", MT: "470", AL: "008", MK: "807", BA: "070",
+                MD: "498", CU: "192"
             };
 
-            function renderMap(topCountries) {
+            function renderMap(countryCounts) {
                 var container = document.getElementById("liveStatsMap");
-                if (!container || !window.d3 || !window.topojson || !topCountries.length) return;
+                if (!container || !window.d3 || !window.topojson) return;
 
                 var width = container.clientWidth || 800;
                 var height = Math.round(width * 0.52);
@@ -2150,10 +2153,15 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                 var projection = d3.geoNaturalEarth1().fitSize([width, height], { type: "Sphere" });
                 var path = d3.geoPath(projection);
 
-                var rankByNumeric = {};
-                topCountries.forEach(function (c, i) {
-                    var numeric = ALPHA2_TO_NUMERIC[c.code];
-                    if (numeric) rankByNumeric[numeric] = i;
+                // Highlight every country with any tracked activity, not just a
+                // "top 5" - no ranking, no numbers, just "has this country shown
+                // up at all" (same treatment as GA's own country map).
+                var activeNumeric = {};
+                Object.keys(countryCounts).forEach(function (code) {
+                    if (countryCounts[code] > 0) {
+                        var numeric = ALPHA2_TO_NUMERIC[code];
+                        if (numeric) activeNumeric[numeric] = true;
+                    }
                 });
 
                 fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
@@ -2166,7 +2174,7 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                             .join("path")
                             .attr("d", path)
                             .attr("class", function (d) {
-                                return rankByNumeric.hasOwnProperty(d.id) ? "live-stats-map-country is-top" : "live-stats-map-country";
+                                return activeNumeric[d.id] ? "live-stats-map-country is-active" : "live-stats-map-country";
                             })
                             .append("title")
                             .text(function (d) { return d.properties.name; });
@@ -2193,36 +2201,19 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                 }).join("");
             }
 
-            function renderCountriesList(items) {
-                var list = document.getElementById("topCountriesList");
-                if (!list) return;
-                if (!items.length) {
-                    list.innerHTML = '<li class="live-stats-empty">No visits tracked yet.</li>';
-                    return;
-                }
-                list.innerHTML = items.map(function (item, i) {
-                    return '<li class="live-stats-item">' +
-                        '<span class="live-stats-rank">' + (i + 1) + "</span>" +
-                        '<span class="live-stats-flag">' + LiveStats.countryFlag(item.code) + "</span>" +
-                        '<span class="live-stats-name">' + LiveStats.escapeHtml(LiveStats.countryName(item.code)) + "</span>" +
-                        '<span class="live-stats-count">' + LiveStats.formatCount(item.count) + "</span>" +
-                        "</li>";
-                }).join("");
-            }
-
             var downloadsEl = document.getElementById("liveTotalDownloads");
-            var visitorsEl = document.getElementById("liveTotalVisitors");
-            if (downloadsEl || visitorsEl) {
+            if (downloadsEl) {
                 LiveStats.fetchTotals().then(function (totals) {
-                    if (downloadsEl) LiveStats.countUp(downloadsEl, totals.downloads);
-                    if (visitorsEl) LiveStats.countUp(visitorsEl, totals.visitors);
+                    LiveStats.countUp(downloadsEl, totals.downloads);
                 });
             }
 
             LiveStats.fetchLeaderboard().then(function (data) {
                 renderDownloadsList(data.downloads || []);
-                renderCountriesList(data.countries || []);
-                renderMap(data.countries || []);
+            });
+
+            LiveStats.fetchCounts("countries").then(function (countryCounts) {
+                renderMap(countryCounts || {});
             });
         })();
     </script>
