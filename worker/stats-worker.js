@@ -72,6 +72,55 @@ async function promote(env, leaderboardKey, entry, idField) {
     }
 }
 
+// Flag emoji via Unicode regional indicators - safe to use here (unlike the
+// website itself) since Discord's own clients render these consistently
+// across platforms, no Windows-font fallback issue.
+function flagEmoji(code) {
+    if (!code || code.length !== 2) return "";
+    return code.toUpperCase().replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)));
+}
+
+// Posts a snapshot of the current all-time top-5 leaderboards to Discord.
+// Note: this is the current standings, not a week-over-week delta (that
+// would need date-bucketed counters, a bigger change) - "recap" here means
+// "here's where things stand," posted on a recurring schedule.
+async function postDiscordRecap(env) {
+    if (!env.DISCORD_WEBHOOK_URL) return;
+
+    const [countriesRaw, downloadsRaw] = await Promise.all([
+        env.STATS.get("leaderboard:countries"),
+        env.STATS.get("leaderboard:downloads"),
+    ]);
+    const countries = countriesRaw ? JSON.parse(countriesRaw) : [];
+    const downloads = downloadsRaw ? JSON.parse(downloadsRaw) : [];
+
+    const countryLines = countries.length
+        ? countries.map((c, i) => `${i + 1}. ${flagEmoji(c.code)} ${c.code} - ${c.count}`).join("\n")
+        : "No visitors yet.";
+    const downloadLines = downloads.length
+        ? downloads.map((d, i) => `${i + 1}. ${d.name || d.id} (${d.category}) - ${d.count}`).join("\n")
+        : "No downloads yet.";
+
+    const payload = {
+        embeds: [
+            {
+                title: "GraalGuide Stats Snapshot",
+                color: 3900150,
+                fields: [
+                    { name: "Top Countries", value: countryLines },
+                    { name: "Most Downloaded", value: downloadLines },
+                ],
+            },
+        ],
+    };
+
+    await fetch(env.DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+    }).catch(() => {});
+}
+
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -151,5 +200,11 @@ export default {
         } catch (err) {
             return json({ error: "server error" }, 500);
         }
+    },
+
+    // Fires on whatever Cron Trigger schedule is set on this Worker (added
+    // via the dashboard's Triggers tab, not in code).
+    async scheduled(event, env, ctx) {
+        ctx.waitUntil(postDiscordRecap(env));
     },
 };
