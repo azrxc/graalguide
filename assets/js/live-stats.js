@@ -24,6 +24,8 @@ const LiveStats = (function () {
 
     // Records a download and resolves with the new count so the UI can update
     // the badge immediately instead of waiting for the next full fetchCounts().
+    // Also fires a small celebration toast when this download happens to be
+    // the one that pushes the item's count onto a round-number milestone.
     function recordDownload(category, id, name, thumb) {
         return fetch(STATS_API + "/download", {
             method: "POST",
@@ -31,8 +33,60 @@ const LiveStats = (function () {
             body: JSON.stringify({ category, id, name, thumb }),
         })
             .then((r) => r.json())
-            .then((data) => (typeof data.count === "number" ? data.count : null))
+            .then((data) => {
+                const count = typeof data.count === "number" ? data.count : null;
+                if (count !== null && MILESTONES.indexOf(count) !== -1) {
+                    showMilestoneToast(count);
+                }
+                return count;
+            })
             .catch(() => null);
+    }
+
+    // Round-number thresholds worth celebrating. Starts low (5, 10) since a
+    // fresh site's counts are still small - a toast that only ever fires at
+    // 1000+ would never show up for most items right now.
+    const MILESTONES = [5, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000];
+
+    // One line per site language, built from a bolded count span plus the
+    // rest of the sentence. Keyed off <html lang="">, which every page
+    // (root/pt/id) already sets - lets this live entirely in the shared
+    // script instead of touching every gallery page in 3 languages.
+    const MILESTONE_TEXT = {
+        en: (n) => "Download #" + n + "! This one's a hit.",
+        pt: (n) => "Download número " + n + "! Esse aqui tá fazendo sucesso.",
+        id: (n) => "Unduhan ke-" + n + "! Yang ini lagi hits.",
+    };
+
+    function showMilestoneToast(count) {
+        try {
+            const lang = (document.documentElement.lang || "en").slice(0, 2);
+            const build = MILESTONE_TEXT[lang] || MILESTONE_TEXT.en;
+            const label = formatCount(count);
+
+            let host = document.getElementById("gg-toast-host");
+            if (!host) {
+                host = document.createElement("div");
+                host.id = "gg-toast-host";
+                host.className = "gg-toast-host";
+                document.body.appendChild(host);
+            }
+
+            const toast = document.createElement("div");
+            toast.className = "gg-toast";
+            toast.innerHTML =
+                '<span class="gg-toast-icon">🎉</span>' +
+                '<span class="gg-toast-text">' + build("<strong>" + label + "</strong>") + "</span>";
+            host.appendChild(toast);
+
+            requestAnimationFrame(() => toast.classList.add("show"));
+            setTimeout(() => {
+                toast.classList.remove("show");
+                setTimeout(() => toast.remove(), 350);
+            }, 5000);
+        } catch (e) {
+            // Never let a toast failure break the actual download.
+        }
     }
 
     // Full { itemId: count } map for one gallery - one request populates every
