@@ -1712,22 +1712,22 @@
             </div>
 
             <div class="showcase-grid" id="showcaseGrid">
-                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/271.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/183.png')"></a>
-                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/411.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/242.png')"></a>
-                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/421.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/210.gif')"></a>
-                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/429.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/243.png')"></a>
-                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/217.png')"></a>
-                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/418.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/236.png')"></a>
-                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/430.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/244.png')"></a>
-                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/427.png" alt="Custom Graal Era body" loading="lazy"></a>
-                <a href="heads.html" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/216.gif')"></a>
-                <a href="bodies.html" class="showcase-thumb" data-type="body"><img src="image/bodies/425.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="bodies.html?open=271.png" class="showcase-thumb" data-type="body"><img src="image/bodies/271.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html?open=183.png" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/183.png')"></a>
+                <a href="bodies.html?open=411.png" class="showcase-thumb" data-type="body"><img src="image/bodies/411.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html?open=242.png" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/242.png')"></a>
+                <a href="bodies.html?open=421.png" class="showcase-thumb" data-type="body"><img src="image/bodies/421.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html?open=210.gif" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/210.gif')"></a>
+                <a href="bodies.html?open=429.png" class="showcase-thumb" data-type="body"><img src="image/bodies/429.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html?open=243.png" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/243.png')"></a>
+                <a href="heads.html?open=217.png" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/217.png')"></a>
+                <a href="bodies.html?open=418.png" class="showcase-thumb" data-type="body"><img src="image/bodies/418.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html?open=236.png" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/236.png')"></a>
+                <a href="bodies.html?open=430.png" class="showcase-thumb" data-type="body"><img src="image/bodies/430.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html?open=244.png" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/244.png')"></a>
+                <a href="bodies.html?open=427.png" class="showcase-thumb" data-type="body"><img src="image/bodies/427.png" alt="Custom Graal Era body" loading="lazy"></a>
+                <a href="heads.html?open=216.gif" class="showcase-thumb" data-type="head" style="background-image:url('image/heads/216.gif')"></a>
+                <a href="bodies.html?open=425.png" class="showcase-thumb" data-type="body"><img src="image/bodies/425.png" alt="Custom Graal Era body" loading="lazy"></a>
             </div>
 
             <div class="showcase-cta">
@@ -2392,6 +2392,8 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                 if (!pool || pool.length === 0) return;
 
                 const item = pool[Math.floor(Math.random() * pool.length)];
+                const itemFile = item.image.split('/').pop();
+                const linkPage = type === 'body' ? 'bodies.html' : 'heads.html';
 
                 tile.classList.add('rotating');
                 setTimeout(() => {
@@ -2401,6 +2403,9 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                     } else {
                         tile.style.backgroundImage = `url('${item.image}')`;
                     }
+                    // Keep the link pointed at whatever's actually showing right
+                    // now, not whatever was there when the page first loaded.
+                    tile.href = linkPage + '?open=' + encodeURIComponent(itemFile);
                     tile.classList.remove('rotating');
                 }, 300);
             }, 2200);
