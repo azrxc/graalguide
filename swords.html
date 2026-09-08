@@ -1719,7 +1719,6 @@
                 setModalContent(idx, false);
                 document.getElementById('image-modal').style.display = 'flex';
             }
-            tryOpenDeepLink();
 
             // Load community-uploaded swords and merge in
             const communityStatus = document.getElementById('community-status');
@@ -1765,6 +1764,13 @@
             // current page.
             let modalCurrentIndex = -1;
             let currentModalImage = null;
+
+            // Safe to attempt the deep-link open now that modalCurrentIndex/
+            // currentModalImage exist - calling this any earlier throws
+            // (setModalContent references them before their declaration runs),
+            // which silently kills the rest of this script's setup, including
+            // the click handlers further down the page.
+            tryOpenDeepLink();
 
             function updateNavButtons() {
                 const list = filteredSwords;
