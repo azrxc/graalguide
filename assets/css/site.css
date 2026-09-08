@@ -2197,24 +2197,12 @@ footer {
     color: #fff;
 }
 
-/* Top-5 country race: ranks 1-3 get actual gold/silver/bronze medal
-   colors (explicit exception to the site's blue-only rule, requested
-   specifically for this leaderboard-style number). */
+/* Top-5 country race: #1 gets the same plain brand-blue highlight as
+   Most Downloaded's #1 (below) - ranks 2-5 stay the plain default,
+   no gold/silver/bronze, consistent with the rest of the site. */
 .live-stats-rank-1 {
-    background: #ffd700;
-    border-color: #ffd700;
-    color: #4a3800;
-}
-
-.live-stats-rank-2 {
-    background: #c0c0c0;
-    border-color: #c0c0c0;
-    color: #2b2b2b;
-}
-
-.live-stats-rank-3 {
-    background: #cd7f32;
-    border-color: #cd7f32;
+    background: var(--brand);
+    border-color: var(--brand);
     color: #fff;
 }
 
