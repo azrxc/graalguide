@@ -2154,23 +2154,22 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                 var projection = d3.geoNaturalEarth1().fitSize([width, height], { type: "Sphere" });
                 var path = d3.geoPath(projection);
 
-                // Shade every country with any tracked activity by relative
-                // volume (lighter = fewer visits, darker = more) instead of one
-                // flat color - no numbers shown, but as more countries light up
-                // over time a single flat blue would stop reading as meaningful.
+                // Shade every country with any tracked activity by volume
+                // (lighter = fewer visits, darker = more). Fixed domain (not
+                // relative to today's max) so the whole map genuinely gets
+                // more saturated as real traffic accumulates over time,
+                // instead of always looking equally contrasty regardless of
+                // how big the numbers actually are. Clamped, so a country
+                // that outgrows this ceiling just caps at the darkest blue.
                 var countByNumeric = {};
-                var maxCount = 1;
                 Object.keys(countryCounts).forEach(function (code) {
                     var count = countryCounts[code];
                     if (count > 0) {
                         var numeric = ALPHA2_TO_NUMERIC[code];
-                        if (numeric) {
-                            countByNumeric[numeric] = count;
-                            if (count > maxCount) maxCount = count;
-                        }
+                        if (numeric) countByNumeric[numeric] = count;
                     }
                 });
-                var colorScale = d3.scaleLinear().domain([1, maxCount]).range(["#7aa9fa", "#1e3a6e"]).clamp(true);
+                var colorScale = d3.scaleLinear().domain([1, 50]).range(["#7aa9fa", "#1e3a6e"]).clamp(true);
 
                 fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
                     .then(function (r) { return r.json(); })
