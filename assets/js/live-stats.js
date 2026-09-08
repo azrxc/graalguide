@@ -121,6 +121,27 @@ const LiveStats = (function () {
         NZ: "New Zealand", IE: "Ireland", SE: "Sweden", NO: "Norway",
         DK: "Denmark", FI: "Finland", CH: "Switzerland", AT: "Austria",
         BE: "Belgium", GR: "Greece", IL: "Israel", XX: "Unknown",
+        // Matches the wider country coverage the map's color-by-country
+        // logic already had (assets/js is shared, but this list had fallen
+        // behind index.html's own alpha2->numeric table).
+        CN: "China", TW: "Taiwan", HK: "Hong Kong", LK: "Sri Lanka",
+        NP: "Nepal", MM: "Myanmar", KH: "Cambodia", LA: "Laos",
+        KZ: "Kazakhstan", UA: "Ukraine", CZ: "Czechia", HU: "Hungary",
+        SK: "Slovakia", BG: "Bulgaria", HR: "Croatia", RS: "Serbia",
+        IS: "Iceland", LU: "Luxembourg", MA: "Morocco", DZ: "Algeria",
+        TN: "Tunisia", KE: "Kenya", GH: "Ghana", ET: "Ethiopia",
+        TZ: "Tanzania", UG: "Uganda", ZW: "Zimbabwe", VE: "Venezuela",
+        EC: "Ecuador", BO: "Bolivia", PY: "Paraguay", UY: "Uruguay",
+        CR: "Costa Rica", PA: "Panama", GT: "Guatemala", HN: "Honduras",
+        SV: "El Salvador", NI: "Nicaragua", DO: "Dominican Republic",
+        PR: "Puerto Rico", JM: "Jamaica", TT: "Trinidad and Tobago",
+        QA: "Qatar", KW: "Kuwait", BH: "Bahrain", OM: "Oman", JO: "Jordan",
+        LB: "Lebanon", IQ: "Iraq", IR: "Iran", AF: "Afghanistan",
+        MN: "Mongolia", UZ: "Uzbekistan", AZ: "Azerbaijan", GE: "Georgia",
+        AM: "Armenia", BY: "Belarus", LT: "Lithuania", LV: "Latvia",
+        EE: "Estonia", SI: "Slovenia", CY: "Cyprus", MT: "Malta",
+        AL: "Albania", MK: "North Macedonia", BA: "Bosnia and Herzegovina",
+        MD: "Moldova", CU: "Cuba",
     };
 
     function countryName(code) {
