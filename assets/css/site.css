@@ -1494,6 +1494,23 @@ footer {
     color: var(--text-muted);
 }
 
+.footer-side-project {
+    display: inline-block;
+    margin-top: 14px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.footer-side-project:hover {
+    opacity: 1;
+}
+
+.footer-side-project img {
+    height: 22px;
+    width: auto;
+    display: block;
+}
+
 /* ------------------------------ Mobile nav actions --------------------------- */
 
 .mobile-actions-container {
