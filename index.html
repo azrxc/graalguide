@@ -2194,7 +2194,9 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                 list.innerHTML = items.map(function (item, i) {
                     return '<li class="live-stats-item">' +
                         '<span class="live-stats-rank">' + (i + 1) + "</span>" +
+                        '<a href="' + LiveStats.escapeHtml(item.thumb) + '" target="_blank" rel="noopener">' +
                         '<img class="live-stats-thumb" src="' + LiveStats.escapeHtml(item.thumb) + '" alt="" loading="lazy">' +
+                        "</a>" +
                         '<span class="live-stats-name">' + LiveStats.escapeHtml(item.name) + "</span>" +
                         '<span class="live-stats-count">' + LiveStats.formatCount(item.count) + "</span>" +
                         "</li>";
