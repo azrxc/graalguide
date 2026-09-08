@@ -426,6 +426,7 @@
         }
         
         .template-item {
+            position: relative;
             background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
@@ -433,6 +434,28 @@
             transition: all 0.3s ease;
             border: 1px solid var(--border-color);
             cursor: pointer;
+        }
+
+        .template-download-badge {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 5px 0;
+            background: rgba(0, 0, 0, 0.25);
+            color: var(--brand-light, #7aa9fa);
+            font-size: 11px;
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+        .template-download-badge.has-count {
+            display: flex;
+        }
+
+        .template-download-icon {
+            width: 11px;
+            height: 11px;
         }
 
         .template-item:hover {
@@ -1258,6 +1281,7 @@
         </div>
     </div>
     <script src="../assets/js/share-buttons.js"></script>
+    <script src="../assets/js/live-stats.js"></script>
 
     <footer>
         <div class="container">
@@ -1484,11 +1508,35 @@
                     <div class="template-info">
                         <h3>${template.name}</h3>
                     </div>
+                    <span class="template-download-badge" data-badge-id="${template.image.split('/').pop()}">
+                        <svg class="template-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span class="template-download-count"></span>
+                    </span>
                 </div>
             `).join('');
 
             // Update pagination
             updatePagination();
+            applyDownloadBadges();
+        }
+
+        // Populates the "1.2K downloads" badge on every rendered card from the
+        // counts map fetched once on page load (see LiveStats.fetchCounts call
+        // below) - avoids one network request per card.
+        let downloadCounts = {};
+        function applyDownloadBadges() {
+            document.querySelectorAll('.template-download-badge').forEach(el => {
+                const count = downloadCounts[el.dataset.badgeId] || 0;
+                el.classList.toggle('has-count', count > 0);
+                const countEl = el.querySelector('.template-download-count');
+                if (countEl) countEl.textContent = count > 0 ? LiveStats.formatCount(count) + ' downloads' : '';
+            });
+        }
+        if (typeof LiveStats !== 'undefined') {
+            LiveStats.fetchCounts('templates').then(counts => {
+                downloadCounts = counts;
+                applyDownloadBadges();
+            });
         }
 
         // Function to update pagination
@@ -1549,6 +1597,8 @@
         // filteredTemplates so it works seamlessly across pagination
         // boundaries, not just the current page.
         let modalCurrentIndex = -1;
+        let currentModalImage = null;
+        let currentModalName = null;
 
         function updateNavButtons() {
             const list = filteredTemplates;
@@ -1572,6 +1622,8 @@
                 imgEl.style.opacity = '1';
                 downloadBtn.href = template.image;
                 downloadBtn.download = template.image.split('/').pop();
+                currentModalImage = template.image;
+                currentModalName = template.name;
                 document.getElementById('share-btn').classList.remove('nudge');
                 updateNavButtons();
             };
@@ -1667,7 +1719,20 @@
             
             // Initial render
             renderTemplates();
-            
+
+            // Deep link support (?open=<filename>) - lets other pages (e.g. the
+            // homepage's Most Downloaded widget) link straight to one item's
+            // modal instead of just the gallery.
+            const urlParams = new URLSearchParams(window.location.search);
+            const deepLinkId = urlParams.get('open');
+            if (deepLinkId) {
+                const idx = filteredTemplates.findIndex(t => t.image.split('/').pop() === deepLinkId);
+                if (idx >= 0) {
+                    setModalContent(idx, false);
+                    document.getElementById('image-modal').style.display = 'flex';
+                }
+            }
+
             // Pagination event listeners
             document.querySelector('[data-page="prev"]').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1755,6 +1820,17 @@
                 const shareBtn = document.getElementById('share-btn');
                 shareBtn.classList.add('nudge');
                 setTimeout(() => shareBtn.classList.remove('nudge'), 2000);
+
+                if (currentModalImage && typeof LiveStats !== 'undefined') {
+                    const id = currentModalImage.split('/').pop();
+                    const label = currentModalName || ('Template #' + id.replace(/\.\w+$/, ''));
+                    LiveStats.recordDownload('templates', id, label, currentModalImage).then(function (count) {
+                        if (count !== null) {
+                            downloadCounts[id] = count;
+                            applyDownloadBadges();
+                        }
+                    });
+                }
             });
 
             // Share button - native share sheet (Discord shows up there on mobile)

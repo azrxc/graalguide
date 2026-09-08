@@ -426,12 +426,35 @@
         }
         
         .set-item {
+            position: relative;
             background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             border: 1px solid var(--border-color);
+        }
+
+        .set-download-badge {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 5px 0;
+            background: rgba(0, 0, 0, 0.25);
+            color: var(--brand-light, #7aa9fa);
+            font-size: 11px;
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+        .set-download-badge.has-count {
+            display: flex;
+        }
+
+        .set-download-icon {
+            width: 11px;
+            height: 11px;
         }
 
         .set-label {
@@ -1315,6 +1338,7 @@
         </div>
     </div>
     <script src="assets/js/share-buttons.js"></script>
+    <script src="assets/js/live-stats.js"></script>
 
     <footer>
         <div class="container">
@@ -1529,12 +1553,36 @@
                             <img src="${set.bodyImage}" class="body-img" data-piece-index="${bodyPieceIndex}" loading="lazy" decoding="async">
                         </div>
                         <div class="set-label">Set ${globalIndex + 1}</div>
+                        <span class="set-download-badge" data-head-id="${set.headImage.split('/').pop()}" data-body-id="${set.bodyImage.split('/').pop()}">
+                            <svg class="set-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            <span class="set-download-count"></span>
+                        </span>
                     </div>
                 `;
             }).join('');
 
             // Update pagination
             updatePagination();
+            applyDownloadBadges();
+        }
+
+        // Populates the combined download-count badge on every set card (sum
+        // of its head + body piece counts) from the counts map fetched once
+        // on page load (see LiveStats.fetchCounts call below).
+        let downloadCounts = {};
+        function applyDownloadBadges() {
+            document.querySelectorAll('.set-download-badge').forEach(el => {
+                const count = (downloadCounts[el.dataset.headId] || 0) + (downloadCounts[el.dataset.bodyId] || 0);
+                el.classList.toggle('has-count', count > 0);
+                const countEl = el.querySelector('.set-download-count');
+                if (countEl) countEl.textContent = count > 0 ? LiveStats.formatCount(count) + ' downloads' : '';
+            });
+        }
+        if (typeof LiveStats !== 'undefined') {
+            LiveStats.fetchCounts('upload-sets').then(counts => {
+                downloadCounts = counts;
+                applyDownloadBadges();
+            });
         }
 
         // Function to update pagination
@@ -1595,6 +1643,8 @@
         // (built from the full setsData) so it works across pagination
         // boundaries, not just the current page.
         let modalCurrentIndex = -1;
+        let currentModalImage = null;
+        let currentModalName = null;
 
         function updateNavButtons() {
             const list = piecesData;
@@ -1618,6 +1668,8 @@
                 imgEl.style.opacity = '1';
                 downloadBtn.href = piece.image;
                 downloadBtn.download = piece.image.split('/').pop();
+                currentModalImage = piece.image;
+                currentModalName = piece.name;
                 document.getElementById('share-btn').classList.remove('nudge');
                 updateNavButtons();
             };
@@ -1696,7 +1748,20 @@
             
             // Initial render
             renderSets();
-            
+
+            // Deep link support (?open=<filename>) - lets other pages (e.g. the
+            // homepage's Most Downloaded widget) link straight to one piece's
+            // modal instead of just the gallery.
+            const urlParams = new URLSearchParams(window.location.search);
+            const deepLinkId = urlParams.get('open');
+            if (deepLinkId) {
+                const idx = piecesData.findIndex(p => p.image.split('/').pop() === deepLinkId);
+                if (idx >= 0) {
+                    setModalContent(idx, false);
+                    document.getElementById('image-modal').style.display = 'flex';
+                }
+            }
+
             // Pagination event listeners
             document.querySelector('[data-page="prev"]').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1784,6 +1849,17 @@
                 const shareBtn = document.getElementById('share-btn');
                 shareBtn.classList.add('nudge');
                 setTimeout(() => shareBtn.classList.remove('nudge'), 2000);
+
+                if (currentModalImage && typeof LiveStats !== 'undefined') {
+                    const id = currentModalImage.split('/').pop();
+                    const label = currentModalName || ('Upload Set piece #' + id.replace(/\.\w+$/, ''));
+                    LiveStats.recordDownload('upload-sets', id, label, currentModalImage).then(function (count) {
+                        if (count !== null) {
+                            downloadCounts[id] = count;
+                            applyDownloadBadges();
+                        }
+                    });
+                }
             });
 
             // Share button - native share sheet (Discord shows up there on mobile)
