@@ -94,13 +94,15 @@ const LiveStats = (function () {
         return String(n);
     }
 
-    // Renders a flag from a 2-letter ISO country code via Unicode regional
-    // indicator symbols - no flag image assets needed.
+    // Renders a flag icon for a 2-letter ISO country code. Uses flagcdn.com
+    // images rather than Unicode flag emoji - Windows browsers generally don't
+    // have flag glyphs in their emoji font and fall back to showing the raw
+    // letters (e.g. "MY" instead of a flag), while phones render them fine.
+    // An actual image looks the same everywhere regardless of OS/font.
     function countryFlag(code) {
-        if (!code || code.length !== 2) return "🏳️";
-        return code
-            .toUpperCase()
-            .replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)));
+        if (!code || code.length !== 2) return "";
+        var lower = code.toLowerCase();
+        return '<img src="https://flagcdn.com/24x18/' + lower + '.png" alt="' + code + '" class="live-stats-flag-img">';
     }
 
     const COUNTRY_NAMES = {

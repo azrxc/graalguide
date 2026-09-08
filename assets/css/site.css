@@ -2081,25 +2081,25 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 22px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .live-stats-top-country-chip {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    background: var(--tile-bg);
+    border: 1px solid var(--tile-border);
     color: var(--text-muted);
     font-size: var(--font-sm);
 }
 
 .live-stats-top-country-chip strong {
     color: var(--text-color);
-}
-
-.live-stats-top-country-chip .live-stats-flag {
-    font-size: 1.1rem;
 }
 
 .live-stats-map {
@@ -2178,10 +2178,13 @@ footer {
     object-fit: contain;
 }
 
-.live-stats-flag {
+.live-stats-flag-img {
     flex-shrink: 0;
-    font-size: 1.4rem;
-    line-height: 1;
+    width: 20px;
+    height: 15px;
+    border-radius: 2px;
+    object-fit: cover;
+    vertical-align: middle;
 }
 
 .live-stats-name {
