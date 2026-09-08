@@ -2181,6 +2181,27 @@ footer {
     color: #fff;
 }
 
+/* Top-5 country race: rank distinguished by shade of the site's one
+   brand color, brightest for #1 fading down to muted for #5 - not
+   gold/silver/bronze, this site deliberately uses only blue + neutrals. */
+.live-stats-rank-1 {
+    background: var(--brand-light);
+    border-color: var(--brand-light);
+    color: #0a0a0a;
+}
+
+.live-stats-rank-2 {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+}
+
+.live-stats-rank-3 {
+    background: var(--brand-dark);
+    border-color: var(--brand-dark);
+    color: #fff;
+}
+
 .live-stats-thumb {
     flex-shrink: 0;
     width: 32px;

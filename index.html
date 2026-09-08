@@ -2233,11 +2233,12 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
 
                 var raceEl = document.getElementById("topCountriesRace");
                 if (raceEl && data.countries && data.countries.length) {
-                    raceEl.innerHTML = data.countries.slice(0, 3).map(function (c, i) {
+                    raceEl.innerHTML = data.countries.slice(0, 5).map(function (c, i) {
                         return '<span class="live-stats-top-country-chip">' +
-                            '<span class="live-stats-rank">' + (i + 1) + "</span>" +
+                            '<span class="live-stats-rank live-stats-rank-' + (i + 1) + '">' + (i + 1) + "</span>" +
                             LiveStats.countryFlag(c.code) +
                             "<strong>" + LiveStats.escapeHtml(LiveStats.countryName(c.code)) + "</strong>" +
+                            '<span class="live-stats-count">' + LiveStats.formatCount(c.count) + "</span>" +
                             "</span>";
                     }).join("");
                 }
