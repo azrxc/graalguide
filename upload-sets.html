@@ -1566,16 +1566,22 @@
             applyDownloadBadges();
         }
 
-        // Populates the combined download-count badge on every set card (sum
-        // of its head + body piece counts) from the counts map fetched once
-        // on page load (see LiveStats.fetchCounts call below).
+        // Populates the per-piece download counts on every set card, shown as
+        // one compact "Head: X · Body: Y" line rather than two separate badge
+        // blocks (which made every card noticeably taller).
         let downloadCounts = {};
         function applyDownloadBadges() {
             document.querySelectorAll('.set-download-badge').forEach(el => {
-                const count = (downloadCounts[el.dataset.headId] || 0) + (downloadCounts[el.dataset.bodyId] || 0);
-                el.classList.toggle('has-count', count > 0);
+                const headCount = downloadCounts[el.dataset.headId] || 0;
+                const bodyCount = downloadCounts[el.dataset.bodyId] || 0;
+                el.classList.toggle('has-count', headCount > 0 || bodyCount > 0);
                 const countEl = el.querySelector('.set-download-count');
-                if (countEl) countEl.textContent = count > 0 ? LiveStats.formatCount(count) + ' downloads' : '';
+                if (countEl) {
+                    const parts = [];
+                    if (headCount > 0) parts.push('Head: ' + LiveStats.formatCount(headCount));
+                    if (bodyCount > 0) parts.push('Body: ' + LiveStats.formatCount(bodyCount));
+                    countEl.textContent = parts.join(' · ');
+                }
             });
         }
         if (typeof LiveStats !== 'undefined') {
