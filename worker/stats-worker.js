@@ -196,6 +196,15 @@ export default {
                 });
             }
 
+            // GET /test-recap - manually fires the same Discord post the Cron
+            // Trigger runs on schedule, so it can be tested on demand instead
+            // of waiting for Monday.
+            if (url.pathname === "/test-recap" && request.method === "GET") {
+                if (!env.DISCORD_WEBHOOK_URL) return json({ error: "DISCORD_WEBHOOK_URL secret not set" }, 400);
+                await postDiscordRecap(env);
+                return json({ ok: true, message: "Recap posted - check Discord" });
+            }
+
             return json({ error: "not found" }, 404);
         } catch (err) {
             return json({ error: "server error" }, 500);
