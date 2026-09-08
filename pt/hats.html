@@ -1944,8 +1944,14 @@
                     }, 2000);
                 };
 
+                const shareId = currentModalImage ? currentModalImage.split('/').pop() : null;
+                const shareCount = shareId ? (downloadCounts[shareId] || 0) : 0;
+                const shareText = shareCount > 0
+                    ? shareCount + ' pessoas já baixaram isso no GraalGuide!'
+                    : 'Dá uma olhada nisso no GraalGuide!';
+
                 if (navigator.share) {
-                    navigator.share({ title: 'GraalGuide', text: 'Dá uma olhada nisso no GraalGuide!', url: imageUrl })
+                    navigator.share({ title: 'GraalGuide', text: shareText, url: imageUrl })
                         .catch(err => {
                             if (err.name !== 'AbortError' && navigator.clipboard) {
                                 navigator.clipboard.writeText(imageUrl).then(showCopied).catch(() => {});

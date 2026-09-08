@@ -1890,8 +1890,16 @@
                     }, 2000);
                 };
 
+                // Real download count in the share text when there's one worth
+                // bragging about - falls back to the plain line for fresh items.
+                const shareId = currentModalImage ? currentModalImage.split('/').pop() : null;
+                const shareCount = shareId ? (downloadCounts[shareId] || 0) : 0;
+                const shareText = shareCount > 0
+                    ? shareCount + ' people have downloaded this on GraalGuide!'
+                    : 'Check this out on GraalGuide!';
+
                 if (navigator.share) {
-                    navigator.share({ title: 'GraalGuide', text: 'Check this out on GraalGuide!', url: imageUrl })
+                    navigator.share({ title: 'GraalGuide', text: shareText, url: imageUrl })
                         .catch(err => {
                             if (err.name !== 'AbortError' && navigator.clipboard) {
                                 navigator.clipboard.writeText(imageUrl).then(showCopied).catch(() => {});
