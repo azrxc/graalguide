@@ -1795,6 +1795,49 @@
         </div>
     </section>
 
+    <section class="live-stats">
+        <div class="container">
+            <div class="showcase-heading">
+                <h2>Yang Lagi Terjadi Sekarang</h2>
+                <p>Download asli, pemain asli, update langsung saat terjadi.</p>
+            </div>
+
+            <div class="live-stats-totals">
+                <div class="live-stats-total">
+                    <span class="live-stats-total-number" id="liveTotalVisitors">0</span>
+                    <span class="live-stats-total-label">Total Graalians</span>
+                </div>
+                <div class="live-stats-total">
+                    <span class="live-stats-total-number" id="liveTotalDownloads">0</span>
+                    <span class="live-stats-total-label">Total Unduhan</span>
+                </div>
+            </div>
+            <p class="live-stats-since-note">Menghitung sejak 8 September 2026 - bukan riwayat lengkap situs ini</p>
+
+            <div class="live-stats-map-card">
+                <h3 class="live-stats-card-title">Di Mana Graalians Lagi Grinding</h3>
+                <div class="live-stats-map" id="liveStatsMap" aria-label="Peta dunia yang menyorot setiap negara dengan pengunjung"></div>
+                <p class="live-stats-map-info" id="mapCountryInfo">Klik sebuah negara untuk melihat jumlah pengunjungnya</p>
+                <div class="live-stats-top-countries" id="topCountriesRace"></div>
+            </div>
+
+            <div class="live-stats-map-card">
+                <h3 class="live-stats-card-title">Paling Banyak Diunduh</h3>
+                <ol class="live-stats-list" id="topDownloadsList">
+                    <li class="live-stats-empty">Memuat...</li>
+                </ol>
+            </div>
+
+            <div class="live-stats-map-card">
+                <h3 class="live-stats-card-title">Berita Terbaru</h3>
+                <div id="homeNewsPreview">
+                    <p class="discord-feed-empty">Memuat...</p>
+                </div>
+                <a href="../news.html" class="live-stats-news-link">Lihat semua pengumuman &amp; catatan patch &rarr;</a>
+            </div>
+        </div>
+    </section>
+
     <section class="resource-hub">
         <div class="container">
             <div class="showcase-heading">
@@ -2079,6 +2122,155 @@ Pembaruan besar! Kami telah menambahkan lebih dari 21.000 head dan body baru ke 
     </div>
     <script src="../assets/js/share-buttons.js"></script>
     <script src="../assets/js/gani-renderer.js"></script>
+    <script src="../assets/js/live-stats.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+    <script>
+        (function () {
+            var ALPHA2_TO_NUMERIC = {
+                US: "840", PH: "608", BR: "076", ID: "360", MY: "458", SG: "702",
+                MX: "484", GB: "826", CA: "124", AU: "036", DE: "276", FR: "250",
+                IN: "356", JP: "392", KR: "410", VN: "704", TH: "764", ES: "724",
+                IT: "380", NL: "528", PT: "620", AR: "032", CL: "152", CO: "170",
+                PE: "604", SA: "682", AE: "784", EG: "818", NG: "566", ZA: "710",
+                PK: "586", BD: "050", TR: "792", RU: "643", PL: "616", RO: "642",
+                NZ: "554", IE: "372", SE: "752", NO: "578", DK: "208", FI: "246",
+                CH: "756", AT: "040", BE: "056", GR: "300", IL: "376",
+                CN: "156", TW: "158", HK: "344", LK: "144", NP: "524", MM: "104",
+                KH: "116", LA: "418", KZ: "398", UA: "804", CZ: "203", HU: "348",
+                SK: "703", BG: "100", HR: "191", RS: "688", IS: "352", LU: "442",
+                MA: "504", DZ: "012", TN: "788", KE: "404", GH: "288", ET: "231",
+                TZ: "834", UG: "800", ZW: "716", VE: "862", EC: "218", BO: "068",
+                PY: "600", UY: "858", CR: "188", PA: "591", GT: "320", HN: "340",
+                SV: "222", NI: "558", DO: "214", PR: "630", JM: "388", TT: "780",
+                QA: "634", KW: "414", BH: "048", OM: "512", JO: "400", LB: "422",
+                IQ: "368", IR: "364", AF: "004", MN: "496", UZ: "860", AZ: "031",
+                GE: "268", AM: "051", BY: "112", LT: "440", LV: "428", EE: "233",
+                SI: "705", CY: "196", MT: "470", AL: "008", MK: "807", BA: "070",
+                MD: "498", CU: "192"
+            };
+
+            function renderMap(countryCounts) {
+                var container = document.getElementById("liveStatsMap");
+                if (!container || !window.d3 || !window.topojson) return;
+
+                var width = container.clientWidth || 800;
+                var height = Math.round(width * 0.52);
+
+                var svg = d3.select(container).append("svg")
+                    .attr("viewBox", "0 0 " + width + " " + height)
+                    .attr("preserveAspectRatio", "xMidYMid meet");
+
+                var projection = d3.geoEqualEarth().fitSize([width, height], { type: "Sphere" });
+                var path = d3.geoPath(projection);
+
+                var countByNumeric = {};
+                Object.keys(countryCounts).forEach(function (code) {
+                    var count = countryCounts[code];
+                    if (count > 0) {
+                        var numeric = ALPHA2_TO_NUMERIC[code];
+                        if (numeric) countByNumeric[numeric] = count;
+                    }
+                });
+                var colorScale = d3.scaleLinear().domain([1, 50]).range(["#7aa9fa", "#1e3a6e"]).clamp(true);
+
+                fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+                    .then(function (r) { return r.json(); })
+                    .then(function (topology) {
+                        var countries = topojson.feature(topology, topology.objects.countries).features;
+                        var infoEl = document.getElementById("mapCountryInfo");
+                        svg.append("g")
+                            .selectAll("path")
+                            .data(countries)
+                            .join("path")
+                            .attr("d", path)
+                            .attr("class", "live-stats-map-country")
+                            .style("fill", function (d) {
+                                var count = countByNumeric[d.id];
+                                return count ? colorScale(count) : null;
+                            })
+                            .on("click", function (event, d) {
+                                if (!infoEl) return;
+                                var count = countByNumeric[d.id];
+                                infoEl.textContent = count
+                                    ? d.properties.name + ": " + LiveStats.formatCount(count) + " pengunjung"
+                                    : d.properties.name + " - belum ada pengunjung";
+                            })
+                            .append("title")
+                            .text(function (d) {
+                                var count = countByNumeric[d.id];
+                                return count ? d.properties.name + ": " + LiveStats.formatCount(count) + " pengunjung" : d.properties.name;
+                            });
+                    })
+                    .catch(function () {
+                        container.innerHTML = '<p class="live-stats-empty">Peta sedang tidak tersedia.</p>';
+                    });
+            }
+
+            function renderDownloadsList(items) {
+                var list = document.getElementById("topDownloadsList");
+                if (!list) return;
+                if (!items.length) {
+                    list.innerHTML = '<li class="live-stats-empty">Belum ada unduhan - jadilah yang pertama!</li>';
+                    return;
+                }
+                var GALLERY_PAGES = {
+                    heads: "heads.html", bodies: "bodies.html", hats: "hats.html",
+                    shields: "shields.html", swords: "swords.html", guns: "guns.html",
+                    templates: "templates.html", "upload-sets": "upload-sets.html",
+                };
+                list.innerHTML = items.map(function (item, i) {
+                    var page = GALLERY_PAGES[item.category];
+                    var galleryUrl = page ? page + "?open=" + encodeURIComponent(item.id) : "#";
+                    return '<li class="live-stats-item">' +
+                        '<span class="live-stats-rank">' + (i + 1) + "</span>" +
+                        '<a href="' + LiveStats.escapeHtml(galleryUrl) + '">' +
+                        '<img class="live-stats-thumb" src="' + LiveStats.escapeHtml(item.thumb) + '" alt="" loading="lazy">' +
+                        "</a>" +
+                        '<span class="live-stats-count">' + LiveStats.formatCount(item.count) + "</span>" +
+                        "</li>";
+                }).join("");
+            }
+
+            var downloadsEl = document.getElementById("liveTotalDownloads");
+            var visitorsEl = document.getElementById("liveTotalVisitors");
+            if (downloadsEl || visitorsEl) {
+                LiveStats.fetchTotals().then(function (totals) {
+                    if (downloadsEl) LiveStats.countUp(downloadsEl, totals.downloads);
+                    if (visitorsEl) LiveStats.countUp(visitorsEl, totals.visitors);
+                });
+            }
+
+            LiveStats.fetchLeaderboard().then(function (data) {
+                renderDownloadsList(data.downloads || []);
+
+                var raceEl = document.getElementById("topCountriesRace");
+                if (raceEl && data.countries && data.countries.length) {
+                    raceEl.innerHTML = data.countries.slice(0, 10).map(function (c, i) {
+                        return '<span class="live-stats-top-country-chip">' +
+                            '<span class="live-stats-rank live-stats-rank-' + (i + 1) + '">' + (i + 1) + "</span>" +
+                            LiveStats.countryFlag(c.code) +
+                            "<strong>" + LiveStats.escapeHtml(LiveStats.countryName(c.code)) + "</strong>" +
+                            '<span class="live-stats-count">' + LiveStats.formatCount(c.count) + "</span>" +
+                            "</span>";
+                    }).join("");
+                }
+            });
+
+            LiveStats.fetchCounts("countries").then(function (countryCounts) {
+                renderMap(countryCounts || {});
+            });
+
+            var newsPreviewEl = document.getElementById("homeNewsPreview");
+            if (newsPreviewEl) {
+                LiveStats.fetchDiscordFeed("694583153473486876").then(function (messages) {
+                    newsPreviewEl.innerHTML = messages.length
+                        ? LiveStats.formatDiscordMessage(messages[0])
+                        : '<p class="discord-feed-empty">Belum ada apa-apa di sini.</p>';
+                });
+            }
+        })();
+    </script>
 
     <footer>
         <div class="container">
