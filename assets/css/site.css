@@ -2077,6 +2077,17 @@ footer {
     margin: 0 auto 20px;
 }
 
+.live-stats-top-country {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+    margin-bottom: 14px;
+}
+
+.live-stats-top-country strong {
+    color: var(--text-color);
+}
+
 .live-stats-map {
     width: 100%;
     line-height: 0;
