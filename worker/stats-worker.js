@@ -9,12 +9,14 @@
 //   counts:<category>   -> { "<itemId>": <int count>, ... }   (one blob per gallery, e.g. counts:heads)
 //   counts:countries     -> { "<ISO2>": <int count>, ... }
 //   leaderboard:downloads -> [{ category, id, name, thumb, count }, ...]  (top 10, kept pre-sorted)
-//   leaderboard:countries -> [{ code, count }, ...]                       (top 10, kept pre-sorted)
 //
-// The leaderboard blobs are maintained incrementally on every write so GET
-// requests are always 1-2 cheap KV reads, never a full scan - important
-// because KV has no query/sort and scanning would get expensive as the
-// per-category blobs grow.
+// leaderboard:downloads is maintained incrementally on every write (see
+// promote()) so reading it is always 1 cheap KV get - needed because each
+// entry carries name/thumb metadata a full recompute couldn't cheaply
+// reconstruct. Countries don't need that, so the top-10 there is instead
+// computed fresh from counts:countries on every read (see
+// computeTopCountries) - simpler and never goes stale the way an
+// incrementally-promoted cache can after e.g. raising the top-N size.
 
 const CORS = {
     "Access-Control-Allow-Origin": "*",
@@ -74,6 +76,20 @@ async function promote(env, leaderboardKey, entry, idField) {
     }
 }
 
+// Top-N countries by visitor count, computed fresh from the raw counts:countries
+// blob every time (not cached) - countries don't carry extra metadata like the
+// downloads leaderboard does, so a full sort here is cheap and never goes stale
+// the way an incrementally-promoted cache can (e.g. after raising the top-N size,
+// a country that existed all along wouldn't get pulled in until its next visit).
+async function computeTopCountries(env, limit) {
+    const raw = await env.STATS.get("counts:countries");
+    const data = raw ? JSON.parse(raw) : {};
+    return Object.keys(data)
+        .map((code) => ({ code, count: data[code] }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, limit);
+}
+
 // Flag emoji via Unicode regional indicators - safe to use here (unlike the
 // website itself) since Discord's own clients render these consistently
 // across platforms, no Windows-font fallback issue.
@@ -89,11 +105,10 @@ function flagEmoji(code) {
 async function postDiscordRecap(env) {
     if (!env.DISCORD_WEBHOOK_URL) return;
 
-    const [countriesRaw, downloadsRaw] = await Promise.all([
-        env.STATS.get("leaderboard:countries"),
+    const [countries, downloadsRaw] = await Promise.all([
+        computeTopCountries(env, LEADERBOARD_SIZE),
         env.STATS.get("leaderboard:downloads"),
     ]);
-    const countries = countriesRaw ? JSON.parse(countriesRaw) : [];
     const downloads = downloadsRaw ? JSON.parse(downloadsRaw) : [];
 
     const countryLines = countries.length
@@ -189,8 +204,7 @@ export default {
             // no third-party IP lookup needed and it can't be spoofed by the client.
             if (url.pathname === "/view" && request.method === "POST") {
                 const code = (request.cf && request.cf.country) || "XX";
-                const count = await bump(env, "counts:countries", code);
-                await promote(env, "leaderboard:countries", { code, count }, "code");
+                await bump(env, "counts:countries", code);
                 return json({ ok: true });
             }
 
@@ -238,14 +252,18 @@ export default {
                 return json({ downloads, visitors });
             }
 
-            // GET /leaderboard - both top-10 widgets for the homepage, 2 cheap reads.
+            // GET /leaderboard - both top-10 widgets for the homepage. Countries
+            // computed fresh (see computeTopCountries); downloads read from the
+            // incrementally-maintained cache (needs name/thumb metadata that the
+            // raw per-item counters don't carry, so it can't be recomputed the
+            // same cheap way).
             if (url.pathname === "/leaderboard" && request.method === "GET") {
                 const [countries, downloads] = await Promise.all([
-                    env.STATS.get("leaderboard:countries"),
+                    computeTopCountries(env, LEADERBOARD_SIZE),
                     env.STATS.get("leaderboard:downloads"),
                 ]);
                 return json({
-                    countries: countries ? JSON.parse(countries) : [],
+                    countries: countries,
                     downloads: downloads ? JSON.parse(downloads) : [],
                 });
             }
