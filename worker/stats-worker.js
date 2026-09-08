@@ -121,6 +121,58 @@ async function postDiscordRecap(env) {
     }).catch(() => {});
 }
 
+// Fetches recent messages from a Discord channel via the bot, caching the
+// result in KV for 5 minutes so a busy page doesn't hammer Discord's API on
+// every visitor - the cache is shared across all visitors, refreshed lazily
+// on whichever request happens to find it stale. Only text + image
+// attachments are kept (no bot token, no other message metadata) since this
+// gets exposed to the public via /discord-feed.
+async function getDiscordMessages(env, channelId) {
+    const cacheKey = `discord-cache:${channelId}`;
+    const cached = await env.STATS.get(cacheKey);
+    const parsedCache = cached ? JSON.parse(cached) : null;
+    if (parsedCache && Date.now() - parsedCache.fetchedAt < 5 * 60 * 1000) {
+        return parsedCache.messages;
+    }
+
+    if (!env.DISCORD_BOT_TOKEN) return parsedCache ? parsedCache.messages : [];
+
+    let resp;
+    try {
+        resp = await fetch(`https://discord.com/api/v10/channels/${channelId}/messages?limit=10`, {
+            headers: { Authorization: `Bot ${env.DISCORD_BOT_TOKEN}` },
+        });
+    } catch (err) {
+        return parsedCache ? parsedCache.messages : [];
+    }
+    if (!resp.ok) {
+        return parsedCache ? parsedCache.messages : [];
+    }
+
+    const raw = await resp.json();
+    const messages = raw.map((m) => ({
+        id: m.id,
+        content: m.content || "",
+        author: (m.author && m.author.username) || "Unknown",
+        avatar:
+            m.author && m.author.avatar
+                ? `https://cdn.discordapp.com/avatars/${m.author.id}/${m.author.avatar}.png`
+                : null,
+        timestamp: m.timestamp,
+        images: (m.attachments || [])
+            .filter((a) => a.content_type && a.content_type.startsWith("image/"))
+            .map((a) => a.url),
+    }));
+
+    try {
+        await env.STATS.put(cacheKey, JSON.stringify({ fetchedAt: Date.now(), messages }));
+    } catch (err) {
+        // KV write quota hit - serve this fetch's fresh result anyway, just
+        // won't persist for the next request.
+    }
+    return messages;
+}
+
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -203,6 +255,15 @@ export default {
                 if (!env.DISCORD_WEBHOOK_URL) return json({ error: "DISCORD_WEBHOOK_URL secret not set" }, 400);
                 await postDiscordRecap(env);
                 return json({ ok: true, message: "Recap posted - check Discord" });
+            }
+
+            // GET /discord-feed/<channelId> - recent text + image messages from
+            // one Discord channel, via the bot, cached (see getDiscordMessages).
+            if (url.pathname.startsWith("/discord-feed/") && request.method === "GET") {
+                const channelId = url.pathname.split("/")[2] || "";
+                if (!channelId) return json({ error: "missing channel id" }, 400);
+                const messages = await getDiscordMessages(env, channelId);
+                return json({ messages });
             }
 
             return json({ error: "not found" }, 404);
