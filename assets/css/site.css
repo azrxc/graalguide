@@ -2129,6 +2129,14 @@ footer {
     fill: var(--tile-bg);
     stroke: var(--dark-bg);
     stroke-width: 0.5;
+    cursor: pointer;
+}
+
+.live-stats-map-info {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+    margin-top: 10px;
 }
 
 .live-stats-map-country.is-active {
@@ -2236,6 +2244,17 @@ footer {
     color: var(--brand-light);
     font-size: var(--font-sm);
     font-weight: 700;
+}
+
+/* --brand-light (#7aa9fa) reads fine on this site's dark theme but is too
+   pale against light mode's near-white panels - darken it there so the
+   numbers stay legible instead of nearly invisible. */
+[data-theme="light"] .live-stats-count {
+    color: var(--brand-dark);
+}
+
+[data-theme="light"] [class*="-download-badge"] {
+    background: rgba(0, 0, 0, 0.75);
 }
 
 .live-stats-empty {

@@ -1811,6 +1811,7 @@
             <div class="live-stats-map-card">
                 <h3 class="live-stats-card-title">Where Graalians Are Grinding</h3>
                 <div class="live-stats-map" id="liveStatsMap" aria-label="World map highlighting every country with tracked visitors"></div>
+                <p class="live-stats-map-info" id="mapCountryInfo">Click a country to see its visitor count</p>
                 <div class="live-stats-top-countries" id="topCountriesRace"></div>
             </div>
 
@@ -2151,7 +2152,7 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                     .attr("viewBox", "0 0 " + width + " " + height)
                     .attr("preserveAspectRatio", "xMidYMid meet");
 
-                var projection = d3.geoNaturalEarth1().fitSize([width, height], { type: "Sphere" });
+                var projection = d3.geoEqualEarth().fitSize([width, height], { type: "Sphere" });
                 var path = d3.geoPath(projection);
 
                 // Shade every country with any tracked activity by volume
@@ -2175,6 +2176,7 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                     .then(function (r) { return r.json(); })
                     .then(function (topology) {
                         var countries = topojson.feature(topology, topology.objects.countries).features;
+                        var infoEl = document.getElementById("mapCountryInfo");
                         svg.append("g")
                             .selectAll("path")
                             .data(countries)
@@ -2184,6 +2186,13 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
                             .style("fill", function (d) {
                                 var count = countByNumeric[d.id];
                                 return count ? colorScale(count) : null;
+                            })
+                            .on("click", function (event, d) {
+                                if (!infoEl) return;
+                                var count = countByNumeric[d.id];
+                                infoEl.textContent = count
+                                    ? d.properties.name + ": " + LiveStats.formatCount(count) + " visitors"
+                                    : d.properties.name + " - no visitors yet";
                             })
                             .append("title")
                             .text(function (d) {
