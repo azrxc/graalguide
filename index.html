@@ -1810,7 +1810,7 @@
 
             <div class="live-stats-map-card">
                 <h3 class="live-stats-card-title">Where Graalians Are Grinding</h3>
-                <p class="live-stats-top-country" id="topCountryCallout"></p>
+                <div class="live-stats-top-countries" id="topCountriesRace"></div>
                 <div class="live-stats-map" id="liveStatsMap" aria-label="World map highlighting every country with tracked visitors"></div>
             </div>
 
@@ -2219,11 +2219,15 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
             LiveStats.fetchLeaderboard().then(function (data) {
                 renderDownloadsList(data.downloads || []);
 
-                var topCountryEl = document.getElementById("topCountryCallout");
-                if (topCountryEl && data.countries && data.countries.length) {
-                    var top = data.countries[0];
-                    topCountryEl.innerHTML = LiveStats.countryFlag(top.code) + " <strong>" +
-                        LiveStats.escapeHtml(LiveStats.countryName(top.code)) + "</strong> is leading the pack right now";
+                var raceEl = document.getElementById("topCountriesRace");
+                if (raceEl && data.countries && data.countries.length) {
+                    raceEl.innerHTML = data.countries.slice(0, 3).map(function (c, i) {
+                        return '<span class="live-stats-top-country-chip">' +
+                            '<span class="live-stats-rank">' + (i + 1) + "</span>" +
+                            '<span class="live-stats-flag">' + LiveStats.countryFlag(c.code) + "</span>" +
+                            "<strong>" + LiveStats.escapeHtml(LiveStats.countryName(c.code)) + "</strong>" +
+                            "</span>";
+                    }).join("");
                 }
             });
 

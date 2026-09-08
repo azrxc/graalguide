@@ -2077,15 +2077,29 @@ footer {
     margin: 0 auto 20px;
 }
 
-.live-stats-top-country {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: var(--font-sm);
+.live-stats-top-countries {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
     margin-bottom: 14px;
 }
 
-.live-stats-top-country strong {
+.live-stats-top-country-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+}
+
+.live-stats-top-country-chip strong {
     color: var(--text-color);
+}
+
+.live-stats-top-country-chip .live-stats-flag {
+    font-size: 1.1rem;
 }
 
 .live-stats-map {
