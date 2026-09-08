@@ -2160,6 +2160,7 @@ footer {
     width: 32px;
     height: 32px;
     border-radius: 8px;
+    background: #ffffff;
     object-fit: contain;
 }
 
