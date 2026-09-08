@@ -3065,7 +3065,9 @@
         function applyDownloadBadges() {
             document.querySelectorAll('.head-download-badge').forEach(el => {
                 const count = downloadCounts[el.dataset.badgeId] || 0;
-                el.textContent = count > 0 ? LiveStats.formatCount(count) + ' downloads' : '';
+                el.classList.toggle('has-count', count > 0);
+                const countEl = el.querySelector('.head-download-count');
+                if (countEl) countEl.textContent = count > 0 ? LiveStats.formatCount(count) + ' downloads' : '';
             });
         }
         if (typeof LiveStats !== 'undefined') {
