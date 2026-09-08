@@ -61,6 +61,15 @@ const LiveStats = (function () {
             .catch(() => ({ downloads: 0, visitors: 0 }));
     }
 
+    // Recent text+image messages from one Discord channel (via the worker's
+    // bot-backed cache) - used for the Era Announcements / Patch Notes feeds.
+    function fetchDiscordFeed(channelId) {
+        return fetch(STATS_API + "/discord-feed/" + encodeURIComponent(channelId))
+            .then((r) => r.json())
+            .then((data) => (Array.isArray(data.messages) ? data.messages : []))
+            .catch(() => []);
+    }
+
     // Animates el's text from 0 up to `value` over `duration` ms, formatted
     // with formatCount along the way - the "counter ticking up" effect.
     function countUp(el, value, duration) {
@@ -84,6 +93,53 @@ const LiveStats = (function () {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#39;");
+    }
+
+    // Turns raw Discord message text into safe display HTML: escape first
+    // (so nothing in the message can inject markup), then layer on simple
+    // formatting - newlines, **bold**, and auto-linked URLs. Full Discord
+    // markdown (mentions, custom emoji, etc.) isn't parsed, just the common
+    // stuff that shows up in announcement-style messages.
+    function formatDiscordContent(text) {
+        let safe = escapeHtml(text || "");
+        safe = safe.replace(/\n/g, "<br>");
+        safe = safe.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+        safe = safe.replace(/(https?:\/\/[^\s<]+)/g, (url) => {
+            return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + url + "</a>";
+        });
+        return safe;
+    }
+
+    function formatDiscordTime(iso) {
+        try {
+            return new Date(iso).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+        } catch (e) {
+            return "";
+        }
+    }
+
+    // Renders one Discord message as an HTML string - shared by the homepage
+    // preview and the full news page so both look identical.
+    function formatDiscordMessage(m) {
+        const avatar = m.avatar
+            ? '<img class="discord-message-avatar" src="' + escapeHtml(m.avatar) + '" alt="">'
+            : '<div class="discord-message-avatar"></div>';
+        const images = (m.images || [])
+            .map((src) => '<img src="' + escapeHtml(src) + '" alt="" loading="lazy">')
+            .join("");
+        return (
+            '<div class="discord-message">' +
+            avatar +
+            '<div class="discord-message-body">' +
+            '<div class="discord-message-header">' +
+            '<span class="discord-message-author">' + escapeHtml(m.author) + "</span>" +
+            '<span class="discord-message-time">' + formatDiscordTime(m.timestamp) + "</span>" +
+            "</div>" +
+            '<div class="discord-message-content">' + formatDiscordContent(m.content) + "</div>" +
+            (images ? '<div class="discord-message-images">' + images + "</div>" : "") +
+            "</div>" +
+            "</div>"
+        );
     }
 
     // 1234 -> "1.2K", 1200000 -> "1.2M" - the "1M chats" style social-proof format.
@@ -136,6 +192,7 @@ const LiveStats = (function () {
     return {
         pingView, recordDownload, fetchCounts, fetchLeaderboard, fetchTotals,
         countUp, formatCount, countryFlag, countryName, escapeHtml,
+        fetchDiscordFeed, formatDiscordMessage,
     };
 })();
 
