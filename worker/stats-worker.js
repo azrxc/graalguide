@@ -90,6 +90,52 @@ async function computeTopCountries(env, limit) {
         .slice(0, limit);
 }
 
+// One-time repair: rebuilds leaderboard:downloads from the raw per-category
+// counters. Needed because that leaderboard is normally maintained
+// incrementally (promote(), called only at download time with full metadata
+// from the live page) - raising LEADERBOARD_SIZE doesn't retroactively pull
+// in items that existed all along but never got a fresh download since. The
+// raw counters only store {id: count}, no name/thumb, so this reconstructs
+// a best-effort label/path from the id itself - fine for a one-time backfill
+// of existing data; every download from here on gets fully accurate
+// metadata via the normal promote() path at the moment it happens.
+const CATEGORY_LABELS = {
+    heads: "Head", bodies: "Body", hats: "Hat", shields: "Shield",
+    swords: "Sword", templates: "Template", "upload-sets": "Upload Set",
+};
+
+async function rebuildDownloadsLeaderboard(env) {
+    const listed = await env.STATS.list({ prefix: "counts:" });
+    const items = [];
+    for (const key of listed.keys) {
+        if (key.name === "counts:countries") continue;
+        const raw = await env.STATS.get(key.name);
+        if (!raw) continue;
+        const category = key.name.slice("counts:".length);
+        const data = JSON.parse(raw);
+        for (const id of Object.keys(data)) {
+            const looksLikeBaseFile = /^\d+\.\w+$/.test(id);
+            const folder = category + (looksLikeBaseFile ? "" : "-community");
+            const label = CATEGORY_LABELS[category] || category;
+            items.push({
+                category,
+                id,
+                name: `${label} #${id.replace(/\.\w+$/, "")}`,
+                thumb: `image/${folder}/${id}`,
+                count: data[id],
+            });
+        }
+    }
+    items.sort((a, b) => b.count - a.count);
+    const top = items.slice(0, LEADERBOARD_SIZE);
+    try {
+        await env.STATS.put("leaderboard:downloads", JSON.stringify(top));
+    } catch (err) {
+        // KV write quota hit - fine, this is a one-off repair, can be retried later.
+    }
+    return top;
+}
+
 // Flag emoji via Unicode regional indicators - safe to use here (unlike the
 // website itself) since Discord's own clients render these consistently
 // across platforms, no Windows-font fallback issue.
@@ -266,6 +312,12 @@ export default {
                     countries: countries,
                     downloads: downloads ? JSON.parse(downloads) : [],
                 });
+            }
+
+            // GET /rebuild-downloads - one-time repair, see rebuildDownloadsLeaderboard.
+            if (url.pathname === "/rebuild-downloads" && request.method === "GET") {
+                const top = await rebuildDownloadsLeaderboard(env);
+                return json({ ok: true, count: top.length, downloads: top });
             }
 
             // GET /test-recap - manually fires the same Discord post the Cron

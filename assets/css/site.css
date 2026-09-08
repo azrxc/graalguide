@@ -2259,15 +2259,22 @@ footer {
 
 .live-stats-list {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    column-count: 2;
+    column-gap: 24px;
 }
 
 .live-stats-item {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 10px;
+    break-inside: avoid;
+}
+
+@media (max-width: 480px) {
+    .live-stats-list {
+        column-count: 1;
+    }
 }
 
 .live-stats-rank {
