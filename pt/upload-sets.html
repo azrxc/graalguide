@@ -1866,7 +1866,7 @@
                 if (currentModalImage && typeof LiveStats !== 'undefined') {
                     const id = currentModalImage.split('/').pop();
                     const label = currentModalName || ('Upload Set piece #' + id.replace(/\.\w+$/, ''));
-                    LiveStats.recordDownload('upload-sets', id, label, currentModalImage).then(function (count) {
+                    LiveStats.recordDownload('upload-sets', id, label, currentModalImage.replace(/^\.\.\//, '')).then(function (count) {
                         if (count !== null) {
                             downloadCounts[id] = count;
                             applyDownloadBadges();

@@ -1831,7 +1831,7 @@
                 if (currentModalImage && typeof LiveStats !== 'undefined') {
                     const id = currentModalImage.split('/').pop();
                     const label = currentModalName || ('Template #' + id.replace(/\.\w+$/, ''));
-                    LiveStats.recordDownload('templates', id, label, currentModalImage).then(function (count) {
+                    LiveStats.recordDownload('templates', id, label, currentModalImage.replace(/^\.\.\//, '')).then(function (count) {
                         if (count !== null) {
                             downloadCounts[id] = count;
                             applyDownloadBadges();

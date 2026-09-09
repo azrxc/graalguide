@@ -1955,7 +1955,7 @@
                 if (currentModalImage && typeof LiveStats !== 'undefined') {
                     const id = currentModalImage.split('/').pop();
                     const label = 'Shield #' + id.replace(/\.\w+$/, '');
-                    LiveStats.recordDownload('shields', id, label, currentModalImage).then(function (count) {
+                    LiveStats.recordDownload('shields', id, label, currentModalImage.replace(/^\.\.\//, '')).then(function (count) {
                         if (count !== null) {
                             downloadCounts[id] = count;
                             applyDownloadBadges();

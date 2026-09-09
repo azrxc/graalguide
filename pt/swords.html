@@ -1891,7 +1891,7 @@
                 if (currentModalImage && typeof LiveStats !== 'undefined') {
                     const id = currentModalImage.split('/').pop();
                     const label = 'Sword #' + id.replace(/\.\w+$/, '');
-                    LiveStats.recordDownload('swords', id, label, currentModalImage).then(function (count) {
+                    LiveStats.recordDownload('swords', id, label, currentModalImage.replace(/^\.\.\//, '')).then(function (count) {
                         if (count !== null) {
                             downloadCounts[id] = count;
                             applyDownloadBadges();
