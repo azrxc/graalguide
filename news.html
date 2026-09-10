@@ -323,6 +323,48 @@
             border-color: var(--primary-color);
         }
 
+        .news-source-note {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .news-source-note a {
+            color: var(--primary-color);
+        }
+
+        .site-update-entry {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .site-update-entry:last-child {
+            border-bottom: none;
+        }
+
+        .site-update-date {
+            color: var(--text-muted);
+            font-size: var(--font-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .site-update-title {
+            color: var(--text-color);
+            font-size: var(--font-lg);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .site-update-desc {
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
         .discord-feed-section h2 {
             color: var(--primary-color);
             margin-bottom: 20px;
@@ -719,20 +761,39 @@
         <div class="news-tabs" role="tablist">
             <button type="button" class="news-tab active" data-tab-target="eraAnnouncementsPanel" role="tab" aria-selected="true">Announcements</button>
             <button type="button" class="news-tab" data-tab-target="eraPatchNotesPanel" role="tab" aria-selected="false">Patch Notes</button>
+            <button type="button" class="news-tab" data-tab-target="graalguideUpdatesPanel" role="tab" aria-selected="false">GraalGuide Updates</button>
         </div>
     </div>
 
     <div class="container">
         <div class="discord-feed-section" id="eraAnnouncementsPanel" role="tabpanel">
             <h2>Era Announcements</h2>
+            <p class="news-source-note">Pulled straight from GraalOnline Era's official Discord. These are the developers' own words, not ours. GraalGuide is a fan site and isn't affiliated with GraalOnline or Toonslab. Full details in our <a href="disclaimer.html">disclaimer</a>.</p>
             <div id="eraAnnouncementsFeed">
                 <p class="discord-feed-empty">Loading...</p>
             </div>
         </div>
         <div class="discord-feed-section" id="eraPatchNotesPanel" role="tabpanel" hidden>
             <h2>Era Patch Notes</h2>
+            <p class="news-source-note">Pulled straight from GraalOnline Era's official Discord. These are the developers' own words, not ours. GraalGuide is a fan site and isn't affiliated with GraalOnline or Toonslab. Full details in our <a href="disclaimer.html">disclaimer</a>.</p>
             <div id="eraPatchNotesFeed">
                 <p class="discord-feed-empty">Loading...</p>
+            </div>
+        </div>
+        <div class="discord-feed-section" id="graalguideUpdatesPanel" role="tabpanel" hidden>
+            <h2>GraalGuide Updates</h2>
+            <p class="news-source-note">What's new on GraalGuide itself. Written by us, about us.</p>
+            <div class="site-updates-list">
+                <div class="site-update-entry">
+                    <div class="site-update-date">September 10, 2026</div>
+                    <h3 class="site-update-title">News Page Got an Upgrade</h3>
+                    <p class="site-update-desc">Announcements and Patch Notes now live in separate tabs instead of one long scroll, so you're not digging past the announcements just to find the patch notes. Also added this Updates tab so site changes get a proper home instead of living in our heads.</p>
+                </div>
+                <div class="site-update-entry">
+                    <div class="site-update-date">September 10, 2026</div>
+                    <h3 class="site-update-title">Consistency Pass Across Languages</h3>
+                    <p class="site-update-desc">Download counts, ads, and the homepage's Most Downloaded thumbnails weren't behaving the same across English, Portuguese, and Indonesian. Evened it all out so every version of the site works the same, no matter which language you're browsing in.</p>
+                </div>
             </div>
         </div>
     </div>
