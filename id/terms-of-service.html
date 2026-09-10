@@ -893,6 +893,16 @@
             </div>
     </div>
 
+    <div class="container">
+        <div class="live-stats-map-card">
+            <h3 class="live-stats-card-title">Berita Terbaru</h3>
+            <div id="homeNewsPreview">
+                <p class="discord-feed-empty">Memuat...</p>
+            </div>
+            <a href="../news.html" class="live-stats-news-link">Lihat semua pengumuman &amp; catatan patch &rarr;</a>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1060,6 +1070,19 @@
                     });
                 });
                 
+            }
+        });
+    </script>
+    <script src="../assets/js/live-stats.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var newsPreviewEl = document.getElementById("homeNewsPreview");
+            if (newsPreviewEl) {
+                LiveStats.fetchDiscordFeed("694583153473486876").then(function (messages) {
+                    newsPreviewEl.innerHTML = messages.length
+                        ? LiveStats.formatDiscordMessage(messages[0])
+                        : '<p class="discord-feed-empty">Belum ada apa-apa di sini.</p>';
+                });
             }
         });
     </script>

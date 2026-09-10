@@ -1313,6 +1313,17 @@
         </div>
     </div>
     <script src="../assets/js/share-buttons.js"></script>
+    <script src="../assets/js/live-stats.js"></script>
+
+    <div class="container">
+        <div class="live-stats-map-card">
+            <h3 class="live-stats-card-title">Últimas Notícias</h3>
+            <div id="homeNewsPreview">
+                <p class="discord-feed-empty">Carregando...</p>
+            </div>
+            <a href="../news.html" class="live-stats-news-link">Ver todos os anúncios e notas de atualização &rarr;</a>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -2218,6 +2229,18 @@
             attachReportButtons();
             populateCommunityPrices();
         };
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var newsPreviewEl = document.getElementById("homeNewsPreview");
+            if (newsPreviewEl) {
+                LiveStats.fetchDiscordFeed("694583153473486876").then(function (messages) {
+                    newsPreviewEl.innerHTML = messages.length
+                        ? LiveStats.formatDiscordMessage(messages[0])
+                        : '<p class="discord-feed-empty">Nada por aqui ainda.</p>';
+                });
+            }
+        });
     </script>
 </body>
 </html>
