@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Community Submissions - GraalGuide</title>
+    <link rel="icon" type="image/png" href="image/a/graalguide-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        body {
+            background: var(--dark-bg);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            padding: 32px 16px 80px;
+        }
+
+        .admin-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .admin-header h1 {
+            font-family: var(--font-title);
+            font-weight: 400;
+            font-size: var(--font-3xl);
+            margin-bottom: 6px;
+        }
+
+        .admin-header p {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+        }
+
+        .admin-category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .admin-tab {
+            background: var(--tile-bg);
+            border: 1px solid var(--tile-border);
+            color: var(--text-muted);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: var(--font-xs);
+            cursor: pointer;
+        }
+
+        .admin-tab.active {
+            background: var(--brand);
+            border-color: var(--brand);
+            color: #fff;
+        }
+
+        .admin-empty {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .key-gate {
+            max-width: 380px;
+            margin: 80px auto;
+            text-align: center;
+        }
+
+        .key-gate input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-strong);
+            background: var(--panel);
+            color: var(--text-color);
+            margin: 14px 0;
+        }
+
+        .key-gate button {
+            background: var(--brand);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .submission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .submission-card {
+            background: var(--panel);
+            border: 1px solid var(--border-strong);
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        .submission-thumb {
+            width: 100%;
+            height: 140px;
+            border-radius: 8px;
+            background: repeating-conic-gradient(#3a3a3a 0% 25%, #2a2a2a 0% 50%) 50% / 16px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .submission-thumb img {
+            max-width: 90%;
+            max-height: 90%;
+            image-rendering: pixelated;
+        }
+
+        .submission-category {
+            display: inline-block;
+            font-size: var(--font-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--brand-light);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .submission-name {
+            font-weight: 700;
+            font-size: var(--font-md);
+            margin-bottom: 2px;
+        }
+
+        .submission-credit {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+            margin-bottom: 6px;
+        }
+
+        .submission-notes {
+            font-size: var(--font-xs);
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            max-height: 60px;
+            overflow-y: auto;
+        }
+
+        .submission-date {
+            font-size: var(--font-xs);
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .submission-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .submission-actions button {
+            flex: 1;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid var(--tile-border);
+            cursor: pointer;
+            font-size: var(--font-sm);
+            font-weight: 600;
+        }
+
+        .btn-approve {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border-color: rgba(34, 197, 94, 0.3) !important;
+        }
+
+        .btn-reject {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.3) !important;
+        }
+
+        .submission-status-badge {
+            display: inline-block;
+            font-size: var(--font-xs);
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: var(--tile-bg);
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="key-gate" id="keyGate">
+        <h1>Community Submissions</h1>
+        <p style="color:var(--text-muted);font-size:var(--font-sm)">Not linked anywhere on the site. Enter the admin key to continue.</p>
+        <input type="password" id="keyInput" placeholder="Admin key">
+        <br>
+        <button id="keySubmit">Continue</button>
+        <p id="keyError" style="color:#f87171;font-size:var(--font-sm);margin-top:10px;"></p>
+    </div>
+
+    <div class="admin-wrap" id="adminWrap" style="display:none">
+        <div class="admin-header">
+            <h1>Community Submissions</h1>
+            <p>Review, approve, or reject items submitted through the community form. Approved items sync into the live site automatically within about an hour.</p>
+        </div>
+
+        <div class="admin-category-tabs" id="statusTabs"></div>
+        <div id="submissionsContainer"><div class="admin-empty">Loading...</div></div>
+    </div>
+
+    <script>
+        const STATS_API = "https://graalguide.azrele2.workers.dev";
+        const KEY_STORAGE = "gg_admin_key";
+        const STATUSES = ["pending", "approved", "rejected", "synced"];
+        let activeStatus = "pending";
+        let adminKey = "";
+
+        function apiFetch(path, options) {
+            options = options || {};
+            options.headers = Object.assign({}, options.headers, { "X-Admin-Key": adminKey });
+            return fetch(STATS_API + path, options);
+        }
+
+        function renderTabs() {
+            const tabs = document.getElementById("statusTabs");
+            tabs.innerHTML = STATUSES.map(function (s) {
+                return '<button type="button" class="admin-tab' + (s === activeStatus ? " active" : "") +
+                    '" data-status="' + s + '">' + s + "</button>";
+            }).join("");
+            tabs.querySelectorAll(".admin-tab").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    activeStatus = btn.dataset.status;
+                    renderTabs();
+                    loadSubmissions();
+                });
+            });
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement("div");
+            div.textContent = str || "";
+            return div.innerHTML;
+        }
+
+        function cardHtml(sub) {
+            const actions = sub.status === "pending"
+                ? '<div class="submission-actions">' +
+                  '<button type="button" class="btn-approve" data-action="approve" data-id="' + sub.id + '">Approve</button>' +
+                  '<button type="button" class="btn-reject" data-action="reject" data-id="' + sub.id + '">Reject</button>' +
+                  "</div>"
+                : '<span class="submission-status-badge">' + sub.status + "</span>";
+
+            return '<div class="submission-card">' +
+                '<div class="submission-thumb"><img src="' + sub.imageDataUrl + '" alt=""></div>' +
+                '<div class="submission-category">' + escapeHtml(sub.category) + "</div>" +
+                '<div class="submission-name">' + escapeHtml(sub.itemName) + "</div>" +
+                '<div class="submission-credit">by ' + escapeHtml(sub.uploaderCredit) + "</div>" +
+                (sub.notes ? '<div class="submission-notes">' + escapeHtml(sub.notes) + "</div>" : "") +
+                '<div class="submission-date">' + new Date(sub.submittedAt).toLocaleString() + "</div>" +
+                actions +
+                "</div>";
+        }
+
+        function loadSubmissions() {
+            const container = document.getElementById("submissionsContainer");
+            container.innerHTML = '<div class="admin-empty">Loading...</div>';
+            apiFetch("/submissions?status=" + encodeURIComponent(activeStatus))
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    const list = data.submissions || [];
+                    if (!list.length) {
+                        container.innerHTML = '<div class="admin-empty">Nothing here.</div>';
+                        return;
+                    }
+                    list.sort(function (a, b) { return new Date(b.submittedAt) - new Date(a.submittedAt); });
+                    container.innerHTML = '<div class="submission-grid">' + list.map(cardHtml).join("") + "</div>";
+                    container.querySelectorAll("[data-action]").forEach(function (btn) {
+                        btn.addEventListener("click", function () {
+                            const action = btn.dataset.action;
+                            const id = btn.dataset.id;
+                            btn.disabled = true;
+                            apiFetch("/submissions/" + action, {
+                                method: "POST",
+                                headers: { "content-type": "application/json" },
+                                body: JSON.stringify({ id: id }),
+                            }).then(function () { loadSubmissions(); });
+                        });
+                    });
+                })
+                .catch(function () {
+                    container.innerHTML = '<div class="admin-empty">Couldn\'t reach the server.</div>';
+                });
+        }
+
+        function tryKey(key) {
+            adminKey = key;
+            return apiFetch("/submissions?status=pending").then(function (r) {
+                if (r.status === 401) return false;
+                return true;
+            });
+        }
+
+        document.getElementById("keySubmit").addEventListener("click", function () {
+            const key = document.getElementById("keyInput").value.trim();
+            if (!key) return;
+            tryKey(key).then(function (ok) {
+                if (!ok) {
+                    document.getElementById("keyError").textContent = "That key didn't work.";
+                    return;
+                }
+                try { localStorage.setItem(KEY_STORAGE, key); } catch (e) {}
+                document.getElementById("keyGate").style.display = "none";
+                document.getElementById("adminWrap").style.display = "block";
+                renderTabs();
+                loadSubmissions();
+            });
+        });
+
+        (function init() {
+            let saved = "";
+            try { saved = localStorage.getItem(KEY_STORAGE) || ""; } catch (e) {}
+            if (!saved) return;
+            tryKey(saved).then(function (ok) {
+                if (!ok) return;
+                document.getElementById("keyGate").style.display = "none";
+                document.getElementById("adminWrap").style.display = "block";
+                renderTabs();
+                loadSubmissions();
+            });
+        })();
+    </script>
+</body>
+</html>

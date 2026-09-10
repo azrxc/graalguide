@@ -236,6 +236,64 @@ async function getDiscordMessages(env, channelId) {
     return messages;
 }
 
+// ---- Community submission queue ----
+// Lets community members submit new gallery items (heads/bodies/hats/
+// shields/swords) through a public form instead of the site owner having
+// to manually receive and vet every file out-of-band. Submissions sit as
+// full records (image included, base64) in one KV blob (submissions:all)
+// until an admin approves or rejects them from admin-submissions.html. A
+// separate GitHub Action (scripts/sync-community-submissions.mjs) polls
+// for "approved" ones on a schedule, writes the image + a
+// data/<category>-community.json entry into the repo, commits, then calls
+// /submissions/mark-synced so they don't get picked up again next run.
+
+const SUBMISSION_CATEGORIES = ["heads", "bodies", "hats", "shields", "swords"];
+const MAX_SUBMISSION_IMAGE_BYTES = 3 * 1024 * 1024; // 3MB decoded
+const MAX_SUBMISSIONS_PER_IP_PER_DAY = 5;
+const MAX_STORED_SUBMISSIONS = 300; // safety cap on the submissions:all blob
+
+// Shared secret for the admin-only endpoints (list/approve/reject/mark-synced).
+// Set via `wrangler secret put ADMIN_KEY` (or the dashboard) - same value goes
+// into the GRAALGUIDE_ADMIN_KEY GitHub Actions secret and is what
+// admin-submissions.html asks for on first load.
+function isAdmin(request, env) {
+    if (!env.ADMIN_KEY) return false;
+    const url = new URL(request.url);
+    const key = request.headers.get("X-Admin-Key") || url.searchParams.get("key") || "";
+    return key === env.ADMIN_KEY;
+}
+
+function genSubmissionId() {
+    return "sub_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+}
+
+// Validates a data: URL is a reasonably-sized PNG/GIF/JPEG without ever
+// holding the full decoded bytes in memory - atob() on just the base64
+// payload is enough to get a real byte count for the size check.
+function decodeImageDataUrl(dataUrl) {
+    const match = /^data:(image\/(?:png|gif|jpeg));base64,([a-zA-Z0-9+/=]+)$/.exec(dataUrl || "");
+    if (!match) return null;
+    try {
+        return { mime: match[1], bytes: atob(match[2]).length };
+    } catch (err) {
+        return null;
+    }
+}
+
+async function getSubmissions(env) {
+    const raw = await env.STATS.get("submissions:all");
+    return raw ? JSON.parse(raw) : [];
+}
+
+async function saveSubmissions(env, list) {
+    try {
+        await env.STATS.put("submissions:all", JSON.stringify(list));
+    } catch (err) {
+        // KV write quota hit for today - the caller already applied the change
+        // in-memory for this response; it just won't persist until quota resets.
+    }
+}
+
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -336,6 +394,119 @@ export default {
                 if (!channelId) return json({ error: "missing channel id" }, 400);
                 const messages = await getDiscordMessages(env, channelId);
                 return json({ messages });
+            }
+
+            // POST /submit  { category, itemName, uploaderCredit, notes, imageDataUrl }
+            // Public - anyone can submit a new gallery item for review. Rate-limited
+            // per IP since there's no CAPTCHA in front of this.
+            if (url.pathname === "/submit" && request.method === "POST") {
+                const body = await request.json().catch(() => ({}));
+                const category = String(body.category || "");
+                if (!SUBMISSION_CATEGORIES.includes(category)) {
+                    return json({ error: "invalid category" }, 400);
+                }
+                const itemName = String(body.itemName || "").slice(0, 80).trim();
+                const uploaderCredit = String(body.uploaderCredit || "").slice(0, 60).trim();
+                const notes = String(body.notes || "").slice(0, 500).trim();
+                if (!itemName || !uploaderCredit) {
+                    return json({ error: "missing itemName or uploaderCredit" }, 400);
+                }
+                const image = decodeImageDataUrl(body.imageDataUrl);
+                if (!image) return json({ error: "invalid or missing image (must be a base64 PNG/GIF/JPEG data URL)" }, 400);
+                if (image.bytes > MAX_SUBMISSION_IMAGE_BYTES) return json({ error: "image too large (3MB max)" }, 400);
+
+                const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+                const today = new Date().toISOString().slice(0, 10);
+                const rateKey = `submit-rate:${ip}:${today}`;
+                const rateRaw = await env.STATS.get(rateKey);
+                const rateCount = rateRaw ? parseInt(rateRaw, 10) : 0;
+                if (rateCount >= MAX_SUBMISSIONS_PER_IP_PER_DAY) {
+                    return json({ error: "daily submission limit reached, try again tomorrow" }, 429);
+                }
+                try {
+                    await env.STATS.put(rateKey, String(rateCount + 1), { expirationTtl: 86400 });
+                } catch (err) {
+                    // quota hit - not fatal, just means today's rate limit won't persist
+                }
+
+                const list = await getSubmissions(env);
+                const entry = {
+                    id: genSubmissionId(),
+                    category,
+                    itemName,
+                    uploaderCredit,
+                    notes,
+                    imageDataUrl: body.imageDataUrl,
+                    submittedAt: new Date().toISOString(),
+                    status: "pending",
+                };
+                list.push(entry);
+
+                // Bound growth: once over the cap, drop the oldest resolved
+                // (synced/rejected) entries first so pending ones are never
+                // what silently gets dropped.
+                while (list.length > MAX_STORED_SUBMISSIONS) {
+                    const idx = list.findIndex((s) => s.status !== "pending");
+                    if (idx === -1) break;
+                    list.splice(idx, 1);
+                }
+
+                await saveSubmissions(env, list);
+                return json({ ok: true, id: entry.id });
+            }
+
+            // GET /submissions?status=pending&key=ADMIN_KEY - admin only.
+            if (url.pathname === "/submissions" && request.method === "GET") {
+                if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
+                const status = url.searchParams.get("status");
+                const list = await getSubmissions(env);
+                const filtered = status ? list.filter((s) => s.status === status) : list;
+                return json({ submissions: filtered });
+            }
+
+            // POST /submissions/approve  { id, key }
+            if (url.pathname === "/submissions/approve" && request.method === "POST") {
+                if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
+                const body = await request.json().catch(() => ({}));
+                const list = await getSubmissions(env);
+                const entry = list.find((s) => s.id === body.id);
+                if (!entry) return json({ error: "not found" }, 404);
+                entry.status = "approved";
+                entry.reviewedAt = new Date().toISOString();
+                await saveSubmissions(env, list);
+                return json({ ok: true });
+            }
+
+            // POST /submissions/reject  { id, key }
+            if (url.pathname === "/submissions/reject" && request.method === "POST") {
+                if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
+                const body = await request.json().catch(() => ({}));
+                const list = await getSubmissions(env);
+                const entry = list.find((s) => s.id === body.id);
+                if (!entry) return json({ error: "not found" }, 404);
+                entry.status = "rejected";
+                entry.reviewedAt = new Date().toISOString();
+                await saveSubmissions(env, list);
+                return json({ ok: true });
+            }
+
+            // POST /submissions/mark-synced  { ids: [...], key } - called by the
+            // GitHub Action after it has committed approved submissions into the repo.
+            if (url.pathname === "/submissions/mark-synced" && request.method === "POST") {
+                if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
+                const body = await request.json().catch(() => ({}));
+                const ids = Array.isArray(body.ids) ? body.ids : [];
+                const list = await getSubmissions(env);
+                let count = 0;
+                for (const entry of list) {
+                    if (ids.includes(entry.id)) {
+                        entry.status = "synced";
+                        entry.syncedAt = new Date().toISOString();
+                        count++;
+                    }
+                }
+                await saveSubmissions(env, list);
+                return json({ ok: true, count });
             }
 
             return json({ error: "not found" }, 404);

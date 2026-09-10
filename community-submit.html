@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <title>Submit Your Creation - GraalGuide</title>
+    <meta name="description" content="Submit your own head, body, hat, shield, or sword for a chance to see it added to GraalGuide.">
+    <link rel="canonical" href="https://graalguide.com/community-submit.html">
+    <link rel="icon" type="image/png" href="image/a/graalguide-favicon.png">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #3b82f6;
+            --accent-color: #3b82f6;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #9e9e9e;
+            --border-color: #333;
+
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-md: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 1.875rem;
+            --font-4xl: 2.25rem;
+        }
+
+        [data-theme="light"] {
+            --dark-bg: #f5f5f5;
+            --darker-bg: #e0e0e0;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+            --border-color: #dddddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: var(--font-md);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: var(--darker-bg);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .logo {
+            font-size: var(--font-2xl);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo a {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .header-page-title {
+            display: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            position: relative;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+            display: block;
+            padding: 5px 0;
+            position: relative;
+            font-size: var(--font-md);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-2xl);
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            display: inline-block;
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+            border: 1px solid var(--border-color);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            color: var(--text-color) !important;
+            display: block;
+            padding: 10px 20px;
+            font-weight: normal !important;
+            font-size: var(--font-sm);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--primary-color) !important;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .page-header {
+            padding: 50px 0 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: var(--font-3xl);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            max-width: 620px;
+            margin: 0 auto;
+            font-size: var(--font-lg);
+            color: var(--text-muted);
+        }
+
+        .submit-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+        }
+
+        .submit-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: var(--font-xl);
+        }
+
+        .form-row {
+            margin-bottom: 18px;
+        }
+
+        .form-row label {
+            display: block;
+            font-weight: 600;
+            font-size: var(--font-sm);
+            margin-bottom: 6px;
+        }
+
+        .form-row .hint {
+            display: block;
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: var(--font-xs);
+            margin-top: 4px;
+        }
+
+        .form-row select,
+        .form-row input[type="text"],
+        .form-row textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--dark-bg);
+            color: var(--text-color);
+            font-size: var(--font-md);
+            font-family: inherit;
+        }
+
+        .form-row textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .file-drop {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .file-drop:hover, .file-drop.drag-over {
+            border-color: var(--primary-color);
+        }
+
+        .file-drop input {
+            display: none;
+        }
+
+        .file-preview {
+            margin-top: 14px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-preview.active {
+            display: flex;
+        }
+
+        .file-preview img {
+            max-width: 72px;
+            max-height: 72px;
+            image-rendering: pixelated;
+            border-radius: 6px;
+            background: repeating-conic-gradient(#3a3a3a 0% 25%, #2a2a2a 0% 50%) 50% / 16px 16px;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: var(--font-md);
+        }
+
+        .submit-btn:hover {
+            background: #1e3a8a;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-status {
+            margin-top: 16px;
+            font-size: var(--font-sm);
+            padding: 12px 14px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .form-status.active {
+            display: block;
+        }
+
+        .form-status.ok {
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+        }
+
+        .form-status.error {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 24px 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+        }
+
+        .content-section h2 {
+            color: var(--text-color);
+            font-size: var(--font-lg);
+            margin-bottom: 10px;
+        }
+
+        .content-section ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .content-section li {
+            margin-bottom: 6px;
+        }
+
+        footer {
+            background: var(--darker-bg);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: var(--font-lg);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-muted);
+            font-size: var(--font-md);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: var(--font-sm);
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1100px) {
+            nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--darker-bg);
+                padding: 20px;
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                margin: 10px 0;
+                border: none;
+                background: var(--dark-bg);
+                display: none;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-actions {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/img/mascot/freeze.png" alt="GraalGuide" class="logo-img"> Graal<span>Guide</span>
+                </a>
+            </div>
+            <span class="header-page-title">Submit Your Creation</span>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu"><svg class="menu-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg></button>
+            <nav id="main-nav">
+                <ul>
+                    <li class="dropdown">
+                        <a href="#">Uploads</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="heads.html">Heads</a></li>
+                            <li><a href="bodies.html">Bodies</a></li>
+                            <li><a href="hats.html">Hats</a></li>
+                            <li><a href="swords.html">Swords</a></li>
+                            <li><a href="shields.html">Shields</a></li>
+                            <li><a href="upload-sets.html">Upload Sets</a></li>
+                            <li><a href="templates.html">Templates</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="news.html">News</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="desktop-theme-toggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                    </svg>
+                    <svg class="moon-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Submit Your Creation</h1>
+            <p>Made a head, body, hat, shield, or sword you're proud of? Send it in and it might show up in the community galleries.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-section">
+            <h2>How this works</h2>
+            <ul>
+                <li>Fill out the form below and attach your image (PNG or GIF, 3MB max).</li>
+                <li>It goes into a review queue, not straight onto the site. We check for trademarked characters, duplicates, and anything that's not actually your work.</li>
+                <li>If it's approved, it gets added to the matching community gallery automatically, usually within an hour.</li>
+                <li>You can submit up to 5 items a day.</li>
+            </ul>
+        </div>
+
+        <div class="submit-card">
+            <h2>New Submission</h2>
+            <form id="submit-form">
+                <div class="form-row">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="heads">Head</option>
+                        <option value="bodies">Body</option>
+                        <option value="hats">Hat</option>
+                        <option value="shields">Shield</option>
+                        <option value="swords">Sword</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="itemName">Item Name</label>
+                    <input type="text" id="itemName" name="itemName" maxlength="80" placeholder="e.g. Frostfire Helm" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="uploaderCredit">Your Name or Discord Handle</label>
+                    <input type="text" id="uploaderCredit" name="uploaderCredit" maxlength="60" placeholder="How you want to be credited" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="imageInput">Image</label>
+                    <div class="file-drop" id="fileDrop">
+                        <span id="fileDropLabel">Click to choose a file, or drag one here</span>
+                        <input type="file" id="imageInput" name="image" accept="image/png,image/gif,image/jpeg" required>
+                    </div>
+                    <div class="file-preview" id="filePreview">
+                        <img id="filePreviewImg" src="" alt="Preview">
+                        <span id="filePreviewName"></span>
+                    </div>
+                    <span class="hint">PNG or GIF works best. Max 3MB.</span>
+                </div>
+
+                <div class="form-row">
+                    <label for="notes">Notes (optional)</label>
+                    <textarea id="notes" name="notes" maxlength="500" placeholder="Anything the reviewer should know"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Submit for Review</button>
+                <div class="form-status" id="formStatus"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About GraalGuide</h3>
+                    <p>GraalGuide is the premier fan-made resource for Graal Era players. We provide tools, guides, and resources to enhance your gaming experience.</p>
+                    <p><em>GraalGuide is not affiliated with GraalOnline or Toonslab.</em></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="upload.html">Uploads</a></li>
+                        <li><a href="trade-guide.html">Trading Guide</a></li>
+                        <li><a href="secret-achievements.html">Secret Achievements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal &amp; Policies</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="about-me.html">About Me</a></li>
+                        <li><a href="https://www.youtube.com/@azrxc">YouTube</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="memory-lane.html">Memory Lane</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GraalGuide.com. All rights reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const STATS_API = "https://graalguide.azrele2.workers.dev";
+        const MAX_BYTES = 3 * 1024 * 1024;
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        function readFileAsDataUrl(file) {
+            return new Promise(function (resolve, reject) {
+                const reader = new FileReader();
+                reader.onload = function () { resolve(reader.result); };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function showStatus(el, message, isError) {
+            el.textContent = message;
+            el.classList.remove('ok', 'error');
+            el.classList.add('active', isError ? 'error' : 'ok');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.getElementById('desktop-theme-toggle').addEventListener('click', toggleTheme);
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mainNav = document.getElementById('main-nav');
+            mobileMenuBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                mainNav.classList.toggle('active');
+            });
+            document.querySelectorAll('.dropdown > a').forEach(function (toggle) {
+                toggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const dropdown = this.parentElement;
+                    const menu = this.nextElementSibling;
+                    const isVisible = menu.style.display === 'block';
+                    menu.style.display = isVisible ? 'none' : 'block';
+                    dropdown.classList.toggle('active', !isVisible);
+                });
+            });
+            if (window.matchMedia('(hover: hover)').matches) {
+                document.querySelectorAll('.dropdown').forEach(function (dropdown) {
+                    dropdown.addEventListener('mouseenter', function () { this.querySelector('.dropdown-menu').style.display = 'block'; });
+                    dropdown.addEventListener('mouseleave', function () { this.querySelector('.dropdown-menu').style.display = 'none'; });
+                });
+            }
+
+            const fileDrop = document.getElementById('fileDrop');
+            const imageInput = document.getElementById('imageInput');
+            const filePreview = document.getElementById('filePreview');
+            const filePreviewImg = document.getElementById('filePreviewImg');
+            const filePreviewName = document.getElementById('filePreviewName');
+            const fileDropLabel = document.getElementById('fileDropLabel');
+
+            fileDrop.addEventListener('click', function () { imageInput.click(); });
+            fileDrop.addEventListener('dragover', function (e) { e.preventDefault(); fileDrop.classList.add('drag-over'); });
+            fileDrop.addEventListener('dragleave', function () { fileDrop.classList.remove('drag-over'); });
+            fileDrop.addEventListener('drop', function (e) {
+                e.preventDefault();
+                fileDrop.classList.remove('drag-over');
+                if (e.dataTransfer.files.length) {
+                    imageInput.files = e.dataTransfer.files;
+                    updatePreview();
+                }
+            });
+            imageInput.addEventListener('change', updatePreview);
+
+            function updatePreview() {
+                const file = imageInput.files[0];
+                if (!file) return;
+                filePreviewImg.src = URL.createObjectURL(file);
+                filePreviewName.textContent = file.name;
+                filePreview.classList.add('active');
+                fileDropLabel.textContent = 'Change file';
+            }
+
+            const form = document.getElementById('submit-form');
+            const submitBtn = document.getElementById('submitBtn');
+            const formStatus = document.getElementById('formStatus');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                formStatus.classList.remove('active', 'ok', 'error');
+
+                const file = imageInput.files[0];
+                if (!file) {
+                    showStatus(formStatus, 'Please choose an image to submit.', true);
+                    return;
+                }
+                if (file.size > MAX_BYTES) {
+                    showStatus(formStatus, 'That image is too big. Max size is 3MB.', true);
+                    return;
+                }
+                if (!/^image\/(png|gif|jpeg)$/.test(file.type)) {
+                    showStatus(formStatus, 'Please use a PNG, GIF, or JPEG file.', true);
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                readFileAsDataUrl(file).then(function (dataUrl) {
+                    return fetch(STATS_API + '/submit', {
+                        method: 'POST',
+                        headers: { 'content-type': 'application/json' },
+                        body: JSON.stringify({
+                            category: document.getElementById('category').value,
+                            itemName: document.getElementById('itemName').value,
+                            uploaderCredit: document.getElementById('uploaderCredit').value,
+                            notes: document.getElementById('notes').value,
+                            imageDataUrl: dataUrl,
+                        }),
+                    });
+                }).then(function (resp) {
+                    return resp.json().then(function (data) { return { ok: resp.ok, data: data }; });
+                }).then(function (result) {
+                    if (result.ok && result.data.ok) {
+                        showStatus(formStatus, "Got it! Your submission is in the review queue. Thanks for contributing.", false);
+                        form.reset();
+                        filePreview.classList.remove('active');
+                        fileDropLabel.textContent = 'Click to choose a file, or drag one here';
+                    } else {
+                        showStatus(formStatus, result.data.error || 'Something went wrong, try again in a bit.', true);
+                    }
+                }).catch(function () {
+                    showStatus(formStatus, "Couldn't reach the server. Check your connection and try again.", true);
+                }).finally(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit for Review';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
