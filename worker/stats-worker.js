@@ -185,20 +185,34 @@ async function postDiscordRecap(env) {
 }
 
 // Fetches recent messages from a Discord channel via the bot, caching the
-// result in KV for 5 minutes so a busy page doesn't hammer Discord's API on
-// every visitor - the cache is shared across all visitors, refreshed lazily
-// on whichever request happens to find it stale. Only text + image
-// attachments are kept (no bot token, no other message metadata) since this
-// gets exposed to the public via /discord-feed.
-async function getDiscordMessages(env, channelId) {
-    const cacheKey = `discord-cache:${channelId}`;
-    const cached = await env.STATS.get(cacheKey);
-    const parsedCache = cached ? JSON.parse(cached) : null;
-    if (parsedCache && Date.now() - parsedCache.fetchedAt < 5 * 60 * 1000) {
-        return parsedCache.messages;
-    }
+// result for 5 minutes so a busy page doesn't hammer Discord's API on every
+// visitor. Cached via the platform Cache API (caches.default), NOT KV -
+// this endpoint is now hit on nearly every page view across the whole site
+// (the "Latest News" preview widget lives on ~80 pages), and Cache API
+// reads/writes don't count against the Workers KV daily operation quota
+// the way env.STATS.get/put do. KV stays reserved for counters that
+// actually need durable, globally-consistent storage; this is neither -
+// it's a disposable, eventually-consistent mirror of whatever's already on
+// Discord, so a per-datacenter edge cache is a strictly better fit anyway.
+// Trade-off: unlike the old KV cache, this can't serve stale data if a
+// fresh Discord fetch fails after the cache entry expires (each edge
+// location's cache is independent) - on a rare Discord API hiccup the
+// feed shows empty for a few minutes instead of last-known content. Only
+// text + image attachments are kept (no bot token, no other message
+// metadata) since this gets exposed to the public via /discord-feed.
+const DISCORD_CACHE_TTL_SECONDS = 5 * 60;
 
-    if (!env.DISCORD_BOT_TOKEN) return parsedCache ? parsedCache.messages : [];
+function discordCacheKey(channelId) {
+    return new Request(`https://discord-feed-cache.internal/${channelId}`);
+}
+
+async function getDiscordMessages(env, channelId) {
+    const cache = caches.default;
+    const cacheKey = discordCacheKey(channelId);
+    const cached = await cache.match(cacheKey);
+    if (cached) return await cached.json();
+
+    if (!env.DISCORD_BOT_TOKEN) return [];
 
     let resp;
     try {
@@ -206,10 +220,10 @@ async function getDiscordMessages(env, channelId) {
             headers: { Authorization: `Bot ${env.DISCORD_BOT_TOKEN}` },
         });
     } catch (err) {
-        return parsedCache ? parsedCache.messages : [];
+        return [];
     }
     if (!resp.ok) {
-        return parsedCache ? parsedCache.messages : [];
+        return [];
     }
 
     const raw = await resp.json();
@@ -227,12 +241,12 @@ async function getDiscordMessages(env, channelId) {
             .map((a) => a.url),
     }));
 
-    try {
-        await env.STATS.put(cacheKey, JSON.stringify({ fetchedAt: Date.now(), messages }));
-    } catch (err) {
-        // KV write quota hit - serve this fetch's fresh result anyway, just
-        // won't persist for the next request.
-    }
+    await cache.put(
+        cacheKey,
+        new Response(JSON.stringify(messages), {
+            headers: { "content-type": "application/json", "cache-control": `max-age=${DISCORD_CACHE_TTL_SECONDS}` },
+        })
+    );
     return messages;
 }
 
