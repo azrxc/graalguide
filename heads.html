@@ -574,7 +574,10 @@
             display: flex;
             gap: 5px;
             justify-content: center;
-            padding: 20px;
+            /* Extra top clearance so the 40x40 .fav-btn (site.css, positioned
+               top:4px/right:4px over this card) doesn't sit on top of the
+               rightmost frame and darken it with its own translucent circle. */
+            padding: 48px 20px 20px;
             background: #121212;
         }
         
@@ -1142,9 +1145,9 @@
             }
             
             .head-gallery {
-                padding: 15px;
+                padding: 48px 15px 15px;
             }
-            
+
             .head {
                 width: 28px;
                 height: 28px;
