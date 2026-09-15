@@ -648,6 +648,18 @@
             footer {
                 padding: 30px 0 15px;
             }
+
+            /* "GraalGuide Updates" is the longest of the three tab labels and
+               wraps to two lines at this width otherwise - tighten padding/gap
+               so it fits on one line like its siblings. */
+            .news-tabs {
+                gap: 6px;
+            }
+
+            .news-tab {
+                padding: 10px 6px;
+                font-size: var(--font-xs);
+            }
         }
     </style>
     <!-- Google tag (gtag.js) -->
