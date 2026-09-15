@@ -1,8 +1,16 @@
 name: Sync approved community submissions
 
+# Schedule trigger is deliberately OFF until the one-time setup is done
+# (ADMIN_KEY secret on the Worker + GRAALGUIDE_ADMIN_KEY here) - see
+# project-graalguide-community-submission-pipeline in the assistant's memory
+# for the full checklist. Without that setup every scheduled run just
+# hard-fails at the ADMIN_KEY check in scripts/sync-community-submissions.mjs,
+# which spammed a failure email every 30 minutes for days before this was
+# caught. Once setup is confirmed done, uncomment the schedule block below
+# (or just trigger manually via workflow_dispatch whenever a sync is wanted).
 on:
-  schedule:
-    - cron: "*/30 * * * *"
+  # schedule:
+  #   - cron: "*/30 * * * *"
   workflow_dispatch: {}
 
 permissions:
