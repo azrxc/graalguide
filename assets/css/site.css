@@ -1318,6 +1318,20 @@ nav ul li a:hover {
     border-color: rgba(59, 130, 246, 0.35);
 }
 
+/* .tag-guide/.tag-ec are white text (fine on the dark badge tint) and
+   .tag-news/.tag-tro/.tag-upload are light/mid blue - all read fine on
+   dark mode's pale-blue badge background but drop to ~1.2-3:1 contrast
+   against light mode's version of that same background. Darken them all
+   to the same accent used elsewhere for this exact problem (see
+   .live-stats-count above). */
+[data-theme="light"] .tag-news,
+[data-theme="light"] .tag-guide,
+[data-theme="light"] .tag-ec,
+[data-theme="light"] .tag-upload,
+[data-theme="light"] .tag-tro {
+    color: var(--brand-dark);
+}
+
 .article p, .article ul {
     margin-bottom: 15px;
     color: var(--text-muted);
@@ -2351,6 +2365,15 @@ footer {
 }
 
 [data-theme="light"] [class*="-download-badge"] {
+    background: rgba(0, 0, 0, 0.75);
+}
+
+/* Same treatment as the download badges above, for consistency - .fav-btn's
+   base 55% opacity is already fairly dark so this isn't a confirmed
+   legibility break like the badges were, just closing a gap where every
+   similar dark overlay chip on the site got a light-mode boost except this
+   one. */
+[data-theme="light"] .fav-btn {
     background: rgba(0, 0, 0, 0.75);
 }
 
