@@ -125,14 +125,19 @@ const LiveStats = (function () {
     }
 
     // Animates el's text from 0 up to `value` over `duration` ms, formatted
-    // with formatCount along the way - the "counter ticking up" effect.
-    function countUp(el, value, duration) {
+    // with formatFn (defaults to the compact formatCount) along the way -
+    // the "counter ticking up" effect. Pass formatCountFull for a spot that
+    // wants the full comma-grouped number instead of "1.4K" (e.g. a roomy
+    // hero stat where more digits reads as more impressive, not a tight
+    // per-item badge where compact is the better fit).
+    function countUp(el, value, duration, formatFn) {
         duration = duration || 1200;
+        formatFn = formatFn || formatCount;
         const start = performance.now();
         function tick(now) {
             const progress = Math.min(1, (now - start) / duration);
             const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = formatCount(Math.round(value * eased));
+            el.textContent = formatFn(Math.round(value * eased));
             if (progress < 1) requestAnimationFrame(tick);
         }
         requestAnimationFrame(tick);
@@ -204,6 +209,13 @@ const LiveStats = (function () {
         return String(n);
     }
 
+    // Full comma-grouped digits ("1,432" instead of "1.4K") - for roomy spots
+    // like a hero stat tile where the extra digits read as more impressive,
+    // not for tight per-item badges (use formatCount there instead).
+    function formatCountFull(n) {
+        return (Number(n) || 0).toLocaleString();
+    }
+
     // Renders a flag icon for a 2-letter ISO country code. Uses flagcdn.com
     // images rather than Unicode flag emoji - Windows browsers generally don't
     // have flag glyphs in their emoji font and fall back to showing the raw
@@ -245,7 +257,7 @@ const LiveStats = (function () {
 
     return {
         pingView, recordDownload, fetchCounts, fetchLeaderboard, fetchTotals,
-        countUp, formatCount, countryFlag, countryName, escapeHtml,
+        countUp, formatCount, formatCountFull, countryFlag, countryName, escapeHtml,
         fetchDiscordFeed, formatDiscordMessage,
     };
 })();

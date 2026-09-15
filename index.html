@@ -2252,8 +2252,8 @@ Big update! We've added over 21,000 new heads and bodies to the collection, brow
             var visitorsEl = document.getElementById("liveTotalVisitors");
             if (downloadsEl || visitorsEl) {
                 LiveStats.fetchTotals().then(function (totals) {
-                    if (downloadsEl) LiveStats.countUp(downloadsEl, totals.downloads);
-                    if (visitorsEl) LiveStats.countUp(visitorsEl, totals.visitors);
+                    if (downloadsEl) LiveStats.countUp(downloadsEl, totals.downloads, 1200, LiveStats.formatCountFull);
+                    if (visitorsEl) LiveStats.countUp(visitorsEl, totals.visitors, 1200, LiveStats.formatCountFull);
                 });
             }
 
