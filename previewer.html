@@ -88,6 +88,14 @@
     }
     .zoom-row { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
 
+    /* Canvas (200px) + d-pad (~110px) + gap/padding needs ~414px in a row -
+       overflows narrow phones (this page had zero media queries before).
+       Wrap the d-pad below the canvas instead of shrinking either one, so
+       the pixel-art preview stays crisp at its native size. */
+    @media (max-width: 480px) {
+        .stage-wrap { flex-wrap: wrap; }
+    }
+
     .slot-card {
         display: flex;
         align-items: center;

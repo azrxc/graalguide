@@ -71,8 +71,13 @@
             background: var(--tile-bg-hover);
         }
 
+        .admin-table-wrap {
+            overflow-x: auto;
+        }
+
         .admin-table {
             width: 100%;
+            min-width: 320px;
             border-collapse: collapse;
             font-size: var(--font-sm);
         }
@@ -152,22 +157,26 @@
         <div class="admin-section">
             <h2>Downloads by Item <button type="button" class="admin-refresh" id="refreshDownloads">Refresh</button></h2>
             <div class="admin-category-tabs" id="categoryTabs"></div>
-            <table class="admin-table">
-                <thead>
-                    <tr><th>Rank</th><th>Item</th><th>Downloads</th></tr>
-                </thead>
-                <tbody id="categoryTableBody"></tbody>
-            </table>
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Rank</th><th>Item</th><th>Downloads</th></tr>
+                    </thead>
+                    <tbody id="categoryTableBody"></tbody>
+                </table>
+            </div>
         </div>
 
         <div class="admin-section">
             <h2>Visitors by Country <button type="button" class="admin-refresh" id="refreshCountries">Refresh</button></h2>
-            <table class="admin-table">
-                <thead>
-                    <tr><th>Rank</th><th>Country</th><th>Visitors</th></tr>
-                </thead>
-                <tbody id="countryTableBody"></tbody>
-            </table>
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Rank</th><th>Country</th><th>Visitors</th></tr>
+                    </thead>
+                    <tbody id="countryTableBody"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 

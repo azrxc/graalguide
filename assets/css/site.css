@@ -1562,16 +1562,16 @@ footer {
 
 .fav-btn {
     position: absolute;
-    top: 6px;
-    right: 6px;
+    top: 4px;
+    right: 4px;
     z-index: 5;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: none;
     background: rgba(0, 0, 0, 0.55);
     color: rgba(255, 255, 255, 0.6);
-    font-size: 16px;
+    font-size: 19px;
     line-height: 1;
     display: flex;
     align-items: center;
@@ -1927,8 +1927,8 @@ footer {
     }
 
     .mobile-actions-container .theme-toggle {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
     }
 
     .mobile-actions-container .language-btn {
